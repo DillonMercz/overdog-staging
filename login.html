@@ -8478,9 +8478,8 @@ h1, h2, h3, h4, h5,
         // Check authentication state
     firebase.auth().onAuthStateChanged(user => {
         if (!user) {
-            console.log("User Is not logged in")
-        }else {
-          location.href = "./dashboard/index.html"
+            console.log("User Is not logged in") }else {
+          location.href = "./dashboard/main/dashboard/index.html"
         }
     });
     function login() {
