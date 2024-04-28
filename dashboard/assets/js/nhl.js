@@ -610,7 +610,7 @@ function displayScores(data) {
                             <div class="col-6 justify-content-end text-align-right" style="position:absolute;right:-10%;top:25%">
                                 <span class="quarter badge bg-${color}">${header}</span><br>
                                 <small class="total">Total: </small><br>
-                                <span class="total-score">${game.awayTeam.score + game.homeTeam.score}</span>
+                                <span class="total-score">${game.awayTeam.score + game.homeTeam.score || 0}</span>
                             </div>
                         </div>
                         <div style="position: absolute;width:70%;left:0px;height:60%; border-right:2px solid  #474E72;top:20%">
