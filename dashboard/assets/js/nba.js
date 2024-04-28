@@ -568,7 +568,7 @@ function displayScores(data) {
                         <div class="row mt-4 align-items-center">
                             <!-- Column 1: Knicks -->
                             <div class="col-6 d-flex justify-content-start">
-                                <span><img src="../../assets/img/nba-logos/${getTeamName(game.awayTeam.teamName).toLowerCase()}.png" width="40px" height="40px"></span>
+                                <span style="width:40px;height: 40px;"><img src="../../assets/img/nba-logos/${getTeamName(game.awayTeam.teamName).toLowerCase()}.png" width="40px" height="40px"></span>
                                 <span class="team-name">${game.awayTeam.teamName}</span>
                                 <span class="score">${game.awayTeam.score}</span>
                             </div>
@@ -614,6 +614,21 @@ getNBAScores();
 
 // Poll the API every minute to get the latest scores
 setInterval(getNBAScores, 20000);
+
+setInterval(function(){
+    $(".card-title-od").css("background", "-webkit-linear-gradient(left, #FFE872, #00FFFF)");
+    $(".card-title-od").css("-webkit-background-clip", "text");
+    $(".card-title-od").css("-webkit-text-fill-color", "transparent");
+    $("#scoreboard-spinner").css("display", "inline-block");
+}, 20000);
+
+setInterval(function(){
+    $(".card-title-od").css("background", "white");
+    $(".card-title-od").css("-webkit-background-clip", "text");
+    $(".card-title-od").css("-webkit-text-fill-color", "transparent");
+    $(".card-title-od").css("color", "white");
+    $("#scoreboard-spinner").css("display", "none");
+}, 21200);
 
 
 const currentDate = new Date();

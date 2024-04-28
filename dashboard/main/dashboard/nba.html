@@ -57,14 +57,29 @@
     cursor: pointer;
     transition: .3s ease;
 }
+.ai-pick .card:hover{
+    background: #26283b;
+    transform: scale(1.05);
+    transition: .3s ease;
+}
+.card .nav-link{
+    color: silver;
+}
+.card .nav-link.active{
+    border-bottom: 2px solid;
+    border-image: linear-gradient(to right, #FFE872 25%, #00FFFF 100%);
+    border-image-slice: 1;
+    color: white;
+    font-weight: bold;
+}
 .team-name{
-
-  margin:10px;
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 15px;
   width:98px;
 }
 .team-name1{
     margin-top:0px !important;
-  margin:10px;
   width:98px;
 }
 .ai-pick{
@@ -79,6 +94,14 @@ min-height:2px;
 }
 th{
     font-family: 'OVERDOG';
+}
+#eastern-standings tr:hover{
+    background: #26283b;
+    transition: .3s ease;
+}
+#western-standings tr:hover{
+    background: #26283b;
+    transition: .3s ease;
 }
 .btn-5 {
   width: 130px;
@@ -119,6 +142,15 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
 .btn-5:hover:after{
   width:100%;
   transition:800ms ease all;
+}
+#scoreboard-spinner{
+    height: 20px;
+    width: 20px;
+    display: none;
+}
+
+#navs-within-card-active{
+    min-height: 615px;
 }
 
 
@@ -567,7 +599,7 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                             <div class="col-12 col-md-6 col-xl-4 mb-4 order-1 order-xl-0">
                                 <div class="card h-100">
                                     <div class="card-header d-flex justify-content-between pb-1">
-                                        <h5 class="mb-0 card-title" style="font-family:'OVERDOG' !important">SCOREBOARD</h5>
+                                        <h5 class="mb-0 card-title card-title-od" style="font-family:'OVERDOG' !important">SCOREBOARD <div class="spinner-border text-white" id="scoreboard-spinner"></div></h5>
                                     </div>
                                     <div class=" text-center mb-3">
                                         <div class="card-body" style="padding-top:0px">

@@ -644,6 +644,20 @@ getNBAScores();
 // Poll the API every minute to get the latest scores
 setInterval(getNBAScores, 20000);
 
+setInterval(function(){
+    $(".card-title-od").css("background", "-webkit-linear-gradient(left, #FFE872, #00FFFF)");
+    $(".card-title-od").css("-webkit-background-clip", "text");
+    $(".card-title-od").css("-webkit-text-fill-color", "transparent");
+    $("#scoreboard-spinner").css("display", "inline-block");
+}, 20000);
+
+setInterval(function(){
+    $(".card-title-od").css("background", "white");
+    $(".card-title-od").css("-webkit-background-clip", "text");
+    $(".card-title-od").css("-webkit-text-fill-color", "transparent");
+    $(".card-title-od").css("color", "white");
+    $("#scoreboard-spinner").css("display", "none");
+}, 21200);
 
 const currentDate = new Date();
 const options = { timeZone: 'America/New_York' };
