@@ -966,7 +966,7 @@ const requestOptions = {
     redirect: "follow"
 };
 
-fetch("https://script.google.com/macros/s/AKfycbxdTMdW4mUJXq33LRjvVnBCey7xELhTy4VdG0tJVeIRGWXOxCGREgqaaVDaoHqLiUdg5g/exec", requestOptions)
+fetch("https://script.google.com/macros/s/AKfycbwtFchPASkZF_kSCAlIr0SQg_oQiREX-lII4i6tOSzeze_2NFd-G39eKTX3s_ktjmSMOQ/exec", requestOptions)
     .then(response => response.text())
     .then(text => {
         // Create a DOMParser object
@@ -975,6 +975,7 @@ fetch("https://script.google.com/macros/s/AKfycbxdTMdW4mUJXq33LRjvVnBCey7xELhTy4
         const htmlDoc = parser.parseFromString(text, 'text/html');
         // Now you can work with the HTML document as you normally would
         var tables = htmlDoc.getElementsByTagName('table')
+        console.log(htmlDoc)
         //document.getElementById('eastern-standings').append(tables[0])
 
         extractEasternData(tables[0], western)
@@ -1001,7 +1002,7 @@ function extractEasternData(table_html, conference) {
         const strk = columns[7].textContent.trim();
 
         data.push({
-            Team: team.replace(/^(\d+)(?:([A-Z][a-z]+))$/, '$1. $2'),
+            Team: team.replace(/^(\d+)\s*([A-Z][a-z]+\s*[A-Z]?[a-z]*)$/, '$1. $2'),
             'W-L': wL,
             PCT: pct,
             GB: gb,
@@ -1019,7 +1020,7 @@ function extractEasternData(table_html, conference) {
 
 function buildEasternTable(eastern) {
     var template
-    console.log('pussy')
+    //console.log('pussy')
     for (var i in eastern) {
         if (eastern[i].Team.includes('76ers')) {
             eastern[i].Team = eastern[i].Team.replace("76ers", ". 76ers")
@@ -1054,7 +1055,7 @@ function extractWesternData(table_html, conference) {
         const strk = columns[7].textContent.trim();
 
         data.push({
-            Team: team.replace(/^(\d+)(?:([A-Z][a-z]+))$/, '$1. $2'),
+            Team: team.replace(/^(\d+)\s*([A-Z][a-z]+\s*[A-Z]?[a-z]*)$/, '$1. $2'),
             'W-L': wL,
             PCT: pct,
             GB: gb,
