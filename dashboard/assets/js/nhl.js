@@ -4,7 +4,6 @@
 
 'use strict';
 
-
 (function() {
     let cardColor, headingColor, labelColor, shadeColor, grayColor;
     if (isDarkStyle) {
