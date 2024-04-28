@@ -819,7 +819,7 @@ function buildPredictions(predictions) {
                   <div class="col-4">
                       <div class="d-flex  align-items-center mb-2">
                           <span><img src="https://assets.nhle.com/logos/nhl/svg/${getTeamAbbreviation(game["Away Team"])}_light.svg" width="40px" height="40px"></span>
-                          <p class="team-name1 mb-0">${getTeamName(game["Away Team"])}</p>
+                          <p class="team-name1 mb-0 team-away">${getTeamName(game["Away Team"])}</p>
                       </div>
                       
                   </div>
@@ -840,7 +840,7 @@ function buildPredictions(predictions) {
                   </div>
                   <div class="col-4 text-end">
                       <div class="d-flex  justify-content-end align-items-center mb-2">
-                          <p class=" team-name1 mb-0">${getTeamName(game["Home Team"])}</p>
+                          <p class=" team-name1 mb-0 team-home">${getTeamName(game["Home Team"])}</p>
                           <span><img src="https://assets.nhle.com/logos/nhl/svg/${getTeamAbbreviation(game["Home Team"])}_light.svg" width="40px" height="40px"></span>
                       </div>
                       

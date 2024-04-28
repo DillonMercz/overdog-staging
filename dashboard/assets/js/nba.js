@@ -747,7 +747,7 @@ function buildPredictions(predictions) {
                   <div class="col-4">
                       <div class="d-flex  align-items-center mb-2">
                           <span><img src="../../assets/img/nba-logos/${getTeamName(game.away_team).toLowerCase()}.png" width="40px" height="40px"></span>
-                          <p class="team-name1 mb-0">${getTeamName(game.away_team)}</p>
+                          <p class="team-name1 mb-0 team-away">${getTeamName(game.away_team)}</p>
                       </div>
                       
                   </div>
@@ -768,7 +768,7 @@ function buildPredictions(predictions) {
                   </div>
                   <div class="col-4 text-end">
                       <div class="d-flex  justify-content-end align-items-center mb-2">
-                          <p class=" team-name1 mb-0">${getTeamName(game.home_team)}</p>
+                          <p class=" team-name1 mb-0 team-home">${getTeamName(game.home_team)}</p>
                           <span><img src="../../assets/img/nba-logos/${getTeamName(game.home_team).toLowerCase()}.png" width="40px" height="40px"></span>
                       </div>
                       
