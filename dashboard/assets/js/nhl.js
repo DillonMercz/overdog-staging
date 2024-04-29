@@ -812,7 +812,7 @@ function buildPredictions(predictions) {
                       <h4 class="card-title mb-1">${predictedWinner}<span class="badge bg-danger" id="${predictedWinner}-moneyline-status" style="display:none; margin-left:10px"></span></a></h4>
               </center>
               <br>
-              <center><small id="bulls-status">To Win</small></center>
+              <center class="text-success"><small id="bulls-status">To Win</small></center>
           </div>
           <div class="card-body">
               <div class="row">
