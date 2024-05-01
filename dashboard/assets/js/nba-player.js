@@ -575,7 +575,9 @@ fetch("https://cryptaverse.xyz/nba/player/" + getParameterByName('player'))
         const initialData = displayGames.map(game => game[defaultStat]);
         const average = calculateAverage(initialData);
         myChart = createBarChart(initialLabels, initialData, "Points", average);
-
+        calculateLast5(games.map(game => game), selectedStat);
+        calculateLast10(games.map(game => game), selectedStat);
+        calculateLast15(games.map(game => game), selectedStat);
         await processPlayerInfo(result.playerInfo);
     })
     .catch((error) => console.error(error));
@@ -629,6 +631,7 @@ function createBarChart(labels, data, statLabel, average) {
                 strokeDashArray: 0,
                 label: {
                     borderColor: "#775DD0",
+                    borderSize:10,
                     style: {
                         color: "#fff",
                         background: "#775DD0"
@@ -713,6 +716,9 @@ document.querySelectorAll('.nav-link').forEach(button => {
         const data = displayGames.map(game => game[selectedStat]);
         const statLabel = selectedStat; // Use the text content of the clicked button as the stat label
         const average = calculateAverage(data);
+        calculateLast5(games.map(game => game), selectedStat);
+        calculateLast10(games.map(game => game), selectedStat);
+        calculateLast15(games.map(game => game), selectedStat);
         updateChart(myChart, labels, data, statLabel, average);;
     });
 });
@@ -723,6 +729,40 @@ function calculateAverage(data) {
     return sum / data.length;
 }
 
+function calculateLast5(data, stat){
+    const statData = data.map(game => game[stat]);
+    console.log(statData); // Log the statData array to check if it contains the correct data
+    const first5Data = statData.slice(0, 5);
+    const sum = first5Data.reduce((acc, val) => acc + val, 0);
+    const average = sum / 5; // Calculate average of first 5 games
+    const aboveOrEqualAverage = first5Data.filter(val => val >= average).length;
+    const percentage = (aboveOrEqualAverage / 5) * 100;
+    document.getElementById("last5").innerHTML = `${percentage.toFixed(1)}%`
+    console.log(`Percentage of the first 5 games for ${stat} at or above average: ${percentage.toFixed(2)}%`);
+}
+function calculateLast10(data, stat){
+    const statData = data.map(game => game[stat]);
+    console.log(statData); // Log the statData array to check if it contains the correct data
+    const first5Data = statData.slice(0, 10);
+    const sum = first5Data.reduce((acc, val) => acc + val, 0);
+    const average = sum / 10; // Calculate average of first 5 games
+    const aboveOrEqualAverage = first5Data.filter(val => val >= average).length;
+    const percentage = (aboveOrEqualAverage / 10) * 100;
+    document.getElementById("last10").innerHTML = `${percentage.toFixed(1)}%`
+    console.log(`Percentage of the first 10 games for ${stat} at or above average: ${percentage.toFixed(2)}%`);
+}
+
+function calculateLast15(data, stat){
+    const statData = data.map(game => game[stat]);
+    console.log(statData); // Log the statData array to check if it contains the correct data
+    const first5Data = statData.slice(0, 15);
+    const sum = first5Data.reduce((acc, val) => acc + val, 0);
+    const average = sum / 15; // Calculate average of first 5 games
+    const aboveOrEqualAverage = first5Data.filter(val => val >= average).length;
+    const percentage = (aboveOrEqualAverage / 15) * 100;
+    document.getElementById("last15").innerHTML = `${percentage.toFixed(1)}%`
+    console.log(`Percentage of the first 15 games for ${stat} at or above average: ${percentage.toFixed(2)}%`);
+}
 
 //function to handle playerinfo data
 
@@ -749,6 +789,7 @@ function processPlayerInfo(data) {
 
 
 }
+
 
 
 function scrapeBio(link) {
@@ -784,3 +825,16 @@ fetch("https://script.google.com/macros/s/AKfycbzy-J6Iaw5pMk3gbpuyd9AzihCbWsihfh
 
 
 }
+
+
+// Scroll right by a certain amount of pixels
+function scrollRight() {
+    const container = document.querySelector('#stats-pills');
+    container.scrollBy({
+        left: 200, // Adjust the value as needed for scrolling distance
+        behavior: 'smooth' // Optionally, use smooth scrolling
+    });
+}
+
+
+
