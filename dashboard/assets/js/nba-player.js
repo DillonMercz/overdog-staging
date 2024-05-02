@@ -838,3 +838,40 @@ function scrollRight() {
 
 
 
+// Function to perform linear regression for a specific stat
+function linearRegression(data, xKey, yKey) {
+    let sumX = 0;
+    let sumY = 0;
+    let sumXY = 0;
+    let sumXSquare = 0;
+
+    data.forEach(game => {
+        const x = game[xKey];
+        const y = game[yKey];
+        sumX += x;
+        sumY += y;
+        sumXY += x * y;
+        sumXSquare += x * x;
+    });
+
+    const n = data.length;
+    const slope = (n * sumXY - sumX * sumY) / (n * sumXSquare - sumX * sumX);
+    const intercept = (sumY - slope * sumX) / n;
+
+    return { slope, intercept };
+}
+
+// Function to predict next game's total for a specific stat using linear regression
+function predictNextStatTotal(data, xKey, yKey, stat) {
+    // Perform linear regression for the specified stat based on xKey
+    const { slope, intercept } = linearRegression(data, xKey, yKey);
+    
+    // Calculate the next game's predicted total for the specified stat
+    const nextGameProjection = Math.round(slope * data[data.length - 1][xKey] + intercept);
+    
+    return nextGameProjection;
+}
+
+// Example usage
+const nextPTS = predictNextStatTotal(gameData, 'MIN', 'PTS', 'PTS');
+console.log("Next predicted total points (PTS):", nextPTS);
