@@ -533,6 +533,7 @@ function getNBAScores() {
 
 }
 
+
 function displayScores(data) {
 
     const scoresContainer = document.getElementById('scores-container');
@@ -673,7 +674,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 
                     fetch(`https://cryptaverse.xyz/predictions/${formattedDate}_predictions.json`, requestOptions)
                         .then(response => response.text())
-                        .then(result => buildPredictions(JSON.parse(result)))
+                        .then(result => {
+                            buildPredictions(JSON.parse(result))
+                            getNBAProps()
+                        })
                         .catch(error => console.log('error', error));
                 }
             }
@@ -887,8 +891,82 @@ function buildUI(parlays) {
 */
 
 
+//props
+
+function getNBAProps(){
+    const requestOptions = {
+  method: "GET",
+  redirect: "follow"
+};
+
+fetch(`https://cryptaverse.xyz/predictions/nba_props/${formattedDate}.json`, requestOptions)
+  .then((response) => response.json())
+  .then((result) => processProps(result))
+  .catch((error) => console.error(error));
+}
 
 
+function processProps(props){
+    console.log(props)
+    const propsContainer = document.getElementById('props-picks');
+    propsContainer.innerHTML = '';
+    for (var i in props){
+        const cardTemplate = `
+        <div class="col-lg-3 col-sm-6 mb-4 ai-pick">
+          <div class="card h-100">
+              <div class="card-header">
+                  <center>
+                      <a style="color:white" href="./nba-player.html?player=${props[i].PLAYER}"><h4 class="card-title mb-1" style="font-family: 'OVERDOG';color:white !important">${props[i].PLAYER}</a></h4>
+              </center>
+              <br>
+              <center class="text-success"><small id="bulls-status">${props[i].POSITION}</small></center>
+          </div>
+          <div class="card-body">
+              <div class="row">
+                  <div class="col-4"> 
+                  </div>
+                  <div class="col-4">
+                      <div class="divider divider-vertical">
+                          <div class="divider-text" style="border-radius:50%">
+                              <img width="40px" height="35px"  src="https://cdn.nba.com/headshots/nba/latest/1040x760/${props[i].PLAYER_ID}.png">
+                          </div>
+                      </div>
+                  </div>
+              <center><small>Predictions:</small></center><br><br>
+                    <center>
+                        <div class="d-flex justify-content-center">
+                            <div class="table-responsive">
+                                <table class="table table-bordered ">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">PTS</th>
+                                            <th scope="col">AST</th>
+                                            <th scope="col">REB</th>
+                                            <th scope="col">BLK</th>
+                                            <th scope="col">STL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td id="PTS">${Math.round(props[i].predictions.PTS)}</td>
+                                            <td id="AST">${Math.round(props[i].predictions.AST)}</td>
+                                            <td id="REB">${Math.round(props[i].predictions.REB)}</td>
+                                            <td id="BLK">${Math.round(props[i].predictions.BLK)}</td>
+                                            <td id="STL">${Math.round(props[i].predictions.STL)}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                </center>
+            </div>
+        </div>
+    </div>
+    `;
+
+        propsContainer.innerHTML += cardTemplate;
+    }
+}
 
 // Standings
 

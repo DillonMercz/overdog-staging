@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="../../assets/vendor/css/pages/cards-advance.css" />
     <!-- Page CSS -->
     <link rel="stylesheet" href="../../assets/vendor/css/pages/basketball.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css" />
     <!-- Helpers -->
     <script src="../../assets/vendor/js/helpers.js"></script>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
@@ -51,41 +52,15 @@
   margin-top:28px;
   border:2px solid #474E72;
 }
-.scoreboard-item:hover{
-    background: #26283b;
-    transform: scale(1.05);
-    cursor: pointer;
-    transition: .3s ease;
-}
-.ai-pick .card:hover{
-    background: #26283b;
-    transform: scale(1.05);
-    transition: .3s ease;
-}
-.card .nav-link{
-    color: silver;
-}
-.card .nav-link.active{
-    border-bottom: 2px solid;
-    border-image: linear-gradient(to right, #FFE872 25%, #00FFFF 100%);
-    border-image-slice: 1;
-    color: white;
-}
 .team-name{
-    text-align: left;
-    margin-top: 10px;
-    margin-left: 15px;
+
+  margin:10px;
   width:98px;
 }
 .team-name1{
     margin-top:0px !important;
+  margin:10px;
   width:98px;
-}
-.team-home{
-    margin-right: 15px;
-}
-.team-away{
-    margin-left: 15px;
 }
 .ai-pick{
     min-width:380px;
@@ -99,14 +74,6 @@ min-height:2px;
 }
 th{
     font-family: 'OVERDOG';
-}
-#eastern-standings tr:hover{
-    background: #26283b;
-    transition: .3s ease;
-}
-#western-standings tr:hover{
-    background: #26283b;
-    transition: .3s ease;
 }
 .btn-5 {
   width: 130px;
@@ -148,17 +115,89 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
   width:100%;
   transition:800ms ease all;
 }
-#scoreboard-spinner{
-    height: 15px;
-    width: 15px;
-    border-width: 1px;
-    display: none;
+ .scoreboard-item:hover{
+    background: #26283b;
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: .3s ease;
+}
+    #statChart {
+      width: 100%;
+      height: 100%;
+    }
+     #statSelect, #gameSelect {
+  color: white;
 }
 
-#navs-within-card-active{
-    min-height: 615px;
+.apexcharts-xaxis-label, .apexcharts-yaxis-label {
+  fill: white;
 }
 
+.apexcharts-gridline {
+  stroke: #333;
+}
+.apexcharts-legend-text{
+    color:white;
+
+}
+text{
+    color:white;
+}
+.apexcharts-text .apexcharts-yaxis-title-text{
+    color:white;
+    fill: white;
+} 
+.jumbotron {
+    background-repeat:   repeat;
+    background-position: center center; 
+    width:98.5%;
+    margin-left: 12px;
+    margin-right: 12px;
+
+}
+.blur{
+opacity:0.2;
+background: black;
+width:100%;
+height:100%;
+position: absolute;
+left:0px;
+}
+.header-item{
+background:#1D1D1D;
+margin:15px;
+border-radius:15px;
+height:100%;
+}
+
+.header-stat{
+    background: #2f3349;
+    border-radius:15px;
+    margin:2px;
+}
+.header-stat p{
+    font-size:10px;
+    margin:0px;
+}
+.headshot{
+    background-color:var(--primary);
+}
+.header-stat-body{
+    padding:5px;
+}
+.stats-container{
+    width: 90%;
+    height:fit-content;
+    overflow-x: scroll;
+}
+.nav.nav-pills {
+    white-space: nowrap;
+    flex-wrap: nowrap;
+}
+
+.nav.nav-pills .nav-item {
+    display: inline-block;
+}
 </style>
 
 <body>
@@ -241,17 +280,10 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <a href="app-logistics-dashboard.html" class="menu-link">
                             <i class="menu-icon fa-solid fa-baseball-bat-ball"></i>
-                            <div data-i18n="Baseball">Baseball</div>
+                            <div>Baseball<span class="badge bg-danger" id="baseball-live-tag" style="display:none;margin-left:10px">Live</span></div>
                         </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="mlb.html" class="menu-link">
-                                    <div data-i18n="MLB">MLB</div>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <li class="menu-item disabled">
                         <a class="menu-link">
@@ -262,7 +294,7 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                     <li class="menu-item">
                         <a href="app-academy-dashboard.html" class="menu-link">
                             <i class="menu-icon fa-solid fa-graduation-cap"></i>
-                            <div data-i18n="Overdog Academy">Overdog Academy</div>
+                            <div data-i18n="Learn Betting">Learn Betting</div>
                         </a>
                     </li>
                     <li class="menu-item" style="width:100% !important;margin:0px;bottom:0px;position:absolute">
@@ -271,17 +303,17 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <div class="row">
-                                            <img src="https://i.imgur.com/zFsjMsL.png" onclick="location.href='./referral'">
+                                            <img src="https://i.imgur.com/dOcCY5R.png" onclick="location.href='./referral'">
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="row">
-                                            <img src="https://i.imgur.com/zFsjMsL.png" onclick="location.href='./referral'">
+                                            <img src="https://i.imgur.com/dOcCY5R.png" onclick="location.href='./referral'">
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="row">
-                                            <img src="https://i.imgur.com/zFsjMsL.png" onclick="location.href='./referral'">
+                                            <img src="https://i.imgur.com/dOcCY5R.png" onclick="location.href='./referral'">
                                         </div>
                                     </div>
                                 </div>
@@ -605,202 +637,246 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                 <div class="content-wrapper">
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="py-3 mb-4"><span class="text-muted fw-light">Dashboard /</span> <span class="text-muted fw-light"> Basketball /</span> <span> NBA</span></h4>
+                        <h4 class="py-3 mb-4"><span class="text-muted fw-light">Dashboard /</span> <span class="text-muted fw-light"> Basketball /</span> <span class="text-muted fw-light"> NBA /</span><span> Player </span></h4>
                         <div class="row">
-                            <!--SCOREBOARD START-->
+                            <!--Jumbotron -->
+                            <div id="jumbotron" class="jumbotron jumbotron-fluid card mb-4 " style="height:250px;">
+                                <div class="blur"></div>
+                                <div class="container" style="width:100%;margin:0px">
+                                    <div class="row" style="width:100%">
+                                        <div class="col-3 header-item headshot">
+                                            <img id="headshot" src="" style="height:73.08%;width:100%;bottom:0px">
+                                        </div>
+                                        <div class="col-5 header-item player-statistics">
+                                            <center>
+                                                <h2 id="playerName" style="font-family: 'OVERDOG';padding:10px;padding-bottom:2px;margin-bottom:0px"></h2>
+                                            </center>
+                                            <center>
+                                                <p id="player-subheading" style="margin-top:0px"></p>
+                                            </center>
+                                            <br>
+                                            <div class="row d-flex" style="width:100%;justify-content: center;margin-bottom:15px">
+                                                <div class="col-3 header-stat">
+                                                    <div class="header-stat-body">
+                                                        <center>
+                                                            <p>HEIGHT</p>
+                                                        </center>
+                                                        <center>
+                                                            <p id="height"></p>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3 header-stat">
+                                                    <div class="header-stat-body">
+                                                        <center>
+                                                            <p>WEIGHT</p>
+                                                        </center>
+                                                        <center>
+                                                            <p id="weight"></p>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3 header-stat">
+                                                    <div class="header-stat-body">
+                                                        <center>
+                                                            <p>DRAFT</p>
+                                                        </center>
+                                                        <center>
+                                                            <p id="draft"></p>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3 header-stat">
+                                                    <div class="header-stat-body">
+                                                        <center>
+                                                            <p>EXPERIENCE</p>
+                                                        </center>
+                                                        <center>
+                                                            <p id="experience"><span>YEARS</span></p>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 header-item quick-stats">
+                                            <center>
+                                                <h3 style="padding:10px;font-family:'OVERDOG'">QUICK STATS<h3>
+                                            </center>
+                                            <center>
+                                                <ul style="list-style: none;">
+                                                    <li>
+                                                        <p id="header-stats-points"></p>
+                                                    </li>
+                                                    <li>
+                                                        <p id="header-stats-assists"></p>
+                                                    </li>
+                                                    <li>
+                                                        <p id="header-stats-rebounds"></p>
+                                                    </li>
+                                                </ul>
+                                                <br>
+                                            </center>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Jumbotron end-->
+                            <!--Player Bio-->
                             <div class="col-12 col-md-6 col-xl-4 mb-4 order-1 order-xl-0">
                                 <div class="card h-100">
                                     <div class="card-header d-flex justify-content-between pb-1">
-                                        <h5 class="mb-0 card-title card-title-od" style="font-family:'OVERDOG' !important">SCOREBOARD <div class="spinner-border text-white" id="scoreboard-spinner"></div></h5>
+                                        <h5 class="mb-0 card-title" style="font-family:'OVERDOG' !important">PLAYER BIO</h5>
                                     </div>
                                     <div class=" text-center mb-3">
                                         <div class="card-body" style="padding-top:0px">
                                             <div class="tab-content p-0">
-                                                <div class="tab-pane fade show active" id="scores-container" role="tabpanel">
-                                                    No Games Found
+                                                <div class="tab-pane fade show active" id="scores-container" role="tabpanel" style="text-align:left">
+                                                    <div id="bio"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- SCOREBOARD END -->
+                            <!-- Player Bio END -->
                             <!--OVERDOG PICKS-->
                             <div class="col-12 col-xl-8 col-sm-12 order-2 order-lg-2 mb-4 mb-lg-0" style="overflow-x: hidden;margin-bottom:25px !important">
                                 <div class="card">
                                     <div class="card-datatable table-responsive align-items-center">
                                         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer overflow-hidden">
                                             <div class="card-header d-flex justify-content-between pb-1">
-                                                <h5 class="mb-0 card-title" style="font-family:'OVERDOG' !important">OVERDOG PICKS</h5>
-                                                <button class="btn btn-primary waves-effect waves-light">Auto Bet ✨</button>
+                                                <h5 class="mb-0 card-title" style="font-family:'OVERDOG' !important">OVERDOG STATS</h5>
                                             </div>
-                                            <ul class="nav nav-tabs nav-fill card-header-tabs" role="tablist">
-                                                <li class="nav-item" role="presentation">
-                                                    <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#singles" aria-controls="singles" aria-selected="true" control-id="ControlID-10">Singles</button>
-                                                </li>
-                                                <li class="nav-item" role="presentation"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#parlays" aria-controls="parlays" aria-selected="false" tabindex="-1" control-id="ControlID-11">Parlays</button>
-                                                </li>
-                                                <li class="nav-item" role="presentation"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#props" aria-controls="props" aria-selected="false" tabindex="-1" control-id="ControlID-11">Player Props</button>
-                                                </li>
-                                            </ul>
+                                            <div class="stats-container" style="display: flex;margin-left:5%">
+                                                <button class="scroll-arrow left-arrow btn btn-icon btn-outline-secondary waves-effect" style="margin-right: 3%" onclick="container = document.querySelector('#stats-pills');container.scrollBy({left: -200,behavior: 'smooth'});">&lt;</button>
+                                                <ul class="nav nav-pills mb-3" role="tablist" id="stats-pills" style="width:100%;overflow-x:scroll !important">
+                                                    <li class="nav-item stat-select" role="presentation">
+                                                        <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-within-card-active" aria-controls="navs-within-card-active" aria-selected="true" control-id="ControlID-10">PTS</button>
+                                                    </li>
+                                                    <li class="nav-item stat-select" role="presentation">
+                                                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-within-card-active" aria-controls="navs-within-card-active" aria-selected="true" control-id="ControlID-10">PF</button>
+                                                    </li>
+                                                    <li class="nav-item stat-select" role="presentation">
+                                                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-within-card-active" aria-controls="navs-within-card-active" aria-selected="true" control-id="ControlID-10">AST</button>
+                                                    </li>
+                                                    <li class="nav-item stat-select" role="presentation">
+                                                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-within-card-active" aria-controls="navs-within-card-active" aria-selected="true" control-id="ControlID-10">REB</button>
+                                                    </li>
+                                                    <li class="nav-item stat-select" role="presentation">
+                                                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-within-card-active" aria-controls="navs-within-card-active" aria-selected="true" control-id="ControlID-10">DREB</button>
+                                                    </li>
+                                                    <li class="nav-item stat-select" role="presentation">
+                                                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-within-card-active" aria-controls="navs-within-card-active" aria-selected="true" control-id="ControlID-10">OREB</button>
+                                                    </li>
+                                                    <li class="nav-item stat-select" role="presentation">
+                                                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-within-card-active" aria-controls="navs-within-card-active" aria-selected="true" control-id="ControlID-10">FT_PCT</button>
+                                                    </li>
+                                                    <li class="nav-item stat-select" role="presentation">
+                                                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-within-card-active" aria-controls="navs-within-card-active" aria-selected="true" control-id="ControlID-10">FTA</button>
+                                                    </li>
+                                                    <li class="nav-item stat-select" role="presentation">
+                                                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-within-card-active" aria-controls="navs-within-card-active" aria-selected="true" control-id="ControlID-10">FTM</button>
+                                                    </li>
+                                                    <li class="nav-item stat-select" role="presentation">
+                                                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-within-card-active" aria-controls="navs-within-card-active" aria-selected="true" control-id="ControlID-10">FGA</button>
+                                                    </li>
+                                                    <li class="nav-item stat-select" role="presentation">
+                                                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-within-card-active" aria-controls="navs-within-card-active" aria-selected="true" control-id="ControlID-10">FGM</button>
+                                                    </li>
+                                                    <li class="nav-item stat-select" role="presentation">
+                                                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-within-card-active" aria-controls="navs-within-card-active" aria-selected="true" control-id="ControlID-10">MIN</button>
+                                                    </li>
+                                                </ul>
+                                                <button class="scroll-arrow right-arrow btn btn-icon btn-outline-secondary waves-effect" style="margin-left:3%" onclick="scrollRight()">&gt;</button>
+                                                <select class="btn btn-outline-secondary" id="gameSelect" style="height:40px;margin-left:5%">
+                                                    <option value="5">Last 5 games</option>
+                                                    <option value="10">Last 10 games</option>
+                                                    <option value="15">Last 15 games</option>
+                                                    <option value="all">All games</option>
+                                                </select>
+                                            </div>
                                             <div class="container-xxl flex-grow-1 container-p-y">
                                                 <div class="tab-content p-0 pt-4">
-                                                    <div class="tab-pane fade show active" id="singles" role="tabpanel">
-                                                        <div class="row justify-content-center" id="picks">
-                                                            No Games Found
-                                                        </div>
+                                                    <div class="tab-pane fade show active" id="navs-within-card-active" role="tabpanel">
+                                                        <div id="statChart"></div>
+                                                        <center>
+                                                            <div class="d-flex justify-content-center">
+                                                                <div class="table-responsive">
+                                                                    <table class="table table-bordered">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th scope="col">Split</th>
+                                                                                <th scope="col">Last 5</th>
+                                                                                <th scope="col">Last 10</th>
+                                                                                <th scope="col">Last 15</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>Hit Rate</td>
+                                                                                <td id="last5">Last 5</td>
+                                                                                <td id="last10"></td>
+                                                                                <td id="last15"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>AVG</td>
+                                                                                <td>Avg</td>
+                                                                                <td>Last 5</td>
+                                                                                <td>Last 10</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Last 15</td>
+                                                                                <td>Avg</td>
+                                                                                <td>Last 5</td>
+                                                                                <td>Last 10</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
                                                     </div>
-                                                    <div class="tab-pane fade" id="parlays" role="tabpanel">
-                                                           <div class="row justify-content-center" id="parlays-picks">
-                                                            No Games Found
-                                                        </div>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="props" role="tabpanel">
-                                                            <div class="row justify-content-center" id="props-picks" style="overflow-y:scroll">
-                                                            No Players Found
-                                                        </div>
-                                                        </div>
+                                                    </center>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- OVERDOG PICKS END-->
                         </div>
-                        <div class="row">
-                            <!-- ODDS Start -->
-                            <div class="col-10 col-md-6 col-xl-4 mb-4 order-1 order-xl-0">
-                                <div class="card h-100">
-                                    <div class="card-header d-flex justify-content-between pb-1">
-                                        <h5 class="mb-0 card-title" style="font-family:'OVERDOG' !important">ODDS</h5>
-                                    </div>
-                                    <div class=" text-center mb-3">
-                                        <div class="card-body" style="padding-top:0px">
-                                            <div class="tab-content p-0">
-                                                <div class="tab-pane fade show active" id="scores-container" role="tabpanel">
-                                                    No Games Found
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <!-- OVERDOG PICKS END-->
+                    </div>
+                </div>
+                <!-- / Content -->
+                <!-- Footer -->
+                <footer class="content-footer footer bg-footer-theme">
+                    <div class="container-xxl">
+                        <div class="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
+                            <div>
+                                © OVERDOG
+                                <script>
+                                document.write(new Date().getFullYear());
+                                </script>
                             </div>
-
-                            <!--ODDS End -->
-                            <!--TEAM STANDINGS-->
-                            <div class="col-12 col-xl-8 col-sm-12 order-2 order-lg-2 mb-4 mb-lg-0" style="overflow-x: hidden;">
-                                <div class="card">
-                                    <div class="card-datatable table-responsive align-items-center">
-                                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer overflow-hidden">
-                                            <div class="card-header d-flex justify-content-between pb-1">
-                                                <h5 class="mb-0 card-title" style="font-family:'OVERDOG' !important">TEAM STANDINGS</h5>
-                                            </div>
-                                            <ul class="nav nav-tabs nav-fill card-header-tabs" role="tablist">
-                                                <li class="nav-item" role="presentation">
-                                                    <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#eastern-standings-tab" aria-controls="eastern-standings-tab" aria-selected="true" control-id="ControlID-10">EASTERN</button>
-                                                </li>
-                                                <li class="nav-item" role="presentation"><button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#western-standings-tab" aria-controls="western-standings-tab" aria-selected="false" tabindex="-1" control-id="ControlID-11">WESTERN</button>
-                                                </li>
-                                            </ul>
-                                            <div class="container-xxl flex-grow-1 container-p-y">
-                                                <div class="tab-content p-0 pt-4">
-                                                    <div class="tab-pane fade show active" id="eastern-standings-tab" role="tabpanel">
-                                                        <div class="row justify-content-center">
-                                                            <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper dt-bootstrap5">
-                                                                <div class="row">
-                                                                    <div class="col-sm-12">
-                                                                        <table class="dt-advanced-search table dataTable dtr-column collapsed" id="DataTables_Table_2" aria-describedby="DataTables_Table_2_info" style="width: 359px;">
-                                                                            <thead>
-                                                                                <tr>
-                                                                                    <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Name: activate to sort column ascending">Name</th>
-                                                                                    <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Email: activate to sort column ascending">W-L</th>
-                                                                                    <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Post: activate to sort column ascending">PCT</th>
-                                                                                    <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="City: activate to sort column ascending">GB</th>
-                                                                                    <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Date: activate to sort column ascending">CONF</th>
-                                                                                    <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Date: activate to sort column ascending">DIV</th>
-                                                                                    <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Date: activate to sort column ascending">STRK</th>
-                                                                                    
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody id="eastern-standings">
-                                                                                
-                                                                            </tbody>
-                                                                           
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tab-pane fade show" id="western-standings-tab" role="tabpanel">
-                                                        <div class="row justify-content-center">
-                                                            <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper dt-bootstrap5">
-                                                                <div class="row">
-                                                                    <div class="col-sm-12">
-                                                                        <table class="dt-advanced-search table dataTable dtr-column collapsed" id="DataTables_Table_2" aria-describedby="DataTables_Table_2_info" style="width: 359px;">
-                                                                            <thead>
-                                                                                <tr>
-                                                                                    <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Name: activate to sort column ascending">Name</th>
-                                                                                    <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Email: activate to sort column ascending">W-L</th>
-                                                                                    <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Post: activate to sort column ascending">PCT</th>
-                                                                                    <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="City: activate to sort column ascending">GB</th>
-                                                                                    <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Date: activate to sort column ascending">CONF</th>
-                                                                                    <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Date: activate to sort column ascending">DIV</th>
-                                                                                    <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Date: activate to sort column ascending">STRK</th>
-                                                                                    
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody id="western-standings">
-                                                                                
-                                                                            </tbody>
-                                                                           
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="d-none d-lg-inline-block">
+                                <a href="./terms" class="footer-link me-4" target="_blank">Terms of Service</a>
+                                <a href="./privacy" target="_blank" class="footer-link me-4">Privacy Policy</a>
+                                <a href="./disclaimer" target="_blank" class="footer-link me-4">Disclaimer</a>
+                                <a href="./support" target="_blank" class="footer-link d-none d-sm-inline-block">Support</a>
                             </div>
-                            <!-- TEAM STandings END-->
                         </div>
                     </div>
-                    <!-- / Content -->
-                    <!-- Footer -->
-                    <footer class="content-footer footer bg-footer-theme">
-                        <div class="container-xxl">
-                            <div class="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
-                                <div>
-                                    © OVERDOG
-                                    <script>
-                                    document.write(new Date().getFullYear());
-                                    </script>
-                                </div>
-                                <div class="d-none d-lg-inline-block">
-                                    <a href="./terms" class="footer-link me-4" target="_blank">Terms of Service</a>
-                                    <a href="./privacy" target="_blank" class="footer-link me-4">Privacy Policy</a>
-                                    <a href="./disclaimer" target="_blank" class="footer-link me-4">Disclaimer</a>
-                                    <a href="./support" target="_blank" class="footer-link d-none d-sm-inline-block">Support</a>
-                                </div>
-                            </div>
-                        </div>
-                    </footer>
-                    <!-- / Footer -->
-                    <div class="content-backdrop fade"></div>
-                </div>
-                <!-- Content wrapper -->
+                </footer>
+                <!-- / Footer -->
+                <div class="content-backdrop fade"></div>
             </div>
-            <!-- / Layout page -->
+            <!-- Content wrapper -->
         </div>
-        <!-- Overlay -->
-        <div class="layout-overlay layout-menu-toggle"></div>
-        <!-- Drag Target Area To SlideIn Menu On Small Screens -->
-        <div class="drag-target"></div>
+        <!-- / Layout page -->
+    </div>
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+    <div class="drag-target"></div>
     </div>
     <!-- / Layout wrapper -->
     <!-- Core JS -->
@@ -827,12 +903,15 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
     <!-- endbuild -->
     <!-- Vendors JS -->
     <script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="../../assets/vendor/libs/swiper/swiper.js"></script>
     <script src="../../assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+    <script src="../../assets/vendor/js/dropdown-hover.js"></script>
+    <script src="../../assets/vendor/libs/node-waves/node-waves.js"></script>
     <!-- Main JS -->
     <script src="../../assets/js/main.js"></script>
     <!-- Page JS -->
-    <script src="../../assets/js/nba.js"></script>
+    <script src="../../assets/js/nba-player.js"></script>
 </body>
 
 </html>
