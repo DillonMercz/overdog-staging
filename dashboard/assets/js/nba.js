@@ -598,7 +598,7 @@ function displayScores(data) {
 
         scoresContainer.innerHTML += cardTemplate;
         if (game.gameStatusText.includes("Final")) {
-            
+
         } else {
             winText = "Winning"
             loseText = "Losing"
@@ -615,14 +615,14 @@ getNBAScores();
 // Poll the API every minute to get the latest scores
 setInterval(getNBAScores, 20000);
 
-setInterval(function(){
+setInterval(function() {
     $(".card-title-od").css("background", "-webkit-linear-gradient(left, #FFE872, #00FFFF)");
     $(".card-title-od").css("-webkit-background-clip", "text");
     $(".card-title-od").css("-webkit-text-fill-color", "transparent");
     $("#scoreboard-spinner").css("display", "inline-block");
 }, 20000);
 
-setInterval(function(){
+setInterval(function() {
     $(".card-title-od").css("background", "white");
     $(".card-title-od").css("-webkit-background-clip", "text");
     $(".card-title-od").css("-webkit-text-fill-color", "transparent");
@@ -893,25 +893,29 @@ function buildUI(parlays) {
 
 //props
 
-function getNBAProps(){
+function getNBAProps() {
     const requestOptions = {
-  method: "GET",
-  redirect: "follow"
-};
+        method: "GET",
+        redirect: "follow"
+    };
 
-fetch(`https://cryptaverse.xyz/predictions/nba_props/${formattedDate}.json`, requestOptions)
-  .then((response) => response.json())
-  .then((result) => processProps(result))
-  .catch((error) => console.error(error));
+    fetch(`https://cryptaverse.xyz/predictions/nba_props/${formattedDate}.json`, requestOptions)
+        .then((response) => response.json())
+        .then((result) => processProps(result))
+        .catch((error) => console.error(error));
 }
 
 
-function processProps(props){
+function processProps(props) {
     console.log(props)
+
     const propsContainer = document.getElementById('props-picks');
     propsContainer.innerHTML = '';
-    for (var i in props){
-        const cardTemplate = `
+    for (var i in props) {
+        if (!props[i].predictions) {
+            //skip
+        } else {
+            const cardTemplate = `
         <div class="col-lg-3 col-sm-6 mb-4 ai-pick">
           <div class="card h-100">
               <div class="card-header">
@@ -964,7 +968,8 @@ function processProps(props){
     </div>
     `;
 
-        propsContainer.innerHTML += cardTemplate;
+            propsContainer.innerHTML += cardTemplate;
+        }
     }
 }
 
@@ -1030,9 +1035,9 @@ function buildEasternTable(eastern) {
     var template
     console.log('pussy')
     for (var i in eastern) {
-      if (eastern[i].Team.includes('76ers')) {
-        eastern[i].Team = eastern[i].Team.replace("76ers", ". 76ers")
-      }
+        if (eastern[i].Team.includes('76ers')) {
+            eastern[i].Team = eastern[i].Team.replace("76ers", ". 76ers")
+        }
         var template = `
                     <td>${eastern[i].Team}</td>
                     <td class="" style="">${eastern[i]['W-L']}</td>
