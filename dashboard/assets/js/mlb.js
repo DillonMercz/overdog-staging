@@ -501,28 +501,6 @@ $(function() {
         $('.dataTables_info').addClass('pt-0');
     }
 });
-// Initialize Firebase with your configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyA2jqbSIcDferczQaDUJNffEydFto4KMVE",
-    authDomain: "wizard-plays.firebaseapp.com",
-    projectId: "wizard-plays",
-    storageBucket: "wizard-plays.appspot.com",
-    messagingSenderId: "1074457433330",
-    appId: "1:1074457433330:web:b16d4653346147c72b2c6b",
-    measurementId: "G-37X3M023HX"
-};
-
-firebase.initializeApp(firebaseConfig);
-// Initialize Analytics
-const analytics = firebase.analytics();
-
-// Check authentication state
-firebase.auth().onAuthStateChanged(user => {
-    if (!user) {
-        openModal();
-    }
-});
-
 
 function getNBAScores() {
     fetch("https://script.google.com/macros/s/AKfycbw__B8-y0BTBcW2SetPH-XdWu-M9oq0yJvLhADu8aHN7N6b03WZkkz7fYmdQ75Ymfg5/exec")
@@ -652,52 +630,20 @@ const [month, day, year] = currentDate.toLocaleDateString('en-US', options)
     .map((part) => part.padStart(2, '0'));
 const formattedDate = `${year}-${month}-${day}`;
 
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        // User is signed in, fetch the document
-        const userDocRef = firebase.firestore().collection('users').doc(user.email);
+const myHeaders = new Headers();
+myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
 
-        userDocRef.get().then(doc => {
-            if (doc.exists) {
-                const status = doc.data().status;
-                console.log(status)
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
 
-                if (status === "Commoner") {
-                    // Add a blurry element with a lock icon and "Get Premium" button
-                    //const aiContainer = document.querySelector('.blur');
-                    const blurryElement = document.createElement('div');
-                    blurryElement.style.width = "100%"
-                    blurryElement.style.height = "300px"
-                    blurryElement.innerHTML = `<center>
-                            <img src="https://i.imgur.com/UVbZkf2.png" alt="Lock Icon" height="150px" width="150px"/>
-                            <br>
-                            <br>
-                            <p style="font-size:14px">YOU NEED ACCESS! GOOD THING ITS ONLY $25!</p>
-                            <br>
-                            <button class="btn btn-primary" onclick="getPremium()">Get Premium</button>
-                            </center>
-                        `;
-                } else if (status === "Apprentice") {
-                    //document.getElementById("discord").style.display = "block"
 
-                    var requestOptions = {
-                        method: 'GET',
-                        redirect: 'follow'
-                    };
-                    //${formattedDate}
-
-                    fetch(`https://cryptaverse.xyz/mlb/latest`, requestOptions)
-                        .then(response => response.text())
-                        .then(result => preProcessPredictions(JSON.parse(result)))
-                        .catch(error => console.log('error', error));
-                }
-            }
-        }).catch(error => console.log('Error getting user document:', error));
-    } else {
-        // No user is signed in.
-        openModal()
-    }
-});
+fetch(`https://cdn.overdogbets.com/predictions/mlb/latest.json`, requestOptions)
+    .then(response => response.text())
+    .then(result => preProcessPredictions(JSON.parse(result)))
+    .catch(error => console.log('error', error));
 
 
 function getPremium() {
@@ -985,12 +931,7 @@ function buildUI(parlays) {
 
 // Standings
 
-const requestOptions = {
-    method: "GET",
-    redirect: "follow"
-};
-
-fetch("https://script.google.com/macros/s/AKfycbzvHzymLngYs65fhgVEajhaVsXgVM-nVm_JcE4izM48d0FlzFxIbVB7f6sx3UdTBTyabQ/exec", requestOptions)
+fetch("https://script.google.com/macros/s/AKfycbzvHzymLngYs65fhgVEajhaVsXgVM-nVm_JcE4izM48d0FlzFxIbVB7f6sx3UdTBTyabQ/exec")
     .then(response => response.text())
     .then(text => {
         // Create a DOMParser object

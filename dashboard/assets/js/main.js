@@ -668,3 +668,29 @@ if (typeof $ !== 'undefined') {
       }
     });
   }
+
+
+
+
+
+
+
+//Auth
+var sbApiAuthToken
+try {
+  sbApiAuthToken = JSON.parse(localStorage.getItem('sb-api-auth-token'));
+} catch(error){
+  location.href = "https://overdogbets.com/login"
+}
+
+
+
+
+
+
+
+
+
+
+
+
