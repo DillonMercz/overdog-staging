@@ -20,13 +20,12 @@
     <link rel="stylesheet" href="../../assets/vendor/css/rtl/core-dark.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="../../assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="../../assets/css/main.css" />
-    <!-- Vendors CSS -->
+<link rel="stylesheet" href="../../assets/vendor/libs/swiper/swiper.css" />    <!-- Vendors CSS -->
     <link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/apex-charts/apex-charts.css" />
-    <link rel="stylesheet" href="../../assets/vendor/libs/swiper/swiper.css" />
-    <link rel="stylesheet" href="../../assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
+        <link rel="stylesheet" href="../../assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
     <link rel="stylesheet" href="../../assets/vendor/css/pages/cards-advance.css" />
     <!-- Page CSS -->
@@ -234,18 +233,18 @@ height:100%;
                             <div>Dashboard</div>
                         </a>
                     </li>
-                    <li class="menu-item active">
+                    <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon fa-solid fa-basketball"></i>
                             <div data-i18n="Basketball">Basketball</div>
                         </a>
                         <ul class="menu-sub">
-                            <li class="menu-item active">
+                            <li class="menu-item">
                                 <a href="nba.html" class="menu-link">
                                     <div data-i18n="NBA">NBA</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
+                            <!--<li class="menu-item">
                                 <a href="ncaa.html" class="menu-link">
                                     <div data-i18n="NCAA">NCAA</div>
                                 </a>
@@ -259,15 +258,15 @@ height:100%;
                                 <a href="kbl.html" class="menu-link">
                                     <div data-i18n="KBL">KBL</div>
                                 </a>
-                            </li>
+                            </li>-->
                         </ul>
                     </li>
-                    <li class="menu-item">
+                    <!--<li class="menu-item">
                         <a href="app-logistics-dashboard.html" class="menu-link">
                             <i class="menu-icon fa-solid fa-football"></i>
                             <div>Football<span class="badge bg-danger" id="football-live-tag" style="display:none; margin-left:10px">Live</span></div>
                         </a>
-                    </li>
+                    </li>-->
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon fa-solid fa-hockey-puck"></i>
@@ -281,12 +280,12 @@ height:100%;
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item">
+                    <!--<li class="menu-item">
                         <a href="app-logistics-dashboard.html" class="menu-link">
                             <i class="menu-icon fa-solid fa-baseball"></i>
                             <div>Tennis<span class="badge bg-danger" id="tennis-live-tag" style="margin-left:10px">Live</span></div>
                         </a>
-                    </li>
+                    </li>-->
                     <li class="menu-item">
                         <a href="app-logistics-dashboard.html" class="menu-link">
                             <i class="menu-icon fa-solid fa-baseball-bat-ball"></i>
@@ -547,10 +546,10 @@ height:100%;
                             </li>
                             <!--/ Notification -->
                             <!-- User -->
-                            <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                                                        <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
+                                        <img id="avatar-outer" src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -559,12 +558,12 @@ height:100%;
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
+                                                        <img id="avatar-inner" src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-medium d-block">John Doe</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <span id="username" class="fw-medium d-block"></span>
+                                                    <small id="plan" class="text-muted"></small>
                                                 </div>
                                             </div>
                                         </a>
@@ -578,12 +577,7 @@ height:100%;
                                             <span class="align-middle">My Profile</span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item" href="pages-account-settings-account.html">
-                                            <i class="ti ti-settings me-2 ti-sm"></i>
-                                            <span class="align-middle">Settings</span>
-                                        </a>
-                                    </li>
+                                    
                                     <li>
                                         <a class="dropdown-item" href="pages-account-settings-billing.html">
                                             <span class="d-flex align-items-center align-middle">
@@ -605,7 +599,7 @@ height:100%;
                                     <li>
                                         <a class="dropdown-item" href="pages-pricing.html">
                                             <i class="ti ti-currency-dollar me-2 ti-sm"></i>
-                                            <span class="align-middle">Pricing</span>
+                                            <span class="align-middle">Upgrade</span>
                                         </a>
                                     </li>
                                     <li>
@@ -614,7 +608,7 @@ height:100%;
                                     <li>
                                         <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
                                             <i class="ti ti-logout me-2 ti-sm"></i>
-                                            <span class="align-middle">Log Out</span>
+                                            <span onclick="logout()" class="align-middle">Log Out</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -896,7 +890,7 @@ height:100%;
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
     <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
@@ -912,12 +906,13 @@ height:100%;
     <!-- Vendors JS -->
     <script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="../../assets/vendor/libs/swiper/swiper.js"></script>
+    
     <script src="../../assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
     <script src="../../assets/vendor/js/dropdown-hover.js"></script>
     <script src="../../assets/vendor/libs/node-waves/node-waves.js"></script>
     <!-- Main JS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../../assets/vendor/libs/swiper/swiper.js"></script>
 <script src="../../assets/js/main.js"></script>
     <!-- Page JS -->
     <script src="../../assets/js/nba-player.js"></script>

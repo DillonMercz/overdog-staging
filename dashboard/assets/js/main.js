@@ -678,17 +678,38 @@ if (typeof $ !== 'undefined') {
 //Auth
 var sbApiAuthToken
 try {
-  sbApiAuthToken = JSON.parse(localStorage.getItem('sb-api-auth-token'));
-} catch(error){
-  location.href = "https://overdogbets.com/login"
+    sbApiAuthToken = JSON.parse(localStorage.getItem('sb-api-auth-token'));
+} catch (error) {
+    location.href = "https://overdogbets.com/login"
+}
+
+//Get user data
+function getUserData() {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
+
+    const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow"
+    };
+
+    fetch("https://cdn.overdogbets.com/my-data", requestOptions)
+        .then((response) => response.text())
+        .then((result) => processUserData(JSON.parse(result)))
+        .catch((error) => location.href = "https://overdogbets.com/login");
+
 }
 
 
+function processUserData(data){
+  document.getElementById('username').innerHTML = data[0].username
+  document.getElementById('plan').innerHTML = data[0].plan
+  document.getElementById('avatar-outer').src= `https://cdn.overdogbets.com/uploads/profile/${data[0].avatar}`
+  document.getElementById('avatar-inner').src= `https://cdn.overdogbets.com/uploads/profile/${data[0].avatar}`
+}
 
-
-
-
-
+getUserData()
 
 
 

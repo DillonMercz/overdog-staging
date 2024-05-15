@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="../../assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="../../assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="../../assets/css/main.css" />
-
+<link rel="stylesheet" href="../../assets/vendor/libs/swiper/swiper.css" />
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
@@ -78,8 +78,8 @@
                 </div>
                 <ul class="menu-inner py-1">
                     <!-- Dashboards -->
-                    <li class="menu-item active open">
-                    <li class="menu-item active">
+                    <li class="menu-item">
+                    <li class="menu-item">
                         <a href="index.html" class="menu-link">
                             <i class="menu-icon tf-icons ti ti-layout-grid-add"></i>
                             <div data-i18n="Dashboard">Dashboard</div>
@@ -348,10 +348,10 @@
                             </li>
                             <!--/ Notification -->
                             <!-- User -->
-                            <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                                                        <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
+                                        <img id="avatar-outer" src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -360,12 +360,12 @@
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
+                                                        <img id="avatar-inner" src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-medium d-block">John Doe</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <span id="username" class="fw-medium d-block"></span>
+                                                    <small id="plan" class="text-muted"></small>
                                                 </div>
                                             </div>
                                         </a>
@@ -379,12 +379,7 @@
                                             <span class="align-middle">My Profile</span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item" href="pages-account-settings-account.html">
-                                            <i class="ti ti-settings me-2 ti-sm"></i>
-                                            <span class="align-middle">Settings</span>
-                                        </a>
-                                    </li>
+                                    
                                     <li>
                                         <a class="dropdown-item" href="pages-account-settings-billing.html">
                                             <span class="d-flex align-items-center align-middle">
@@ -406,7 +401,7 @@
                                     <li>
                                         <a class="dropdown-item" href="pages-pricing.html">
                                             <i class="ti ti-currency-dollar me-2 ti-sm"></i>
-                                            <span class="align-middle">Pricing</span>
+                                            <span class="align-middle">Upgrade</span>
                                         </a>
                                     </li>
                                     <li>
@@ -415,7 +410,7 @@
                                     <li>
                                         <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
                                             <i class="ti ti-logout me-2 ti-sm"></i>
-                                            <span class="align-middle">Log Out</span>
+                                            <span onclick="logout()" class="align-middle">Log Out</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -1222,6 +1217,7 @@
 
     <!-- Main JS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../../assets/vendor/libs/swiper/swiper.js"></script>
 <script src="../../assets/js/main.js"></script>
 
     <!-- Page JS -->

@@ -512,27 +512,6 @@ function getParameterByName(name, url = window.location.href) {
 }
 
 
-// Initialize Firebase with your configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyA2jqbSIcDferczQaDUJNffEydFto4KMVE",
-    authDomain: "wizard-plays.firebaseapp.com",
-    projectId: "wizard-plays",
-    storageBucket: "wizard-plays.appspot.com",
-    messagingSenderId: "1074457433330",
-    appId: "1:1074457433330:web:b16d4653346147c72b2c6b",
-    measurementId: "G-37X3M023HX"
-};
-
-firebase.initializeApp(firebaseConfig);
-// Initialize Analytics
-const analytics = firebase.analytics();
-
-// Check authentication state
-firebase.auth().onAuthStateChanged(user => {
-    if (!user) {
-        openModal();
-    }
-});
 
 function getTeamName(teamName) {
     const areas = ['Atlanta', 'Boston', 'Brooklyn', 'Charlotte', 'Chicago', 'Cleveland', 'Dallas', 'Denver', 'Detroit', 'Golden State', 'Houston', 'Indiana', 'Los Angeles', 'LA', 'Memphis', 'Miami', 'Milwaukee', 'Minnesota', 'New Orleans', 'New York', 'Oklahoma City', 'Orlando', 'Philadelphia', 'Phoenix', 'Portland', 'Sacramento', 'San Antonio', 'Toronto', 'Utah', 'Washington', 'LA', 'Los Angeles'];
@@ -560,7 +539,14 @@ function getTeamName(teamName) {
 var games
 var myChart
 var selectedStat = "PTS"
-fetch("https://cryptaverse.xyz/nba/player/" + getParameterByName('player'))
+const myHeaders = new Headers();
+myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
+fetch("https://cdn.overdogbets.com/nba/player/" + getParameterByName('player'), requestOptions)
     .then((response) => response.json()) // Use response.json() to parse JSON
     .then(async (result) => {
         console.log(result); // Log the parsed JSON object
