@@ -212,7 +212,7 @@ height:100%;
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
             <!-- Menu -->
-            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
                     <a href="index.html" class="app-brand-link">
                         <span class="app-brand-logo demo">
@@ -287,9 +287,45 @@ height:100%;
                         </a>
                     </li>-->
                     <li class="menu-item">
-                        <a href="app-logistics-dashboard.html" class="menu-link">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon fa-solid fa-baseball-bat-ball"></i>
-                            <div>Baseball<span class="badge bg-danger" id="baseball-live-tag" style="display:none;margin-left:10px">Live</span></div>
+                            <div data-i18n="Baseball">Baseball</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="mlb.html" class="menu-link">
+                                    <div data-i18n="MLB">MLB</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon fa-solid fa-users"></i>
+                            <div data-i18n="Community">Community</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="app-chat.html" class="menu-link">
+                                    <div data-i18n="Chat">Chat</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="app-chat.html" class="menu-link">
+                                    <div data-i18n="Win Wall">Win Wall</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="app-chat.html" class="menu-link">
+                                    <div data-i18n="Loss City">Loss City</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="app-academy-course.html" class="menu-link">
+                            <i class="menu-icon fa-solid fa-graduation-cap"></i>
+                            <div data-i18n="Overdog Academy">Overdog Academy</div>
                         </a>
                     </li>
                     <li class="menu-item disabled">
@@ -298,10 +334,10 @@ height:100%;
                             <div>Soccer <span class="badge bg-warning" id="soccer-live-tag" style="margin-left:10px">Coming Soon!</span></div>
                         </a>
                     </li>
-                    <li class="menu-item">
-                        <a href="app-academy-dashboard.html" class="menu-link">
-                            <i class="menu-icon fa-solid fa-graduation-cap"></i>
-                            <div data-i18n="Learn Betting">Learn Betting</div>
+                    <li class="menu-item disabled">
+                        <a class="menu-link">
+                            <i class="menu-icon fa-solid fa-store"></i>
+                            <div>Market <span class="badge bg-warning" id="soccer-live-tag" style="margin-left:10px">Coming Soon!</span></div>
                         </a>
                     </li>
                     <li class="menu-item" style="width:100% !important;margin:0px;bottom:0px;position:absolute">
@@ -310,17 +346,17 @@ height:100%;
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <div class="row">
-                                            <img src="https://i.imgur.com/dOcCY5R.png" onclick="location.href='./referral'">
+                                            <img src="https://i.imgur.com/zFsjMsL.png" onclick="location.href='./referral'">
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="row">
-                                            <img src="https://i.imgur.com/dOcCY5R.png" onclick="location.href='./referral'">
+                                            <img src="https://i.imgur.com/zFsjMsL.png" onclick="location.href='./referral'">
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="row">
-                                            <img src="https://i.imgur.com/dOcCY5R.png" onclick="location.href='./referral'">
+                                            <img src="https://i.imgur.com/zFsjMsL.png" onclick="location.href='./referral'">
                                         </div>
                                     </div>
                                 </div>
@@ -572,7 +608,7 @@ height:100%;
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="pages-profile-user.html">
+                                        <a class="dropdown-item" href="pages-account-settings-account">
                                             <i class="ti ti-user-check me-2 ti-sm"></i>
                                             <span class="align-middle">My Profile</span>
                                         </a>
