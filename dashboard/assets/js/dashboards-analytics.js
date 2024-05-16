@@ -664,4 +664,4 @@
   }, 300);
 })();
 
-document.getElementById("dailyQuote").innerHTML = data.data.quote;
+//document.getElementById("dailyQuote").innerHTML = data.data.quote;

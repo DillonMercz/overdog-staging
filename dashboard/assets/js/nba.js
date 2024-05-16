@@ -501,27 +501,6 @@ $(function() {
         $('.dataTables_info').addClass('pt-0');
     }
 });
-// Initialize Firebase with your configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyA2jqbSIcDferczQaDUJNffEydFto4KMVE",
-    authDomain: "wizard-plays.firebaseapp.com",
-    projectId: "wizard-plays",
-    storageBucket: "wizard-plays.appspot.com",
-    messagingSenderId: "1074457433330",
-    appId: "1:1074457433330:web:b16d4653346147c72b2c6b",
-    measurementId: "G-37X3M023HX"
-};
-
-firebase.initializeApp(firebaseConfig);
-// Initialize Analytics
-const analytics = firebase.analytics();
-
-// Check authentication state
-firebase.auth().onAuthStateChanged(user => {
-    if (!user) {
-        openModal();
-    }
-});
 
 
 function getNBAScores() {
@@ -598,7 +577,7 @@ function displayScores(data) {
 
         scoresContainer.innerHTML += cardTemplate;
         if (game.gameStatusText.includes("Final")) {
-            
+
         } else {
             winText = "Winning"
             loseText = "Losing"
@@ -615,14 +594,14 @@ getNBAScores();
 // Poll the API every minute to get the latest scores
 setInterval(getNBAScores, 20000);
 
-setInterval(function(){
+setInterval(function() {
     $(".card-title-od").css("background", "-webkit-linear-gradient(left, #FFE872, #00FFFF)");
     $(".card-title-od").css("-webkit-background-clip", "text");
     $(".card-title-od").css("-webkit-text-fill-color", "transparent");
     $("#scoreboard-spinner").css("display", "inline-block");
 }, 20000);
 
-setInterval(function(){
+setInterval(function() {
     $(".card-title-od").css("background", "white");
     $(".card-title-od").css("-webkit-background-clip", "text");
     $(".card-title-od").css("-webkit-text-fill-color", "transparent");
@@ -638,55 +617,23 @@ const [month, day, year] = currentDate.toLocaleDateString('en-US', options)
     .map((part) => part.padStart(2, '0'));
 const formattedDate = `${year}-${month}-${day}`;
 
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        // User is signed in, fetch the document
-        const userDocRef = firebase.firestore().collection('users').doc(user.email);
 
-        userDocRef.get().then(doc => {
-            if (doc.exists) {
-                const status = doc.data().status;
-                console.log(status)
+const myHeaders = new Headers();
+myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
 
-                if (status === "Commoner") {
-                    // Add a blurry element with a lock icon and "Get Premium" button
-                    //const aiContainer = document.querySelector('.blur');
-                    const blurryElement = document.createElement('div');
-                    blurryElement.style.width = "100%"
-                    blurryElement.style.height = "300px"
-                    blurryElement.innerHTML = `<center>
-                            <img src="https://i.imgur.com/UVbZkf2.png" alt="Lock Icon" height="150px" width="150px"/>
-                            <br>
-                            <br>
-                            <p style="font-size:14px">YOU NEED ACCESS! GOOD THING ITS ONLY $25!</p>
-                            <br>
-                            <button class="btn btn-primary" onclick="getPremium()">Get Premium</button>
-                            </center>
-                        `;
-                } else if (status === "Apprentice") {
-                    //document.getElementById("discord").style.display = "block"
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
 
-                    var requestOptions = {
-                        method: 'GET',
-                        redirect: 'follow'
-                    };
-                    //${formattedDate}
-
-                    fetch(`https://cryptaverse.xyz/predictions/${formattedDate}_predictions.json`, requestOptions)
-                        .then(response => response.text())
-                        .then(result => {
-                            buildPredictions(JSON.parse(result))
-                            getNBAProps()
-                        })
-                        .catch(error => console.log('error', error));
-                }
-            }
-        }).catch(error => console.log('Error getting user document:', error));
-    } else {
-        // No user is signed in.
-        openModal()
-    }
-});
+fetch(`https://cdn.overdogbets.com/predictions/${formattedDate}_predictions.json`, requestOptions)
+  .then(response => response.text())
+    .then(result => {
+        buildPredictions(JSON.parse(result))
+        getNBAProps()
+    })
+    .catch(error => console.log('error', error));
 
 
 function getPremium() {
@@ -893,25 +840,30 @@ function buildUI(parlays) {
 
 //props
 
-function getNBAProps(){
+function getNBAProps() {
     const requestOptions = {
-  method: "GET",
-  redirect: "follow"
-};
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow"
+    };
 
-fetch(`https://cryptaverse.xyz/predictions/nba_props/${formattedDate}.json`, requestOptions)
-  .then((response) => response.json())
-  .then((result) => processProps(result))
-  .catch((error) => console.error(error));
+    fetch(`https://cdn.overdogbets.com/predictions/nba_props/${formattedDate}.json`, requestOptions)
+        .then((response) => response.json())
+        .then((result) => processProps(result))
+        .catch((error) => console.error(error));
 }
 
 
-function processProps(props){
+function processProps(props) {
     console.log(props)
+
     const propsContainer = document.getElementById('props-picks');
     propsContainer.innerHTML = '';
-    for (var i in props){
-        const cardTemplate = `
+    for (var i in props) {
+        if (!props[i].predictions) {
+            //skip
+        } else {
+            const cardTemplate = `
         <div class="col-lg-3 col-sm-6 mb-4 ai-pick">
           <div class="card h-100">
               <div class="card-header">
@@ -964,18 +916,14 @@ function processProps(props){
     </div>
     `;
 
-        propsContainer.innerHTML += cardTemplate;
+            propsContainer.innerHTML += cardTemplate;
+        }
     }
 }
 
 // Standings
 
-const requestOptions = {
-    method: "GET",
-    redirect: "follow"
-};
-
-fetch("https://script.google.com/macros/s/AKfycbxdTMdW4mUJXq33LRjvVnBCey7xELhTy4VdG0tJVeIRGWXOxCGREgqaaVDaoHqLiUdg5g/exec", requestOptions)
+fetch("https://script.google.com/macros/s/AKfycbxdTMdW4mUJXq33LRjvVnBCey7xELhTy4VdG0tJVeIRGWXOxCGREgqaaVDaoHqLiUdg5g/exec")
     .then(response => response.text())
     .then(text => {
         // Create a DOMParser object
@@ -1030,9 +978,9 @@ function buildEasternTable(eastern) {
     var template
     console.log('pussy')
     for (var i in eastern) {
-      if (eastern[i].Team.includes('76ers')) {
-        eastern[i].Team = eastern[i].Team.replace("76ers", ". 76ers")
-      }
+        if (eastern[i].Team.includes('76ers')) {
+            eastern[i].Team = eastern[i].Team.replace("76ers", ". 76ers")
+        }
         var template = `
                     <td>${eastern[i].Team}</td>
                     <td class="" style="">${eastern[i]['W-L']}</td>

@@ -20,12 +20,11 @@
     <link rel="stylesheet" href="../../assets/vendor/css/rtl/core-dark.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="../../assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="../../assets/css/main.css" />
-    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/libs/swiper/swiper.css" /> <!-- Vendors CSS -->
     <link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/apex-charts/apex-charts.css" />
-    <link rel="stylesheet" href="../../assets/vendor/libs/swiper/swiper.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
     <link rel="stylesheet" href="../../assets/vendor/css/pages/cards-advance.css" />
@@ -187,18 +186,18 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                             <div>Dashboard</div>
                         </a>
                     </li>
-                    <li class="menu-item active">
+                    <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon fa-solid fa-basketball"></i>
                             <div data-i18n="Basketball">Basketball</div>
                         </a>
                         <ul class="menu-sub">
-                            <li class="menu-item active">
+                            <li class="menu-item">
                                 <a href="nba.html" class="menu-link">
                                     <div data-i18n="NBA">NBA</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
+                            <!--<li class="menu-item">
                                 <a href="ncaa.html" class="menu-link">
                                     <div data-i18n="NCAA">NCAA</div>
                                 </a>
@@ -212,15 +211,15 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                                 <a href="kbl.html" class="menu-link">
                                     <div data-i18n="KBL">KBL</div>
                                 </a>
-                            </li>
+                            </li>-->
                         </ul>
                     </li>
-                    <li class="menu-item">
+                    <!--<li class="menu-item">
                         <a href="app-logistics-dashboard.html" class="menu-link">
                             <i class="menu-icon fa-solid fa-football"></i>
                             <div>Football<span class="badge bg-danger" id="football-live-tag" style="display:none; margin-left:10px">Live</span></div>
                         </a>
-                    </li>
+                    </li>-->
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon fa-solid fa-hockey-puck"></i>
@@ -234,12 +233,12 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item">
+                    <!--<li class="menu-item">
                         <a href="app-logistics-dashboard.html" class="menu-link">
                             <i class="menu-icon fa-solid fa-baseball"></i>
                             <div>Tennis<span class="badge bg-danger" id="tennis-live-tag" style="margin-left:10px">Live</span></div>
                         </a>
-                    </li>
+                    </li>-->
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon fa-solid fa-baseball-bat-ball"></i>
@@ -253,16 +252,45 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                             </li>
                         </ul>
                     </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon fa-solid fa-users"></i>
+                            <div data-i18n="Community">Community</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="app-chat.html" class="menu-link">
+                                    <div data-i18n="Chat">Chat</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="app-chat.html" class="menu-link">
+                                    <div data-i18n="Win Wall">Win Wall</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="app-chat.html" class="menu-link">
+                                    <div data-i18n="Loss City">Loss City</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="app-academy-course.html" class="menu-link">
+                            <i class="menu-icon fa-solid fa-graduation-cap"></i>
+                            <div data-i18n="Overdog Academy">Overdog Academy</div>
+                        </a>
+                    </li>
                     <li class="menu-item disabled">
                         <a class="menu-link">
                             <i class="menu-icon fa-solid fa-futbol"></i>
                             <div>Soccer <span class="badge bg-warning" id="soccer-live-tag" style="margin-left:10px">Coming Soon!</span></div>
                         </a>
                     </li>
-                    <li class="menu-item">
-                        <a href="app-academy-dashboard.html" class="menu-link">
-                            <i class="menu-icon fa-solid fa-graduation-cap"></i>
-                            <div data-i18n="Overdog Academy">Overdog Academy</div>
+                    <li class="menu-item disabled">
+                        <a class="menu-link">
+                            <i class="menu-icon fa-solid fa-store"></i>
+                            <div>Market <span class="badge bg-warning" id="soccer-live-tag" style="margin-left:10px">Coming Soon!</span></div>
                         </a>
                     </li>
                     <li class="menu-item" style="width:100% !important;margin:0px;bottom:0px;position:absolute">
@@ -510,7 +538,7 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
+                                        <img id="avatar-outer" src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -519,12 +547,12 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
+                                                        <img id="avatar-inner" src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-medium d-block">John Doe</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <span id="username" class="fw-medium d-block"></span>
+                                                    <small id="plan" class="text-muted"></small>
                                                 </div>
                                             </div>
                                         </a>
@@ -533,15 +561,9 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="pages-profile-user.html">
+                                        <a class="dropdown-item" href="pages-account-settings-account">
                                             <i class="ti ti-user-check me-2 ti-sm"></i>
                                             <span class="align-middle">My Profile</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="pages-account-settings-account.html">
-                                            <i class="ti ti-settings me-2 ti-sm"></i>
-                                            <span class="align-middle">Settings</span>
                                         </a>
                                     </li>
                                     <li>
@@ -565,7 +587,7 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                                     <li>
                                         <a class="dropdown-item" href="pages-pricing.html">
                                             <i class="ti ti-currency-dollar me-2 ti-sm"></i>
-                                            <span class="align-middle">Pricing</span>
+                                            <span class="align-middle">Upgrade</span>
                                         </a>
                                     </li>
                                     <li>
@@ -574,7 +596,7 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                                     <li>
                                         <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
                                             <i class="ti ti-logout me-2 ti-sm"></i>
-                                            <span class="align-middle">Log Out</span>
+                                            <span onclick="logout()" class="align-middle">Log Out</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -611,7 +633,8 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                             <div class="col-12 col-md-6 col-xl-4 mb-4 order-1 order-xl-0">
                                 <div class="card h-100">
                                     <div class="card-header d-flex justify-content-between pb-1">
-                                        <h5 class="mb-0 card-title card-title-od" style="font-family:'OVERDOG' !important">SCOREBOARD <div class="spinner-border text-white" id="scoreboard-spinner"></div></h5>
+                                        <h5 class="mb-0 card-title card-title-od" style="font-family:'OVERDOG' !important">SCOREBOARD <div class="spinner-border text-white" id="scoreboard-spinner"></div>
+                                        </h5>
                                     </div>
                                     <div class=" text-center mb-3">
                                         <div class="card-body" style="padding-top:0px">
@@ -651,15 +674,15 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                                                         </div>
                                                     </div>
                                                     <div class="tab-pane fade" id="parlays" role="tabpanel">
-                                                           <div class="row justify-content-center" id="parlays-picks">
+                                                        <div class="row justify-content-center" id="parlays-picks">
                                                             No Games Found
                                                         </div>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="props" role="tabpanel">
-                                                            <div class="row justify-content-center" id="props-picks" style="overflow-y:scroll">
+                                                    </div>
+                                                    <div class="tab-pane fade" id="props" role="tabpanel">
+                                                        <div class="row justify-content-center" id="props-picks" style="overflow-y:scroll">
                                                             No Players Found
                                                         </div>
-                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -686,7 +709,6 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                                     </div>
                                 </div>
                             </div>
-
                             <!--ODDS End -->
                             <!--TEAM STANDINGS-->
                             <div class="col-12 col-xl-8 col-sm-12 order-2 order-lg-2 mb-4 mb-lg-0" style="overflow-x: hidden;">
@@ -720,13 +742,10 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                                                                                     <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Date: activate to sort column ascending">CONF</th>
                                                                                     <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Date: activate to sort column ascending">DIV</th>
                                                                                     <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Date: activate to sort column ascending">STRK</th>
-                                                                                    
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody id="eastern-standings">
-                                                                                
                                                                             </tbody>
-                                                                           
                                                                         </table>
                                                                     </div>
                                                                 </div>
@@ -748,13 +767,10 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
                                                                                     <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Date: activate to sort column ascending">CONF</th>
                                                                                     <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Date: activate to sort column ascending">DIV</th>
                                                                                     <th class="" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 0px;" aria-label="Date: activate to sort column ascending">STRK</th>
-                                                                                    
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody id="western-standings">
-                                                                                
                                                                             </tbody>
-                                                                           
                                                                         </table>
                                                                     </div>
                                                                 </div>
@@ -808,11 +824,6 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
     <!-- / Layout wrapper -->
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
     <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
@@ -827,9 +838,10 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
     <!-- endbuild -->
     <!-- Vendors JS -->
     <script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
-    <script src="../../assets/vendor/libs/swiper/swiper.js"></script>
     <script src="../../assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
     <!-- Main JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../../assets/vendor/libs/swiper/swiper.js"></script>
     <script src="../../assets/js/main.js"></script>
     <!-- Page JS -->
     <script src="../../assets/js/nba.js"></script>
