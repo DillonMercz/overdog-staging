@@ -706,7 +706,7 @@ function getUserData() {
         .then((response) => response.text())
         .then((result) => processUserData(JSON.parse(result)))
         .catch((error) => {
-          location.href = "https://overdogbets.com/login"});
+          location.href = "https://staging.overdogbets.com/login"});
 
 }
 
