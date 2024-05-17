@@ -690,7 +690,7 @@ function getUserData() {
   if (sbApiAuthToken && sbApiAuthToken.access_token) {
   // Use the access token
 } else {
-  location.href = "https://overdogbets.com/login";
+  location.href = "https://staging.overdogbets.com/login";
 }
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
