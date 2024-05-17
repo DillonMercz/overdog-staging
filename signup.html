@@ -8415,7 +8415,7 @@ h1, h2, h3, h4, h5,
                                 </div>
                             </div>
                             <div class="signin-form">
-                              <div class="form-group mb-3">
+                                <div class="form-group mb-3">
                                     <label class="label" for="name">Username</label>
                                     <input type="text" class="form-control" placeholder="Username" id="signupUsername" required>
                                 </div>
@@ -8473,9 +8473,9 @@ h1, h2, h3, h4, h5,
         console.log("No referral found")
     }
     async function signup() {
-      const email = document.getElementById('signupEmail').value;
-      const password = document.getElementById('signupPassword').value;
-      const username = document.getElementById('signupUsername').value;
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+        const username = document.getElementById('signupUsername').value;
         const { data, error } = await client.auth.signUp({
             email: email,
             password: password,
@@ -8491,12 +8491,11 @@ h1, h2, h3, h4, h5,
             document.getElementById("login-error").style.display = "block"
             document.getElementById("login-error").innerText = error
         } else {
-          location.href = "./onboarding.html"
+            location.href = "./onboarding.html"
 
         }
 
     }
-
     </script>
 </body>
 

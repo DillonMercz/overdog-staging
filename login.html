@@ -8444,10 +8444,6 @@ h1, h2, h3, h4, h5,
             </div>
         </div>
     </section>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
     const supabaseUrl = 'https://api.overdogbets.com';
@@ -8465,7 +8461,7 @@ h1, h2, h3, h4, h5,
             document.getElementById("login-error").style.display = "block"
             document.getElementById("login-error").innerText = error
         } else {
-          location.href = "./dashboard/main/dashboard/index.html"
+            location.href = "./dashboard/main/dashboard/index.html"
         }
     }
 
