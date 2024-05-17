@@ -680,6 +680,7 @@ var sbApiAuthToken
 try {
     sbApiAuthToken = JSON.parse(localStorage.getItem('sb-api-auth-token'));
     var accessToken = sbApiAuthToken.access_token
+    getUserData()
 } catch (error) {
   console.log(error)
   
@@ -717,7 +718,6 @@ function processUserData(data){
   document.getElementById('avatar-inner').src= `https://cdn.overdogbets.com/uploads/profile/${data[0].avatar}`
 }
 
-getUserData()
 
 
 
