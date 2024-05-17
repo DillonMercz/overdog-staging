@@ -680,6 +680,7 @@ var sbApiAuthToken
 try {
     sbApiAuthToken = JSON.parse(localStorage.getItem('sb-api-auth-token'));
 } catch (error) {
+  console.log(error)
     location.href = "https://overdogbets.com/login"
 }
 
