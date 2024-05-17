@@ -808,11 +808,7 @@ fetch("https://script.google.com/macros/s/AKfycbzy-J6Iaw5pMk3gbpuyd9AzihCbWsihfh
   })
   .catch((error) => console.error(error));
 
-
-
 }
-
-
 // Scroll right by a certain amount of pixels
 function scrollRight() {
     const container = document.querySelector('#stats-pills');
@@ -821,5 +817,3 @@ function scrollRight() {
         behavior: 'smooth' // Optionally, use smooth scrolling
     });
 }
-
-
