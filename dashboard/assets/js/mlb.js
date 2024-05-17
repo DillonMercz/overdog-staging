@@ -758,6 +758,7 @@ function preProcessPredictions(predictions) {
         } else if (winner === 'Team 2') {
             prediction.winner = prediction.awayteamfull;
         } else {
+            prediction.winner = "Uncertain"
             console.log("Uncertain")
         }
     });
