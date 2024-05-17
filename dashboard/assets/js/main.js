@@ -697,7 +697,8 @@ function getUserData() {
     fetch("https://cdn.overdogbets.com/my-data", requestOptions)
         .then((response) => response.text())
         .then((result) => processUserData(JSON.parse(result)))
-        .catch((error) => location.href = "https://overdogbets.com/login");
+        .catch((error) => {
+          location.href = "https://overdogbets.com/login"});
 
 }
 
