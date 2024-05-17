@@ -682,11 +682,16 @@ try {
     var accessToken = sbApiAuthToken.access_token
 } catch (error) {
   console.log(error)
-    location.href = "https://overdogbets.com/login"
+  
 }
 
 //Get user data
 function getUserData() {
+  if (sbApiAuthToken && sbApiAuthToken.access_token) {
+  // Use the access token
+} else {
+  location.href = "https://overdogbets.com/login";
+}
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
 
