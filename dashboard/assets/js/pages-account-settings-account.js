@@ -195,3 +195,30 @@ document.addEventListener('userDataLoaded', function() {
   // Now you can safely access userData
   document.getElementById("avatar").src = `https://cdn.overdogbets.com/uploads/profile/${userData[0].avatar}`;
 });
+
+
+function uploadFile() {
+    const form = document.getElementById('uploadForm');
+    const formData = new FormData();
+    const fileInput = document.getElementById('upload');
+
+    if (fileInput.files.length === 0) {
+        alert('Please select a file to upload.');
+        return;
+    }
+
+    formData.append('file', fileInput.files[0]);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://cdn.overdogbets.com/upload/profile', true);
+    xhr.setRequestHeader('Authorization', `Bearer ${sbApiAuthToken.access_token}`);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            alert('File uploaded successfully');
+        } else {
+            alert('Error: ' + xhr.statusText);
+        }
+    };
+    xhr.send(formData);
+}
+
