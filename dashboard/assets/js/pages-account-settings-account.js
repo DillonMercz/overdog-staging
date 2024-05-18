@@ -188,3 +188,7 @@ $(function () {
     });
   }
 });
+
+
+
+document.getElementById("avatar").src = userData[0].avatar
