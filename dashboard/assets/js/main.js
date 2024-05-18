@@ -677,6 +677,7 @@ if (typeof $ !== 'undefined') {
 
 //Auth
 var sbApiAuthToken
+var userData
 try {
     sbApiAuthToken = JSON.parse(localStorage.getItem('sb-api-auth-token'));
     var accessToken = sbApiAuthToken.access_token
@@ -714,6 +715,7 @@ function getUserData() {
 
 
 function processUserData(data){
+  userData = data
   document.getElementById('username').innerHTML = data[0].username
   document.getElementById('plan').innerHTML = data[0].plan
   document.getElementById('avatar-outer').src= `https://cdn.overdogbets.com/uploads/profile/${data[0].avatar}`
