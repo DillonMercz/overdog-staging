@@ -739,7 +739,7 @@ function compareOdds(odd1, odd2) {
     const decimal2 = parseFloat(odd2.toString().split('.')[1][0]);
     const difference = Math.abs(decimal1 - decimal2);
 
-    if (difference >= 2) {
+    if (difference >= 1) {
         return (decimal1 > decimal2) ? 'Team 1' : 'Team 2';
     } else if (difference < 1 && difference > 0) {
         return (decimal1 < decimal2) ? 'Team 1' : 'Team 2';
