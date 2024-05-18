@@ -709,6 +709,7 @@ function getUserData() {
       processUserData(JSON.parse(result));
       // Dispatch an event that user data is loaded
       document.dispatchEvent(new Event('userDataLoaded'));
+      document.dispatchEvent(new Event('sbAPILoaded'));
     })
     .catch((error) => {
       console.log(error);
