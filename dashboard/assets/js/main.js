@@ -694,6 +694,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Get user data
 function getUserData() {
+  try{
   const myHeaders = new Headers();
   myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
 
@@ -714,6 +715,9 @@ function getUserData() {
       console.log(error);
       location.href = "https://staging.overdogbets.com/login"
     });
+  } catch(err){
+     location.href = "https://staging.overdogbets.com/login"
+  }
 }
 
 function processUserData(data) {
