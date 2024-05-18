@@ -712,7 +712,6 @@ function getUserData() {
     })
     .catch((error) => {
       console.log(error);
-      location.href = "https://staging.overdogbets.com/login"
     });
 }
 
