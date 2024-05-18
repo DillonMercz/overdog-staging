@@ -673,82 +673,59 @@ if (typeof $ !== 'undefined') {
 
 
 
-//auth
+
+
+//Auth
 var sbApiAuthToken;
 var userData;
-
 document.addEventListener('DOMContentLoaded', function() {
   try {
-    const tokenString = localStorage.getItem('sb-api-auth-token');
-    if (tokenString) {
-      sbApiAuthToken = JSON.parse(tokenString);
-      if (sbApiAuthToken && sbApiAuthToken.access_token) {
-        getUserData();
-      } else {
-        console.log('Invalid token structure:', sbApiAuthToken);
-        redirectToLogin();
-      }
+    sbApiAuthToken = JSON.parse(localStorage.getItem('sb-api-auth-token'));
+    if (sbApiAuthToken && sbApiAuthToken.access_token) {
+      getUserData();
     } else {
-      console.log('Token not found in localStorage');
-      redirectToLogin();
+      location.href = "https://staging.overdogbets.com/login";
     }
   } catch (error) {
-    console.error('Error parsing auth token:', error);
-    redirectToLogin();
+    console.log(error);
+    location.href = "https://staging.overdogbets.com/login";
   }
 });
 
-function redirectToLogin() {
-  location.href = "https://staging.overdogbets.com/login";
-}
-
+// Get user data
 function getUserData() {
-  if (!sbApiAuthToken || !sbApiAuthToken.access_token) {
-    console.error('Invalid or missing sbApiAuthToken');
-    redirectToLogin();
-    return;
-  }
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
 
-  try {
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow"
+  };
 
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow"
-    };
-
-    fetch("https://cdn.overdogbets.com/my-data", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        processUserData(result);
-        // Dispatch an event that user data is loaded
-        document.dispatchEvent(new Event('userDataLoaded'));
-      })
-      .catch((error) => {
-        console.error('Error fetching user data:', error);
-        redirectToLogin();
-      });
-  } catch (err) {
-    console.error('Error in getUserData:', err);
-    redirectToLogin();
-  }
+  fetch("https://cdn.overdogbets.com/my-data", requestOptions)
+    .then((response) => response.text())
+    .then((result) => {
+      processUserData(JSON.parse(result));
+      // Dispatch an event that user data is loaded
+      document.dispatchEvent(new Event('userDataLoaded'));
+    })
+    .catch((error) => {
+      console.log(error);
+      location.href = "https://staging.overdogbets.com/login"
+    });
 }
 
 function processUserData(data) {
-  if (!data || !data[0]) {
-    console.error('Invalid user data:', data);
-    redirectToLogin();
-    return;
-  }
-
   userData = data;
   document.getElementById('username').innerHTML = data[0].username;
   document.getElementById('plan').innerHTML = data[0].plan;
   document.getElementById('avatar-outer').src = `https://cdn.overdogbets.com/uploads/profile/${data[0].avatar}`;
   document.getElementById('avatar-inner').src = `https://cdn.overdogbets.com/uploads/profile/${data[0].avatar}`;
 }
+
+
+
 
 
 
