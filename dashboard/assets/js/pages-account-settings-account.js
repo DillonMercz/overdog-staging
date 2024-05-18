@@ -4,6 +4,7 @@
 
 'use strict';
 
+
 document.addEventListener('DOMContentLoaded', function (e) {
   (function () {
     const formAccSettings = document.querySelector('#formAccountSettings'),
