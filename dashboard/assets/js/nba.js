@@ -617,6 +617,7 @@ const [month, day, year] = currentDate.toLocaleDateString('en-US', options)
     .map((part) => part.padStart(2, '0'));
 const formattedDate = `${year}-${month}-${day}`;
 
+document.addEventListener('sbAPILoaded', function() {
 
 const myHeaders = new Headers();
 myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
@@ -635,7 +636,7 @@ fetch(`https://cdn.overdogbets.com/predictions/${formattedDate}_predictions.json
     })
     .catch(error => console.log('error', error));
 
-
+})
 function getPremium() {
     // Handle the logic for upgrading to premium
     openPaymentModal()
