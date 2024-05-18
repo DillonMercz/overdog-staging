@@ -674,7 +674,6 @@ if (typeof $ !== 'undefined') {
 
 
 //auth
-
 var sbApiAuthToken;
 var userData;
 
@@ -686,13 +685,15 @@ document.addEventListener('DOMContentLoaded', function() {
       if (sbApiAuthToken && sbApiAuthToken.access_token) {
         getUserData();
       } else {
+        console.log('Invalid token structure:', sbApiAuthToken);
         redirectToLogin();
       }
     } else {
+      console.log('Token not found in localStorage');
       redirectToLogin();
     }
   } catch (error) {
-    console.log('Error parsing auth token:', error);
+    console.error('Error parsing auth token:', error);
     redirectToLogin();
   }
 });
@@ -702,6 +703,12 @@ function redirectToLogin() {
 }
 
 function getUserData() {
+  if (!sbApiAuthToken || !sbApiAuthToken.access_token) {
+    console.error('Invalid or missing sbApiAuthToken');
+    redirectToLogin();
+    return;
+  }
+
   try {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
@@ -713,32 +720,35 @@ function getUserData() {
     };
 
     fetch("https://cdn.overdogbets.com/my-data", requestOptions)
-      .then((response) => response.text())
+      .then((response) => response.json())
       .then((result) => {
-        processUserData(JSON.parse(result));
+        processUserData(result);
         // Dispatch an event that user data is loaded
         document.dispatchEvent(new Event('userDataLoaded'));
       })
       .catch((error) => {
-        console.log('Error fetching user data:', error);
+        console.error('Error fetching user data:', error);
         redirectToLogin();
       });
   } catch (err) {
-    console.log('Error in getUserData:', err);
+    console.error('Error in getUserData:', err);
     redirectToLogin();
   }
 }
 
 function processUserData(data) {
+  if (!data || !data[0]) {
+    console.error('Invalid user data:', data);
+    redirectToLogin();
+    return;
+  }
+
   userData = data;
   document.getElementById('username').innerHTML = data[0].username;
   document.getElementById('plan').innerHTML = data[0].plan;
   document.getElementById('avatar-outer').src = `https://cdn.overdogbets.com/uploads/profile/${data[0].avatar}`;
   document.getElementById('avatar-inner').src = `https://cdn.overdogbets.com/uploads/profile/${data[0].avatar}`;
 }
-
-
-
 
 
 
