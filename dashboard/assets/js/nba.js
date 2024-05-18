@@ -619,24 +619,25 @@ const formattedDate = `${year}-${month}-${day}`;
 
 document.addEventListener('sbAPILoaded', function() {
 
-const myHeaders = new Headers();
-myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
 
-const requestOptions = {
-  method: "GET",
-  headers: myHeaders,
-  redirect: "follow"
-};
+    const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow"
+    };
 
-fetch(`https://cdn.overdogbets.com/predictions/${formattedDate}_predictions.json`, requestOptions)
-  .then(response => response.text())
-    .then(result => {
-        buildPredictions(JSON.parse(result))
-        getNBAProps()
-    })
-    .catch(error => console.log('error', error));
+    fetch(`https://cdn.overdogbets.com/predictions/${formattedDate}_predictions.json`, requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            buildPredictions(JSON.parse(result))
+            getNBAProps()
+        })
+        .catch(error => console.log('error', error));
 
 })
+
 function getPremium() {
     // Handle the logic for upgrading to premium
     openPaymentModal()
@@ -842,6 +843,9 @@ function buildUI(parlays) {
 //props
 
 function getNBAProps() {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
+
     const requestOptions = {
         method: "GET",
         headers: myHeaders,
