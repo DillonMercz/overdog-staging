@@ -5,6 +5,7 @@
 'use strict';
 
 
+
 document.addEventListener('DOMContentLoaded', function (e) {
   (function () {
     const formAccSettings = document.querySelector('#formAccountSettings'),
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
           firstName: {
             validators: {
               notEmpty: {
-                message: 'Please enter first name'
+                message: 'Please enter Username'
               }
             }
           },
@@ -194,6 +195,12 @@ $(function () {
 document.addEventListener('userDataLoaded', function() {
   // Now you can safely access userData
   document.getElementById("avatar").src = `https://cdn.overdogbets.com/uploads/profile/${userData[0].avatar}`;
+  document.getElementById("email").value = userData[0].email;
+  document.getElementById("username").value = userData[0].username;
+  document.getElementById("state").value = userData[0].state
+  document.getElementById("username").value = userData[0].username
+
+
 });
 
 
