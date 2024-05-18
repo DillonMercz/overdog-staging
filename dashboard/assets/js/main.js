@@ -673,50 +673,59 @@ if (typeof $ !== 'undefined') {
 
 
 
+//auth
 
-
-//Auth
 var sbApiAuthToken;
 var userData;
+
 document.addEventListener('DOMContentLoaded', function() {
   try {
-    sbApiAuthToken = JSON.parse(localStorage.getItem('sb-api-auth-token'));
-    if (sbApiAuthToken && sbApiAuthToken.access_token) {
-      getUserData();
+    const tokenString = localStorage.getItem('sb-api-auth-token');
+    if (tokenString) {
+      sbApiAuthToken = JSON.parse(tokenString);
+      if (sbApiAuthToken && sbApiAuthToken.access_token) {
+        getUserData();
+      } else {
+        redirectToLogin();
+      }
     } else {
-      location.href = "https://staging.overdogbets.com/login";
+      redirectToLogin();
     }
   } catch (error) {
-    console.log(error);
-    location.href = "https://staging.overdogbets.com/login";
+    console.log('Error parsing auth token:', error);
+    redirectToLogin();
   }
 });
 
-// Get user data
+function redirectToLogin() {
+  location.href = "https://staging.overdogbets.com/login";
+}
+
 function getUserData() {
-  try{
-  const myHeaders = new Headers();
-  myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
+  try {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
 
-  const requestOptions = {
-    method: "GET",
-    headers: myHeaders,
-    redirect: "follow"
-  };
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow"
+    };
 
-  fetch("https://cdn.overdogbets.com/my-data", requestOptions)
-    .then((response) => response.text())
-    .then((result) => {
-      processUserData(JSON.parse(result));
-      // Dispatch an event that user data is loaded
-      document.dispatchEvent(new Event('userDataLoaded'));
-    })
-    .catch((error) => {
-      console.log(error);
-      location.href = "https://staging.overdogbets.com/login"
-    });
-  } catch(err){
-     location.href = "https://staging.overdogbets.com/login"
+    fetch("https://cdn.overdogbets.com/my-data", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        processUserData(JSON.parse(result));
+        // Dispatch an event that user data is loaded
+        document.dispatchEvent(new Event('userDataLoaded'));
+      })
+      .catch((error) => {
+        console.log('Error fetching user data:', error);
+        redirectToLogin();
+      });
+  } catch (err) {
+    console.log('Error in getUserData:', err);
+    redirectToLogin();
   }
 }
 
