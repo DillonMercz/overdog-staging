@@ -539,6 +539,8 @@ function getTeamName(teamName) {
 var games
 var myChart
 var selectedStat = "PTS"
+
+document.addEventListener('sbAPILoaded', function() {
 const myHeaders = new Headers();
 myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
 const requestOptions = {
@@ -569,7 +571,7 @@ fetch("https://cdn.overdogbets.com/nba/player/" + getParameterByName('player'), 
     .catch((error) => console.error(error));
 
 
-
+})
 // Function to create bar chart
 function createBarChart(labels, data, statLabel, average) {
     const options = {
