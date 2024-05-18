@@ -191,4 +191,7 @@ $(function () {
 
 
 
-document.getElementById("avatar").src = userData[0].avatar
+document.addEventListener('userDataLoaded', function() {
+  // Now you can safely access userData
+  document.getElementById("avatar").src = `https://cdn.overdogbets.com/uploads/profile/${userData[0].avatar}`;
+});
