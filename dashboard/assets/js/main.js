@@ -676,50 +676,51 @@ if (typeof $ !== 'undefined') {
 
 
 //Auth
-var sbApiAuthToken
-var userData
-try {
+var sbApiAuthToken;
+var userData;
+document.addEventListener('DOMContentLoaded', function() {
+  try {
     sbApiAuthToken = JSON.parse(localStorage.getItem('sb-api-auth-token'));
-    var accessToken = sbApiAuthToken.access_token
-    getUserData()
-} catch (error) {
-  console.log(error)
-  location.href = "https://staging.overdogbets.com/login";
-  
-}
+    if (sbApiAuthToken && sbApiAuthToken.access_token) {
+      getUserData();
+    } else {
+      location.href = "https://staging.overdogbets.com/login";
+    }
+  } catch (error) {
+    console.log(error);
+    location.href = "https://staging.overdogbets.com/login";
+  }
+});
 
-//Get user data
+// Get user data
 function getUserData() {
-  if (sbApiAuthToken && sbApiAuthToken.access_token) {
-  // Use the access token
-} else {
-  location.href = "https://staging.overdogbets.com/login";
-}
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${sbApiAuthToken.access_token}`);
 
-    const requestOptions = {
-        method: "GET",
-        headers: myHeaders,
-        redirect: "follow"
-    };
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow"
+  };
 
-    fetch("https://cdn.overdogbets.com/my-data", requestOptions)
-        .then((response) => response.text())
-        .then((result) => processUserData(JSON.parse(result)))
-        .catch((error) => {
-          console.log(error)
-          });
-
+  fetch("https://cdn.overdogbets.com/my-data", requestOptions)
+    .then((response) => response.text())
+    .then((result) => {
+      processUserData(JSON.parse(result));
+      // Dispatch an event that user data is loaded
+      document.dispatchEvent(new Event('userDataLoaded'));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
-
-function processUserData(data){
-  userData = data
-  document.getElementById('username').innerHTML = data[0].username
-  document.getElementById('plan').innerHTML = data[0].plan
-  document.getElementById('avatar-outer').src= `https://cdn.overdogbets.com/uploads/profile/${data[0].avatar}`
-  document.getElementById('avatar-inner').src= `https://cdn.overdogbets.com/uploads/profile/${data[0].avatar}`
+function processUserData(data) {
+  userData = data;
+  document.getElementById('username').innerHTML = data[0].username;
+  document.getElementById('plan').innerHTML = data[0].plan;
+  document.getElementById('avatar-outer').src = `https://cdn.overdogbets.com/uploads/profile/${data[0].avatar}`;
+  document.getElementById('avatar-inner').src = `https://cdn.overdogbets.com/uploads/profile/${data[0].avatar}`;
 }
 
 
