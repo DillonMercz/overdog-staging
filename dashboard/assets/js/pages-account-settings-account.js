@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
 
     // Update/reset user image of account page
     let accountUserImage = document.getElementById('uploadedAvatar');
-    const fileInput = document.querySelector('.account-file-input'),
+    const fileInput = document.querySelector('#upload'),
       resetFileInput = document.querySelector('.account-image-reset');
 
     if (accountUserImage) {
@@ -193,6 +193,7 @@ $(function () {
 
 
 document.addEventListener('userDataLoaded', function() {
+  console.log(userData)
   // Now you can safely access userData
   document.getElementById("avatar").src = `https://cdn.overdogbets.com/uploads/profile/${userData[0].avatar}`;
   document.getElementById("email").value = userData[0].email;
@@ -222,6 +223,7 @@ function uploadFile() {
     xhr.onload = function() {
         if (xhr.status === 200) {
             alert('File uploaded successfully');
+            location.reload()
         } else {
             alert('Error: ' + xhr.statusText);
         }
