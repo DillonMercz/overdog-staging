@@ -193,15 +193,20 @@ $(function () {
 
 
 document.addEventListener('userDataLoaded', function() {
-  console.log(userData)
+  console.log('Event: userDataLoaded');
+  console.log('User Data:', userData);
+
   // Now you can safely access userData
-  document.getElementById("avatar").src = `https://cdn.overdogbets.com/uploads/profile/${userData[0].avatar}`;
-  document.getElementById("email").value = userData[0].email;
-  document.getElementById("username").value = userData[0].username;
-  document.getElementById("state").value = userData[0].state
-
-
+  if (userData && userData[0]) {
+    document.getElementById("avatar").src = `https://cdn.overdogbets.com/uploads/profile/${userData[0].avatar}`;
+    document.getElementById("email").value = userData[0].email;
+    document.getElementById("username").value = userData[0].username;
+    document.getElementById("state").value = userData[0].state;
+  } else {
+    console.error('userData is not defined or empty');
+  }
 });
+
 
 
 function uploadFile() {
