@@ -660,7 +660,7 @@ fetch(`https://cdn.overdogbets.com/predictions/nhl/${formattedDate}_games.json`,
     .then(result => buildPredictions(JSON.parse(result)))
     .catch(error => {
         console.log('error', error)
-        location.href="https://staging.overdogbets.com"
+        //location.href="https://staging.overdogbets.com"
     });
 
 })
