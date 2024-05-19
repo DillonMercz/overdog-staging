@@ -193,6 +193,7 @@ $(function () {
 
 
 document.addEventListener('userDataLoaded', function() {
+  console.log(userData)
   // Now you can safely access userData
   document.getElementById("avatar").src = `https://cdn.overdogbets.com/uploads/profile/${userData[0].avatar}`;
   document.getElementById("email").value = userData[0].email;
