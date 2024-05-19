@@ -199,7 +199,6 @@ document.addEventListener('userDataLoaded', function() {
   document.getElementById("email").value = userData[0].email;
   document.getElementById("username").value = userData[0].username;
   document.getElementById("state").value = userData[0].state
-  document.getElementById("username").value = userData[0].username
 
 
 });
