@@ -243,9 +243,9 @@
                             <!--/ Notification -->
                             <!-- User -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                                <a class="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
+                                        <img id="avatar-outer" src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -254,12 +254,12 @@
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
+                                                        <img id="avatar-inner" src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-medium d-block">John Doe</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <span id="username" class="fw-medium d-block"></span>
+                                                    <small id="plan" class="text-muted"></small>
                                                 </div>
                                             </div>
                                         </a>
@@ -273,7 +273,6 @@
                                             <span class="align-middle">My Profile</span>
                                         </a>
                                     </li>
-                                    
                                     <li>
                                         <a class="dropdown-item" href="pages-account-settings-billing.html">
                                             <span class="d-flex align-items-center align-middle">
@@ -295,7 +294,7 @@
                                     <li>
                                         <a class="dropdown-item" href="pages-pricing.html">
                                             <i class="ti ti-currency-dollar me-2 ti-sm"></i>
-                                            <span class="align-middle">Pricing</span>
+                                            <span class="align-middle">Upgrade</span>
                                         </a>
                                     </li>
                                     <li>
@@ -304,7 +303,7 @@
                                     <li>
                                         <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
                                             <i class="ti ti-logout me-2 ti-sm"></i>
-                                            <span class="align-middle">Log Out</span>
+                                            <span onclick="logout()" class="align-middle">Log Out</span>
                                         </a>
                                     </li>
                                 </ul>
