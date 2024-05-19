@@ -222,6 +222,7 @@ function uploadFile() {
     xhr.onload = function() {
         if (xhr.status === 200) {
             alert('File uploaded successfully');
+            location.reload()
         } else {
             alert('Error: ' + xhr.statusText);
         }
