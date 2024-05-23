@@ -579,7 +579,6 @@ if (typeof $ !== 'undefined') {
                     '<a href="app-user-view-account.html">' +
                     '<div class="d-flex align-items-center">' +
                     '<img class="rounded-circle me-3" src="' +
-                    assetsPath +
                     src +
                     '" alt="' +
                     name +
