@@ -568,12 +568,12 @@ if (typeof $ !== 'undefined') {
             },
             // Members
             {
-              name: 'members',
+              name: 'players',
               display: 'name',
               limit: 4,
-              source: filterConfig(searchData.members),
+              source: filterConfig(searchData.players),
               templates: {
-                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Members</h6>',
+                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Players</h6>',
                 suggestion: function ({ name, src, subtitle }) {
                   return (
                     '<a href="app-user-view-account.html">' +
@@ -598,7 +598,7 @@ if (typeof $ !== 'undefined') {
                 },
                 notFound:
                   '<div class="not-found px-3 py-2">' +
-                  '<h6 class="suggestions-header text-primary mb-2">Members</h6>' +
+                  '<h6 class="suggestions-header text-primary mb-2">Players</h6>' +
                   '<p class="py-2 mb-0"><i class="ti ti-alert-circle ti-xs me-2"></i> No Results Found</p>' +
                   '</div>'
               }
