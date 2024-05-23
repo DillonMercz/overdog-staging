@@ -574,9 +574,9 @@ if (typeof $ !== 'undefined') {
               source: filterConfig(searchData.players),
               templates: {
                 header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Players</h6>',
-                suggestion: function ({ name, src, subtitle }) {
+                suggestion: function ({ name, src, subtitle, url }) {
                   return (
-                    '<a href="app-user-view-account.html">' +
+                    '<a href="'+ url+'"'+'>' +
                     '<div class="d-flex align-items-center">' +
                     '<img class="rounded-circle me-3" src="' +
                     src +
