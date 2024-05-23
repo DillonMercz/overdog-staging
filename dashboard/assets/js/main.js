@@ -521,7 +521,7 @@ if (typeof $ !== 'undefined') {
                 },
                 notFound:
                   '<div class="not-found px-3 py-2">' +
-                  '<h6 class="suggestions-header text-primary mb-2">Pages</h6>' +
+                  '<h6 class="suggestions-header text-light mb-2">Pages</h6>' +
                   '<p class="py-2 mb-0"><i class="ti ti-alert-circle ti-xs me-2"></i> No Results Found</p>' +
                   '</div>'
               }
@@ -533,7 +533,7 @@ if (typeof $ !== 'undefined') {
               limit: 4,
               source: filterConfig(searchData.files),
               templates: {
-                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Files</h6>',
+                header: '<h6 class="suggestions-header text-light mb-0 mx-3 mt-3 pb-2">Files</h6>',
                 suggestion: function ({ src, name, subtitle, meta }) {
                   return (
                     '<a href="javascript:;">' +
@@ -561,7 +561,7 @@ if (typeof $ !== 'undefined') {
                 },
                 notFound:
                   '<div class="not-found px-3 py-2">' +
-                  '<h6 class="suggestions-header text-primary mb-2">Files</h6>' +
+                  '<h6 class="suggestions-header text-light mb-2">Files</h6>' +
                   '<p class="py-2 mb-0"><i class="ti ti-alert-circle ti-xs me-2"></i> No Results Found</p>' +
                   '</div>'
               }
@@ -573,7 +573,7 @@ if (typeof $ !== 'undefined') {
               limit: 4,
               source: filterConfig(searchData.players),
               templates: {
-                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Players</h6>',
+                header: '<h6 class="suggestions-header text-light mb-0 mx-3 mt-3 pb-2">Players</h6>',
                 suggestion: function ({ name, src, subtitle, url }) {
                   return (
                     '<a href="'+ url+'"'+'>' +
