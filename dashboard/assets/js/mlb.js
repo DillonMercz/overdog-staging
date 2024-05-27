@@ -758,9 +758,9 @@ function preProcessPredictions(predictions) {
     predictions.forEach(prediction => {
         const winner = compareOdds(prediction.hometeamodds, prediction.awayteamodds);
         if (winner === 'Team 1') {
-            prediction.winner = prediction.hometeamfull;
-        } else if (winner === 'Team 2') {
             prediction.winner = prediction.awayteamfull;
+        } else if (winner === 'Team 2') {
+            prediction.winner = prediction.hometeamfull;
         } else {
             prediction.winner = "Uncertain"
             console.log("Uncertain")
