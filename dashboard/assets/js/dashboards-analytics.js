@@ -665,3 +665,168 @@
 })();
 
 //document.getElementById("dailyQuote").innerHTML = data.data.quote;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function detectOddsType(oddsInput) {
+            if (oddsInput.includes('/')) {
+                return 'fractional';
+            } else if (oddsInput.includes('%')) {
+                return 'implied';
+            } else if (oddsInput.startsWith('+') || oddsInput.startsWith('-') || parseFloat(oddsInput) === parseInt(oddsInput)) {
+                return 'american';
+            } else {
+                return 'decimal';
+            }
+        }
+
+        function decimalToFractional(decimal) {
+            let numerator = (decimal - 1) * 100;
+            let denominator = 100;
+            return `${Math.round(numerator)}/${denominator}`;
+        }
+
+        function decimalToAmerican(decimal) {
+            if (decimal >= 2) {
+                return `+${Math.round((decimal - 1) * 100)}`;
+            } else {
+                return `-${Math.round(100 / (decimal - 1))}`;
+            }
+        }
+
+        function decimalToImplied(decimal) {
+            return (1 / decimal) * 100;
+        }
+
+        function fractionalToDecimal(fractional) {
+            let [numerator, denominator] = fractional.split('/').map(Number);
+            return (numerator / denominator) + 1;
+        }
+
+        function fractionalToAmerican(fractional) {
+            let decimal = fractionalToDecimal(fractional);
+            return decimalToAmerican(decimal);
+        }
+
+        function fractionalToImplied(fractional) {
+            let decimal = fractionalToDecimal(fractional);
+            return decimalToImplied(decimal);
+        }
+
+        function americanToDecimal(american) {
+            if (american > 0) {
+                return (american / 100) + 1;
+            } else {
+                return (100 / Math.abs(american)) + 1;
+            }
+        }
+
+        function americanToFractional(american) {
+            let decimal = americanToDecimal(american);
+            return decimalToFractional(decimal);
+        }
+
+        function americanToImplied(american) {
+            let decimal = americanToDecimal(american);
+            return decimalToImplied(decimal);
+        }
+
+        function impliedToDecimal(implied) {
+            return 100 / implied;
+        }
+
+        function impliedToFractional(implied) {
+            let decimal = impliedToDecimal(implied);
+            return decimalToFractional(decimal);
+        }
+
+        function impliedToAmerican(implied) {
+            let decimal = impliedToDecimal(implied);
+            return decimalToAmerican(decimal);
+        }
+
+        function convertAndCalculateStraightBet() {
+            let oddsInput = document.getElementById('oddsInput').value.trim();
+            let betAmount = parseFloat(document.getElementById('betAmountStraight').value);
+            let oddsType = detectOddsType(oddsInput);
+            let decimalOdds;
+            let results = '';
+
+            switch (oddsType) {
+                case 'decimal':
+                    decimalOdds = parseFloat(oddsInput);
+                    results += `Fractional: ${decimalToFractional(decimalOdds)}<br>`;
+                    results += `American: ${decimalToAmerican(decimalOdds)}<br>`;
+                    results += `Implied: ${decimalToImplied(decimalOdds).toFixed(2)}%<br>`;
+                    break;
+                case 'fractional':
+                    decimalOdds = fractionalToDecimal(oddsInput);
+                    results += `Decimal: ${decimalOdds.toFixed(2)}<br>`;
+                    results += `American: ${fractionalToAmerican(oddsInput)}<br>`;
+                    results += `Implied: ${fractionalToImplied(oddsInput).toFixed(2)}%<br>`;
+                    break;
+                case 'american':
+                    decimalOdds = americanToDecimal(parseFloat(oddsInput));
+                    results += `Decimal: ${decimalOdds.toFixed(2)}<br>`;
+                    results += `Fractional: ${americanToFractional(parseFloat(oddsInput))}<br>`;
+                    results += `Implied: ${americanToImplied(parseFloat(oddsInput)).toFixed(2)}%<br>`;
+                    break;
+                case 'implied':
+                    decimalOdds = impliedToDecimal(parseFloat(oddsInput));
+                    results += `Decimal: ${decimalOdds.toFixed(2)}<br>`;
+                    results += `Fractional: ${impliedToFractional(parseFloat(oddsInput))}<br>`;
+                    results += `American: ${impliedToAmerican(parseFloat(oddsInput))}<br>`;
+                    break;
+            }
+
+            let potentialPayout = decimalOdds * betAmount;
+            results += `Potential Payout: $${potentialPayout.toFixed(2)}`;
+
+            document.getElementById('conversionResults').innerHTML = results;
+        }
+
+        function addParlayInput() {
+            let container = document.getElementById('parlayOddsContainer');
+            let inputGroup = document.createElement('div');
+            inputGroup.className = 'input-group mb-2';
+            inputGroup.innerHTML = '<input type="text" class="form-control parlay-odd" placeholder="Enter odds">';
+            container.appendChild(inputGroup);
+        }
+
+        function calculateParlay() {
+            let oddsInputs = document.getElementsByClassName('parlay-odd');
+            let odds = Array.from(oddsInputs).map(input => input.value.trim());
+            let betAmount = parseFloat(document.getElementById('betAmount').value);
+
+            // Convert odds to Decimal if necessary
+            let decimalOdds = odds.map(odd => {
+                let oddsType = detectOddsType(odd);
+                switch (oddsType) {
+                    case 'decimal':
+                        return parseFloat(odd);
+                    case 'fractional':
+                        return fractionalToDecimal(odd);
+                    case 'american':
+                        return americanToDecimal(parseFloat(odd));
+                    case 'implied':
+                        return impliedToDecimal(parseFloat(odd));
+                }
+            });
+
+            // Correct calculation for combined odds: multiply all decimal odds together
+            let combinedOdds = decimalOdds.reduce((acc, odd) => acc * odd, 1);
+            let potentialPayout = combinedOdds * betAmount;
+
+            document.getElementById('parlayResult').innerHTML = `Combined Odds: ${combinedOdds.toFixed(2)}<br>Potential Payout: $${(potentialPayout - betAmount).toFixed(2)}`; // Adjust for potential profit
+        }
