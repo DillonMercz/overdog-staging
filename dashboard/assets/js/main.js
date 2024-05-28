@@ -530,7 +530,7 @@ if (typeof $ !== 'undefined') {
                   '<p class="py-2 mb-0"><i class="ti ti-alert-circle ti-xs me-2"></i> No Results Found</p>' +
                   '</div>'
               }
-            }
+            },
             // Files
             {
               name: 'files',
