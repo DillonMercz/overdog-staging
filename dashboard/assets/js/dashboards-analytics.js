@@ -676,10 +676,7 @@
 
 
 
-
-
-
-function detectOddsType(oddsInput) {
+        function detectOddsType(oddsInput) {
             if (oddsInput.includes('/')) {
                 return 'fractional';
             } else if (oddsInput.includes('%')) {
@@ -791,7 +788,7 @@ function detectOddsType(oddsInput) {
             }
 
             let potentialPayout = decimalOdds * betAmount;
-            results += `Potential Payout: $${potentialPayout.toFixed(2)}`;
+            results += `Potential Payout: $${(potentialPayout - betAmount).toFixed(2)}`;
 
             document.getElementById('conversionResults').innerHTML = results;
         }
@@ -828,5 +825,5 @@ function detectOddsType(oddsInput) {
             let combinedOdds = decimalOdds.reduce((acc, odd) => acc * odd, 1);
             let potentialPayout = combinedOdds * betAmount;
 
-            document.getElementById('parlayResult').innerHTML = `Combined Odds: ${combinedOdds.toFixed(2)}<br>Potential Payout: $${(potentialPayout - betAmount).toFixed(2)}`; // Adjust for potential profit
+            document.getElementById('parlayResult').innerHTML = `Combined Odds: ${combinedOdds.toFixed(2)}<br>Potential Payout: $${(potentialPayout - betAmount).toFixed(2)}`;
         }

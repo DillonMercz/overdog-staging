@@ -521,236 +521,254 @@
                                 <div class="card">
                                     <div class="card-body pb-0">
                                         <div class="container mt-5">
-                                            <h1 class="text-center">Betting Calculator</h1>
-                                            <ul class="nav nav-tabs" id="bettingTab" role="tablist">
-                                                <li class="nav-item">
-                                                    <a class="nav-link active" id="straight-bets-tab" data-toggle="tab" href="#straight-bets" role="tab" aria-controls="straight-bets" aria-selected="true">Straight Bets</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" id="parlay-calculator-tab" data-toggle="tab" href="#parlay-calculator" role="tab" aria-controls="parlay-calculator" aria-selected="false">Parlay Calculator</a>
-                                                </li>
-                                            </ul>
-                                            <div class="tab-content" id="bettingTabContent">
-                                                <div class="tab-pane fade show active" id="straight-bets" role="tabpanel" aria-labelledby="straight-bets-tab">
-                                                    <h2 class="mt-4">Odds Converter & Bet Calculator</h2>
-                                                    <div class="form-group">
-                                                        <label for="oddsInput">Enter Odds:</label>
-                                                        <input type="text" class="form-control" id="oddsInput">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="betAmountStraight">Enter Bet Amount:</label>
-                                                        <input type="number" class="form-control" id="betAmountStraight">
-                                                    </div>
-                                                    <button class="btn btn-primary" onclick="convertAndCalculateStraightBet()">Convert & Calculate</button>
-                                                    <p id="conversionResults" class="mt-3"></p>
-                                                </div>
-                                                <div class="tab-pane fade" id="parlay-calculator" role="tabpanel" aria-labelledby="parlay-calculator-tab">
-                                                    <h2 class="mt-4">Parlay Calculator</h2>
-                                                    <div id="parlayOddsContainer" class="form-group">
-                                                        <label for="parlayOdds">Enter Parlay Odds:</label>
-                                                        <div class="input-group mb-2">
-                                                            <input type="text" class="form-control parlay-odd" placeholder="Enter odds">
+                                            <!DOCTYPE html>
+                                            <html lang="en">
+
+                                            <head>
+                                                <meta charset="UTF-8">
+                                                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                                <title>Betting Calculator</title>
+                                                <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+                                            </head>
+
+                                            <body>
+                                                <div class="container mt-5">
+                                                    <h1 class="text-center">Betting Calculator</h1>
+                                                    <ul class="nav nav-tabs nav-fill card-header-tabs" role="tablist">
+                                                        <li class="nav-item" role="presentation">
+                                                            <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-within-card-active" aria-controls="navs-within-card-active" aria-selected="true" control-id="ControlID-10">Moneylines</button>
+                                                        </li>
+                                                        <li class="nav-item" role="presentation">
+                                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-within-card-link" aria-controls="navs-within-card-link" aria-selected="false" tabindex="-1" control-id="ControlID-11">Parlays</button>
+                                                        </li>
+                                                        <li class="nav-item" role="presentation">
+                                                            <button type="button" class="nav-link disabled" data-bs-toggle="tab" role="tab" aria-selected="false" tabindex="-1" control-id="ControlID-12">Player Props</button>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="container-xxl flex-grow-1 container-p-y">
+                                                        <div class="tab-content p-0 pt-4">
+                                                            <div class="tab-pane fade show active" id="navs-within-card-active" role="tabpanel">
+                                                                <h2 class="mt-4">Odds Converter & Bet Calculator</h2>
+                                                                <div class="form-group">
+                                                                    <label for="oddsInput">Enter Odds:</label>
+                                                                    <input type="text" class="form-control" id="oddsInput">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="betAmountStraight">Enter Bet Amount:</label>
+                                                                    <input type="number" class="form-control" id="betAmountStraight">
+                                                                </div>
+                                                                <button class="btn btn-primary" onclick="convertAndCalculateStraightBet()">Convert & Calculate</button>
+                                                                <p id="conversionResults" class="mt-3"></p>
+                                                            </div>
+                                                            <div class="tab-pane fade" id="navs-within-card-link" role="tabpanel">
+                                                                <h2 class="mt-4">Parlay Calculator</h2>
+                                                                <div id="parlayOddsContainer" class="form-group">
+                                                                    <label for="parlayOdds">Enter Parlay Odds:</label>
+                                                                    <div class="input-group mb-2">
+                                                                        <input type="text" class="form-control parlay-odd" placeholder="Enter odds">
+                                                                    </div>
+                                                                </div>
+                                                                <button class="btn btn-secondary mb-3" onclick="addParlayInput()">Add Another Odd</button>
+                                                                <div class="form-group">
+                                                                    <label for="betAmount">Enter Bet Amount:</label>
+                                                                    <input type="number" class="form-control" id="betAmount">
+                                                                </div>
+                                                                <button class="btn btn-primary" onclick="calculateParlay()">Calculate</button>
+                                                                <p id="parlayResult" class="mt-3"></p>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <button class="btn btn-secondary mb-3" onclick="addParlayInput()">Add Another Odd</button>
-                                                    <div class="form-group">
-                                                        <label for="betAmount">Enter Bet Amount:</label>
-                                                        <input type="number" class="form-control" id="betAmount">
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ Revenue Generated -->
+                            <!-- Earning Reports -->
+                            <div class="col-lg-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-header pb-0 d-flex justify-content-between mb-lg-n4">
+                                        <div class="card-title mb-0">
+                                            <h5 class="mb-0">Perfomance Report</h5>
+                                            <small class="text-muted">Weekly Performance Overview</small>
+                                        </div>
+                                        <div class="dropdown">
+                                            <button class="btn p-0" type="button" id="earningReportsId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="ti ti-dots-vertical ti-sm text-muted"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="earningReportsId">
+                                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                            </div>
+                                        </div>
+                                        <!-- </div> -->
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12 col-md-4 d-flex flex-column align-self-end">
+                                                <div class="d-flex gap-2 align-items-center mb-2 pb-1 flex-wrap">
+                                                    <h1 class="mb-0">+137U</h1>
+                                                    <div class="badge rounded bg-label-success">+4.2%</div>
+                                                </div>
+                                                <small>Units Won this week compared to last week</small>
+                                            </div>
+                                            <div class="col-12 col-md-8">
+                                                <div id="weeklyEarningReports"></div>
+                                            </div>
+                                        </div>
+                                        <div class="border rounded p-3 mt-4">
+                                            <div class="row gap-4 gap-sm-0">
+                                                <div class="col-12 col-sm-4">
+                                                    <div class="d-flex gap-2 align-items-center">
+                                                        <div class="badge rounded bg-label-primary p-1">
+                                                            <i class="ti ti-currency-dollar ti-sm"></i>
+                                                        </div>
+                                                        <h6 class="mb-0">ROI</h6>
                                                     </div>
-                                                    <button class="btn btn-primary" onclick="calculateParlay()">Calculate</button>
-                                                    <p id="parlayResult" class="mt-3"></p>
+                                                    <h4 class="my-2 pt-1">500%</h4>
+                                                    <div class="progress w-75" style="height: 4px">
+                                                        <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-4">
+                                                    <div class="d-flex gap-2 align-items-center">
+                                                        <div class="badge rounded bg-label-info p-1"><i class="ti ti-chart-pie-2 ti-sm"></i></div>
+                                                        <h6 class="mb-0">Win Rate</h6>
+                                                    </div>
+                                                    <h4 class="my-2 pt-1">+31%</h4>
+                                                    <div class="progress w-75" style="height: 4px">
+                                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-4">
+                                                    <div class="d-flex gap-2 align-items-center">
+                                                        <div class="badge rounded bg-label-danger p-1">
+                                                            <i class="ti ti-brand-paypal ti-sm"></i>
+                                                        </div>
+                                                        <h6 class="mb-0">Average Return</h6>
+                                                    </div>
+                                                    <h4 class="my-2 pt-1">70%</h4>
+                                                    <div class="progress w-75" style="height: 4px">
+                                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                                <!--/ Revenue Generated -->
-                                <!-- Earning Reports -->
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card h-100">
-                                        <div class="card-header pb-0 d-flex justify-content-between mb-lg-n4">
-                                            <div class="card-title mb-0">
-                                                <h5 class="mb-0">Perfomance Report</h5>
-                                                <small class="text-muted">Weekly Performance Overview</small>
-                                            </div>
-                                            <div class="dropdown">
-                                                <button class="btn p-0" type="button" id="earningReportsId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="ti ti-dots-vertical ti-sm text-muted"></i>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="earningReportsId">
-                                                    <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                                </div>
-                                            </div>
-                                            <!-- </div> -->
+                            <!--/ Earning Reports -->
+                            <!-- Support Tracker -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-header d-flex justify-content-between pb-0">
+                                        <div class="card-title mb-0">
+                                            <h5 class="mb-0">AI Model Forecast</h5>
+                                            <small class="text-muted">How are the picks looking today?</small>
                                         </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-12 col-md-4 d-flex flex-column align-self-end">
-                                                    <div class="d-flex gap-2 align-items-center mb-2 pb-1 flex-wrap">
-                                                        <h1 class="mb-0">+137U</h1>
-                                                        <div class="badge rounded bg-label-success">+4.2%</div>
-                                                    </div>
-                                                    <small>Units Won this week compared to last week</small>
-                                                </div>
-                                                <div class="col-12 col-md-8">
-                                                    <div id="weeklyEarningReports"></div>
-                                                </div>
-                                            </div>
-                                            <div class="border rounded p-3 mt-4">
-                                                <div class="row gap-4 gap-sm-0">
-                                                    <div class="col-12 col-sm-4">
-                                                        <div class="d-flex gap-2 align-items-center">
-                                                            <div class="badge rounded bg-label-primary p-1">
-                                                                <i class="ti ti-currency-dollar ti-sm"></i>
-                                                            </div>
-                                                            <h6 class="mb-0">ROI</h6>
-                                                        </div>
-                                                        <h4 class="my-2 pt-1">500%</h4>
-                                                        <div class="progress w-75" style="height: 4px">
-                                                            <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-4">
-                                                        <div class="d-flex gap-2 align-items-center">
-                                                            <div class="badge rounded bg-label-info p-1"><i class="ti ti-chart-pie-2 ti-sm"></i></div>
-                                                            <h6 class="mb-0">Win Rate</h6>
-                                                        </div>
-                                                        <h4 class="my-2 pt-1">+31%</h4>
-                                                        <div class="progress w-75" style="height: 4px">
-                                                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-4">
-                                                        <div class="d-flex gap-2 align-items-center">
-                                                            <div class="badge rounded bg-label-danger p-1">
-                                                                <i class="ti ti-brand-paypal ti-sm"></i>
-                                                            </div>
-                                                            <h6 class="mb-0">Average Return</h6>
-                                                        </div>
-                                                        <h4 class="my-2 pt-1">70%</h4>
-                                                        <div class="progress w-75" style="height: 4px">
-                                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/ Earning Reports -->
-                                <!-- Support Tracker -->
-                                <div class="col-md-6 mb-4">
-                                    <div class="card h-100">
-                                        <div class="card-header d-flex justify-content-between pb-0">
-                                            <div class="card-title mb-0">
-                                                <h5 class="mb-0">AI Model Forecast</h5>
-                                                <small class="text-muted">How are the picks looking today?</small>
-                                            </div>
-                                            <div class="dropdown">
-                                                <button class="btn p-0" type="button" id="supportTrackerMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="ti ti-dots-vertical ti-sm text-muted"></i>
-                                                </button>
-                                                <!--<div class="dropdown-menu dropdown-menu-end" aria-labelledby="supportTrackerMenu">
+                                        <div class="dropdown">
+                                            <button class="btn p-0" type="button" id="supportTrackerMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="ti ti-dots-vertical ti-sm text-muted"></i>
+                                            </button>
+                                            <!--<div class="dropdown-menu dropdown-menu-end" aria-labelledby="supportTrackerMenu">
                                                 <a class="dropdown-item" href="javascript:void(0);">View More</a>
                                                 <a class="dropdown-item" href="javascript:void(0);">Delete</a>
                                             </div>-->
-                                            </div>
                                         </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-12 col-sm-4 col-md-12 col-lg-4">
-                                                    <div class="mt-lg-4 mt-lg-2 mb-lg-4 mb-2 pt-1">
-                                                        <h1 class="mb-0">Good</h1>
-                                                    </div>
-                                                    <ul class="p-0 m-0">
-                                                        <li class="d-flex gap-3 align-items-center mb-lg-3 pt-2 pb-1">
-                                                            <div class="badge rounded bg-label-warning p-1"><i class="fa solid fa-basketball"></i></div>
-                                                            <div>
-                                                                <h6 class="mb-0 text-nowrap">Basketball</h6>
-                                                            </div>
-                                                        </li>
-                                                        <li class="d-flex gap-3 align-items-center mb-lg-3 pb-1">
-                                                            <div class="badge rounded bg-label-info p-1">
-                                                                <i class="fa solid fa-hockey-puck"></i>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="mb-0 text-nowrap">Hockey</h6>
-                                                            </div>
-                                                        </li>
-                                                        <li class="d-flex gap-3 align-items-center pb-1">
-                                                            <div class="badge rounded bg-label-success p-1"><i class="fa solid fa-baseball"></i></i></div>
-                                                            <div>
-                                                                <h6 class="mb-0 text-nowrap">Tennis</h6>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12 col-sm-4 col-md-12 col-lg-4">
+                                                <div class="mt-lg-4 mt-lg-2 mb-lg-4 mb-2 pt-1">
+                                                    <h1 class="mb-0">Good</h1>
                                                 </div>
-                                                <div class="col-12 col-sm-8 col-md-12 col-lg-8">
-                                                    <div id="supportTracker"></div>
-                                                </div>
+                                                <ul class="p-0 m-0">
+                                                    <li class="d-flex gap-3 align-items-center mb-lg-3 pt-2 pb-1">
+                                                        <div class="badge rounded bg-label-warning p-1"><i class="fa solid fa-basketball"></i></div>
+                                                        <div>
+                                                            <h6 class="mb-0 text-nowrap">Basketball</h6>
+                                                        </div>
+                                                    </li>
+                                                    <li class="d-flex gap-3 align-items-center mb-lg-3 pb-1">
+                                                        <div class="badge rounded bg-label-info p-1">
+                                                            <i class="fa solid fa-hockey-puck"></i>
+                                                        </div>
+                                                        <div>
+                                                            <h6 class="mb-0 text-nowrap">Hockey</h6>
+                                                        </div>
+                                                    </li>
+                                                    <li class="d-flex gap-3 align-items-center pb-1">
+                                                        <div class="badge rounded bg-label-success p-1"><i class="fa solid fa-baseball"></i></i></div>
+                                                        <div>
+                                                            <h6 class="mb-0 text-nowrap">Tennis</h6>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 col-sm-8 col-md-12 col-lg-8">
+                                                <div id="supportTracker"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!--/ Support Tracker -->
+                            </div>
+                            <!--/ Support Tracker -->
+                        </div>
+                    </div>
+                    <!-- / Content -->
+                    <!-- Footer -->
+                    <footer class="content-footer footer bg-footer-theme">
+                        <div class="container-xxl">
+                            <div class="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
+                                <div>
+                                    ©
+                                    <script>
+                                    document.write(new Date().getFullYear());
+                                    </script>, OVERDOG
+                                </div>
+                                <div class="d-none d-lg-inline-block">
+                                    <a href="./terms" class="footer-link me-4" target="_blank">Terms of Service</a>
+                                    <a href="./privacy" target="_blank" class="footer-link me-4">Privacy Policy</a>
+                                    <a href="./disclaimer" target="_blank" class="footer-link me-4">Disclaimer</a>
+                                    <a href="./support" target="_blank" class="footer-link d-none d-sm-inline-block">Support</a>
+                                </div>
                             </div>
                         </div>
-                        <!-- / Content -->
-                        <!-- Footer -->
-                        <footer class="content-footer footer bg-footer-theme">
-                            <div class="container-xxl">
-                                <div class="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
-                                    <div>
-                                        ©
-                                        <script>
-                                        document.write(new Date().getFullYear());
-                                        </script>, OVERDOG
-                                    </div>
-                                    <div class="d-none d-lg-inline-block">
-                                        <a href="./terms" class="footer-link me-4" target="_blank">Terms of Service</a>
-                                        <a href="./privacy" target="_blank" class="footer-link me-4">Privacy Policy</a>
-                                        <a href="./disclaimer" target="_blank" class="footer-link me-4">Disclaimer</a>
-                                        <a href="./support" target="_blank" class="footer-link d-none d-sm-inline-block">Support</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </footer>
-                        <!-- / Footer -->
-                        <div class="content-backdrop fade"></div>
-                    </div>
-                    <!-- Content wrapper -->
+                    </footer>
+                    <!-- / Footer -->
+                    <div class="content-backdrop fade"></div>
                 </div>
-                <!-- / Layout page -->
+                <!-- Content wrapper -->
             </div>
-            <!-- Overlay -->
-            <div class="layout-overlay layout-menu-toggle"></div>
-            <!-- Drag Target Area To SlideIn Menu On Small Screens -->
-            <div class="drag-target"></div>
+            <!-- / Layout page -->
         </div>
-        <!-- / Layout wrapper -->
-        <!-- Core JS -->
-        <!-- build:js assets/vendor/js/core.js -->
-        <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
-        <script src="../../assets/vendor/libs/popper/popper.js"></script>
-        <script src="../../assets/vendor/js/bootstrap.js"></script>
-        <script src="../../assets/vendor/libs/node-waves/node-waves.js"></script>
-        <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-        <script src="../../assets/vendor/libs/hammer/hammer.js"></script>
-        <script src="../../assets/vendor/libs/i18n/i18n.js"></script>
-        <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
-        <script src="../../assets/vendor/js/menu.js"></script>
-        <!-- endbuild -->
-        <!-- Vendors JS -->
-        <script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
-        <script src="../../assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
-        <!-- Main JS -->
-        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-        <script src="../../assets/vendor/libs/swiper/swiper.js"></script>
-        <script src="../../assets/js/main.js"></script>
-        <!-- Page JS -->
-        <script src="../../assets/js/dashboards-analytics.js"></script>
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+        <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+        <div class="drag-target"></div>
+    </div>
+    <!-- / Layout wrapper -->
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../assets/vendor/libs/node-waves/node-waves.js"></script>
+    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../assets/vendor/libs/hammer/hammer.js"></script>
+    <script src="../../assets/vendor/libs/i18n/i18n.js"></script>
+    <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
+    <script src="../../assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+    <!-- Vendors JS -->
+    <script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="../../assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+    <!-- Main JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../../assets/vendor/libs/swiper/swiper.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <!-- Page JS -->
+    <script src="../../assets/js/dashboards-analytics.js"></script>
 </body>
 
 </html>
