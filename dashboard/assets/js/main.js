@@ -502,7 +502,7 @@ if (typeof $ !== 'undefined') {
               limit: 4,
               source: filterConfig(searchData.teams),
               templates: {
-                header: '<h6 class="suggestions-header text-light mb-0 mx-3 mt-3 pb-2">Players</h6>',
+                header: '<h6 class="suggestions-header text-light mb-0 mx-3 mt-3 pb-2">Teams</h6>',
                 suggestion: function ({ name, src, subtitle, url }) {
                   return (
                     '<a href="'+ url+'"'+'>' +
