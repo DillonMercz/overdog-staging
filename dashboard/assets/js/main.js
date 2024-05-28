@@ -495,37 +495,42 @@ if (typeof $ !== 'undefined') {
               }
             },
             // ? Add/Update blocks as per need
-            // Pages
-            {
-              name: 'pages',
+            // teams
+             {
+              name: 'teams',
               display: 'name',
-              limit: 5,
-              source: filterConfig(searchData.pages),
+              limit: 4,
+              source: filterConfig(searchData.teams),
               templates: {
-                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Pages</h6>',
-                suggestion: function ({ url, icon, name }) {
+                header: '<h6 class="suggestions-header text-light mb-0 mx-3 mt-3 pb-2">Players</h6>',
+                suggestion: function ({ name, src, subtitle, url }) {
                   return (
-                    '<a href="' +
-                    url +
-                    '">' +
-                    '<div>' +
-                    '<i class="ti ' +
-                    icon +
-                    ' me-2"></i>' +
-                    '<span class="align-middle">' +
+                    '<a href="'+ url+'"'+'>' +
+                    '<div class="d-flex align-items-center">' +
+                    '<img class="rounded-circle me-3" src="' +
+                    src +
+                    '" alt="' +
                     name +
-                    '</span>' +
+                    '" height="32">' +
+                    '<div class="user-info">' +
+                    '<h6 class="mb-0">' +
+                    name +
+                    '</h6>' +
+                    '<small class="text-muted">' +
+                    subtitle +
+                    '</small>' +
+                    '</div>' +
                     '</div>' +
                     '</a>'
                   );
                 },
                 notFound:
                   '<div class="not-found px-3 py-2">' +
-                  '<h6 class="suggestions-header text-light mb-2">Pages</h6>' +
+                  '<h6 class="suggestions-header text-primary mb-2">Players</h6>' +
                   '<p class="py-2 mb-0"><i class="ti ti-alert-circle ti-xs me-2"></i> No Results Found</p>' +
                   '</div>'
               }
-            },
+            }
             // Files
             {
               name: 'files',
