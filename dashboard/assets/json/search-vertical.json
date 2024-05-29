@@ -183,187 +183,187 @@
     {
         "name": "Anaheim Ducks",
         "subtitle": "NHL-Pacific Division",
-        "src": "../../assets/img/mlb-logos/Ducks.png",
+        "src": "../../assets/img/nhl-logos/Ducks.png",
         "url": "nhl-team.html?team=Anaheim+Ducks"
     },
     {
         "name": "Arizona Coyotes",
         "subtitle": "NHL-Pacific Division",
-        "src": "../../assets/img/mlb-logos/Coyotes.png",
+        "src": "../../assets/img/nhl-logos/Coyotes.png",
         "url": "nhl-team.html?team=Arizona+Coyotes"
     },
     {
         "name": "Boston Bruins",
         "subtitle": "NHL-Atlantic Division",
-        "src": "../../assets/img/mlb-logos/Bruins.png",
+        "src": "../../assets/img/nhl-logos/Bruins.png",
         "url": "nhl-team.html?team=Boston+Bruins"
     },
     {
         "name": "Buffalo Sabres",
         "subtitle": "NHL-Atlantic Division",
-        "src": "../../assets/img/mlb-logos/Sabres.png",
+        "src": "../../assets/img/nhl-logos/Sabres.png",
         "url": "nhl-team.html?team=Buffalo+Sabres"
     },
     {
         "name": "Calgary Flames",
         "subtitle": "NHL-Pacific Division",
-        "src": "../../assets/img/mlb-logos/Flames.png",
+        "src": "../../assets/img/nhl-logos/Flames.png",
         "url": "nhl-team.html?team=Calgary+Flames"
     },
     {
         "name": "Carolina Hurricanes",
         "subtitle": "NHL-Metropolitan Division",
-        "src": "../../assets/img/mlb-logos/Hurricanes.png",
+        "src": "../../assets/img/nhl-logos/Hurricanes.png",
         "url": "nhl-team.html?team=Carolina+Hurricanes"
     },
     {
         "name": "Chicago Blackhawks",
         "subtitle": "NHL-Central Division",
-        "src": "../../assets/img/mlb-logos/Blackhawks.png",
+        "src": "../../assets/img/nhl-logos/Blackhawks.png",
         "url": "nhl-team.html?team=Chicago+Blackhawks"
     },
     {
         "name": "Colorado Avalanche",
         "subtitle": "NHL-Central Division",
-        "src": "../../assets/img/mlb-logos/Avalanche.png",
+        "src": "../../assets/img/nhl-logos/Avalanche.png",
         "url": "nhl-team.html?team=Colorado+Avalanche"
     },
     {
         "name": "Columbus Blue Jackets",
         "subtitle": "NHL-Metropolitan Division",
-        "src": "../../assets/img/mlb-logos/BlueJackets.png",
+        "src": "../../assets/img/nhl-logos/BlueJackets.png",
         "url": "nhl-team.html?team=Columbus+Blue+Jackets"
     },
     {
         "name": "Dallas Stars",
         "subtitle": "NHL-Central Division",
-        "src": "../../assets/img/mlb-logos/Stars.png",
+        "src": "../../assets/img/nhl-logos/Stars.png",
         "url": "nhl-team.html?team=Dallas+Stars"
     },
     {
         "name": "Detroit Red Wings",
         "subtitle": "NHL-Atlantic Division",
-        "src": "../../assets/img/mlb-logos/RedWings.png",
+        "src": "../../assets/img/nhl-logos/RedWings.png",
         "url": "nhl-team.html?team=Detroit+Red+Wings"
     },
     {
         "name": "Edmonton Oilers",
         "subtitle": "NHL-Pacific Division",
-        "src": "../../assets/img/mlb-logos/Oilers.png",
+        "src": "../../assets/img/nhl-logos/Oilers.png",
         "url": "nhl-team.html?team=Edmonton+Oilers"
     },
     {
         "name": "Florida Panthers",
         "subtitle": "NHL-Atlantic Division",
-        "src": "../../assets/img/mlb-logos/Panthers.png",
+        "src": "../../assets/img/nhl-logos/Panthers.png",
         "url": "nhl-team.html?team=Florida+Panthers"
     },
     {
         "name": "Los Angeles Kings",
         "subtitle": "NHL-Pacific Division",
-        "src": "../../assets/img/mlb-logos/Kings.png",
+        "src": "../../assets/img/nhl-logos/Kings.png",
         "url": "nhl-team.html?team=Los+Angeles+Kings"
     },
     {
         "name": "Minnesota Wild",
         "subtitle": "NHL-Central Division",
-        "src": "../../assets/img/mlb-logos/Wild.png",
+        "src": "../../assets/img/nhl-logos/Wild.png",
         "url": "nhl-team.html?team=Minnesota+Wild"
     },
     {
         "name": "Montreal Canadiens",
         "subtitle": "NHL-Atlantic Division",
-        "src": "../../assets/img/mlb-logos/Canadiens.png",
+        "src": "../../assets/img/nhl-logos/Canadiens.png",
         "url": "nhl-team.html?team=Montreal+Canadiens"
     },
     {
         "name": "Nashville Predators",
         "subtitle": "NHL-Central Division",
-        "src": "../../assets/img/mlb-logos/Predators.png",
+        "src": "../../assets/img/nhl-logos/Predators.png",
         "url": "nhl-team.html?team=Nashville+Predators"
     },
     {
         "name": "New Jersey Devils",
         "subtitle": "NHL-Metropolitan Division",
-        "src": "../../assets/img/mlb-logos/Devils.png",
+        "src": "../../assets/img/nhl-logos/Devils.png",
         "url": "nhl-team.html?team=New+Jersey+Devils"
     },
     {
         "name": "New York Islanders",
         "subtitle": "NHL-Metropolitan Division",
-        "src": "../../assets/img/mlb-logos/Islanders.png",
+        "src": "../../assets/img/nhl-logos/Islanders.png",
         "url": "nhl-team.html?team=New+York+Islanders"
     },
     {
         "name": "New York Rangers",
         "subtitle": "NHL-Metropolitan Division",
-        "src": "../../assets/img/mlb-logos/Rangers.png",
+        "src": "../../assets/img/nhl-logos/Rangers.png",
         "url": "nhl-team.html?team=New+York+Rangers"
     },
     {
         "name": "Ottawa Senators",
         "subtitle": "NHL-Atlantic Division",
-        "src": "../../assets/img/mlb-logos/Senators.png",
+        "src": "../../assets/img/nhl-logos/Senators.png",
         "url": "nhl-team.html?team=Ottawa+Senators"
     },
     {
         "name": "Philadelphia Flyers",
         "subtitle": "NHL-Metropolitan Division",
-        "src": "../../assets/img/mlb-logos/Flyers.png",
+        "src": "../../assets/img/nhl-logos/Flyers.png",
         "url": "nhl-team.html?team=Philadelphia+Flyers"
     },
     {
         "name": "Pittsburgh Penguins",
         "subtitle": "NHL-Metropolitan Division",
-        "src": "../../assets/img/mlb-logos/Penguins.png",
+        "src": "../../assets/img/nhl-logos/Penguins.png",
         "url": "nhl-team.html?team=Pittsburgh+Penguins"
     },
     {
         "name": "San Jose Sharks",
         "subtitle": "NHL-Pacific Division",
-        "src": "../../assets/img/mlb-logos/Sharks.png",
+        "src": "../../assets/img/nhl-logos/Sharks.png",
         "url": "nhl-team.html?team=San+Jose+Sharks"
     },
     {
         "name": "St. Louis Blues",
         "subtitle": "NHL-Central Division",
-        "src": "../../assets/img/mlb-logos/Blues.png",
+        "src": "../../assets/img/nhl-logos/Blues.png",
         "url": "nhl-team.html?team=St.+Louis+Blues"
     },
     {
         "name": "Tampa Bay Lightning",
         "subtitle": "NHL-Atlantic Division",
-        "src": "../../assets/img/mlb-logos/Lightning.png",
+        "src": "../../assets/img/nhl-logos/Lightning.png",
         "url": "nhl-team.html?team=Tampa+Bay+Lightning"
     },
     {
         "name": "Toronto Maple Leafs",
         "subtitle": "NHL-Atlantic Division",
-        "src": "../../assets/img/mlb-logos/MapleLeafs.png",
+        "src": "../../assets/img/nhl-logos/MapleLeafs.png",
         "url": "nhl-team.html?team=Toronto+Maple+Leafs"
     },
     {
         "name": "Vancouver Canucks",
         "subtitle": "NHL-Pacific Division",
-        "src": "../../assets/img/mlb-logos/Canucks.png",
+        "src": "../../assets/img/nhl-logos/Canucks.png",
         "url": "nhl-team.html?team=Vancouver+Canucks"
     },
     {
         "name": "Vegas Golden Knights",
         "subtitle": "NHL-Pacific Division",
-        "src": "../../assets/img/mlb-logos/GoldenKnights.png",
+        "src": "../../assets/img/nhl-logos/GoldenKnights.png",
         "url": "nhl-team.html?team=Vegas+Golden+Knights"
     },
     {
         "name": "Washington Capitals",
         "subtitle": "NHL-Metropolitan Division",
-        "src": "../../assets/img/mlb-logos/Capitals.png",
+        "src": "../../assets/img/nhl-logos/Capitals.png",
         "url": "nhl-team.html?team=Washington+Capitals"
     },
     {
         "name": "Winnipeg Jets",
         "subtitle": "NHL-Central Division",
-        "src": "../../assets/img/mlb-logos/Jets.png",
+        "src": "../../assets/img/nhl-logos/Jets.png",
         "url": "nhl-team.html?team=Winnipeg+Jets"
     },
     {
