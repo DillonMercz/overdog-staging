@@ -788,7 +788,7 @@
             }
 
             let potentialPayout = decimalOdds * betAmount;
-            results += `Potential Payout: $${(potentialPayout - betAmount).toFixed(2)}`;
+            results += `Payout: $${(potentialPayout += betAmount).toFixed(2)}`;
 
             document.getElementById('conversionResults').innerHTML = results;
         }
