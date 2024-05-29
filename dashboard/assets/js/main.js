@@ -507,7 +507,7 @@ if (typeof $ !== 'undefined') {
                   return (
                     '<a href="'+ url+'"'+'>' +
                     '<div class="d-flex align-items-center">' +
-                    '<img class="rounded-circle me-3" style="width:100px;height:100px;background-color:var(--primary);border:1px solid white" src="' +
+                    '<img class="rounded-circle" style="width:50px;height:50px;" src="' +
                     src +
                     '" alt="' +
                     name +
