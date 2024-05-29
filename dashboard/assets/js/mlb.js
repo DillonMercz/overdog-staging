@@ -561,7 +561,7 @@ function displayScores(data) {
         }
 
         const cardTemplate = `
-                  <div class="scoreboard-item card h-100">
+                  <div class="scoreboard-item card h-100" onclick="./mlb-game.html?game=${game.gamePK}">
                     <div class="card-body" style="padding-top:5px">
                         <!-- Row 1 -->
                         <div class="row mt-4 align-items-center">
