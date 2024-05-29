@@ -2,739 +2,739 @@
     "teams": [
     {
         "name": "Atlanta Hawks",
-        "subtitle": "Southeast Division",
+        "subtitle": "NBA-Southeast Division",
         "src": "../../assets/img/nba-logos/hawks.png",
         "url": "nba-team.html?team=Atlanta Hawks"
     },
     {
         "name": "Boston Celtics",
-        "subtitle": "Atlantic Division",
+        "subtitle": "NBA-Atlantic Division",
         "src": "../../assets/img/nba-logos/celtics.png",
         "url": "nba-team.html?team=Boston Celtics"
     },
     {
         "name": "Brooklyn Nets",
-        "subtitle": "Atlantic Division",
+        "subtitle": "NBA-Atlantic Division",
         "src": "../../assets/img/nba-logos/nets.png",
         "url": "nba-team.html?team=Brooklyn Nets"
     },
     {
         "name": "Charlotte Hornets",
-        "subtitle": "Southeast Division",
+        "subtitle": "NBA-Southeast Division",
         "src": "../../assets/img/nba-logos/hornets.png",
         "url": "nba-team.html?team=Charlotte Hornets"
     },
     {
         "name": "Chicago Bulls",
-        "subtitle": "Central Division",
+        "subtitle": "NBA-Central Division",
         "src": "../../assets/img/nba-logos/bulls.png",
         "url": "nba-team.html?team=Chicago Bulls"
     },
     {
         "name": "Cleveland Cavaliers",
-        "subtitle": "Central Division",
+        "subtitle": "NBA-Central Division",
         "src": "../../assets/img/nba-logos/cavaliers.png",
         "url": "nba-team.html?team=Cleveland Cavaliers"
     },
     {
         "name": "Dallas Mavericks",
-        "subtitle": "Southwest Division",
+        "subtitle": "NBA-Southwest Division",
         "src": "../../assets/img/nba-logos/mavericks.png",
         "url": "nba-team.html?team=Dallas Mavericks"
     },
     {
         "name": "Denver Nuggets",
-        "subtitle": "Northwest Division",
+        "subtitle": "NBA-Northwest Division",
         "src": "../../assets/img/nba-logos/nuggets.png",
         "url": "nba-team.html?team=Denver Nuggets"
     },
     {
         "name": "Detroit Pistons",
-        "subtitle": "Central Division",
+        "subtitle": "NBA-Central Division",
         "src": "../../assets/img/nba-logos/pistons.png",
         "url": "nba-team.html?team=Detroit Pistons"
     },
     {
         "name": "Golden State Warriors",
-        "subtitle": "Pacific Division",
+        "subtitle": "NBA-Pacific Division",
         "src": "../../assets/img/nba-logos/warriors.png",
         "url": "nba-team.html?team=Golden State Warriors"
     },
     {
         "name": "Houston Rockets",
-        "subtitle": "Southwest Division",
+        "subtitle": "NBA-Southwest Division",
         "src": "../../assets/img/nba-logos/rockets.png",
         "url": "nba-team.html?team=Houston Rockets"
     },
     {
         "name": "Indiana Pacers",
-        "subtitle": "Central Division",
+        "subtitle": "NBA-Central Division",
         "src": "../../assets/img/nba-logos/pacers.png",
         "url": "nba-team.html?team=Indiana Pacers"
     },
     {
         "name": "Los Angeles Clippers",
-        "subtitle": "Pacific Division",
+        "subtitle": "NBA-Pacific Division",
         "src": "../../assets/img/nba-logos/clippers.png",
         "url": "nba-team.html?team=Los Angeles Clippers"
     },
     {
         "name": "Los Angeles Lakers",
-        "subtitle": "Pacific Division",
+        "subtitle": "NBA-Pacific Division",
         "src": "../../assets/img/nba-logos/lakers.png",
         "url": "nba-team.html?team=Los Angeles Lakers"
     },
     {
         "name": "Memphis Grizzlies",
-        "subtitle": "Southwest Division",
+        "subtitle": "NBA-Southwest Division",
         "src": "../../assets/img/nba-logos/grizzlies.png",
         "url": "nba-team.html?team=Memphis Grizzlies"
     },
     {
         "name": "Miami Heat",
-        "subtitle": "Southeast Division",
+        "subtitle": "NBA-Southeast Division",
         "src": "../../assets/img/nba-logos/heat.png",
         "url": "nba-team.html?team=Miami Heat"
     },
     {
         "name": "Milwaukee Bucks",
-        "subtitle": "Central Division",
+        "subtitle": "NBA-Central Division",
         "src": "../../assets/img/nba-logos/bucks.png",
         "url": "nba-team.html?team=Milwaukee Bucks"
     },
     {
         "name": "Minnesota Timberwolves",
-        "subtitle": "Northwest Division",
+        "subtitle": "NBA-Northwest Division",
         "src": "../../assets/img/nba-logos/timber wolves.png",
         "url": "nba-team.html?team=Minnesota Timberwolves"
     },
     {
         "name": "New Orleans Pelicans",
-        "subtitle": "Southwest Division",
+        "subtitle": "NBA-Southwest Division",
         "src": "../../assets/img/nba-logos/pelicans.png",
         "url": "nba-team.html?team=New Orleans Pelicans"
     },
     {
         "name": "New York Knicks",
-        "subtitle": "Atlantic Division",
+        "subtitle": "NBA-Atlantic Division",
         "src": "../../assets/img/nba-logos/knicks.png",
         "url": "nba-team.html?team=New York Knicks"
     },
     {
         "name": "Oklahoma City Thunder",
-        "subtitle": "Northwest Division",
+        "subtitle": "NBA-Northwest Division",
         "src": "../../assets/img/nba-logos/thunder.png",
         "url": "nba-team.html?team=Oklahoma City Thunder"
     },
     {
         "name": "Orlando Magic",
-        "subtitle": "Southeast Division",
+        "subtitle": "NBA-Southeast Division",
         "src": "../../assets/img/nba-logos/magic.png",
         "url": "nba-team.html?team=Orlando Magic"
     },
     {
         "name": "Philadelphia 76ers",
-        "subtitle": "Atlantic Division",
+        "subtitle": "NBA-Atlantic Division",
         "src": "../../assets/img/nba-logos/76ers.png",
         "url": "nba-team.html?team=Philadelphia 76ers"
     },
     {
         "name": "Phoenix Suns",
-        "subtitle": "Pacific Division",
+        "subtitle": "NBA-Pacific Division",
         "src": "../../assets/img/nba-logos/suns.png",
         "url": "nba-team.html?team=Phoenix Suns"
     },
     {
         "name": "Portland Trail Blazers",
-        "subtitle": "Northwest Division",
+        "subtitle": "NBA-Northwest Division",
         "src": "../../assets/img/nba-logos/trail blazers.png",
         "url": "nba-team.html?team=Portland Trail Blazers"
     },
     {
         "name": "Sacramento Kings",
-        "subtitle": "Pacific Division",
+        "subtitle": "NBA-Pacific Division",
         "src": "../../assets/img/nba-logos/kings.png",
         "url": "nba-team.html?team=Sacramento Kings"
     },
     {
         "name": "San Antonio Spurs",
-        "subtitle": "Southwest Division",
+        "subtitle": "NBA-Southwest Division",
         "src": "../../assets/img/nba-logos/spurs.png",
         "url": "nba-team.html?team=SanAntonio Spurs"
     },
     {
         "name": "Toronto Raptors",
-        "subtitle": "Atlantic Division",
+        "subtitle": "NBA-Atlantic Division",
         "src": "../../assets/img/nba-logos/raptors.png",
         "url": "nba-team.html?team=Toronto Raptors"
     },
     {
         "name": "Utah Jazz",
-        "subtitle": "Northwest Division",
+        "subtitle": "NBA-Northwest Division",
         "src": "../../assets/img/nba-logos/jazz.png",
         "url": "nba-team.html?team=Utah Jazz"
     },
     {
         "name": "Washington Wizards",
-        "subtitle": "Southeast Division",
+        "subtitle": "NBA-Southeast Division",
         "src": "../../assets/img/nba-logos/wizards.png",
         "url": "nba-team.html?team=Washington Wizards"
     },
     {
         "name": "Anaheim Ducks",
-        "subtitle": "Pacific Division",
+        "subtitle": "NHL-Pacific Division",
         "src": "Ducks.png",
         "url": "nhl-team.html?team=Anaheim+Ducks"
     },
     {
         "name": "Arizona Coyotes",
-        "subtitle": "Pacific Division",
+        "subtitle": "NHL-Pacific Division",
         "src": "Coyotes.png",
         "url": "nhl-team.html?team=Arizona+Coyotes"
     },
     {
         "name": "Boston Bruins",
-        "subtitle": "Atlantic Division",
+        "subtitle": "NHL-Atlantic Division",
         "src": "Bruins.png",
         "url": "nhl-team.html?team=Boston+Bruins"
     },
     {
         "name": "Buffalo Sabres",
-        "subtitle": "Atlantic Division",
+        "subtitle": "NHL-Atlantic Division",
         "src": "Sabres.png",
         "url": "nhl-team.html?team=Buffalo+Sabres"
     },
     {
         "name": "Calgary Flames",
-        "subtitle": "Pacific Division",
+        "subtitle": "NHL-Pacific Division",
         "src": "Flames.png",
         "url": "nhl-team.html?team=Calgary+Flames"
     },
     {
         "name": "Carolina Hurricanes",
-        "subtitle": "Metropolitan Division",
+        "subtitle": "NHL-Metropolitan Division",
         "src": "Hurricanes.png",
         "url": "nhl-team.html?team=Carolina+Hurricanes"
     },
     {
         "name": "Chicago Blackhawks",
-        "subtitle": "Central Division",
+        "subtitle": "NHL-Central Division",
         "src": "Blackhawks.png",
         "url": "nhl-team.html?team=Chicago+Blackhawks"
     },
     {
         "name": "Colorado Avalanche",
-        "subtitle": "Central Division",
+        "subtitle": "NHL-Central Division",
         "src": "Avalanche.png",
         "url": "nhl-team.html?team=Colorado+Avalanche"
     },
     {
         "name": "Columbus Blue Jackets",
-        "subtitle": "Metropolitan Division",
+        "subtitle": "NHL-Metropolitan Division",
         "src": "BlueJackets.png",
         "url": "nhl-team.html?team=Columbus+Blue+Jackets"
     },
     {
         "name": "Dallas Stars",
-        "subtitle": "Central Division",
+        "subtitle": "NHL-Central Division",
         "src": "Stars.png",
         "url": "nhl-team.html?team=Dallas+Stars"
     },
     {
         "name": "Detroit Red Wings",
-        "subtitle": "Atlantic Division",
+        "subtitle": "NHL-Atlantic Division",
         "src": "RedWings.png",
         "url": "nhl-team.html?team=Detroit+Red+Wings"
     },
     {
         "name": "Edmonton Oilers",
-        "subtitle": "Pacific Division",
+        "subtitle": "NHL-Pacific Division",
         "src": "Oilers.png",
         "url": "nhl-team.html?team=Edmonton+Oilers"
     },
     {
         "name": "Florida Panthers",
-        "subtitle": "Atlantic Division",
+        "subtitle": "NHL-Atlantic Division",
         "src": "Panthers.png",
         "url": "nhl-team.html?team=Florida+Panthers"
     },
     {
         "name": "Los Angeles Kings",
-        "subtitle": "Pacific Division",
+        "subtitle": "NHL-Pacific Division",
         "src": "Kings.png",
         "url": "nhl-team.html?team=Los+Angeles+Kings"
     },
     {
         "name": "Minnesota Wild",
-        "subtitle": "Central Division",
+        "subtitle": "NHL-Central Division",
         "src": "Wild.png",
         "url": "nhl-team.html?team=Minnesota+Wild"
     },
     {
         "name": "Montreal Canadiens",
-        "subtitle": "Atlantic Division",
+        "subtitle": "NHL-Atlantic Division",
         "src": "Canadiens.png",
         "url": "nhl-team.html?team=Montreal+Canadiens"
     },
     {
         "name": "Nashville Predators",
-        "subtitle": "Central Division",
+        "subtitle": "NHL-Central Division",
         "src": "Predators.png",
         "url": "nhl-team.html?team=Nashville+Predators"
     },
     {
         "name": "New Jersey Devils",
-        "subtitle": "Metropolitan Division",
+        "subtitle": "NHL-Metropolitan Division",
         "src": "Devils.png",
         "url": "nhl-team.html?team=New+Jersey+Devils"
     },
     {
         "name": "New York Islanders",
-        "subtitle": "Metropolitan Division",
+        "subtitle": "NHL-Metropolitan Division",
         "src": "Islanders.png",
         "url": "nhl-team.html?team=New+York+Islanders"
     },
     {
         "name": "New York Rangers",
-        "subtitle": "Metropolitan Division",
+        "subtitle": "NHL-Metropolitan Division",
         "src": "Rangers.png",
         "url": "nhl-team.html?team=New+York+Rangers"
     },
     {
         "name": "Ottawa Senators",
-        "subtitle": "Atlantic Division",
+        "subtitle": "NHL-Atlantic Division",
         "src": "Senators.png",
         "url": "nhl-team.html?team=Ottawa+Senators"
     },
     {
         "name": "Philadelphia Flyers",
-        "subtitle": "Metropolitan Division",
+        "subtitle": "NHL-Metropolitan Division",
         "src": "Flyers.png",
         "url": "nhl-team.html?team=Philadelphia+Flyers"
     },
     {
         "name": "Pittsburgh Penguins",
-        "subtitle": "Metropolitan Division",
+        "subtitle": "NHL-Metropolitan Division",
         "src": "Penguins.png",
         "url": "nhl-team.html?team=Pittsburgh+Penguins"
     },
     {
         "name": "San Jose Sharks",
-        "subtitle": "Pacific Division",
+        "subtitle": "NHL-Pacific Division",
         "src": "Sharks.png",
         "url": "nhl-team.html?team=San+Jose+Sharks"
     },
     {
         "name": "St. Louis Blues",
-        "subtitle": "Central Division",
+        "subtitle": "NHL-Central Division",
         "src": "Blues.png",
         "url": "nhl-team.html?team=St.+Louis+Blues"
     },
     {
         "name": "Tampa Bay Lightning",
-        "subtitle": "Atlantic Division",
+        "subtitle": "NHL-Atlantic Division",
         "src": "Lightning.png",
         "url": "nhl-team.html?team=Tampa+Bay+Lightning"
     },
     {
         "name": "Toronto Maple Leafs",
-        "subtitle": "Atlantic Division",
+        "subtitle": "NHL-Atlantic Division",
         "src": "MapleLeafs.png",
         "url": "nhl-team.html?team=Toronto+Maple+Leafs"
     },
     {
         "name": "Vancouver Canucks",
-        "subtitle": "Pacific Division",
+        "subtitle": "NHL-Pacific Division",
         "src": "Canucks.png",
         "url": "nhl-team.html?team=Vancouver+Canucks"
     },
     {
         "name": "Vegas Golden Knights",
-        "subtitle": "Pacific Division",
+        "subtitle": "NHL-Pacific Division",
         "src": "GoldenKnights.png",
         "url": "nhl-team.html?team=Vegas+Golden+Knights"
     },
     {
         "name": "Washington Capitals",
-        "subtitle": "Metropolitan Division",
+        "subtitle": "NHL-Metropolitan Division",
         "src": "Capitals.png",
         "url": "nhl-team.html?team=Washington+Capitals"
     },
     {
         "name": "Winnipeg Jets",
-        "subtitle": "Central Division",
+        "subtitle": "NHL-Central Division",
         "src": "Jets.png",
         "url": "nhl-team.html?team=Winnipeg+Jets"
     },
     {
         "name": "Arizona Diamondbacks",
-        "subtitle": "National League West",
+        "subtitle": "MLB-National League West",
         "src": "Diamondbacks.png",
         "url": "mlb-team.html?team=Arizona+Diamondbacks"
     },
     {
         "name": "Atlanta Braves",
-        "subtitle": "National League East",
+        "subtitle": "MLB-National League East",
         "src": "Braves.png",
         "url": "mlb-team.html?team=Atlanta+Braves"
     },
     {
         "name": "Baltimore Orioles",
-        "subtitle": "American League East",
+        "subtitle": "MLB-American League East",
         "src": "Orioles.png",
         "url": "mlb-team.html?team=Baltimore+Orioles"
     },
     {
         "name": "Boston Red Sox",
-        "subtitle": "American League East",
+        "subtitle": "MLB-American League East",
         "src": "RedSox.png",
         "url": "mlb-team.html?team=Boston+Red+Sox"
     },
     {
         "name": "Chicago Cubs",
-        "subtitle": "National League Central",
+        "subtitle": "MLB-National League Central",
         "src": "Cubs.png",
         "url": "mlb-team.html?team=Chicago+Cubs"
     },
     {
         "name": "Chicago White Sox",
-        "subtitle": "American League Central",
+        "subtitle": "MLB-American League Central",
         "src": "WhiteSox.png",
         "url": "mlb-team.html?team=Chicago+White+Sox"
     },
     {
         "name": "Cincinnati Reds",
-        "subtitle": "National League Central",
+        "subtitle": "MLB-National League Central",
         "src": "Reds.png",
         "url": "mlb-team.html?team=Cincinnati+Reds"
     },
     {
         "name": "Cleveland Guardians",
-        "subtitle": "American League Central",
+        "subtitle": "MLB-American League Central",
         "src": "Guardians.png",
         "url": "mlb-team.html?team=Cleveland+Guardians"
     },
     {
         "name": "Colorado Rockies",
-        "subtitle": "National League West",
+        "subtitle": "MLB-National League West",
         "src": "Rockies.png",
         "url": "mlb-team.html?team=Colorado+Rockies"
     },
     {
         "name": "Detroit Tigers",
-        "subtitle": "American League Central",
+        "subtitle": "MLB-American League Central",
         "src": "Tigers.png",
         "url": "mlb-team.html?team=Detroit+Tigers"
     },
     {
         "name": "Houston Astros",
-        "subtitle": "American League West",
+        "subtitle": "MLB-American League West",
         "src": "Astros.png",
         "url": "mlb-team.html?team=Houston+Astros"
     },
     {
         "name": "Kansas City Royals",
-        "subtitle": "American League Central",
+        "subtitle": "MLB-American League Central",
         "src": "Royals.png",
         "url": "mlb-team.html?team=Kansas+City+Royals"
     },
     {
         "name": "Los Angeles Angels",
-        "subtitle": "American League West",
+        "subtitle": "MLB-American League West",
         "src": "Angels.png",
         "url": "mlb-team.html?team=Los+Angeles+Angels"
     },
     {
         "name": "Los Angeles Dodgers",
-        "subtitle": "National League West",
+        "subtitle": "MLB-National League West",
         "src": "Dodgers.png",
         "url": "mlb-team.html?team=Los+Angeles+Dodgers"
     },
     {
         "name": "Miami Marlins",
-        "subtitle": "National League East",
+        "subtitle": "MLB-National League East",
         "src": "Marlins.png",
         "url": "mlb-team.html?team=Miami+Marlins"
     },
     {
         "name": "Milwaukee Brewers",
-        "subtitle": "National League Central",
+        "subtitle": "MLB-National League Central",
         "src": "Brewers.png",
         "url": "mlb-team.html?team=Milwaukee+Brewers"
     },
     {
         "name": "Minnesota Twins",
-        "subtitle": "American League Central",
+        "subtitle": "MLB-American League Central",
         "src": "Twins.png",
         "url": "mlb-team.html?team=Minnesota+Twins"
     },
     {
         "name": "New York Mets",
-        "subtitle": "National League East",
+        "subtitle": "MLB-National League East",
         "src": "Mets.png",
         "url": "mlb-team.html?team=New+York+Mets"
     },
     {
         "name": "New York Yankees",
-        "subtitle": "American League East",
+        "subtitle": "MLB-American League East",
         "src": "Yankees.png",
         "url": "mlb-team.html?team=New+York+Yankees"
     },
     {
         "name": "Oakland Athletics",
-        "subtitle": "American League West",
+        "subtitle": "MLB-American League West",
         "src": "Athletics.png",
         "url": "mlb-team.html?team=Oakland+Athletics"
     },
     {
         "name": "Philadelphia Phillies",
-        "subtitle": "National League East",
+        "subtitle": "MLB-National League East",
         "src": "Phillies.png",
         "url": "mlb-team.html?team=Philadelphia+Phillies"
     },
     {
         "name": "Pittsburgh Pirates",
-        "subtitle": "National League Central",
+        "subtitle": "MLB-National League Central",
         "src": "Pirates.png",
         "url": "mlb-team.html?team=Pittsburgh+Pirates"
     },
     {
         "name": "San Diego Padres",
-        "subtitle": "National League West",
+        "subtitle": "MLB-National League West",
         "src": "Padres.png",
         "url": "mlb-team.html?team=San+Diego+Padres"
     },
     {
         "name": "San Francisco Giants",
-        "subtitle": "National League West",
+        "subtitle": "MLB-National League West",
         "src": "Giants.png",
         "url": "mlb-team.html?team=San+Francisco+Giants"
     },
     {
         "name": "Seattle Mariners",
-        "subtitle": "American League West",
+        "subtitle": "MLB-American League West",
         "src": "Mariners.png",
         "url": "mlb-team.html?team=Seattle+Mariners"
     },
     {
         "name": "St. Louis Cardinals",
-        "subtitle": "National League Central",
+        "subtitle": "MLB-National League Central",
         "src": "Cardinals.png",
         "url": "mlb-team.html?team=St.+Louis+Cardinals"
     },
     {
         "name": "Tampa Bay Rays",
-        "subtitle": "American League East",
+        "subtitle": "MLB-American League East",
         "src": "Rays.png",
         "url": "mlb-team.html?team=Tampa+Bay+Rays"
     },
     {
         "name": "Texas Rangers",
-        "subtitle": "American League West",
+        "subtitle": "MLB-American League West",
         "src": "Rangers.png",
         "url": "mlb-team.html?team=Texas+Rangers"
     },
     {
         "name": "Toronto Blue Jays",
-        "subtitle": "American League East",
+        "subtitle": "MLB-American League East",
         "src": "BlueJays.png",
         "url": "mlb-team.html?team=Toronto+Blue+Jays"
     },
     {
         "name": "Washington Nationals",
-        "subtitle": "National League East",
+        "subtitle": "MLB-National League East",
         "src": "Nationals.png",
         "url": "mlb-team.html?team=Washington+Nationals"
     },
     {
         "name": "Arizona Cardinals",
-        "subtitle": "NFC West",
+        "subtitle": "NFL-NFC West",
         "src": "Cardinals.png",
         "url": "nfl-team.html?team=Arizona+Cardinals"
     },
     {
         "name": "Atlanta Falcons",
-        "subtitle": "NFC South",
+        "subtitle": "NFL-NFC South",
         "src": "Falcons.png",
         "url": "nfl-team.html?team=Atlanta+Falcons"
     },
     {
         "name": "Baltimore Ravens",
-        "subtitle": "AFC North",
+        "subtitle": "NFL-AFC North",
         "src": "Ravens.png",
         "url": "nfl-team.html?team=Baltimore+Ravens"
     },
     {
         "name": "Buffalo Bills",
-        "subtitle": "AFC East",
+        "subtitle": "NFL-AFC East",
         "src": "Bills.png",
         "url": "nfl-team.html?team=Buffalo+Bills"
     },
     {
         "name": "Carolina Panthers",
-        "subtitle": "NFC South",
+        "subtitle": "NFL-NFC South",
         "src": "Panthers.png",
         "url": "nfl-team.html?team=Carolina+Panthers"
     },
     {
         "name": "Chicago Bears",
-        "subtitle": "NFC North",
+        "subtitle": "NFL-NFC North",
         "src": "Bears.png",
         "url": "nfl-team.html?team=Chicago+Bears"
     },
     {
         "name": "Cincinnati Bengals",
-        "subtitle": "AFC North",
+        "subtitle": "NFL-AFC North",
         "src": "Bengals.png",
         "url": "nfl-team.html?team=Cincinnati+Bengals"
     },
     {
         "name": "Cleveland Browns",
-        "subtitle": "AFC North",
+        "subtitle": "NFL-AFC North",
         "src": "Browns.png",
         "url": "nfl-team.html?team=Cleveland+Browns"
     },
     {
         "name": "Dallas Cowboys",
-        "subtitle": "NFC East",
+        "subtitle": "NFL-NFC East",
         "src": "Cowboys.png",
         "url": "nfl-team.html?team=Dallas+Cowboys"
     },
     {
         "name": "Denver Broncos",
-        "subtitle": "AFC West",
+        "subtitle": "NFL-AFC West",
         "src": "Broncos.png",
         "url": "nfl-team.html?team=Denver+Broncos"
     },
     {
         "name": "Detroit Lions",
-        "subtitle": "NFC North",
+        "subtitle": "NFL-NFC North",
         "src": "Lions.png",
         "url": "nfl-team.html?team=Detroit+Lions"
     },
     {
         "name": "Green Bay Packers",
-        "subtitle": "NFC North",
+        "subtitle": "NFL-NFC North",
         "src": "Packers.png",
         "url": "nfl-team.html?team=Green+Bay+Packers"
     },
     {
         "name": "Houston Texans",
-        "subtitle": "AFC South",
+        "subtitle": "NFL-AFC South",
         "src": "Texans.png",
         "url": "nfl-team.html?team=Houston+Texans"
     },
     {
         "name": "Indianapolis Colts",
-        "subtitle": "AFC South",
+        "subtitle": "NFL-AFC South",
         "src": "Colts.png",
         "url": "nfl-team.html?team=Indianapolis+Colts"
     },
     {
         "name": "Jacksonville Jaguars",
-        "subtitle": "AFC South",
+        "subtitle": "NFL-AFC South",
         "src": "Jaguars.png",
         "url": "nfl-team.html?team=Jacksonville+Jaguars"
     },
     {
         "name": "Kansas City Chiefs",
-        "subtitle": "AFC West",
+        "subtitle": "NFL-AFC West",
         "src": "Chiefs.png",
         "url": "nfl-team.html?team=Kansas+City+Chiefs"
     },
     {
         "name": "Los Angeles Chargers",
-        "subtitle": "AFC West",
+        "subtitle": "NFL-AFC West",
         "src": "Chargers.png",
         "url": "nfl-team.html?team=Los+Angeles+Chargers"
     },
     {
         "name": "Los Angeles Rams",
-        "subtitle": "NFC West",
+        "subtitle": "NFL-NFC West",
         "src": "Rams.png",
         "url": "nfl-team.html?team=Los+Angeles+Rams"
     },
     {
         "name": "Miami Dolphins",
-        "subtitle": "AFC East",
+        "subtitle": "NFL-AFC East",
         "src": "Dolphins.png",
         "url": "nfl-team.html?team=Miami+Dolphins"
     },
     {
         "name": "Minnesota Vikings",
-        "subtitle": "NFC North",
+        "subtitle": "NFL-NFC North",
         "src": "Vikings.png",
         "url": "nfl-team.html?team=Minnesota+Vikings"
     },
     {
         "name": "New England Patriots",
-        "subtitle": "AFC East",
+        "subtitle": "NFL-AFC East",
         "src": "Patriots.png",
         "url": "nfl-team.html?team=New+England+Patriots"
     },
     {
         "name": "New Orleans Saints",
-        "subtitle": "NFC South",
+        "subtitle": "NFL-NFC South",
         "src": "Saints.png",
         "url": "nfl-team.html?team=New+Orleans+Saints"
     },
     {
         "name": "New York Giants",
-        "subtitle": "NFC East",
+        "subtitle": "NFL-NFC East",
         "src": "Giants.png",
         "url": "nfl-team.html?team=New+York+Giants"
     },
     {
         "name": "New York Jets",
-        "subtitle": "AFC East",
+        "subtitle": "NFL-AFC East",
         "src": "Jets.png",
         "url": "nfl-team.html?team=New+York+Jets"
     },
     {
         "name": "Oakland Raiders",
-        "subtitle": "AFC West",
+        "subtitle": "NFL-AFC West",
         "src": "Raiders.png",
         "url": "nfl-team.html?team=Oakland+Raiders"
     },
     {
         "name": "Philadelphia Eagles",
-        "subtitle": "NFC East",
+        "subtitle": "NFL-NFC East",
         "src": "Eagles.png",
         "url": "nfl-team.html?team=Philadelphia+Eagles"
     },
     {
         "name": "Pittsburgh Steelers",
-        "subtitle": "AFC North",
+        "subtitle": "NFL-AFC North",
         "src": "Steelers.png",
         "url": "nfl-team.html?team=Pittsburgh+Steelers"
     },
     {
         "name": "San Francisco 49ers",
-        "subtitle": "NFC West",
+        "subtitle": "NFL-NFC West",
         "src": "49ers.png",
         "url": "nfl-team.html?team=San+Francisco+49ers"
     },
     {
         "name": "Seattle Seahawks",
-        "subtitle": "NFC West",
+        "subtitle": "NFL-NFC West",
         "src": "Seahawks.png",
         "url": "nfl-team.html?team=Seattle+Seahawks"
     },
     {
         "name": "Tampa Bay Buccaneers",
-        "subtitle": "NFC South",
+        "subtitle": "NFL-NFC South",
         "src": "Buccaneers.png",
         "url": "nfl-team.html?team=Tampa+Bay+Buccaneers"
     },
     {
         "name": "Tennessee Titans",
-        "subtitle": "AFC South",
+        "subtitle": "NFL-AFC South",
         "src": "Titans.png",
         "url": "nfl-team.html?team=Tennessee+Titans"
     },
     {
         "name": "Washington Redskins",
-        "subtitle": "NFC East",
+        "subtitle": "NFL-NFC East",
         "src": "Redskins.png",
         "url": "nfl-team.html?team=Washington+Redskins"
     }],
