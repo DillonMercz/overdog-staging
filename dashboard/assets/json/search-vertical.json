@@ -549,193 +549,193 @@
     {
         "name": "Arizona Cardinals",
         "subtitle": "NFL-NFC West",
-        "src": "Cardinals.png",
+        "src": "../../assets/img/nfl-logos/Cardinals.png",
         "url": "nfl-team.html?team=Arizona+Cardinals"
     },
     {
         "name": "Atlanta Falcons",
         "subtitle": "NFL-NFC South",
-        "src": "Falcons.png",
+        "src": "../../assets/img/nfl-logos/Falcons.png",
         "url": "nfl-team.html?team=Atlanta+Falcons"
     },
     {
         "name": "Baltimore Ravens",
         "subtitle": "NFL-AFC North",
-        "src": "Ravens.png",
+        "src": "../../assets/img/nfl-logos/Ravens.png",
         "url": "nfl-team.html?team=Baltimore+Ravens"
     },
     {
         "name": "Buffalo Bills",
         "subtitle": "NFL-AFC East",
-        "src": "Bills.png",
+        "src": "../../assets/img/nfl-logos/Bills.png",
         "url": "nfl-team.html?team=Buffalo+Bills"
     },
     {
         "name": "Carolina Panthers",
         "subtitle": "NFL-NFC South",
-        "src": "Panthers.png",
+        "src": "../../assets/img/nfl-logos/Panthers.png",
         "url": "nfl-team.html?team=Carolina+Panthers"
     },
     {
         "name": "Chicago Bears",
         "subtitle": "NFL-NFC North",
-        "src": "Bears.png",
+        "src": "../../assets/img/nfl-logos/Bears.png",
         "url": "nfl-team.html?team=Chicago+Bears"
     },
     {
         "name": "Cincinnati Bengals",
         "subtitle": "NFL-AFC North",
-        "src": "Bengals.png",
+        "src": "../../assets/img/nfl-logos/Bengals.png",
         "url": "nfl-team.html?team=Cincinnati+Bengals"
     },
     {
         "name": "Cleveland Browns",
         "subtitle": "NFL-AFC North",
-        "src": "Browns.png",
+        "src": "../../assets/img/nfl-logos/Browns.png",
         "url": "nfl-team.html?team=Cleveland+Browns"
     },
     {
         "name": "Dallas Cowboys",
         "subtitle": "NFL-NFC East",
-        "src": "Cowboys.png",
+        "src": "../../assets/img/nfl-logos/Cowboys.png",
         "url": "nfl-team.html?team=Dallas+Cowboys"
     },
     {
         "name": "Denver Broncos",
         "subtitle": "NFL-AFC West",
-        "src": "Broncos.png",
+        "src": "../../assets/img/nfl-logos/Broncos.png",
         "url": "nfl-team.html?team=Denver+Broncos"
     },
     {
         "name": "Detroit Lions",
         "subtitle": "NFL-NFC North",
-        "src": "Lions.png",
+        "src": "../../assets/img/nfl-logos/Lions.png",
         "url": "nfl-team.html?team=Detroit+Lions"
     },
     {
         "name": "Green Bay Packers",
         "subtitle": "NFL-NFC North",
-        "src": "Packers.png",
+        "src": "../../assets/img/nfl-logos/Packers.png",
         "url": "nfl-team.html?team=Green+Bay+Packers"
     },
     {
         "name": "Houston Texans",
         "subtitle": "NFL-AFC South",
-        "src": "Texans.png",
+        "src": "../../assets/img/nfl-logos/Texans.png",
         "url": "nfl-team.html?team=Houston+Texans"
     },
     {
         "name": "Indianapolis Colts",
         "subtitle": "NFL-AFC South",
-        "src": "Colts.png",
+        "src": "../../assets/img/nfl-logos/Colts.png",
         "url": "nfl-team.html?team=Indianapolis+Colts"
     },
     {
         "name": "Jacksonville Jaguars",
         "subtitle": "NFL-AFC South",
-        "src": "Jaguars.png",
+        "src": "../../assets/img/nfl-logos/Jaguars.png",
         "url": "nfl-team.html?team=Jacksonville+Jaguars"
     },
     {
         "name": "Kansas City Chiefs",
         "subtitle": "NFL-AFC West",
-        "src": "Chiefs.png",
+        "src": "../../assets/img/nfl-logos/Chiefs.png",
         "url": "nfl-team.html?team=Kansas+City+Chiefs"
     },
     {
         "name": "Los Angeles Chargers",
         "subtitle": "NFL-AFC West",
-        "src": "Chargers.png",
+        "src": "../../assets/img/nfl-logos/Chargers.png",
         "url": "nfl-team.html?team=Los+Angeles+Chargers"
     },
     {
         "name": "Los Angeles Rams",
         "subtitle": "NFL-NFC West",
-        "src": "Rams.png",
+        "src": "../../assets/img/nfl-logos/Rams.png",
         "url": "nfl-team.html?team=Los+Angeles+Rams"
     },
     {
         "name": "Miami Dolphins",
         "subtitle": "NFL-AFC East",
-        "src": "Dolphins.png",
+        "src": "../../assets/img/nfl-logos/Dolphins.png",
         "url": "nfl-team.html?team=Miami+Dolphins"
     },
     {
         "name": "Minnesota Vikings",
         "subtitle": "NFL-NFC North",
-        "src": "Vikings.png",
+        "src": "../../assets/img/nfl-logos/Vikings.png",
         "url": "nfl-team.html?team=Minnesota+Vikings"
     },
     {
         "name": "New England Patriots",
         "subtitle": "NFL-AFC East",
-        "src": "Patriots.png",
+        "src": "../../assets/img/nfl-logos/Patriots.png",
         "url": "nfl-team.html?team=New+England+Patriots"
     },
     {
         "name": "New Orleans Saints",
         "subtitle": "NFL-NFC South",
-        "src": "Saints.png",
+        "src": "../../assets/img/nfl-logos/Saints.png",
         "url": "nfl-team.html?team=New+Orleans+Saints"
     },
     {
         "name": "New York Giants",
         "subtitle": "NFL-NFC East",
-        "src": "Giants.png",
+        "src": "../../assets/img/nfl-logos/Giants.png",
         "url": "nfl-team.html?team=New+York+Giants"
     },
     {
         "name": "New York Jets",
         "subtitle": "NFL-AFC East",
-        "src": "Jets.png",
+        "src": "../../assets/img/nfl-logos/Jets.png",
         "url": "nfl-team.html?team=New+York+Jets"
     },
     {
         "name": "Oakland Raiders",
         "subtitle": "NFL-AFC West",
-        "src": "Raiders.png",
+        "src": "../../assets/img/nfl-logos/Raiders.png",
         "url": "nfl-team.html?team=Oakland+Raiders"
     },
     {
         "name": "Philadelphia Eagles",
         "subtitle": "NFL-NFC East",
-        "src": "Eagles.png",
+        "src": "../../assets/img/nfl-logos/Eagles.png",
         "url": "nfl-team.html?team=Philadelphia+Eagles"
     },
     {
         "name": "Pittsburgh Steelers",
         "subtitle": "NFL-AFC North",
-        "src": "Steelers.png",
+        "src": "../../assets/img/nfl-logos/Steelers.png",
         "url": "nfl-team.html?team=Pittsburgh+Steelers"
     },
     {
         "name": "San Francisco 49ers",
         "subtitle": "NFL-NFC West",
-        "src": "49ers.png",
+        "src": "../../assets/img/nfl-logos/49ers.png",
         "url": "nfl-team.html?team=San+Francisco+49ers"
     },
     {
         "name": "Seattle Seahawks",
         "subtitle": "NFL-NFC West",
-        "src": "Seahawks.png",
+        "src": "../../assets/img/nfl-logos/Seahawks.png",
         "url": "nfl-team.html?team=Seattle+Seahawks"
     },
     {
         "name": "Tampa Bay Buccaneers",
         "subtitle": "NFL-NFC South",
-        "src": "Buccaneers.png",
+        "src": "../../assets/img/nfl-logos/Buccaneers.png",
         "url": "nfl-team.html?team=Tampa+Bay+Buccaneers"
     },
     {
         "name": "Tennessee Titans",
         "subtitle": "NFL-AFC South",
-        "src": "Titans.png",
+        "src": "../../assets/img/nfl-logos/Titans.png",
         "url": "nfl-team.html?team=Tennessee+Titans"
     },
     {
         "name": "Washington Redskins",
         "subtitle": "NFL-NFC East",
-        "src": "Redskins.png",
+        "src": "../../assets/img/nfl-logos/Redskins.png",
         "url": "nfl-team.html?team=Washington+Redskins"
     }],
     "files": [
