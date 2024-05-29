@@ -369,181 +369,181 @@
     {
         "name": "Arizona Diamondbacks",
         "subtitle": "MLB-National League West",
-        "src": "Diamondbacks.png",
+        "src": "../../assets/img/mlb-logos/Diamondbacks.png",
         "url": "mlb-team.html?team=Arizona+Diamondbacks"
     },
     {
         "name": "Atlanta Braves",
         "subtitle": "MLB-National League East",
-        "src": "Braves.png",
+        "src": "../../assets/img/mlb-logos/Braves.png",
         "url": "mlb-team.html?team=Atlanta+Braves"
     },
     {
         "name": "Baltimore Orioles",
         "subtitle": "MLB-American League East",
-        "src": "Orioles.png",
+        "src": "../../assets/img/mlb-logos/Orioles.png",
         "url": "mlb-team.html?team=Baltimore+Orioles"
     },
     {
         "name": "Boston Red Sox",
         "subtitle": "MLB-American League East",
-        "src": "RedSox.png",
+        "src": "../../assets/img/mlb-logos/RedSox.png",
         "url": "mlb-team.html?team=Boston+Red+Sox"
     },
     {
         "name": "Chicago Cubs",
         "subtitle": "MLB-National League Central",
-        "src": "Cubs.png",
+        "src": "../../assets/img/mlb-logos/Cubs.png",
         "url": "mlb-team.html?team=Chicago+Cubs"
     },
     {
         "name": "Chicago White Sox",
         "subtitle": "MLB-American League Central",
-        "src": "WhiteSox.png",
+        "src": "../../assets/img/mlb-logos/WhiteSox.png",
         "url": "mlb-team.html?team=Chicago+White+Sox"
     },
     {
         "name": "Cincinnati Reds",
         "subtitle": "MLB-National League Central",
-        "src": "Reds.png",
+        "src": "../../assets/img/mlb-logos/Reds.png",
         "url": "mlb-team.html?team=Cincinnati+Reds"
     },
     {
         "name": "Cleveland Guardians",
         "subtitle": "MLB-American League Central",
-        "src": "Guardians.png",
+        "src": "../../assets/img/mlb-logos/Guardians.png",
         "url": "mlb-team.html?team=Cleveland+Guardians"
     },
     {
         "name": "Colorado Rockies",
         "subtitle": "MLB-National League West",
-        "src": "Rockies.png",
+        "src": "../../assets/img/mlb-logos/Rockies.png",
         "url": "mlb-team.html?team=Colorado+Rockies"
     },
     {
         "name": "Detroit Tigers",
         "subtitle": "MLB-American League Central",
-        "src": "Tigers.png",
+        "src": "../../assets/img/mlb-logos/Tigers.png",
         "url": "mlb-team.html?team=Detroit+Tigers"
     },
     {
         "name": "Houston Astros",
         "subtitle": "MLB-American League West",
-        "src": "Astros.png",
+        "src": "../../assets/img/mlb-logos/Astros.png",
         "url": "mlb-team.html?team=Houston+Astros"
     },
     {
         "name": "Kansas City Royals",
         "subtitle": "MLB-American League Central",
-        "src": "Royals.png",
+        "src": "../../assets/img/mlb-logos/Royals.png",
         "url": "mlb-team.html?team=Kansas+City+Royals"
     },
     {
         "name": "Los Angeles Angels",
         "subtitle": "MLB-American League West",
-        "src": "Angels.png",
+        "src": "../../assets/img/mlb-logos/Angels.png",
         "url": "mlb-team.html?team=Los+Angeles+Angels"
     },
     {
         "name": "Los Angeles Dodgers",
         "subtitle": "MLB-National League West",
-        "src": "Dodgers.png",
+        "src": "../../assets/img/mlb-logos/Dodgers.png",
         "url": "mlb-team.html?team=Los+Angeles+Dodgers"
     },
     {
         "name": "Miami Marlins",
         "subtitle": "MLB-National League East",
-        "src": "Marlins.png",
+        "src": "../../assets/img/mlb-logos/Marlins.png",
         "url": "mlb-team.html?team=Miami+Marlins"
     },
     {
         "name": "Milwaukee Brewers",
         "subtitle": "MLB-National League Central",
-        "src": "Brewers.png",
+        "src": "../../assets/img/mlb-logos/Brewers.png",
         "url": "mlb-team.html?team=Milwaukee+Brewers"
     },
     {
         "name": "Minnesota Twins",
         "subtitle": "MLB-American League Central",
-        "src": "Twins.png",
+        "src": "../../assets/img/mlb-logos/Twins.png",
         "url": "mlb-team.html?team=Minnesota+Twins"
     },
     {
         "name": "New York Mets",
         "subtitle": "MLB-National League East",
-        "src": "Mets.png",
+        "src": "../../assets/img/mlb-logos/Mets.png",
         "url": "mlb-team.html?team=New+York+Mets"
     },
     {
         "name": "New York Yankees",
         "subtitle": "MLB-American League East",
-        "src": "Yankees.png",
+        "src": "../../assets/img/mlb-logos/Yankees.png",
         "url": "mlb-team.html?team=New+York+Yankees"
     },
     {
         "name": "Oakland Athletics",
         "subtitle": "MLB-American League West",
-        "src": "Athletics.png",
+        "src": "../../assets/img/mlb-logos/Athletics.png",
         "url": "mlb-team.html?team=Oakland+Athletics"
     },
     {
         "name": "Philadelphia Phillies",
         "subtitle": "MLB-National League East",
-        "src": "Phillies.png",
+        "src": "../../assets/img/mlb-logos/Phillies.png",
         "url": "mlb-team.html?team=Philadelphia+Phillies"
     },
     {
         "name": "Pittsburgh Pirates",
         "subtitle": "MLB-National League Central",
-        "src": "Pirates.png",
+        "src": "../../assets/img/mlb-logos/Pirates.png",
         "url": "mlb-team.html?team=Pittsburgh+Pirates"
     },
     {
         "name": "San Diego Padres",
         "subtitle": "MLB-National League West",
-        "src": "Padres.png",
+        "src": "../../assets/img/mlb-logos/Padres.png",
         "url": "mlb-team.html?team=San+Diego+Padres"
     },
     {
         "name": "San Francisco Giants",
         "subtitle": "MLB-National League West",
-        "src": "Giants.png",
+        "src": "../../assets/img/mlb-logos/Giants.png",
         "url": "mlb-team.html?team=San+Francisco+Giants"
     },
     {
         "name": "Seattle Mariners",
         "subtitle": "MLB-American League West",
-        "src": "Mariners.png",
+        "src": "../../assets/img/mlb-logos/Mariners.png",
         "url": "mlb-team.html?team=Seattle+Mariners"
     },
     {
         "name": "St. Louis Cardinals",
         "subtitle": "MLB-National League Central",
-        "src": "Cardinals.png",
+        "src": "../../assets/img/mlb-logos/Cardinals.png",
         "url": "mlb-team.html?team=St.+Louis+Cardinals"
     },
     {
         "name": "Tampa Bay Rays",
         "subtitle": "MLB-American League East",
-        "src": "Rays.png",
+        "src": "../../assets/img/mlb-logos/Rays.png",
         "url": "mlb-team.html?team=Tampa+Bay+Rays"
     },
     {
         "name": "Texas Rangers",
         "subtitle": "MLB-American League West",
-        "src": "Rangers.png",
+        "src": "../../assets/img/mlb-logos/Rangers.png",
         "url": "mlb-team.html?team=Texas+Rangers"
     },
     {
         "name": "Toronto Blue Jays",
         "subtitle": "MLB-American League East",
-        "src": "BlueJays.png",
+        "src": "../../assets/img/mlb-logos/BlueJays.png",
         "url": "mlb-team.html?team=Toronto+Blue+Jays"
     },
     {
         "name": "Washington Nationals",
         "subtitle": "MLB-National League East",
-        "src": "Nationals.png",
+        "src": "../../assets/img/mlb-logos/Nationals.png",
         "url": "mlb-team.html?team=Washington+Nationals"
     },
     {
