@@ -1,0 +1,976 @@
+<!doctype html>
+
+<html
+  lang="en"
+  class="light-style layout-navbar-fixed layout-menu-fixed layout-compact"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="../../assets/"
+  data-template="vertical-menu-template">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>FAQ - Pages | OVERDOG - Sports Betting AI</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap"
+      rel="stylesheet" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="../../assets/vendor/fonts/fontawesome.css" />
+    <link rel="stylesheet" href="../../assets/vendor/fonts/tabler-icons.css" />
+    <link rel="stylesheet" href="../../assets/vendor/fonts/flag-icons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../../assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+<link rel="stylesheet" href="../../assets/vendor/libs/swiper/swiper.css" />
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/css/pages/page-faq.css" />
+
+    <!-- Helpers -->
+    <script src="../../assets/vendor/js/helpers.js"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+    <script src="../../assets/vendor/js/template-customizer.js"></script>
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="../../assets/js/config.js"></script>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+
+                        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <div class="app-brand demo">
+                    <a href="index.html" class="app-brand-link">
+                        <span class="app-brand-logo demo">
+                            <img src="https://i.imgur.com/83gZyXE.png" style="width:40px">
+                        </span>
+                        <span class="app-brand-text demo menu-text ">OVERDOG</span>
+                    </a>
+                    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+                        <i class="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
+                        <i class="ti ti-x d-block d-xl-none ti-sm align-middle"></i>
+                    </a>
+                </div>
+                <ul class="menu-inner py-1">
+                    <!-- Dashboards -->
+                    <li class="menu-item">
+                        <a href="index.html" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-layout-grid-add"></i>
+                            <div>Dashboard</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon fa-solid fa-basketball"></i>
+                            <div data-i18n="Basketball">Basketball</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="nba.html" class="menu-link">
+                                    <div data-i18n="NBA">NBA</div>
+                                </a>
+                            </li>
+                            <!--<li class="menu-item">
+                                <a href="ncaa.html" class="menu-link">
+                                    <div data-i18n="NCAA">NCAA</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="wnba.html" class="menu-link">
+                                    <div data-i18n="WNBA">WNBA</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="kbl.html" class="menu-link">
+                                    <div data-i18n="KBL">KBL</div>
+                                </a>
+                            </li>-->
+                        </ul>
+                    </li>
+                    <!--<li class="menu-item">
+                        <a href="app-logistics-dashboard.html" class="menu-link">
+                            <i class="menu-icon fa-solid fa-football"></i>
+                            <div>Football<span class="badge bg-danger" id="football-live-tag" style="display:none; margin-left:10px">Live</span></div>
+                        </a>
+                    </li>-->
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon fa-solid fa-hockey-puck"></i>
+                            <div data-i18n="Hockey">Hockey</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="nhl.html" class="menu-link">
+                                    <div data-i18n="NHL">NHL</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--<li class="menu-item">
+                        <a href="app-logistics-dashboard.html" class="menu-link">
+                            <i class="menu-icon fa-solid fa-baseball"></i>
+                            <div>Tennis<span class="badge bg-danger" id="tennis-live-tag" style="margin-left:10px">Live</span></div>
+                        </a>
+                    </li>-->
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon fa-solid fa-baseball-bat-ball"></i>
+                            <div data-i18n="Baseball">Baseball</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="mlb.html" class="menu-link">
+                                    <div data-i18n="MLB">MLB</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon fa-solid fa-users"></i>
+                            <div data-i18n="Community">Community</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="app-chat.html" class="menu-link">
+                                    <div data-i18n="Chat">Chat</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="app-chat.html" class="menu-link">
+                                    <div data-i18n="Win Wall">Win Wall</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="app-chat.html" class="menu-link">
+                                    <div data-i18n="Loss City">Loss City</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="app-academy-course.html" class="menu-link">
+                            <i class="menu-icon fa-solid fa-graduation-cap"></i>
+                            <div data-i18n="Overdog Academy">Overdog Academy</div>
+                        </a>
+                    </li>
+                    <li class="menu-item disabled">
+                        <a class="menu-link">
+                            <i class="menu-icon fa-solid fa-futbol"></i>
+                            <div>Soccer <span class="badge bg-warning" id="soccer-live-tag" style="margin-left:10px">Coming Soon!</span></div>
+                        </a>
+                    </li>
+                    <li class="menu-item disabled">
+                        <a class="menu-link">
+                            <i class="menu-icon fa-solid fa-store"></i>
+                            <div>Market <span class="badge bg-warning" id="soccer-live-tag" style="margin-left:10px">Coming Soon!</span></div>
+                        </a>
+                    </li>
+                    <li class="menu-item" style="width:100% !important;margin:0px;bottom:0px;position:absolute">
+                        <div class="col-lg-6 mb-4" style="width:100%;margin-bottom:0px !important">
+                            <div class="swiper-container swiper-container-horizontal swiper swiper-card-advance-bg" id="sidebar-swiper-with-pagination-cards">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="row">
+                                            <img src="https://i.imgur.com/zFsjMsL.png" onclick="location.href='./affiliate.html'">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="row">
+                                            <img src="https://i.imgur.com/zFsjMsL.png" onclick="location.href='./affiliate.html'">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="row">
+                                            <img src="https://i.imgur.com/zFsjMsL.png" onclick="location.href='./affiliate.html'">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                    </li>
+            </aside>
+        <!-- / Menu -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+
+           <!-- Navbar -->
+                <nav class="layout-navbar navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme container-fluid" id="layout-navbar">
+                    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0   d-xl-none ">
+                        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                            <i class="ti ti-menu-2 ti-sm"></i>
+                        </a>
+                    </div>
+                    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                        <!-- Search -->
+                        <div class="navbar-nav align-items-center">
+                            <div class="nav-item navbar-search-wrapper mb-0">
+                                <a class="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
+                                    <i class="ti ti-search ti-md me-2"></i>
+                                    <span class="d-none d-md-inline-block text-muted">Search Games, Teams, or Players</span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /Search -->
+                        <ul class="navbar-nav flex-row align-items-center ms-auto">
+                            
+                            <!-- Notification -->
+                            <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    <i class="ti ti-bell ti-md"></i>
+                                    <span class="badge bg-danger rounded-pill badge-notifications"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end py-0">
+                                    <li class="dropdown-menu-header border-bottom">
+                                        <div class="dropdown-header d-flex align-items-center py-3">
+                                            <h5 class="text-body mb-0 me-auto">Notification</h5>
+                                            <a href="javascript:void(0)" class="dropdown-notifications-all text-body" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Mark all as read" data-bs-original-title="Mark all as read"><i class="ti ti-mail-opened fs-4"></i></a>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-notifications-list scrollable-container ps">
+                                        <ul class="list-group list-group-flush">
+                                            
+                                </ul>
+                            </li></ul></li>
+                            <!--/ Notification -->
+                            <!-- User -->
+                                                        <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                    <div class="avatar avatar-online">
+                                        <img id="avatar-outer" src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <a class="dropdown-item" href="pages-account-settings-account.html">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <div class="avatar avatar-online">
+                                                        <img id="avatar-inner" src="https://i.imgur.com/UdwOErb.png" alt="" class="h-auto rounded-circle">
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <span id="username" class="fw-medium d-block"></span>
+                                                    <small id="plan" class="text-muted"></small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="pages-account-settings-account">
+                                            <i class="ti ti-user-check me-2 ti-sm"></i>
+                                            <span class="align-middle">My Profile</span>
+                                        </a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a class="dropdown-item" href="pages-account-settings-billing.html">
+                                            <span class="d-flex align-items-center align-middle">
+                                                <i class="flex-shrink-0 ti ti-credit-card me-2 ti-sm"></i>
+                                                <span class="flex-grow-1 align-middle">Billing</span>
+                                                
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="affiliate.html">
+                                            <span class="d-flex align-items-center align-middle">
+                                                <i class="flex-shrink-0 ti ti-moneybag me-2 ti-sm"></i>
+                                                <span class="flex-grow-1 align-middle">Affiliate</span>
+                                                
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="pages-faq.html">
+                                            <i class="ti ti-help me-2 ti-sm"></i>
+                                            <span class="align-middle">FAQ</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="pages-pricing.html">
+                                            <i class="ti ti-currency-dollar me-2 ti-sm"></i>
+                                            <span class="align-middle">Upgrade</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
+                                            <i class="ti ti-logout me-2 ti-sm"></i>
+                                            <span onclick="logout()" class="align-middle">Log Out</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!--/ User -->
+                        </ul>
+                    </div>
+                    <!-- Search Small Screens -->
+                    <div class="navbar-search-wrapper search-input-wrapper d-none">
+                        <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input type="text" class="form-control search-input border-0 container-fluid tt-input" placeholder="Search..." aria-label="Search..." autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;" control-id="ControlID-3">
+                            <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;Public Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 15px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+                            <div class="tt-menu navbar-search-suggestion ps" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
+                                <div class="tt-dataset tt-dataset-teams"></div>
+                                <div class="tt-dataset tt-dataset-files"></div>
+                                <div class="tt-dataset tt-dataset-players"></div>
+                                <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                                    <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                                </div>
+                                <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                                    <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                                </div>
+                            </div></span>
+                        <i class="ti ti-x ti-sm search-toggler cursor-pointer"></i>
+                    </div>
+                </nav>
+                <!-- / Navbar -->
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <div
+                class="faq-header d-flex flex-column justify-content-center align-items-center rounded h-px-300 position-relative">
+                <img
+                  src="../../assets/img/pages/header.png"
+                  class="scaleX-n1-rtl faq-banner-img"
+                  alt="background image" />
+                <h3 class="text-center">Hello, how can we help?</h3>
+                <div class="input-wrapper mb-3 input-group input-group-lg input-group-merge">
+                  <span class="input-group-text" id="basic-addon1"><i class="ti ti-search"></i></span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search"
+                    aria-label="Search"
+                    aria-describedby="basic-addon1" />
+                </div>
+                <p class="text-center mb-0 px-3">or choose a category to quickly find the help you need</p>
+              </div>
+
+              <div class="row mt-4 pt-2">
+                <!-- Navigation -->
+                <div class="col-lg-3 col-md-4 col-12 mb-md-0 mb-3">
+                  <div class="d-flex justify-content-between flex-column mb-2 mb-md-0">
+                    <ul class="nav nav-align-left nav-pills flex-column">
+                      <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#payment">
+                          <i class="ti ti-credit-card me-1 ti-sm"></i>
+                          <span class="align-middle fw-medium">Payment</span>
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#delivery">
+                          <i class="ti ti-briefcase me-1 ti-sm"></i>
+                          <span class="align-middle fw-medium">Delivery</span>
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#cancellation">
+                          <i class="ti ti-rotate-clockwise-2 me-1 ti-sm"></i>
+                          <span class="align-middle fw-medium">Cancellation & Return</span>
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#orders">
+                          <i class="ti ti-box me-1 ti-sm"></i>
+                          <span class="align-middle fw-medium">My Orders</span>
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#product">
+                          <i class="ti ti-settings me-1 ti-sm"></i>
+                          <span class="align-middle fw-medium">Product & Services</span>
+                        </button>
+                      </li>
+                    </ul>
+                    <div class="d-none d-md-block">
+                      <div class="mt-4">
+                        <img
+                          src="../../assets/img/illustrations/girl-sitting-with-laptop.png"
+                          class="img-fluid"
+                          width="270"
+                          alt="FAQ Image" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /Navigation -->
+
+                <!-- FAQ's -->
+                <div class="col-lg-9 col-md-8 col-12">
+                  <div class="tab-content py-0">
+                    <div class="tab-pane fade show active" id="payment" role="tabpanel">
+                      <div class="d-flex mb-3 gap-3">
+                        <div>
+                          <span class="badge bg-label-primary rounded-2 p-2">
+                            <i class="ti ti-credit-card ti-lg"></i>
+                          </span>
+                        </div>
+                        <div>
+                          <h4 class="mb-0">
+                            <span class="align-middle">Payment</span>
+                          </h4>
+                          <small>Get help with payment</small>
+                        </div>
+                      </div>
+                      <div id="accordionPayment" class="accordion">
+                        <div class="card accordion-item active">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              aria-expanded="true"
+                              data-bs-target="#accordionPayment-1"
+                              aria-controls="accordionPayment-1">
+                              When is payment taken for my order?
+                            </button>
+                          </h2>
+
+                          <div id="accordionPayment-1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                              Payment is taken during the checkout process when you pay for your order. The order number
+                              that appears on the confirmation screen indicates payment has been successfully processed.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionPayment-2"
+                              aria-controls="accordionPayment-2">
+                              How do I pay for my order?
+                            </button>
+                          </h2>
+                          <div id="accordionPayment-2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              We accept Visa®, MasterCard®, American Express®, and PayPal®. Our servers encrypt all
+                              information submitted to them, so you can be confident that your credit card information
+                              will be kept safe and secure.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionPayment-3"
+                              aria-controls="accordionPayment-3">
+                              What should I do if I'm having trouble placing an order?
+                            </button>
+                          </h2>
+                          <div id="accordionPayment-3" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              For any technical difficulties you are experiencing with our website, please contact us at
+                              our
+                              <a href="javascript:void(0);">support portal</a>, or you can call us toll-free at
+                              <span class="fw-medium">1-000-000-000</span>, or email us at
+                              <a href="javascript:void(0);">order@companymail.com</a>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionPayment-4"
+                              aria-controls="accordionPayment-4">
+                              Which license do I need for an end product that is only accessible to paying users?
+                            </button>
+                          </h2>
+                          <div id="accordionPayment-4" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              If you have paying users or you are developing any SaaS products then you need an Extended
+                              License. For each products, you need a license. You can get free lifetime updates as well.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionPayment-5"
+                              aria-controls="accordionPayment-5">
+                              Does my subscription automatically renew?
+                            </button>
+                          </h2>
+                          <div id="accordionPayment-5" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              No, This is not subscription based item.Pastry pudding cookie toffee bonbon jujubes
+                              jujubes powder topping. Jelly beans gummi bears sweet roll bonbon muffin liquorice. Wafer
+                              lollipop sesame snaps.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="delivery" role="tabpanel">
+                      <div class="d-flex mb-3 gap-3">
+                        <div>
+                          <span class="badge bg-label-primary rounded-2 p-2">
+                            <i class="ti ti-briefcase ti-lg"></i>
+                          </span>
+                        </div>
+                        <div>
+                          <h4 class="mb-0">
+                            <span class="align-middle">Delivery</span>
+                          </h4>
+                          <small>Lorem ipsum, dolor sit amet.</small>
+                        </div>
+                      </div>
+                      <div id="accordionDelivery" class="accordion">
+                        <div class="card accordion-item active">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              aria-expanded="true"
+                              data-bs-target="#accordionDelivery-1"
+                              aria-controls="accordionDelivery-1">
+                              How would you ship my order?
+                            </button>
+                          </h2>
+
+                          <div id="accordionDelivery-1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                              For large products, we deliver your product via a third party logistics company offering
+                              you the “room of choice” scheduled delivery service. For small products, we offer free
+                              parcel delivery.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionDelivery-2"
+                              aria-controls="accordionDelivery-2">
+                              What is the delivery cost of my order?
+                            </button>
+                          </h2>
+                          <div id="accordionDelivery-2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              The cost of scheduled delivery is $69 or $99 per order, depending on the destination
+                              postal code. The parcel delivery is free.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionDelivery-4"
+                              aria-controls="accordionDelivery-4">
+                              What to do if my product arrives damaged?
+                            </button>
+                          </h2>
+                          <div id="accordionDelivery-4" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              We will promptly replace any product that is damaged in transit. Just contact our
+                              <a href="javascript:void(0);">support team</a>, to notify us of the situation within 48
+                              hours of product arrival.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="cancellation" role="tabpanel">
+                      <div class="d-flex mb-3 gap-3">
+                        <div>
+                          <span class="badge bg-label-primary rounded-2 p-2">
+                            <i class="ti ti-rotate-clockwise-2 ti-lg"></i>
+                          </span>
+                        </div>
+                        <div>
+                          <h4 class="mb-0"><span class="align-middle">Cancellation & Return</span></h4>
+                          <small>Lorem ipsum, dolor sit amet.</small>
+                        </div>
+                      </div>
+                      <div id="accordionCancellation" class="accordion">
+                        <div class="card accordion-item active">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              aria-expanded="true"
+                              data-bs-target="#accordionCancellation-1"
+                              aria-controls="accordionCancellation-1">
+                              Can I cancel my order?
+                            </button>
+                          </h2>
+
+                          <div id="accordionCancellation-1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                              <p>
+                                Scheduled delivery orders can be cancelled 72 hours prior to your selected delivery date
+                                for full refund.
+                              </p>
+                              <p class="mb-0">
+                                Parcel delivery orders cannot be cancelled, however a free return label can be provided
+                                upon request.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionCancellation-2"
+                              aria-controls="accordionCancellation-2">
+                              Can I return my product?
+                            </button>
+                          </h2>
+                          <div id="accordionCancellation-2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              You can return your product within 15 days of delivery, by contacting our
+                              <a href="javascript:void(0);">support team</a>, All merchandise returned must be in the
+                              original packaging with all original items.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              aria-controls="accordionCancellation-3"
+                              data-bs-target="#accordionCancellation-3">
+                              Where can I view status of return?
+                            </button>
+                          </h2>
+                          <div id="accordionCancellation-3" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              <p>Locate the item from Your <a href="javascript:void(0);">Orders</a></p>
+                              <p class="mb-0">Select <span class="fw-medium">Return/Refund</span> status</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="orders" role="tabpanel">
+                      <div class="d-flex mb-3 gap-3">
+                        <div>
+                          <span class="badge bg-label-primary rounded-2 p-2">
+                            <i class="ti ti-box ti-lg"></i>
+                          </span>
+                        </div>
+                        <div>
+                          <h4 class="mb-0">
+                            <span class="align-middle">My Orders</span>
+                          </h4>
+                          <small>Lorem ipsum, dolor sit amet.</small>
+                        </div>
+                      </div>
+                      <div id="accordionOrders" class="accordion">
+                        <div class="card accordion-item active">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              aria-expanded="true"
+                              data-bs-target="#accordionOrders-1"
+                              aria-controls="accordionOrders-1">
+                              Has my order been successful?
+                            </button>
+                          </h2>
+
+                          <div id="accordionOrders-1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                              <p>
+                                All successful order transactions will receive an order confirmation email once the
+                                order has been processed. If you have not received your order confirmation email within
+                                24 hours, check your junk email or spam folder.
+                              </p>
+                              <p class="mb-0">
+                                Alternatively, log in to your account to check your order summary. If you do not have a
+                                account, you can contact our Customer Care Team on
+                                <span class="fw-medium">1-000-000-000</span>.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionOrders-2"
+                              aria-controls="accordionOrders-2">
+                              My Promotion Code is not working, what can I do?
+                            </button>
+                          </h2>
+                          <div id="accordionOrders-2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              If you are having issues with a promotion code, please contact us at
+                              <span class="fw-medium">1 000 000 000</span> for assistance.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionOrders-3"
+                              aria-controls="accordionOrders-3">
+                              How do I track my Orders?
+                            </button>
+                          </h2>
+                          <div id="accordionOrders-3" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              <p>
+                                If you have an account just sign into your account from
+                                <a href="javascript:void(0);">here</a> and select
+                                <span class="fw-medium">“My Orders”</span>.
+                              </p>
+                              <p class="mb-0">
+                                If you have a a guest account track your order from
+                                <a href="javascript:void(0);">here</a> using the order number and the email address.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="product" role="tabpanel">
+                      <div class="d-flex mb-3 gap-3">
+                        <div>
+                          <span class="badge bg-label-primary rounded-2 p-2">
+                            <i class="ti ti-camera ti-lg"></i>
+                          </span>
+                        </div>
+                        <div>
+                          <h4 class="mb-0">
+                            <span class="align-middle">Product & Services</span>
+                          </h4>
+                          <small>Lorem ipsum, dolor sit amet.</small>
+                        </div>
+                      </div>
+                      <div id="accordionProduct" class="accordion">
+                        <div class="card accordion-item active">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              aria-expanded="true"
+                              data-bs-target="#accordionProduct-1"
+                              aria-controls="accordionProduct-1">
+                              Will I be notified once my order has shipped?
+                            </button>
+                          </h2>
+
+                          <div id="accordionProduct-1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                              Yes, We will send you an email once your order has been shipped. This email will contain
+                              tracking and order information.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionProduct-2"
+                              aria-controls="accordionProduct-2">
+                              Where can I find warranty information?
+                            </button>
+                          </h2>
+                          <div id="accordionProduct-2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              We are committed to quality products. For information on warranty period and warranty
+                              services, visit our Warranty section <a href="javascript:void(0);">here</a>.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionProduct-3"
+                              aria-controls="accordionProduct-3">
+                              How can I purchase additional warranty coverage?
+                            </button>
+                          </h2>
+                          <div id="accordionProduct-3" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              For the peace of your mind, we offer extended warranty plans that add additional year(s)
+                              of protection to the standard manufacturer’s warranty provided by us. To purchase or find
+                              out more about the extended warranty program, visit Extended Warranty section
+                              <a href="javascript:void(0);">here</a>.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /FAQ's -->
+              </div>
+
+              <!-- Contact -->
+              <div class="row mt-5">
+                <div class="col-12 text-center mb-4">
+                  <div class="badge bg-label-primary">Question?</div>
+                  <h4 class="my-2">You still have a question?</h4>
+                  <p>If you can't find question in our FAQ, you can contact us. We'll answer you shortly!</p>
+                </div>
+              </div>
+              <div class="row text-center justify-content-center gap-sm-0 gap-3">
+                <div class="col-sm-6">
+                  <div class="py-3 rounded bg-faq-section text-center">
+                    <span class="badge bg-label-primary my-3 rounded-2 p-2">
+                      <i class="ti ti-phone ti-md"></i>
+                    </span>
+                    <h4 class="mb-2"><a class="text-body" href="tel:+(810)25482568">+ (810) 2548 2568</a></h4>
+                    <p>We are always happy to help</p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="py-3 rounded bg-faq-section text-center">
+                    <span class="badge bg-label-primary my-3 rounded-2 p-2">
+                      <i class="ti ti-mail ti-md"></i>
+                    </span>
+                    <h4 class="mb-2"><a class="text-body" href="mailto:help@help.com">help@help.com</a></h4>
+                    <p>Best way to get a quick answer</p>
+                  </div>
+                </div>
+              </div>
+              <!-- /Contact -->
+            </div>
+            <!-- / Content -->
+
+            <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+                    <div class="container-xxl">
+                        <div class="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
+                            <div>
+                                © OVERDOG
+                                <script>
+                                document.write(new Date().getFullYear());
+                                </script>
+                            </div>
+                            <div class="d-none d-lg-inline-block">
+                                <a href="./terms" class="footer-link me-4" target="_blank">Terms of Service</a>
+                                <a href="./privacy" target="_blank" class="footer-link me-4">Privacy Policy</a>
+                                <a href="./disclaimer" target="_blank" class="footer-link me-4">Disclaimer</a>
+                                <a href="./support" target="_blank" class="footer-link d-none d-sm-inline-block">Support</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+
+      <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+      <div class="drag-target"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+
+    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../assets/vendor/libs/node-waves/node-waves.js"></script>
+    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../assets/vendor/libs/hammer/hammer.js"></script>
+    <script src="../../assets/vendor/libs/i18n/i18n.js"></script>
+    <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
+    <script src="../../assets/vendor/js/menu.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../../assets/vendor/libs/swiper/swiper.js"></script>
+<script src="../../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+  </body>
+</html>
