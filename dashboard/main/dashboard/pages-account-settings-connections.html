@@ -408,7 +408,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                                                                <button type="button" class="btn btn-label-secondary" id="fliffClose" data-bs-dismiss="modal">
                                                                     Close
                                                                 </button>
                                                                 <button type="button" class="btn btn-primary" id="nextButton">Next</button>
@@ -618,6 +618,8 @@
     const code = document.getElementById('code').value;
     const nextButton = document.getElementById('nextButton');
     const fliffModal = document.getElementById('fliffModal');
+    const fliffClose = document.getElementById('fliffClose');
+
 
     if (phoneInputDiv.style.display !== 'none') {
       // Send phone number to backend
@@ -632,7 +634,7 @@
         codeInputDiv.style.display = 'block';
         nextButton.textContent = 'Submit';
       } else {
-        fliffModal.style.display = 'none';
+        fliffClose.click()
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -654,21 +656,25 @@
       if (response.ok) {
         document.getElementById('phone').value = '';
         document.getElementById('code').value = '';
-        fliffModal.style.display = 'none';
+        fliffClose.click()
         Swal.fire({
           icon: 'success',
           title: 'Success!',
           text: 'Login successful.',
+          timer:5000,
+          buttons: false;
           confirmButtonText: 'Awesome!',
           showCancelButton: false
         }).then(() => {
           document.querySelector('.swal2-confirm').setAttribute('data-bs-dismiss', 'modal');
         });
       } else {
-        fliffModal.style.display = 'none';
+        fliffClose.click()
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
+                    timer:5000,
+          buttons: false;
           text: 'Invalid code!',
           confirmButtonText: 'Retry',
           showCancelButton: false
