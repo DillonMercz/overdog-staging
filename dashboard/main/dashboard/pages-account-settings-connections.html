@@ -25,6 +25,11 @@
     <link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/animate-css/animate.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/sweetalert2/sweetalert2.css" />
     <!-- Page CSS -->
     <!-- Helpers -->
     <script src="../../assets/vendor/js/helpers.js"></script>
@@ -400,10 +405,6 @@
                                                                         <strong><label for="code" class="form-label">Code</label></strong>
                                                                         <input type="text" id="code" class="form-control" style="border-color: #fff;" placeholder="Enter the code you received" />
                                                                     </div>
-                                                                    <div class="text-center">
-                                                                        <span class="success-icon">&#10003;</span>
-                                                                        <span class="error-icon">&#10007;</span>
-                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
@@ -602,58 +603,70 @@
     <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
     <script src="../../assets/vendor/js/menu.js"></script>
     <!-- endbuild -->
-    <!-- Vendors JS -->
+    <script src="../../assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
     <!-- Main JS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="../../assets/vendor/libs/swiper/swiper.js"></script>
     <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/extended-ui-sweetalert2.js"></script>
     <!-- Page JS -->
     <script>
-  document.getElementById('nextButton').addEventListener('click', async function() {
-    const phoneInputDiv = document.getElementById('phoneInputDiv');
-    const codeInputDiv = document.getElementById('codeInputDiv');
-    const phone = document.getElementById('phone').value;
-    const code = document.getElementById('code').value;
-    const nextButton = document.getElementById('nextButton');
-    const successIcon = document.querySelector('.success-icon');
-    const errorIcon = document.querySelector('.error-icon');
+    document.getElementById('nextButton').addEventListener('click', async function() {
+        const phoneInputDiv = document.getElementById('phoneInputDiv');
+        const codeInputDiv = document.getElementById('codeInputDiv');
+        const phone = document.getElementById('phone').value;
+        const code = document.getElementById('code').value;
+        const nextButton = document.getElementById('nextButton');
+        const fliffModal = new bootstrap.Modal(document.getElementById('fliffModal'));
 
-    if (phoneInputDiv.style.display !== 'none') {
-      // Send phone number to backend
-      const response = await fetch('http://localhost:3000/send-code', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber: phone })
-      });
-      
-      if (response.ok) {
-        phoneInputDiv.style.display = 'none';
-        codeInputDiv.style.display = 'block';
-        nextButton.textContent = 'Submit';
-      } else {
-        errorIcon.style.display = 'block';
-      }
-    } else {
-      // Send phone number and code to backend
-      const response = await fetch('http://localhost:3000/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber: phone, code })
-      });
+        if (phoneInputDiv.style.display !== 'none') {
+            // Send phone number to backend
+            const response = await fetch('http://localhost:3000/send-code', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ phoneNumber: phone })
+            });
 
-      if (response.ok) {
-        successIcon.style.display = 'block';
-        errorIcon.style.display = 'none';
-        nextButton.style.display = 'none';
-        document.getElementById('phone').value = '';
-        document.getElementById('code').value = '';
-      } else {
-        errorIcon.style.display = 'block';
-        successIcon.style.display = 'none';
-      }
-    }
-  });
-</script>
+            if (response.ok) {
+                phoneInputDiv.style.display = 'none';
+                codeInputDiv.style.display = 'block';
+                nextButton.textContent = 'Submit';
+            } else {
+                fliffModal.hide();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error sending code!'
+                });
+            }
+        } else {
+            // Send phone number and code to backend
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ phoneNumber: phone, code })
+            });
+
+            if (response.ok) {
+                document.getElementById('phone').value = '';
+                document.getElementById('code').value = '';
+                fliffModal.hide();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Login successful.'
+                });
+            } else {
+                fliffModal.hide();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Invalid code!'
+                });
+            }
+        }
+    });
+    </script>
 </body>
 
 </html>
