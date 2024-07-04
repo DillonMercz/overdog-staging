@@ -632,7 +632,7 @@
                 codeInputDiv.style.display = 'block';
                 nextButton.textContent = 'Submit';
             } else {
-                fliffModal.hide();
+                fliffModal.style.display = 'none';
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -651,7 +651,7 @@
             if (response.ok) {
                 document.getElementById('phone').value = '';
                 document.getElementById('code').value = '';
-                fliffModal.hide();
+                fliffModal.style.display = 'none';
                 Swal.fire({
                     icon: 'success',
                     title: 'Success!',
@@ -659,7 +659,7 @@
                     confirmButtonText: 'Awesome!'
                 });
             } else {
-                fliffModal.hide();
+                fliffModal.style.display = 'none';
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
