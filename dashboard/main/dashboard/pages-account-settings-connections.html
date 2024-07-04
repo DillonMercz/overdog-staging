@@ -637,9 +637,8 @@
           icon: 'error',
           title: 'Oops...',
           text: 'Error sending code!',
-          showCancelButton: false,
-          showConfirmButton: true,
-          confirmButtonText: 'Retry'
+          confirmButtonText: 'Retry',
+          showCancelButton: false
         }).then(() => {
           fliffModal.style.display = 'block';
         });
@@ -660,9 +659,10 @@
           icon: 'success',
           title: 'Success!',
           text: 'Login successful.',
-          showCancelButton: false,
-          showConfirmButton: true,
-          confirmButtonText: 'Awesome!'
+          confirmButtonText: 'Awesome!',
+          showCancelButton: false
+        }).then(() => {
+          document.querySelector('.swal2-confirm').setAttribute('data-bs-dismiss', 'modal');
         });
       } else {
         fliffModal.style.display = 'none';
@@ -670,9 +670,8 @@
           icon: 'error',
           title: 'Oops...',
           text: 'Invalid code!',
-          showCancelButton: false,
-          showConfirmButton: true,
-          confirmButtonText: 'Retry'
+          confirmButtonText: 'Retry',
+          showCancelButton: false
         }).then(() => {
           fliffModal.style.display = 'block';
         });
