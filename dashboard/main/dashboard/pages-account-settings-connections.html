@@ -611,62 +611,65 @@
     <script src="../../assets/js/extended-ui-sweetalert2.js"></script>
     <!-- Page JS -->
     <script>
-    document.getElementById('nextButton').addEventListener('click', async function() {
-        const phoneInputDiv = document.getElementById('phoneInputDiv');
-        const codeInputDiv = document.getElementById('codeInputDiv');
-        const phone = document.getElementById('phone').value;
-        const code = document.getElementById('code').value;
-        const nextButton = document.getElementById('nextButton');
-        const fliffModal = new bootstrap.Modal(document.getElementById('fliffModal'));
+  document.getElementById('nextButton').addEventListener('click', async function() {
+    const phoneInputDiv = document.getElementById('phoneInputDiv');
+    const codeInputDiv = document.getElementById('codeInputDiv');
+    const phone = document.getElementById('phone').value;
+    const code = document.getElementById('code').value;
+    const nextButton = document.getElementById('nextButton');
+    const fliffModal = document.getElementById('fliffModal');
 
-        if (phoneInputDiv.style.display !== 'none') {
-            // Send phone number to backend
-            const response = await fetch('http://localhost:3000/send-code', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ phoneNumber: phone })
-            });
+    if (phoneInputDiv.style.display !== 'none') {
+      // Send phone number to backend
+      const response = await fetch('http://localhost:3000/send-code', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phoneNumber: phone })
+      });
+      
+      if (response.ok) {
+        phoneInputDiv.style.display = 'none';
+        codeInputDiv.style.display = 'block';
+        nextButton.textContent = 'Submit';
+      } else {
+        fliffModal.hide();
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Error sending code!',
+          confirmButtonText: 'Retry'
+        });
+      }
+    } else {
+      // Send phone number and code to backend
+      const response = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phoneNumber: phone, code })
+      });
 
-            if (response.ok) {
-                phoneInputDiv.style.display = 'none';
-                codeInputDiv.style.display = 'block';
-                nextButton.textContent = 'Submit';
-            } else {
-                fliffModal.hide();
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Error sending code!'
-                });
-            }
-        } else {
-            // Send phone number and code to backend
-            const response = await fetch('http://localhost:3000/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ phoneNumber: phone, code })
-            });
-
-            if (response.ok) {
-                document.getElementById('phone').value = '';
-                document.getElementById('code').value = '';
-                fliffModal.hide();
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
-                    text: 'Login successful.'
-                });
-            } else {
-                fliffModal.hide();
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Invalid code!'
-                });
-            }
-        }
-    });
-    </script>
+      if (response.ok) {
+        document.getElementById('phone').value = '';
+        document.getElementById('code').value = '';
+        fliffModal.hide();
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'Login successful.',
+          confirmButtonText: 'Awesome!'
+        });
+      } else {
+        fliffModal.hide();
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Invalid code!',
+          confirmButtonText: 'Retry'
+        });
+      }
+    }
+  });
+</script>
 </body>
 
 </html>
