@@ -400,6 +400,10 @@
                                                                         <strong><label for="code" class="form-label">Code</label></strong>
                                                                         <input type="text" id="code" class="form-control" style="border-color: #fff;" placeholder="Enter the code you received" />
                                                                     </div>
+                                                                    <div class="text-center">
+                                                                        <span class="success-icon">&#10003;</span>
+                                                                        <span class="error-icon">&#10007;</span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
@@ -611,6 +615,8 @@
     const phone = document.getElementById('phone').value;
     const code = document.getElementById('code').value;
     const nextButton = document.getElementById('nextButton');
+    const successIcon = document.querySelector('.success-icon');
+    const errorIcon = document.querySelector('.error-icon');
 
     if (phoneInputDiv.style.display !== 'none') {
       // Send phone number to backend
@@ -625,7 +631,7 @@
         codeInputDiv.style.display = 'block';
         nextButton.textContent = 'Submit';
       } else {
-        alert('Error sending code');
+        errorIcon.style.display = 'block';
       }
     } else {
       // Send phone number and code to backend
@@ -636,15 +642,18 @@
       });
 
       if (response.ok) {
-        alert('Login successful');
-        // Handle successful login
+        successIcon.style.display = 'block';
+        errorIcon.style.display = 'none';
+        nextButton.style.display = 'none';
+        document.getElementById('phone').value = '';
+        document.getElementById('code').value = '';
       } else {
-        alert('Invalid code');
+        errorIcon.style.display = 'block';
+        successIcon.style.display = 'none';
       }
     }
   });
 </script>
-
 </body>
 
 </html>
