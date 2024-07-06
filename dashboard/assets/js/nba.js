@@ -504,7 +504,7 @@ $(function() {
 
 
 function getNBAScores() {
-    fetch("https://script.google.com/macros/s/AKfycbx9ACsO6cijCKM_FeHnjXadojygn-8-s2rPEt71buDHntVQy4AxcfNczrOIdNlRWswH/exec")
+    fetch("https://script.google.com/macros/s/AKfycbxnVesww5OenWTsUN6C7iwICF3aHSnszBkRjV50l-wgr31-ajeof8npw1D19muM7Rpd/exec")
         .then(response => response.text())
         .then(result => displayScores(JSON.parse(result)))
         .catch(error => console.log('error', error));
