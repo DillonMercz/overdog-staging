@@ -13932,33 +13932,48 @@ document.addEventListener("DOMContentLoaded", function() {
                 </div>
                     `
             document.getElementById("pussy3").innerHTML = `<center><img src="pussy3.png" style="width:70%"></center>`
-            // Select all buttons with the class "framer-V2ffT"
+// Function to handle navigation
+function navigateToSignup() {
+    window.location.href = "./signup.html";
+}
+
+// Function to replace element with a clone to remove existing event listeners
+function replaceElementWithClone(element) {
+    var clone = element.cloneNode(true);
+    element.parentNode.replaceChild(clone, element);
+    return clone;
+}
+
+// IDs to update
+["r6rwet", "vpxrmv", "1ong5ut"].forEach(id => {
+    var element = document.getElementById(id);
+    if (element) {
+        // Remove existing event listeners
+        element = replaceElementWithClone(element);
+        // Add new event listeners
+        element.addEventListener("click", navigateToSignup);
+        element.addEventListener("touchstart", navigateToSignup);
+    }
+});
+
+// Select all buttons with the class "framer-V2ffT"
 var buttons = document.querySelectorAll(".framer-V2ffT");
 
-// Add event listeners to each button
+// Add event listeners to each button for both click and touchstart events
 buttons.forEach(button => {
-    button.addEventListener("click", function() {
-        window.location.href = "./signup.html";
-    });
+    button.addEventListener("click", navigateToSignup);
+    button.addEventListener("touchstart", navigateToSignup);
 });
 
 // Select the specific element with the class "framer-823n7"
 var specificElement = document.querySelector(".framer-823n7");
 
-// Add an event listener to the specific element
-specificElement.addEventListener("click", function() {
-    window.location.href = "./signup.html";
-});
+// Add event listeners to the specific element for both click and touchstart events
+if (specificElement) {
+    specificElement.addEventListener("click", navigateToSignup);
+    specificElement.addEventListener("touchstart", navigateToSignup);
+}
 
-// Add event listeners to elements with specified IDs
-["r6rwet", "vpxrmv", "1ong5ut"].forEach(id => {
-    var element = document.getElementById(id);
-    if (element) {
-        element.addEventListener("click", function() {
-            window.location.href = "./signup.html";
-        });
-    }
-});
 
 
             var images = [
