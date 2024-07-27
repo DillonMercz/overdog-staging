@@ -13932,11 +13932,23 @@ document.addEventListener("DOMContentLoaded", function() {
                 </div>
                     `
             document.getElementById("pussy3").innerHTML = `<center><img src="pussy3.png" style="width:70%"></center>`
-            var buttons = document.querySelectorAll(".framer-V2ffT")
-            buttons.forEach(button => {
-                button.href = "./signup.html"
-            })
-            document.querySelector(".framer-823n7").href = "./signup.html"
+            // Select all buttons with the class "framer-V2ffT"
+var buttons = document.querySelectorAll(".framer-V2ffT");
+
+// Add event listeners to each button
+buttons.forEach(button => {
+    button.addEventListener("click", function() {
+        window.location.href = "./signup.html";
+    });
+});
+
+// Select the specific element with the class "framer-823n7"
+var specificElement = document.querySelector(".framer-823n7");
+
+// Add an event listener to the specific element
+specificElement.addEventListener("click", function() {
+    window.location.href = "./signup.html";
+});
 
 
             var images = [
