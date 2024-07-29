@@ -191,6 +191,10 @@
         position: absolute;
         bottom:30px;
     }
+
+    .remove-btn{
+        
+    }
     </style>
 </head>
 
@@ -263,9 +267,9 @@
                 <span id="checkoutPrice">$27.99</span>
             </div>
             <div class="checkout-item" id="addOnsItem" style="display: none;">
+                <button class="remove-btn" onclick="removeAddOns()">X</button>
                 <span>Add-Ons Package</span>
                 <span id="addOnsPrice">$14.99</span>
-                <button class="remove-btn" onclick="removeAddOns()">Remove</button>
             </div>
             <div class="checkout-bottom">
                 <div class="discount-code">
