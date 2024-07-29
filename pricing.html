@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +23,8 @@
             display: flex;
             gap: 20px;
             margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .pricing-card {
             width: 300px;
@@ -29,6 +32,10 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 0 0 1px rgba(0, 255, 255, 0.3), 0 0 0 1px rgba(255, 192, 203, 0.3);
+            transition: transform 0.3s;
+        }
+        .pricing-card:hover {
+            transform: scale(1.05);
         }
         .header {
             background: linear-gradient(to right, #00FFFF, #FFC0CB);
@@ -90,18 +97,103 @@
             color: #888;
             margin-top: 20px;
         }
-
-        button{
-            margin-top:15px;
-            border-radius:50px;
-            width:200px;
+        button {
+            margin-top: 15px;
+            border-radius: 50px;
+            width: 200px;
             border: 2px solid white;
             background-color: black;
             color: white;
-            height:40px;
+            height: 40px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
         }
+        button:hover {
+            background-color: white;
+            color: black;
+        }
+
+        /* Checkout Drawer Styles */
+        .checkout-drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background-color: #121212;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+            transition: right 0.3s ease;
+            z-index: 1000;
+        }
+        .checkout-drawer.open {
+            right: 0;
+        }
+        .checkout-header {
+            background: linear-gradient(to right, #00FFFF, #FFC0CB);
+            color: black;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            position: relative;
+        }
+        .checkout-header .close-btn {
+            position: absolute;
+            top: -40%;
+            left: -18%;
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: black;
+        }
+        .checkout-content {
+            padding: 20px;
+            color: #CCCCCC;
+        }
+        .checkout-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .checkout-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .discount-code {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        }
+        .discount-code input {
+        flex: 1;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #CCCCCC;
+        background-color: #1E1E1E;
+        color: white;
+        }
+        .discount-code button {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #CCCCCC;
+        background-color: #00FFFF;
+        color: black;
+        margin-left: 10px;
+        margin-top:0px;
+        cursor: pointer;
+
+    }
+    .checkout-bottom{
+        position: absolute;
+        bottom:30px;
+    }
     </style>
 </head>
+
 <body>
     <img src="./logo.png" class="logo" style="width:200px">
     <p>GET IN THE GREEN</p>
@@ -111,7 +203,7 @@
             <div class="content">
                 <div class="price">
                     <span class="original-price" id="originalPrice">$34.99</span>
-                    <span class="current-price"id="price">$27.99</span>
+                    <span class="current-price" id="price">$27.99</span>
                 </div>
                 <select class="select-plan" onchange="updatePricing(this.value)">
                     <option value="1">Pay Every 1 Month</option>
@@ -125,13 +217,13 @@
                     <li>Automatic Bet Tracking</li>
                 </ul>
                 <div class="footer">
-                    Get reimbursed up to $25 if your first OVERDOG bet loses, no questions asked.
-                </div><br><br><br><br>
-                 <center>
-                        <button  style="margin-top:21px">
+                    Get reimbursed up to $25 if your first OVERDOG bet loses, no questions asked. Terms and Conditions apply*
+                </div>
+                <center>
+                    <button onclick="openCheckout()">
                         BUY NOW
-                        </button>
-                    </center>
+                    </button>
+                </center>
             </div>
         </div>
         <div class="pricing-card">
@@ -151,37 +243,121 @@
                 <div class="message">
                     DON'T SETTLE FOR 'GOOD ENOUGH.' UPGRADING TO THE EXTRA FEATURES IS THE STRATEGIC CHOICE FOR THOSE WHO WANT TO DOMINATE AND ACHIEVE PEAK PERFORMANCE. IT'S A GAME-CHANGER THAT WILL PUT YOU IN THE WINNER'S CIRCLE.
                 </div>
-                    <center>
-                        <button>
+                <center>
+                    <button onclick="openCheckout('addOns')">
                         ADD PACKAGE
-                        </button>
-                    </center>
+                    </button>
+                </center>
             </div>
         </div>
     </div>
+    <!-- Checkout Drawer -->
+    <div class="checkout-drawer" id="checkoutDrawer">
+        <div class="checkout-header">
+            Checkout
+            <button class="close-btn" onclick="closeCheckout()">X</button>
+        </div>
+        <div class="checkout-content">
+            <div class="checkout-item">
+                <span>Base Package</span>
+                <span id="checkoutPrice">$27.99</span>
+            </div>
+            <div class="checkout-item" id="addOnsItem" style="display: none;">
+                <span>Add-Ons Package</span>
+                <span id="addOnsPrice">$14.99</span>
+                <button class="remove-btn" onclick="removeAddOns()">Remove</button>
+            </div>
+            <div class="checkout-bottom">
+                <div class="discount-code">
+                    <input type="text" id="discountCode" placeholder="Discount Code">
+                    <button onclick="applyDiscount()">Apply</button>
+                </div>
+                <div class="checkout-total">
+                    <span>Total</span>
+                    <span id="totalPrice">$27.99</span>
+                </div>
+                <center>
+                    <button style="margin-top: 20px;" onclick="checkout()">
+                        Checkout
+                    </button>
+                </center>
+            </div>
+        </div>
+    </div>
+    <script>
+    function updatePricing(plan) {
+        const originalPriceElement = document.getElementById("originalPrice");
+        const priceElement = document.getElementById("price");
+        const checkoutPriceElement = document.getElementById("checkoutPrice");
+
+        let originalPrice, currentPrice;
+
+        switch (plan) {
+            case "1":
+                originalPrice = "$34.99";
+                currentPrice = "$27.99";
+                break;
+            case "3":
+                originalPrice = "$83.97";
+                currentPrice = "$74.99";
+                break;
+            case "6":
+                originalPrice = "$167.94";
+                currentPrice = "$159.99";
+                break;
+            default:
+                return;
+        }
+
+        originalPriceElement.innerText = originalPrice;
+        priceElement.innerText = currentPrice;
+        checkoutPriceElement.innerText = currentPrice;
+        updateTotal();
+    }
+
+    function openCheckout(packageType) {
+        document.getElementById("checkoutDrawer").classList.add("open");
+        if (packageType === 'addOns') {
+            document.getElementById("addOnsItem").style.display = 'flex';
+        }
+        updateTotal();
+    }
+
+    function closeCheckout() {
+        document.getElementById("checkoutDrawer").classList.remove("open");
+    }
+
+    function removeAddOns() {
+        document.getElementById("addOnsItem").style.display = 'none';
+        updateTotal();
+    }
+
+    function applyDiscount() {
+        const discountCode = document.getElementById("discountCode").value;
+        if (discountCode === "SAVE10") {
+            const total = parseFloat(document.getElementById("totalPrice").innerText.replace("$", ""));
+            const newTotal = (total * 0.9).toFixed(2);
+            document.getElementById("totalPrice").innerText = `$${newTotal}`;
+        } else {
+            alert("Invalid discount code");
+        }
+    }
+
+    function updateTotal() {
+        const basePrice = parseFloat(document.getElementById("checkoutPrice").innerText.replace("$", ""));
+        const addOnsItem = document.getElementById("addOnsItem");
+        let addOnsPrice = 0;
+        if (addOnsItem.style.display !== 'none') {
+            addOnsPrice = 14.99;
+        }
+        const total = (basePrice + addOnsPrice).toFixed(2);
+        document.getElementById("totalPrice").innerText = `$${total}`;
+    }
+
+    function checkout() {
+        alert("Proceeding to payment...");
+    }
+    </script>
 </body>
+
 </html>
-
-
-
-<script>
-function updatePricing(plan){
-    if(plan == 1){
-        document.getElementById("originalPrice").innerText = "$34.99"
-        document.getElementById("price").innerText = "$27.99"
-        console.log("plan 1 chosen")
-    }
-    else if(plan == 3){
-        document.getElementById("originalPrice").innerText = "$83.97"
-        document.getElementById("price").innerText = "$74.99"
-        console.log("plan 3 chosen")
-    }
-    else if(plan == 6){
-        document.getElementById("originalPrice").innerText = "$167.94"
-        document.getElementById("price").innerText = "$159.99"
-        console.log("plan 6 chosen")
-    }
-}
-
-
-</script>
