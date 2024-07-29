@@ -1,1521 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="msapplication-TileColor" content="#40e0ec">
-    <meta name="theme-color" content="#1D1D1D">
-    <meta name="msapplication-navbutton-color" content="#1D1D1D">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#1D1D1D">
-    <meta name="color-scheme" content="light only">
-    <title>OVERDOG AI - Pricing</title>
-    <meta name="description" content="Explore our pricing plans for OVERDOG AI, the ultimate sports predictions app. Get accurate predictions for MLB, tennis, and soccer with flexible plans to suit your needs.">
-    <meta property="og:title" content="OVERDOG AI - Pricing Plans for Accurate Sports Predictions">
-    <meta property="og:description" content="Check out the pricing for OVERDOG AI, the best app for accurate sports predictions. Choose a plan that fits your needs and start winning today!">
-    <meta property="og:url" content="https://yourdomain.com/overdog-ai-pricing">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="OVERDOG AI - Pricing Plans for Accurate Sports Predictions">
-    <meta name="twitter:description" content="Explore our pricing plans for OVERDOG AI, the ultimate sports predictions app. Get accurate predictions for MLB, tennis, and soccer with flexible plans to suit your needs.">
-    <link rel="icon" href="./framerusercontent.com/images/hVlm992U00ugOFzHzwxoTbetfM.png">
-    <style type="text/css">
-    body {
-        font-family: "Arial" !important;
-    }
-
-    ._wrap_1p9iy_1 {
-        z-index: 1;
-        position: relative
-    }
-
-    ._label_1p9iy_6 {
-        font-size: 16px;
-        font-weight: 400
-    }
-
-    ._wrap_jxtld_1 {
-        z-index: 1;
-        position: relative;
-        display: inline-block;
-        margin-left: 8px
-    }
-
-    ._toggle_13qd1_1 {
-        display: inline-block
-    }
-
-    ._toggle__input_13qd1_4 {
-        height: 0;
-        width: 0;
-        visibility: hidden;
-        position: absolute
-    }
-
-    ._toggle__label_13qd1_11 {
-        cursor: pointer;
-        text-indent: -9999px;
-        width: 60px;
-        height: 30px;
-        background: grey;
-        display: block;
-        border-radius: 100px;
-        position: relative
-    }
-
-    ._toggle__label_13qd1_11:after {
-        content: "";
-        position: absolute;
-        top: 5px;
-        left: 5px;
-        width: 20px;
-        height: 20px;
-        background: #fff;
-        border-radius: 90px;
-        transition: .3s
-    }
-
-    ._toggle__input_13qd1_4:checked+._toggle__label_13qd1_11:after {
-        left: calc(100% - 5px);
-        transform: translate(-100%)
-    }
-
-    ._toggle__label_13qd1_11:active:after {
-        width: 30px
-    }
-
-    ._payAnnually_13qd1_43 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        margin-bottom: 26px
-    }
-
-    ._highlighted_13qd1_51 {
-        margin-bottom: 46px
-    }
-
-    ._payAnnually__label_13qd1_55 {
-        margin-right: 16px
-    }
-
-    @media all and (max-width: 1024px) {
-        ._highlighted_13qd1_51 {
-            margin-bottom: 26px
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVERDOG Pricing</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
         }
-    }
-
-    ._wrap_r8skr_1 {
-        font-size: 16px;
-        max-width: 1110px;
-        margin: 64px auto
-    }
-
-    ._title_r8skr_7 {
-        font-size: 32px
-    }
-
-    ._head_r8skr_11 {
-        font-size: 22px;
-        display: grid;
-        grid-column-gap: 48px;
-        padding: 0 0 18px;
-        margin-bottom: 18px
-    }
-
-    ._section_r8skr_19 {
-        padding: 0
-    }
-
-    ._sectionTitle_r8skr_23 {
-        border-top: 1px solid #e9ebef;
-        padding: 18px 0;
-        font-weight: 700;
-        cursor: pointer
-    }
-
-    ._items_r8skr_30 {
-        padding-bottom: 16px
-    }
-
-    ._item_r8skr_30 {
-        display: grid;
-        grid-column-gap: 48px
-    }
-
-    ._planSwitcher_r8skr_39 {
-        margin-top: 10px
-    }
-
-    ._planSwitcherBtn_r8skr_43 {
-        border-radius: 20px;
-        border-width: 1px;
-        border-style: solid;
-        border-color: #bdbdbd;
-        color: #252525;
-        cursor: pointer;
-        margin: 4px;
-        padding: 8px 16px;
-        display: inline-block;
-        background-color: transparent;
-        font-size: 16px
-    }
-
-    ._planSwitcherBtn_r8skr_43[data-selected=true] {
-        background: #252525;
-        color: #fff;
-        border-color: #252525
-    }
-
-    ._itemTitle_r8skr_63 {
-        padding: 14px 0 14px 32px
-    }
-
-    ._itemTitleLabel_r8skr_67[data-hint=true] {
-        border-bottom: .5px dashed #898d9a;
-        cursor: help
-    }
-
-    ._itemValue_r8skr_72 {
-        padding: 14px 0
-    }
-
-    ._itemValueDisabled_r8skr_76 {
-        opacity: .4
-    }
-
-    ._planTitle_r8skr_80 {
-        align-self: end
-    }
-
-    @media all and (max-width: 1024px) {
-        ._head_r8skr_11 {
-            margin-bottom: 0
+        .logo {
+            margin-top: 20px;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .pricing-card {
+            width: 300px;
+            background-color: #121212;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px rgba(0, 255, 255, 0.3), 0 0 0 1px rgba(255, 192, 203, 0.3);
+        }
+        .header {
+            background: linear-gradient(to right, #00FFFF, #FFC0CB);
+            color: black;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .content {
+            padding: 20px;
+        }
+        .price {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .original-price {
+            text-decoration: line-through;
+            color: #888;
+            margin-right: 10px;
+        }
+        .select-plan {
+            background-color: #1E1E1E;
+            border: none;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .features {
+            padding-left: 0;
+            margin-bottom: 20px;
+        }
+        .features li {
+            list-style-type: none;
+            margin-bottom: 10px;
+            color: #CCCCCC;
+        }
+        .features li::before {
+            content: "✓";
+            color: #00FFFF;
+            margin-right: 10px;
+        }
+        .features li:first-child {
+            color: #00FFFF;
+        }
+        .message {
+            background-color: #1E1E1E;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 12px;
+            line-height: 1.4;
+            color: #CCCCCC;
+        }
+        .footer {
+            text-align: center;
+            font-size: 10px;
+            color: #888;
+            margin-top: 20px;
         }
 
-        ._item_r8skr_30 {
-            grid-column-gap: 20px
+        button{
+            margin-top:15px;
+            border-radius:50px;
+            width:200px;
+            border: 2px solid white;
+            background-color: black;
+            color: white;
+            height:40px;
         }
-    }
-
-    /***/
-    :root [data-wenk] {
-        position: relative
-    }
-
-    :root [data-wenk]:after {
-        position: absolute;
-        font-size: 13px;
-        border-radius: .4rem;
-        content: attr(data-wenk);
-        padding: 12.8px;
-        padding: .8rem;
-        background-color: #111c;
-        -webkit-box-shadow: 0 0 14px rgba(0, 0, 0, .1);
-        box-shadow: 0 0 14px #0000001a;
-        color: #fff;
-        line-height: 20px;
-        line-height: 1.25rem;
-        text-align: left;
-        z-index: 1;
-        pointer-events: none;
-        display: block;
-        opacity: 0;
-        visibility: hidden;
-        -webkit-transition: all .3s;
-        transition: all .3s;
-        bottom: 100%;
-        left: 50%;
-        -webkit-transform: translate(-50%, 10px);
-        transform: translate(-50%, 10px);
-        white-space: pre;
-        width: auto
-    }
-
-    :root [data-wenk]:after {
-        opacity: 0
-    }
-
-    :root [data-wenk]:hover {
-        overflow: visible
-    }
-
-    :root [data-wenk]:hover:after {
-        display: block;
-        opacity: 1;
-        visibility: visible;
-        -webkit-transform: translate(-50%, -10px);
-        transform: translate(-50%, -10px)
-    }
-
-    :root :is([data-wenk].__wenk--bottom_x5ek1_58_12yzl_58:after, [data-wenk][data-wenk-pos=bottom]:after) {
-        bottom: auto;
-        top: 100%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -10px);
-        transform: translate(-50%, -10px)
-    }
-
-    :root :is([data-wenk].__wenk--bottom_x5ek1_58_12yzl_58:hover:after, [data-wenk][data-wenk-pos=bottom]:hover:after) {
-        -webkit-transform: translate(-50%, 10px);
-        transform: translate(-50%, 10px)
-    }
-
-    :root :is([data-wenk].__wenk--left_x5ek1_71_12yzl_71:after, [data-wenk][data-wenk-pos=left]:after) {
-        bottom: auto;
-        left: auto;
-        top: 50%;
-        right: 100%;
-        -webkit-transform: translate(10px, -50%);
-        transform: translate(10px, -50%)
-    }
-
-    :root :is([data-wenk].__wenk--left_x5ek1_71_12yzl_71:hover:after, [data-wenk][data-wenk-pos=left]:hover:after) {
-        -webkit-transform: translate(-10px, -50%);
-        transform: translate(-10px, -50%)
-    }
-
-    :root :is([data-wenk].__wenk--right_x5ek1_85_12yzl_85:after, [data-wenk][data-wenk-pos=right]:after) {
-        bottom: auto;
-        top: 50%;
-        left: 100%;
-        -webkit-transform: translate(-10px, -50%);
-        transform: translate(-10px, -50%)
-    }
-
-    :root :is([data-wenk].__wenk--right_x5ek1_85_12yzl_85:hover:after, [data-wenk][data-wenk-pos=right]:hover:after) {
-        -webkit-transform: translate(10px, -50%);
-        transform: translate(10px, -50%)
-    }
-
-    :root :is([data-wenk][data-wenk-length=small]:after, [data-wenk].__wenk-length--small_x5ek1_98_12yzl_98:after) {
-        white-space: normal;
-        width: 80px
-    }
-
-    :root :is([data-wenk][data-wenk-length=medium]:after, [data-wenk].__wenk-length--medium_x5ek1_103_12yzl_103:after) {
-        white-space: normal;
-        width: 150px
-    }
-
-    :root :is([data-wenk][data-wenk-length=large]:after, [data-wenk].__wenk-length--large_x5ek1_108_12yzl_108:after) {
-        white-space: normal;
-        width: 260px
-    }
-
-    :root :is([data-wenk][data-wenk-length=fit]:after, [data-wenk].__wenk-length--fit_x5ek1_113_12yzl_113:after) {
-        white-space: normal;
-        width: 100%
-    }
-
-    :root :is([data-wenk][data-wenk-align=right]:after, [data-wenk].__wenk-align--right_x5ek1_118_12yzl_118:after) {
-        text-align: right
-    }
-
-    :root :is([data-wenk][data-wenk-align=center]:after, [data-wenk].__wenk-align--center_x5ek1_122_12yzl_122:after) {
-        text-align: center
-    }
-
-    :root [data-wenk=""]:after {
-        visibility: hidden !important
-    }
-
-    ._wrap_1mo5t_1 {
-        transition: transform .3s ease;
-        margin-right: 8px
-    }
-
-    ._wrap_1mo5t_1[data-active=true] {
-        transform: rotate(90deg)
-    }
-
-    ._item_13fth_1 {
-        text-align: center;
-        margin-top: 40px
-    }
-
-    ._link_13fth_6 {
-        color: #515151;
-        font-size: 11px;
-        text-align: center;
-        text-decoration: none
-    }
-
-    ._img_13fth_13 {
-        width: 16px;
-        height: auto;
-        vertical-align: bottom;
-        margin-left: 4px
-    }
-
-    ._item_15qqr_1 {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, 350px);
-        grid-gap: 10px;
-        justify-content: center;
-        max-width: 1440px;
-        margin: auto;
-        filter: drop-shadow(0px -0px 25px #FFE871);
-    }
-
-    ._itemThin_15qqr_10 {
-        grid-template-columns: repeat(auto-fit, 310px)
-    }
-
-    @media all and (max-width: 1024px) {
-        ._item_15qqr_1 {
-            flex-direction: column
-        }
-    }
-
-    ._wrap_1ryhk_1 {
-        z-index: 1;
-        position: relative
-    }
-
-    ._wrap_243tn_1 {
-        margin: 16px 0;
-        position: relative;
-        z-index: 1
-    }
-
-    ._wrap_243tn_1 p {
-        padding: 0 !important;
-        margin: 0 !important
-    }
-
-    ._wrap_243tn_1 [class~=ql-size-small] {
-        font-size: 12px
-    }
-
-    ._wrap_243tn_1 [class~=ql-size-large] {
-        font-size: 22px
-    }
-
-    ._wrap_243tn_1 [class~=ql-size-huge] {
-        font-size: 32px
-    }
-
-    ._item_1ggqy_1 {
-        height: 37px;
-        font-size: 14px;
-        border: 0;
-        width: 100%;
-        cursor: pointer;
-        display: block;
-        text-decoration: none;
-        line-height: 37px;
-        text-align: center;
-        z-index: 1;
-        position: relative;
-        margin-top: 16px
-    }
-
-    ._textUnderButton_1ggqy_16 {
-        font-size: 12px;
-        text-align: center;
-        margin-top: 6px;
-        z-index: 1;
-        position: relative;
-        text-underline: none !important
-    }
-
-    ._item_179xt_1 {
-        list-style-type: none;
-        display: flex;
-        padding-bottom: 12px
-    }
-
-    ._icon_179xt_7 {
-        margin-right: 6px;
-        width: 16px;
-        flex-shrink: 0
-    }
-
-    ._icon_179xt_7 svg {
-        width: 100%
-    }
-
-    ul._wrap_179xt_17 {
-        margin: 36px 0 0;
-        padding: 0
-    }
-
-    ._item_1j013_1 {
-        background-color: black !important;
-        border:3px solid white;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 20px;
-        position: relative;
-        overflow: hidden;
-        flex: 1 1 0px;
-        justify-self: center;
-        width: 100%
-    }
-
-    @media all and (max-width: 1024px) {
-        ._item_1j013_1 {
-            margin: 0 0 25px;
-            flex: auto;
-            max-width: 340px
-        }
-
-        ._item_1j013_1:last-child {
-            margin: 0
-        }
-    }
-
-    ._item_hmm5w_1 {
-        box-shadow: 0 0 10px 4px #00000014
-    }
-
-    ._itemActive_hmm5w_5 {
-        border-width: 1px;
-        border-style: solid
-    }
-
-    ._button_hmm5w_10 {
-        margin-top: 32px
-    }
-
-    ._title_hmm5w_17 {
-        font-weight: 500;
-        font-size: 14px;
-        display: inline-block;
-        margin-bottom: 24px;
-        text-transform: uppercase
-    }
-
-    ._titleActive_hmm5w_25 {
-        color: #484848
-    }
-
-    ._price_hmm5w_29 {
-        font-weight: 600;
-        font-size: 36px
-    }
-
-    ._description_hmm5w_34 {
-        font-size: 16px
-    }
-
-    ._featuresItem_hmm5w_38 {
-        font-weight: 400;
-        font-size: 14px;
-        margin-bottom: 8px
-    }
-
-    ._priceLabel_hmm5w_44 {
-        font-size: 16px;
-        font-weight: 400
-    }
-
-    ._mobilePlansCollapsibleLabel_1rc7u_1 {
-        padding: 0;
-        background: 0;
-        border: 0;
-        cursor: pointer;
-        font-size: 16px;
-        border-bottom: 1px dashed;
-        margin: 8px 0 0;
-        z-index: 1;
-        position: relative
-    }
-
-    ._center_1rc7u_13 {
-        display: flex;
-        margin: 8px auto auto
-    }
-
-    ._wrap_9hyi8_1 {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        margin-bottom: 32px;
-        overflow-x: auto
-    }
-
-    ._item_9hyi8_9 {
-        padding: 16px 4px;
-        display: flex;
-        flex: 1 1 0%;
-        border: 1px solid #e5e7eb;
-        background-color: transparent;
-        text-align: center;
-        font-size: 16px;
-        justify-content: center;
-        position: relative;
-        border-right: 0;
-        white-space: nowrap
-    }
-
-    ._item_9hyi8_9:first-child {
-        border-left: 0
-    }
-
-    ._highlight_9hyi8_27 {
-        height: 4px;
-        width: 100%;
-        position: absolute;
-        top: 0
-    }
-
-    ._item_yomxi_1 {
-        box-shadow: 0 0 10px 4px #00000014
-    }
-
-    ._itemActive_yomxi_5 {
-        border-width: 1px;
-        border-style: solid
-    }
-
-    ._button_yomxi_10 {
-        margin-top: 20px
-    }
-
-    ._title_yomxi_16 {
-        font-weight: 500;
-        font-size: 14px;
-        display: inline-block;
-        margin-bottom: 24px;
-        text-transform: uppercase
-    }
-
-    ._titleActive_yomxi_24 {
-        color: #484848
-    }
-
-    ._price_yomxi_28 {
-        font-weight: 600;
-        font-size: 36px
-    }
-
-    ._description_yomxi_33 {
-        font-size: 16px
-    }
-
-    ._featuresItem_yomxi_37 {
-        font-weight: 400;
-        font-size: 14px;
-        margin-bottom: 8px
-    }
-
-    ._priceLabel_yomxi_43 {
-        font-size: 16px;
-        font-weight: 400
-    }
-
-    ._item_2czpm_1 {
-        box-shadow: 0 0 10px 4px #00000014
-    }
-
-    ._button_2czpm_8 {
-        margin-top: 60px
-    }
-
-    ._title_2czpm_15 {
-        border-radius: 30px;
-        color: #484848;
-        font-weight: 500;
-        font-size: 14px;
-        display: inline-block;
-        margin-bottom: 24px;
-        background: #fff
-    }
-
-    ._titleActive_2czpm_25 {
-        color: #484848;
-        padding: 6px 14px
-    }
-
-    ._titleEmpty_2czpm_30 {
-        opacity: 0;
-        visibility: hidden
-    }
-
-    ._price_2czpm_35 {
-        font-weight: 600;
-        font-size: 36px
-    }
-
-    ._description_2czpm_40 {
-        font-size: 16px
-    }
-
-    ._featuresItem_2czpm_44 {
-        font-weight: 400;
-        font-size: 14px;
-        margin-bottom: 8px
-    }
-
-    ._priceLabel_2czpm_50 {
-        font-size: 16px;
-        font-weight: 400
-    }
-
-    ._button_1fslx_7 {
-        margin-top: 60px
-    }
-
-    ._title_1fslx_14 {
-        border-radius: 30px;
-        color: #484848;
-        font-weight: 500;
-        font-size: 14px;
-        display: inline-block;
-        margin-bottom: 24px;
-        background: #fff
-    }
-
-    ._titleActive_1fslx_24 {
-        color: #484848;
-        padding: 6px 14px
-    }
-
-    ._titleEmpty_1fslx_29 {
-        opacity: 0;
-        visibility: hidden
-    }
-
-    ._price_1fslx_34 {
-        font-weight: 600;
-        font-size: 36px
-    }
-
-    ._description_1fslx_39 {
-        font-size: 16px
-    }
-
-    ._featuresItem_1fslx_43 {
-        font-weight: 400;
-        font-size: 14px;
-        margin-bottom: 8px
-    }
-
-    ._priceLabel_1fslx_49 {
-        font-size: 16px;
-        font-weight: 400
-    }
-
-    ._item_zikgw_1 {
-        box-shadow: 0 0 10px 4px #00000014
-    }
-
-    ._item_zikgw_1:after {
-        content: "";
-        width: 130px;
-        height: 130px;
-        position: absolute;
-        top: 0;
-        right: 0;
-        background-repeat: no-repeat;
-        background-size: contain;
-        z-index: 0
-    }
-
-    ._item_zikgw_1:nth-child(3n - 3):after {
-        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjEzOCIgdmlld0JveD0iMCAwIDE2MCAxMzgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGlkPSJWZWN0b3IgMTAiIGQ9Ik03LjAwODMxIDc2LjYxOEMtOC43NjA1MSAzMy43MDI2IDcuMDA3OTIgMCA3LjAwNzkyIDBIMjIwLjU5OUwyMjAuNTk4IDk0LjI1OTZDMjIwLjU5OCA5NC4yNTk2IDIwNi41MzggMTMwLjUxMyAxNDYuOTQ3IDEzNi45NThDODcuMzU1NCAxNDMuNDAzIDIyLjc3NzEgMTE5LjUzMyA3LjAwODMxIDc2LjYxOFoiIGZpbGw9IiNGRjk5MDAiLz4KPC9zdmc+Cg==)
-    }
-
-    ._item_zikgw_1:nth-child(3n - 2):after {
-        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ1IiBoZWlnaHQ9IjEzMSIgdmlld0JveD0iMCAwIDE0NSAxMzEiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGlkPSJSZWN0YW5nbGUgMjQiIGQ9Ik0xNDUgLTc0VjEzMUgxNS43MzUyQzMuMjQxMjggMTMxIC0zLjc3NjY3IDExNi42MiAzLjkxMDQ5IDEwNi43NzFMMTQ1IC03NFoiIGZpbGw9IiNGRkU2MDAiLz4KPC9zdmc+Cg==)
-    }
-
-    ._item_zikgw_1:nth-child(3n - 1):after {
-        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjEzOCIgdmlld0JveD0iMCAwIDE2MCAxMzgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0wIDBIMTYwVjEzOEg1MEMyMi4zODU4IDEzOCAwIDExNS42MTQgMCA4OFYwWiIgZmlsbD0iIzlDOENGRiIvPgo8L3N2Zz4K)
-    }
-
-    ._contentWrap_zikgw_30 {
-        padding-top: 16px
-    }
-
-    ._itemActive_zikgw_34 {
-        padding: 34px 16px 16px;
-        margin-top: -16px
-    }
-
-    ._button_zikgw_39 {
-        margin-top: 60px
-    }
-
-    ._title_zikgw_46 {
-        font-weight: 500;
-        font-size: 14px;
-        display: inline-block;
-        margin-bottom: 24px
-    }
-
-    ._price_zikgw_56 {
-        font-weight: 600;
-        font-size: 36px
-    }
-
-    ._description_zikgw_61 {
-        font-size: 16px
-    }
-
-    ._featuresItem_zikgw_65 {
-        font-weight: 400;
-        font-size: 14px;
-        margin-bottom: 8px
-    }
-
-    ._item_1ak6x_1 {
-        box-shadow: 0 0 10px 4px #00000014
-    }
-
-    ._content_1ak6x_5 {
-        position: relative;
-        z-index: 1;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between
-    }
-
-    ._item_1ak6x_1:after {
-        content: "";
-        width: 50%;
-        height: 80%;
-        position: absolute;
-        top: 0;
-        right: 0;
-        background-repeat: no-repeat;
-        background-size: contain;
-        z-index: 0;
-        display: none
-    }
-
-    ._item_1ak6x_1:nth-child(1):after {
-        display: block;
-        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjExIiBoZWlnaHQ9IjMyNyIgdmlld0JveD0iMCAwIDIxMSAzMjciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik00NyA1MEM0OC41MTY2IDE2LjQ2OTEgMTA5LjUgLTkgMTA5LjUgLTlIMjEzVjI2Ni41QzIxMyAyNjYuNSAyMDEuMzIxIDI3Mi43MjUgMTk0IDI3N0MxNjUuODMyIDI5My40NDcgMTU4LjM1OCAzMjEuMzkyIDEyNiAzMjUuNUM2OS45MDQ2IDMzMi42MjEgNTEuNTM1NyAyNjkuODYxIDI5IDIxOEMxMS42NTE5IDE3OC4wNzcgLTE0LjgwOTcgMTQzLjA1MiAxMSAxMDhDNDAuMDYgNjguNTMzOSAxMzUuNTQ0IDE1Ny4wMDEgMTM2LjUgMTA4QzEzNy4zMTIgNjYuMzU4NSA0NS4xMTgxIDkxLjYwNjkgNDcgNTBaIiBmaWxsPSIjRkZDNzAxIiBmaWxsLW9wYWNpdHk9IjAuNDYiLz4KPC9zdmc+Cg==)
-    }
-
-    ._item_1ak6x_1:nth-child(3):after {
-        left: 0;
-        right: initial;
-        top: inherit;
-        bottom: 0;
-        display: block;
-        background-position: bottom;
-        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjA0IiBoZWlnaHQ9IjMzMyIgdmlld0JveD0iMCAwIDIwNCAzMzMiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xNTcgMjc2LjA1NUMxNTUuNDgzIDMwOS41ODYgOTQuNSAzMzUuMDU1IDk0LjUgMzM1LjA1NUgtOVY1OS41NTUyQy05IDU5LjU1NTIgMi42NzkwMiA1My4zMjk5IDEwIDQ5LjA1NTJDMzguMTY3OSAzMi42MDc5IDQ1LjY0MTUgNC42NjI3MiA3OCAwLjU1NTE3NkMxMzQuMDk1IC02LjU2NTQ5IDE1Mi40NjQgNTYuMTk0NSAxNzUgMTA4LjA1NUMxOTIuMzQ4IDE0Ny45NzggMjE4LjgxIDE4My4wMDMgMTkzIDIxOC4wNTVDMTYzLjk0IDI1Ny41MjEgNjguNDU1OSAxNjkuMDU0IDY3LjUgMjE4LjA1NUM2Ni42ODc3IDI1OS42OTcgMTU4Ljg4MiAyMzQuNDQ4IDE1NyAyNzYuMDU1WiIgZmlsbD0iI0ZGQzcwMSIgZmlsbC1vcGFjaXR5PSIwLjQ2Ii8+Cjwvc3ZnPgo=)
-    }
-
-    ._contentWrap_1ak6x_42 {
-        padding-top: 16px
-    }
-
-    ._itemActive_1ak6x_46 {
-        padding: 34px 16px 16px;
-        margin-top: -16px
-    }
-
-    ._button_1ak6x_51 {
-        margin-top: 60px
-    }
-
-    ._title_1ak6x_58 {
-        font-weight: 500;
-        font-size: 14px;
-        display: inline-block;
-        margin-bottom: 24px
-    }
-
-    ._price_1ak6x_68 {
-        font-weight: 600;
-        font-size: 36px
-    }
-
-    ._description_1ak6x_73 {
-        font-size: 16px
-    }
-
-    ._featuresItem_1ak6x_77 {
-        font-weight: 400;
-        font-size: 14px;
-        margin-bottom: 8px
-    }
-
-    ._priceLabel_1ak6x_83 {
-        font-size: 16px;
-        font-weight: 400
-    }
-
-    @font-face {
-        font-family: Material Icons;
-        font-style: normal;
-        font-weight: 400;
-        src: local("Material Icons"), local("MaterialIcons-Regular"), url(https://enhanci-widgets.s3.eu-west-2.amazonaws.com/static/MaterialIconsOutlined-Regular.otf) format("truetype")
-    }
-
-    ._icon_naeqe_10 {
-        font-family: Material Icons;
-        font-weight: 400;
-        font-style: normal;
-        line-height: 1;
-        text-transform: none;
-        letter-spacing: normal;
-        word-wrap: normal;
-        white-space: nowrap;
-        direction: ltr;
-        -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeLegibility;
-        -moz-osx-font-smoothing: grayscale;
-        font-feature-settings: "liga"
-    }
-
-    ._item_wy9l2_1 {
-        box-shadow: 0 0 10px 4px #00000014
-    }
-
-    ._button_wy9l2_8 {
-        margin-top: 32px;
-        height: 47px;
-        line-height: 47px
-    }
-
-    ._title_wy9l2_17 {
-        font-size: 14px;
-        text-transform: uppercase;
-        margin-bottom: 24px;
-        display: flex;
-        align-items: center
-    }
-
-    ._icon_wy9l2_28 {
-        font-size: 24px;
-        display: inline-block;
-        margin-right: 8px
-    }
-
-    ._titleActive_wy9l2_34 {
-        color: #484848
-    }
-
-    ._price_wy9l2_38 {
-        font-weight: 600;
-        font-size: 48px
-    }
-
-    ._description_wy9l2_43 {
-        font-size: 16px
-    }
-
-    ._featuresItem_wy9l2_47 {
-        font-weight: 400;
-        font-size: 14px;
-        margin-bottom: 8px
-    }
-
-    ._priceLabel_wy9l2_53 {
-        font-size: 16px;
-        font-weight: 400
-    }
-
-    ._item_uanqc_1 {
-        box-shadow: 0 0 10px 4px #00000014
-    }
-
-    ._button_uanqc_9 {
-        margin-top: 32px;
-        height: 47px;
-        line-height: 47px
-    }
-
-    ._title_uanqc_18 {
-        font-size: 14px;
-        text-transform: uppercase;
-        margin-bottom: 24px;
-        display: flex;
-        align-items: center
-    }
-
-    ._icon_uanqc_29 {
-        font-size: 65px;
-        display: inline-block;
-        margin-right: 8px;
-        color: #fff;
-        opacity: .6;
-        position: relative;
-        bottom: -29px;
-        left: -9px
-    }
-
-    ._iconCover_uanqc_40 {
-        width: 176px;
-        height: 176px;
-        border-radius: 70%;
-        background: #FFC700;
-        position: absolute;
-        top: -70px;
-        right: -50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 0
-    }
-
-    ._titleActive_uanqc_54 {
-        color: #484848
-    }
-
-    ._price_uanqc_58 {
-        font-weight: 600;
-        font-size: 48px
-    }
-
-    ._description_uanqc_63 {
-        font-size: 16px
-    }
-
-    ._featuresItem_uanqc_67 {
-        font-weight: 400;
-        font-size: 14px;
-        margin-bottom: 8px
-    }
-
-    ._priceLabel_uanqc_73 {
-        font-size: 16px;
-        font-weight: 400
-    }
-
-    ._contentWrap_1q6gr_1 {
-        margin-top: 16px
-    }
-
-    ._item_1q6gr_5 {
-        box-shadow: 0 0 10px 4px #00000014;
-        margin: 0
-    }
-
-    ._itemActive_1q6gr_10 {
-        transform: scale(1.05);
-        z-index: 5
-    }
-
-    ._button_1q6gr_15 {
-        margin-top: 32px;
-        height: 47px;
-        line-height: 47px
-    }
-
-    ._title_1q6gr_24 {
-        font-size: 16px;
-        text-transform: uppercase;
-        margin-bottom: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center
-    }
-
-    ._icon_1q6gr_36 {
-        font-size: 50px;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 12px
-    }
-
-    ._titleActive_1q6gr_43 {
-        color: #484848
-    }
-
-    ._price_1q6gr_47 {
-        font-weight: 600;
-        font-size: 48px;
-        text-align: center
-    }
-
-    ._description_1q6gr_53 {
-        font-size: 16px;
-        text-align: center
-    }
-
-    ._featuresItem_1q6gr_58 {
-        font-weight: 400;
-        font-size: 14px;
-        margin-bottom: 8px
-    }
-
-    ._priceLabel_1q6gr_64 {
-        font-size: 16px;
-        font-weight: 400
-    }
-
-    @media all and (max-width: 1024px) {
-        ._contentWrap_1q6gr_1 {
-            margin-top: inherit
-        }
-
-        ._item_1q6gr_5 {
-            margin: 0 0 25px
-        }
-    }
-
-    ._contentWrap_qhjox_1 {
-        margin-top: 16px
-    }
-
-    ._item_qhjox_5 {
-        box-shadow: 0 0 10px 4px #00000014;
-        padding: 0
-    }
-
-    ._grow_qhjox_10 {
-        flex-grow: 1
-    }
-
-    ._content_qhjox_1 {
-        padding: 16px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
-        box-sizing: border-box
-    }
-
-    ._itemActive_qhjox_23 {
-        transform: scale(1.05);
-        z-index: 5
-    }
-
-    ._button_qhjox_28 {
-        margin-top: 64px;
-        height: 47px;
-        line-height: 47px
-    }
-
-    ._head_qhjox_34 {
-        position: absolute;
-        top: 30px;
-        left: 0;
-        right: 0;
-        margin: auto
-    }
-
-    ._title_qhjox_45 {
-        font-size: 16px;
-        text-transform: uppercase;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center
-    }
-
-    ._icon_qhjox_57 {
-        font-size: 40px;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 8px;
-        color: #000
-    }
-
-    ._titleActive_qhjox_65 {
-        color: #484848
-    }
-
-    ._price_qhjox_69 {
-        font-weight: 600;
-        font-size: 48px;
-        text-align: center
-    }
-
-    ._description_qhjox_79 {
-        font-size: 16px;
-        text-align: center
-    }
-
-    ._featuresItem_qhjox_84 {
-        font-weight: 400;
-        font-size: 14px;
-        margin-bottom: 8px
-    }
-
-    ._priceLabel_qhjox_90 {
-        font-size: 16px;
-        font-weight: 400
-    }
-
-    @media all and (max-width: 1024px) {
-        ._contentWrap_qhjox_1 {
-            margin-top: inherit
-        }
-
-        ._item_qhjox_5 {
-            margin: 0 0 25px
-        }
-    }
-
-    ._item_1w459_1 {
-        box-shadow: 0 0 10px 4px #00000014;
-        padding: 56px 31px 31px
-    }
-
-    ._icon_1w459_6 {
-        position: absolute;
-        top: 0;
-        left: 0
-    }
-
-    ._title_1w459_21 {
-        font-size: 24px;
-        text-align: center
-    }
-
-    ._price_1w459_26 {
-        font-size: 38px;
-        text-align: center;
-        margin: 16px 0
-    }
-
-    ._description_1w459_32 {
-        font-size: 16px;
-        text-align: center
-    }
-
-    ._features_1w459_37 {
-        font-size: 14px
-    }
-
-    ._featuresItem_1w459_41 {
-        font-weight: 400;
-        font-size: 14px;
-        margin-bottom: 18px
-    }
-
-    ._priceLabel_1w459_47 {
-        font-size: 14px;
-        display: block;
-        color: #4e4e4e
-    }
-
-    ._spacer_1w459_53 {
-        background: #CAE6FF;
-        height: 1px;
-        margin-top: 26px
-    }
-
-    ._item_922m6_1 {
-        padding: 20px
-    }
-
-    ._head_922m6_5 {
-        display: flex;
-        align-items: center;
-        justify-content: space-between
-    }
-
-    ._headWithoutTitle_922m6_11 {
-        justify-content: center
-    }
-
-    ._iconTop_922m6_15 {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 0
-    }
-
-    ._iconBottom_922m6_22 {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        z-index: 0
-    }
-
-    ._button_922m6_32 {
-        z-index: 1;
-        position: relative;
-        height: 49px;
-        font-size: 16px;
-        width: auto;
-        display: inline-block;
-        padding: 0 56px;
-        line-height: 49px
-    }
-
-    ._buttonWrap_922m6_43 {
-        text-align: center
-    }
-
-    ._title_922m6_50 {
-        font-size: 18px
-    }
-
-    ._price_922m6_54 {
-        font-size: 37px;
-        text-align: center;
-        margin-bottom: 16px
-    }
-
-    ._description_922m6_60 {
-        font-size: 16px
-    }
-
-    ._features_922m6_64 {
-        font-size: 14px;
-        position: relative;
-        z-index: 1
-    }
-
-    ._featuresItem_922m6_70 {
-        font-weight: 400;
-        font-size: 14px;
-        margin-bottom: 18px
-    }
-
-    ._priceLabel_922m6_76 {
-        font-size: 14px;
-        display: block;
-        text-align: right
-    }
-
-    ._wrap_y7ggu_1 {
-        font-size: 16px;
-        max-width: 1110px;
-        margin: 64px auto
-    }
-
-    ._title_y7ggu_7 {
-        font-size: 32px
-    }
-
-    ._sections_y7ggu_11 {
-        margin-top: 36px
-    }
-
-    ._section_y7ggu_11 {
-        border-top: 1px solid #e9ebef;
-        padding: 16px 0
-    }
-
-    ._section_y7ggu_11:last-child {
-        border-bottom: 1px solid #e9ebef
-    }
-
-    ._sectionTitle_y7ggu_24 {
-        font-size: 22px;
-        cursor: pointer
-    }
-
-    ._sectionText_y7ggu_29 {
-        margin-top: 26px;
-        line-height: 1.8;
-        padding-left: 24px
-    }
     </style>
 </head>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #000;
-        color: #fff;
-        margin: 0;
-        padding: 0;
-    }
-    .container {
-        width:100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-        justify-content: center;
-    }
-    header {
-        display: flex;
-        align-items: center;
-        padding: 20px 0;
-        justify-content: center;
-    }
-    .logo {
-        width: 80px;
-        height: auto;
-        margin-right: 20px;
-    }
-    h1, h2 {
-        font-weight: 300;
-    }
-    .cta-button {
-        display: inline-block;
-        padding: 12px 24px;
-        background-color: #fff;
-        color: #000;
-        text-decoration: none;
-        border-radius: 25px;
-        font-weight: bold;
-        transition: background-color 0.3s ease;
-    }
-    .cta-button:hover {
-        background-color: #f0f0f0;
-    }
-    .features {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 40px;
-    }
-    .feature {
-        flex-basis: 30%;
-        text-align: center;
-    }
-    footer {
-        margin-top: 60px;
-        padding: 20px 0;
-        text-align: center;
-        border-top: 1px solid #333;
-    }
-</style>
-<div class="container">
-    <center>
-        <header>
-            <img src="./logo.png" alt="OVERDOG Logo" style="width:200px" class="logo">
-        </header>
-    </center>
-    <center>
-        <section>
-            <h2>Elevate Your Betting Game</h2>
-            <p>Join the best community of successful bettors who trust OVERDOG for unparalleled insights and predictions.</p>
-        </section>
-    </center>
-
-    <body>
-        <center>
-            <div class="sc-7163be21-0 iGpKLO">
-                <br>
-                <br>
-                <br>
-                <br>
-                <center>
-                    <div id="enhanci-pricing-widget">
-                        <div>
-                            <div class="_item_15qqr_1 _itemThin_15qqr_10">
-                                <div class="_item_1j013_1 _item_922m6_1" style="background-color: rgb(31, 31, 31); color: rgb(241, 241, 241); border-radius: 30px;">
-                                    <div>
-                                        <div class="_head_922m6_5">
-                                            <div class="_wrap_1ryhk_1 _title_922m6_50" style="color: rgb(235, 235, 235);">1 Month</div>
-                                            <div class="_wrap_1p9iy_1 _price_922m6_54" style="color: rgb(241, 241, 241);">$27.99<div class="_wrap_jxtld_1 _label_1p9iy_6 _priceLabel_922m6_76">&nbsp;</div>
-                                            </div>
-                                        </div>
-                                        <div class="_wrap_243tn_1 _description_922m6_60" style="line-height: 1.2em;">
-                                            <p>Pay every month to unlock full access to OVERDOG.</p>
-                                        </div>
-                                        <ul class="_wrap_179xt_17 _features_922m6_64">
-                                            <li class="_item_179xt_1"><span class="_icon_179xt_7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.3596 4.77084C11.7571 4.35586 12.4279 4.35417 12.8196 4.7747L17 9.26316L17.119 9.4385C17.349 9.77749 17.349 10.2225 17.119 10.5615L17 10.7368L12.8246 15.2199C12.4311 15.6424 11.7605 15.6427 11.3639 15.2229V15.2229C10.9968 14.8342 10.9985 14.2236 11.3701 13.8392L13.9216 11.2H4C3.44772 11.2 3 10.7523 3 10.2V9.8C3 9.24771 3.44772 8.8 4 8.8H13.9216L11.3593 6.16564C10.9838 5.77959 10.987 5.15972 11.3596 4.77084V4.77084Z" fill="currentColor" stroke="currentColor" stroke-width="0.3"></path>
-                                                    </svg></span>Access To All AI Predictions</li>
-                                            <li class="_item_179xt_1"><span class="_icon_179xt_7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.3596 4.77084C11.7571 4.35586 12.4279 4.35417 12.8196 4.7747L17 9.26316L17.119 9.4385C17.349 9.77749 17.349 10.2225 17.119 10.5615L17 10.7368L12.8246 15.2199C12.4311 15.6424 11.7605 15.6427 11.3639 15.2229V15.2229C10.9968 14.8342 10.9985 14.2236 11.3701 13.8392L13.9216 11.2H4C3.44772 11.2 3 10.7523 3 10.2V9.8C3 9.24771 3.44772 8.8 4 8.8H13.9216L11.3593 6.16564C10.9838 5.77959 10.987 5.15972 11.3596 4.77084V4.77084Z" fill="currentColor" stroke="currentColor" stroke-width="0.3"></path>
-                                                    </svg></span>Live Scoreboards</li>
-                                            <li class="_item_179xt_1"><span class="_icon_179xt_7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.3596 4.77084C11.7571 4.35586 12.4279 4.35417 12.8196 4.7747L17 9.26316L17.119 9.4385C17.349 9.77749 17.349 10.2225 17.119 10.5615L17 10.7368L12.8246 15.2199C12.4311 15.6424 11.7605 15.6427 11.3639 15.2229V15.2229C10.9968 14.8342 10.9985 14.2236 11.3701 13.8392L13.9216 11.2H4C3.44772 11.2 3 10.7523 3 10.2V9.8C3 9.24771 3.44772 8.8 4 8.8H13.9216L11.3593 6.16564C10.9838 5.77959 10.987 5.15972 11.3596 4.77084V4.77084Z" fill="currentColor" stroke="currentColor" stroke-width="0.3"></path>
-                                                    </svg></span>Sports Betting Courses</li>
-                                            <li class="_item_179xt_1"><span class="_icon_179xt_7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.3596 4.77084C11.7571 4.35586 12.4279 4.35417 12.8196 4.7747L17 9.26316L17.119 9.4385C17.349 9.77749 17.349 10.2225 17.119 10.5615L17 10.7368L12.8246 15.2199C12.4311 15.6424 11.7605 15.6427 11.3639 15.2229V15.2229C10.9968 14.8342 10.9985 14.2236 11.3701 13.8392L13.9216 11.2H4C3.44772 11.2 3 10.7523 3 10.2V9.8C3 9.24771 3.44772 8.8 4 8.8H13.9216L11.3593 6.16564C10.9838 5.77959 10.987 5.15972 11.3596 4.77084V4.77084Z" fill="currentColor" stroke="currentColor" stroke-width="0.3"></path>
-                                                    </svg></span>Automatic Bet Tracking</li>
-                                        </ul>
-                                    </div>
-                                    <div class="_buttonWrap_922m6_43">
-                                        <div><a href="" data-enhanci-card-id="h7nolKA3" data-enhanci-card-label="1 Month" class="_item_1ggqy_1 _button_922m6_32" style="background-color: rgb(255, 255, 255); color: rgb(58, 28, 0); border-radius: 30px;">Buy Now</a></div>
-                                    </div>
-                                </div>
-                                <div class="_item_1j013_1 _item_922m6_1 _itemActive_922m6_29" style="background-color: rgb(31, 31, 31); color: rgb(241, 241, 241); border-radius: 30px;">
-                                    <div>
-                                        <div class="_head_922m6_5">
-                                            <div class="_wrap_1ryhk_1 _title_922m6_50" style="color: rgb(235, 235, 235);">3 Months</div>
-                                            <div class="_wrap_1p9iy_1 _price_922m6_54">$74.99<div class="_wrap_jxtld_1 _label_1p9iy_6 _priceLabel_922m6_76">&nbsp;</div>
-                                            </div>
-                                        </div>
-                                        <div class="_wrap_243tn_1 _description_922m6_60" style="line-height: 1.2em;">
-                                            <p>Pay every 3 months to unlock full access to OVERDOG.</p>
-                                        </div>
-                                        <ul class="_wrap_179xt_17 _features_922m6_64">
-                                            <li class="_item_179xt_1"><span class="_icon_179xt_7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.3596 4.77084C11.7571 4.35586 12.4279 4.35417 12.8196 4.7747L17 9.26316L17.119 9.4385C17.349 9.77749 17.349 10.2225 17.119 10.5615L17 10.7368L12.8246 15.2199C12.4311 15.6424 11.7605 15.6427 11.3639 15.2229V15.2229C10.9968 14.8342 10.9985 14.2236 11.3701 13.8392L13.9216 11.2H4C3.44772 11.2 3 10.7523 3 10.2V9.8C3 9.24771 3.44772 8.8 4 8.8H13.9216L11.3593 6.16564C10.9838 5.77959 10.987 5.15972 11.3596 4.77084V4.77084Z" fill="currentColor" stroke="currentColor" stroke-width="0.3"></path>
-                                                    </svg></span>Access To All AI Predictions</li>
-                                            <li class="_item_179xt_1"><span class="_icon_179xt_7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.3596 4.77084C11.7571 4.35586 12.4279 4.35417 12.8196 4.7747L17 9.26316L17.119 9.4385C17.349 9.77749 17.349 10.2225 17.119 10.5615L17 10.7368L12.8246 15.2199C12.4311 15.6424 11.7605 15.6427 11.3639 15.2229V15.2229C10.9968 14.8342 10.9985 14.2236 11.3701 13.8392L13.9216 11.2H4C3.44772 11.2 3 10.7523 3 10.2V9.8C3 9.24771 3.44772 8.8 4 8.8H13.9216L11.3593 6.16564C10.9838 5.77959 10.987 5.15972 11.3596 4.77084V4.77084Z" fill="currentColor" stroke="currentColor" stroke-width="0.3"></path>
-                                                    </svg></span>Live Scoreboards</li>
-                                            <li class="_item_179xt_1"><span class="_icon_179xt_7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.3596 4.77084C11.7571 4.35586 12.4279 4.35417 12.8196 4.7747L17 9.26316L17.119 9.4385C17.349 9.77749 17.349 10.2225 17.119 10.5615L17 10.7368L12.8246 15.2199C12.4311 15.6424 11.7605 15.6427 11.3639 15.2229V15.2229C10.9968 14.8342 10.9985 14.2236 11.3701 13.8392L13.9216 11.2H4C3.44772 11.2 3 10.7523 3 10.2V9.8C3 9.24771 3.44772 8.8 4 8.8H13.9216L11.3593 6.16564C10.9838 5.77959 10.987 5.15972 11.3596 4.77084V4.77084Z" fill="currentColor" stroke="currentColor" stroke-width="0.3"></path>
-                                                    </svg></span>Sports Betting Courses</li>
-                                            <li class="_item_179xt_1"><span class="_icon_179xt_7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.3596 4.77084C11.7571 4.35586 12.4279 4.35417 12.8196 4.7747L17 9.26316L17.119 9.4385C17.349 9.77749 17.349 10.2225 17.119 10.5615L17 10.7368L12.8246 15.2199C12.4311 15.6424 11.7605 15.6427 11.3639 15.2229V15.2229C10.9968 14.8342 10.9985 14.2236 11.3701 13.8392L13.9216 11.2H4C3.44772 11.2 3 10.7523 3 10.2V9.8C3 9.24771 3.44772 8.8 4 8.8H13.9216L11.3593 6.16564C10.9838 5.77959 10.987 5.15972 11.3596 4.77084V4.77084Z" fill="currentColor" stroke="currentColor" stroke-width="0.3"></path>
-                                                    </svg></span>Automatic Bet Tracking</li>
-                                        </ul>
-                                    </div>
-                                    <div class="_buttonWrap_922m6_43">
-                                        <div><a href="" data-enhanci-card-id="huA4JV6x" data-enhanci-card-label="3 Months" class="_item_1ggqy_1 _button_922m6_32 _buttonActive_922m6_47" style="background-color: #fff; color: rgb(35, 35, 35); border-radius: 30px;">Buy Now</a></div>
-                                    </div>
-                                </div>
-                                <div class="_item_1j013_1 _item_922m6_1" style="background-color: rgb(31, 31, 31); color: rgb(241, 241, 241); border-radius: 30px;">
-                                    <div>
-                                        <div class="_head_922m6_5">
-                                            <div class="_wrap_1ryhk_1 _title_922m6_50" style="color: rgb(235, 235, 235);">6 Months</div>
-                                            <div class="_wrap_1p9iy_1 _price_922m6_54" style="color: rgb(241, 241, 241);">$159.99<div class="_wrap_jxtld_1 _label_1p9iy_6 _priceLabel_922m6_76">&nbsp;</div>
-                                            </div>
-                                        </div>
-                                        <div class="_wrap_243tn_1 _description_922m6_60" style="line-height: 1.2em;">
-                                            <p><span style="color: rgb(241, 241, 241);">Pay every 6 months to unlock full access to OVERDOG.</span></p>
-                                        </div>
-                                        <ul class="_wrap_179xt_17 _features_922m6_64">
-                                            <li class="_item_179xt_1"><span class="_icon_179xt_7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.3596 4.77084C11.7571 4.35586 12.4279 4.35417 12.8196 4.7747L17 9.26316L17.119 9.4385C17.349 9.77749 17.349 10.2225 17.119 10.5615L17 10.7368L12.8246 15.2199C12.4311 15.6424 11.7605 15.6427 11.3639 15.2229V15.2229C10.9968 14.8342 10.9985 14.2236 11.3701 13.8392L13.9216 11.2H4C3.44772 11.2 3 10.7523 3 10.2V9.8C3 9.24771 3.44772 8.8 4 8.8H13.9216L11.3593 6.16564C10.9838 5.77959 10.987 5.15972 11.3596 4.77084V4.77084Z" fill="currentColor" stroke="currentColor" stroke-width="0.3"></path>
-                                                    </svg></span>Access To All AI Predictions</li>
-                                            <li class="_item_179xt_1"><span class="_icon_179xt_7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.3596 4.77084C11.7571 4.35586 12.4279 4.35417 12.8196 4.7747L17 9.26316L17.119 9.4385C17.349 9.77749 17.349 10.2225 17.119 10.5615L17 10.7368L12.8246 15.2199C12.4311 15.6424 11.7605 15.6427 11.3639 15.2229V15.2229C10.9968 14.8342 10.9985 14.2236 11.3701 13.8392L13.9216 11.2H4C3.44772 11.2 3 10.7523 3 10.2V9.8C3 9.24771 3.44772 8.8 4 8.8H13.9216L11.3593 6.16564C10.9838 5.77959 10.987 5.15972 11.3596 4.77084V4.77084Z" fill="currentColor" stroke="currentColor" stroke-width="0.3"></path>
-                                                    </svg></span>Live Scoreboards</li>
-                                            <li class="_item_179xt_1"><span class="_icon_179xt_7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.3596 4.77084C11.7571 4.35586 12.4279 4.35417 12.8196 4.7747L17 9.26316L17.119 9.4385C17.349 9.77749 17.349 10.2225 17.119 10.5615L17 10.7368L12.8246 15.2199C12.4311 15.6424 11.7605 15.6427 11.3639 15.2229V15.2229C10.9968 14.8342 10.9985 14.2236 11.3701 13.8392L13.9216 11.2H4C3.44772 11.2 3 10.7523 3 10.2V9.8C3 9.24771 3.44772 8.8 4 8.8H13.9216L11.3593 6.16564C10.9838 5.77959 10.987 5.15972 11.3596 4.77084V4.77084Z" fill="currentColor" stroke="currentColor" stroke-width="0.3"></path>
-                                                    </svg></span>Sports Betting Courses</li>
-                                            <li class="_item_179xt_1"><span class="_icon_179xt_7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.3596 4.77084C11.7571 4.35586 12.4279 4.35417 12.8196 4.7747L17 9.26316L17.119 9.4385C17.349 9.77749 17.349 10.2225 17.119 10.5615L17 10.7368L12.8246 15.2199C12.4311 15.6424 11.7605 15.6427 11.3639 15.2229V15.2229C10.9968 14.8342 10.9985 14.2236 11.3701 13.8392L13.9216 11.2H4C3.44772 11.2 3 10.7523 3 10.2V9.8C3 9.24771 3.44772 8.8 4 8.8H13.9216L11.3593 6.16564C10.9838 5.77959 10.987 5.15972 11.3596 4.77084V4.77084Z" fill="currentColor" stroke="currentColor" stroke-width="0.3"></path>
-                                                    </svg></span>Automatic Bet Tracking</li>
-                                        </ul>
-                                    </div>
-                                    <div class="_buttonWrap_922m6_43">
-                                        <div><a href="" data-enhanci-card-id="MLGco-DU" data-enhanci-card-label="6 Months" class="_item_1ggqy_1 _button_922m6_32" style="background-color: rgb(255, 255, 255); color: rgb(58, 28, 0); border-radius: 30px;">Buy Now</a></div>
-                                    </div>
-                                </div>
-                                <div class="_item_1j013_1 _item_922m6_1" style=" align-self: center; justify-self: center; grid-column: 1 / -1; background-color: rgb(31, 31, 31); color: rgb(241, 241, 241); border-radius: 30px;">
-                                    <div>
-                                        <div class="_head_922m6_5">
-                                            <div class="_wrap_1ryhk_1 _title_922m6_50" style="color: rgb(235, 235, 235);">Add-Ons</div>
-                                            <div class="_wrap_1p9iy_1 _price_922m6_54" style="color: rgb(241, 241, 241);">$14.99<div class="_wrap_jxtld_1 _label_1p9iy_6 _priceLabel_922m6_76">&nbsp;</div>
-                                            </div>
-                                        </div>
-                                        <div class="_wrap_243tn_1 _description_922m6_60" style="line-height: 1.2em;">
-                                            <p>Level up your betting with our exclusive add-on package. Bound to help you maximize your profit with our trustworthy tools built for success.</p>
-                                        </div>
-                                        <ul class="_wrap_179xt_17 _features_922m6_64">
-                                            <li class="_item_179xt_1"><span class="_icon_179xt_7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.3596 4.77084C11.7571 4.35586 12.4279 4.35417 12.8196 4.7747L17 9.26316L17.119 9.4385C17.349 9.77749 17.349 10.2225 17.119 10.5615L17 10.7368L12.8246 15.2199C12.4311 15.6424 11.7605 15.6427 11.3639 15.2229V15.2229C10.9968 14.8342 10.9985 14.2236 11.3701 13.8392L13.9216 11.2H4C3.44772 11.2 3 10.7523 3 10.2V9.8C3 9.24771 3.44772 8.8 4 8.8H13.9216L11.3593 6.16564C10.9838 5.77959 10.987 5.15972 11.3596 4.77084V4.77084Z" fill="currentColor" stroke="currentColor" stroke-width="0.3"></path>
-                                                    </svg></span>Arbitrage Tools</li>
-                                            <li class="_item_179xt_1"><span class="_icon_179xt_7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.3596 4.77084C11.7571 4.35586 12.4279 4.35417 12.8196 4.7747L17 9.26316L17.119 9.4385C17.349 9.77749 17.349 10.2225 17.119 10.5615L17 10.7368L12.8246 15.2199C12.4311 15.6424 11.7605 15.6427 11.3639 15.2229V15.2229C10.9968 14.8342 10.9985 14.2236 11.3701 13.8392L13.9216 11.2H4C3.44772 11.2 3 10.7523 3 10.2V9.8C3 9.24771 3.44772 8.8 4 8.8H13.9216L11.3593 6.16564C10.9838 5.77959 10.987 5.15972 11.3596 4.77084V4.77084Z" fill="currentColor" stroke="currentColor" stroke-width="0.3"></path>
-                                                    </svg></span>Live Predictions</li>
-                                            <li class="_item_179xt_1"><span class="_icon_179xt_7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.3596 4.77084C11.7571 4.35586 12.4279 4.35417 12.8196 4.7747L17 9.26316L17.119 9.4385C17.349 9.77749 17.349 10.2225 17.119 10.5615L17 10.7368L12.8246 15.2199C12.4311 15.6424 11.7605 15.6427 11.3639 15.2229V15.2229C10.9968 14.8342 10.9985 14.2236 11.3701 13.8392L13.9216 11.2H4C3.44772 11.2 3 10.7523 3 10.2V9.8C3 9.24771 3.44772 8.8 4 8.8H13.9216L11.3593 6.16564C10.9838 5.77959 10.987 5.15972 11.3596 4.77084V4.77084Z" fill="currentColor" stroke="currentColor" stroke-width="0.3"></path>
-                                                    </svg></span>Advanced Bet Tracking Metrics</li>
-                                            <li class="_item_179xt_1"><span class="_icon_179xt_7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.3596 4.77084C11.7571 4.35586 12.4279 4.35417 12.8196 4.7747L17 9.26316L17.119 9.4385C17.349 9.77749 17.349 10.2225 17.119 10.5615L17 10.7368L12.8246 15.2199C12.4311 15.6424 11.7605 15.6427 11.3639 15.2229V15.2229C10.9968 14.8342 10.9985 14.2236 11.3701 13.8392L13.9216 11.2H4C3.44772 11.2 3 10.7523 3 10.2V9.8C3 9.24771 3.44772 8.8 4 8.8H13.9216L11.3593 6.16564C10.9838 5.77959 10.987 5.15972 11.3596 4.77084V4.77084Z" fill="currentColor" stroke="currentColor" stroke-width="0.3"></path>
-                                                    </svg></span>AutoBet ™️</li>
-                                            <li class="_item_179xt_1"><span class="_icon_179xt_7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.3596 4.77084C11.7571 4.35586 12.4279 4.35417 12.8196 4.7747L17 9.26316L17.119 9.4385C17.349 9.77749 17.349 10.2225 17.119 10.5615L17 10.7368L12.8246 15.2199C12.4311 15.6424 11.7605 15.6427 11.3639 15.2229V15.2229C10.9968 14.8342 10.9985 14.2236 11.3701 13.8392L13.9216 11.2H4C3.44772 11.2 3 10.7523 3 10.2V9.8C3 9.24771 3.44772 8.8 4 8.8H13.9216L11.3593 6.16564C10.9838 5.77959 10.987 5.15972 11.3596 4.77084V4.77084Z" fill="currentColor" stroke="currentColor" stroke-width="0.3"></path>
-                                                    </svg></span>Player Props Predictions</li>
-                                        </ul>
-                                    </div>
-                                    <div class="_buttonWrap_922m6_43">
-                                        <div><a href="" data-enhanci-card-id="9qRhWNW7" data-enhanci-card-label="Add-Ons" class="_item_1ggqy_1 _button_922m6_32" style="background-color: rgb(255, 255, 255); color: rgb(58, 28, 0); border-radius: 30px;">Add to Subscription</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </center>
+<body>
+    <img src="./logo.png" class="logo" style="width:200px">
+    <p>GET IN THE GREEN</p>
+    <div class="container">
+        <div class="pricing-card">
+            <div class="header">OVERDOG BASE PACKAGE</div>
+            <div class="content">
+                <div class="price">
+                    <span class="original-price" id="originalPrice">$34.99</span>
+                    <span class="current-price"id="price">$27.99</span>
+                </div>
+                <select class="select-plan" onchange="updatePricing(this.value)">
+                    <option value="1">Pay Every 1 Month</option>
+                    <option value="3">Pay Every 3 Months</option>
+                    <option value="6">Pay Every 6 Months</option>
+                </select>
+                <ul class="features">
+                    <li>Access To All AI Predictions</li>
+                    <li>Live Scoreboards</li>
+                    <li>Sports Betting Courses</li>
+                    <li>Automatic Bet Tracking</li>
+                </ul>
+                <div class="footer">
+                    Get reimbursed up to $25 if your first OVERDOG bet loses, no questions asked.
+                </div><br><br><br><br>
+                 <center>
+                        <button  style="margin-top:21px">
+                        BUY NOW
+                        </button>
+                    </center>
             </div>
-        </center>
-</div>
-</body>
-<footer>
-    <p>© 2024 Overdog Bets LLC. All rights reserved.</p>
-    <div>
+        </div>
+        <div class="pricing-card">
+            <div class="header">ADD-ONS PACKAGE</div>
+            <div class="content">
+                <div class="price">
+                    <span class="current-price">+$14.99</span>
+                    <span>/month</span>
+                </div>
+                <ul class="features">
+                    <li>AutoBet ™</li>
+                    <li>Live Predictions</li>
+                    <li>Advanced Bet Tracking Metrics</li>
+                    <li>Arbitrage Tools</li>
+                    <li>Player Props Predictions</li>
+                </ul>
+                <div class="message">
+                    DON'T SETTLE FOR 'GOOD ENOUGH.' UPGRADING TO THE EXTRA FEATURES IS THE STRATEGIC CHOICE FOR THOSE WHO WANT TO DOMINATE AND ACHIEVE PEAK PERFORMANCE. IT'S A GAME-CHANGER THAT WILL PUT YOU IN THE WINNER'S CIRCLE.
+                </div>
+                    <center>
+                        <button>
+                        ADD PACKAGE
+                        </button>
+                    </center>
+            </div>
+        </div>
     </div>
-</footer>
-</div>
+</body>
+</html>
+
+
+
+<script>
+function updatePricing(plan){
+    if(plan == 1){
+        document.getElementById("originalPrice").innerText = "$34.99"
+        document.getElementById("price").innerText = "$27.99"
+        console.log("plan 1 chosen")
+    }
+    else if(plan == 3){
+        document.getElementById("originalPrice").innerText = "$83.97"
+        document.getElementById("price").innerText = "$74.99"
+        console.log("plan 3 chosen")
+    }
+    else if(plan == 6){
+        document.getElementById("originalPrice").innerText = "$167.94"
+        document.getElementById("price").innerText = "$159.99"
+        console.log("plan 6 chosen")
+    }
+}
+
+
+</script>
