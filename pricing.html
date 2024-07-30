@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OVERDOG Pricing</title>
+    <title>OVERDOG Pricing with Enhanced Checkout</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
             background-color: #000;
+            color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: white;
+            min-height: 100vh;
         }
         .logo {
             margin-top: 20px;
+            width: 200px;
         }
         .container {
             display: flex;
@@ -25,6 +26,7 @@
             margin-top: 20px;
             flex-wrap: wrap;
             justify-content: center;
+            filter: drop-shadow(-10px -10px 75px #4a4a4a);
         }
         .pricing-card {
             width: 300px;
@@ -38,7 +40,7 @@
             transform: scale(1.05);
         }
         .header {
-            background: linear-gradient(to right, #00FFFF, #FFC0CB);
+            background: linear-gradient(to right, #FFE872, #00FFFF);
             color: black;
             padding: 10px;
             text-align: center;
@@ -57,13 +59,13 @@
             margin-right: 10px;
         }
         .select-plan {
-            background-color: #1E1E1E;
-            border: none;
-            color: white;
-            padding: 10px;
             width: 100%;
-            border-radius: 5px;
+            padding: 10px;
             margin-bottom: 20px;
+            background-color: #1E1E1E;
+            border: 1px solid #CCCCCC;
+            color: white;
+            border-radius: 5px;
         }
         .features {
             padding-left: 0;
@@ -76,28 +78,14 @@
         }
         .features li::before {
             content: "✓";
-            color: #00FFFF;
+            color: #FFE872;
             margin-right: 10px;
         }
         .features li:first-child {
-            color: #00FFFF;
+            color: #FFE872;
         }
-        .message {
-            background-color: #1E1E1E;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 20px;
-            font-size: 12px;
-            line-height: 1.4;
-            color: #CCCCCC;
-        }
-        .footer {
-            text-align: center;
-            font-size: 10px;
-            color: #888;
-            margin-top: 20px;
-        }
-        button {
+        .btn {
+            display: inline-block;
             margin-top: 15px;
             border-radius: 50px;
             width: 200px;
@@ -107,12 +95,30 @@
             height: 40px;
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
+            text-align: center;
+            line-height: 40px;
+            text-decoration: none;
         }
-        button:hover {
+        .btn:hover {
             background-color: white;
             color: black;
         }
-
+        .fine-print {
+            font-size: 10px;
+            color: #888;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .sales-pitch {
+            background-color: #1E1E1E;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 12px;
+            line-height: 1.4;
+            color: #CCCCCC;
+        }
+        
         /* Checkout Drawer Styles */
         .checkout-drawer {
             position: fixed;
@@ -125,81 +131,132 @@
             overflow-y: auto;
             transition: right 0.3s ease;
             z-index: 1000;
+            display: flex;
+            flex-direction: column;
         }
         .checkout-drawer.open {
             right: 0;
         }
         .checkout-header {
-            background: linear-gradient(to right, #00FFFF, #FFC0CB);
+            background: linear-gradient(to right, #FFE872, #00FFFF);
             color: black;
-            padding: 10px;
+            padding: 20px;
             text-align: center;
             font-weight: bold;
             position: relative;
+            font-size: 1.2em;
         }
-        .checkout-header .close-btn {
+        .close-btn {
             position: absolute;
-            top: -40%;
-            left: -18%;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
             background: none;
             border: none;
-            font-size: 18px;
+            font-size: 24px;
             cursor: pointer;
             color: black;
         }
         .checkout-content {
             padding: 20px;
             color: #CCCCCC;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         .checkout-item {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 2px solid #8c8c8c;
+            background-color: #1E1E1E;
+            border-radius: 5px;
+        }
+        .checkout-item-details {
+            flex-grow: 1;
+        }
+        .checkout-item-name {
+            font-weight: bold;
+            color: #FFE872;
+        }
+        .checkout-item-price {
+            font-weight: bold;
+        }
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #00FFFF;
+            cursor: pointer;
+            font-size: 1.2em;
+            padding: 5px 10px;
         }
         .checkout-total {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
-            font-size: 18px;
+            font-size: 1.2em;
             font-weight: bold;
+            padding: 10px;
+            background-color: #1E1E1E;
+            border-radius: 5px;
         }
         .discount-code {
-        display: flex;
-        align-items: center;
-        margin-top: 20px;
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
         }
         .discount-code input {
-        flex: 1;
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #CCCCCC;
-        background-color: #1E1E1E;
-        color: white;
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #CCCCCC;
+            background-color: #1E1E1E;
+            color: white;
         }
         .discount-code button {
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #CCCCCC;
-        background-color: #00FFFF;
-        color: black;
-        margin-left: 10px;
-        margin-top:0px;
-        cursor: pointer;
-
-    }
-    .checkout-bottom{
-        position: absolute;
-        bottom:30px;
-    }
-
-    .remove-btn{
-        
-    }
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #FFE872;
+            color: black;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .discount-code button:hover {
+            background-color: #00FFFF;
+        }
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            border:2px solid white;
+            background: black;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: opacity 0.3s;
+        }
+        .checkout-btn:hover {
+            opacity: 0.9;
+        }
+        .checkout-bottom {
+            margin-top: auto;
+        }
+        .discount-applied {
+            color: #FFE872;
+            margin-top: 10px;
+            text-align: center;
+        }
     </style>
 </head>
-
 <body>
-    <img src="./logo.png" class="logo" style="width:200px">
+    <img src="./logo.png" alt="OVERDOG Logo" class="logo">
     <p>GET IN THE GREEN</p>
     <div class="container">
         <div class="pricing-card">
@@ -207,9 +264,9 @@
             <div class="content">
                 <div class="price">
                     <span class="original-price" id="originalPrice">$34.99</span>
-                    <span class="current-price" id="price">$27.99</span>
+                    <span class="current-price" id="currentPrice">$27.99</span>
                 </div>
-                <select class="select-plan" onchange="updatePricing(this.value)">
+                <select class="select-plan" id="planSelect" onchange="updatePricing()">
                     <option value="1">Pay Every 1 Month</option>
                     <option value="3">Pay Every 3 Months</option>
                     <option value="6">Pay Every 6 Months</option>
@@ -220,14 +277,10 @@
                     <li>Sports Betting Courses</li>
                     <li>Automatic Bet Tracking</li>
                 </ul>
-                <div class="footer">
+                <div class="fine-print">
                     Get reimbursed up to $25 if your first OVERDOG bet loses, no questions asked. Terms and Conditions apply*
-                </div><br><br><br><br>
-                <center>
-                    <button style="margin-top:22px" onclick="openCheckout()">
-                        BUY NOW
-                    </button>
-                </center>
+                </div>
+                <center><a href="#" style="margin-top:94px" class="btn" onclick="openCheckout('base')">BUY NOW</a></center>
             </div>
         </div>
         <div class="pricing-card">
@@ -244,124 +297,158 @@
                     <li>Arbitrage Tools</li>
                     <li>Player Props Predictions</li>
                 </ul>
-                <div class="message">
+                <div class="sales-pitch">
                     DON'T SETTLE FOR 'GOOD ENOUGH.' UPGRADING TO THE EXTRA FEATURES IS THE STRATEGIC CHOICE FOR THOSE WHO WANT TO DOMINATE AND ACHIEVE PEAK PERFORMANCE. IT'S A GAME-CHANGER THAT WILL PUT YOU IN THE WINNER'S CIRCLE.
                 </div>
-                <center>
-                    <button onclick="openCheckout('addOns')">
-                        ADD PACKAGE
-                    </button>
-                </center>
+                <center><a href="#" class="btn" onclick="openCheckout('addOns')">ADD PACKAGE</a></center>
             </div>
         </div>
     </div>
+
     <!-- Checkout Drawer -->
     <div class="checkout-drawer" id="checkoutDrawer">
         <div class="checkout-header">
             Checkout
-            <button class="close-btn" onclick="closeCheckout()">X</button>
+            <button class="close-btn" onclick="closeCheckout()">×</button>
         </div>
         <div class="checkout-content">
-            <div class="checkout-item">
-                <span>Base Package</span>
-                <span id="checkoutPrice">$27.99</span>
-            </div>
-            <div class="checkout-item" id="addOnsItem" style="display: none;">
-                <button class="remove-btn" onclick="removeAddOns()">X</button>
-                <span>Add-Ons Package</span>
-                <span id="addOnsPrice">$14.99</span>
-            </div>
+            <div id="checkoutItems"></div>
             <div class="checkout-bottom">
                 <div class="discount-code">
                     <input type="text" id="discountCode" placeholder="Discount Code">
                     <button onclick="applyDiscount()">Apply</button>
                 </div>
+                <div id="discountApplied" class="discount-applied"></div>
                 <div class="checkout-total">
                     <span>Total</span>
                     <span id="totalPrice">$27.99</span>
                 </div>
-                <center>
-                    <button style="margin-top: 20px;" onclick="checkout()">
-                        Checkout
-                    </button>
-                </center>
+                <button class="checkout-btn" onclick="checkout()">
+                    Complete Purchase
+                </button>
             </div>
         </div>
     </div>
+
     <script>
-    function updatePricing(plan) {
+    let cart = {
+        basePackage: { name: 'OVERDOG Base Package', price: 27.99, added: false },
+        addOns: { name: 'Add-Ons Package', pricePerMonth: 14.99, added: false }
+    };
+    let discountApplied = false;
+    let currentBillingPeriod = 1;
+
+    function updatePricing() {
+        const planSelect = document.getElementById("planSelect");
         const originalPriceElement = document.getElementById("originalPrice");
-        const priceElement = document.getElementById("price");
-        const checkoutPriceElement = document.getElementById("checkoutPrice");
-
+        const currentPriceElement = document.getElementById("currentPrice");
+        
         let originalPrice, currentPrice;
-
-        switch (plan) {
+        
+        switch (planSelect.value) {
             case "1":
-                originalPrice = "$34.99";
-                currentPrice = "$27.99";
+                originalPrice = 34.99;
+                currentPrice = 27.99;
+                currentBillingPeriod = 1;
                 break;
             case "3":
-                originalPrice = "$83.97";
-                currentPrice = "$74.99";
+                originalPrice = 83.97;
+                currentPrice = 74.99;
+                currentBillingPeriod = 3;
                 break;
             case "6":
-                originalPrice = "$167.94";
-                currentPrice = "$159.99";
+                originalPrice = 167.94;
+                currentPrice = 159.99;
+                currentBillingPeriod = 6;
                 break;
-            default:
-                return;
         }
-
-        originalPriceElement.innerText = originalPrice;
-        priceElement.innerText = currentPrice;
-        checkoutPriceElement.innerText = currentPrice;
-        updateTotal();
+        
+        originalPriceElement.textContent = `$${originalPrice.toFixed(2)}`;
+        currentPriceElement.textContent = `$${currentPrice.toFixed(2)}`;
+        
+        cart.basePackage.price = currentPrice;
+        updateCheckout();
     }
 
     function openCheckout(packageType) {
         document.getElementById("checkoutDrawer").classList.add("open");
-        if (packageType === 'addOns') {
-            document.getElementById("addOnsItem").style.display = 'flex';
+        if (packageType === 'base') {
+            cart.basePackage.added = true;
+        } else if (packageType === 'addOns') {
+            cart.addOns.added = true;
         }
-        updateTotal();
+        updateCheckout();
     }
 
     function closeCheckout() {
         document.getElementById("checkoutDrawer").classList.remove("open");
     }
 
-    function removeAddOns() {
-        document.getElementById("addOnsItem").style.display = 'none';
-        updateTotal();
+    function removeItem(item) {
+        cart[item].added = false;
+        updateCheckout();
     }
 
     function applyDiscount() {
         const discountCode = document.getElementById("discountCode").value;
-        if (discountCode === "SAVE10") {
-            const total = parseFloat(document.getElementById("totalPrice").innerText.replace("$", ""));
-            const newTotal = (total * 0.9).toFixed(2);
-            document.getElementById("totalPrice").innerText = `$${newTotal}`;
+        if (discountCode.toUpperCase() === "SAVE10" && !discountApplied) {
+            discountApplied = true;
+            document.getElementById("discountApplied").innerText = "10% discount applied!";
+            updateCheckout();
+        } else if (discountApplied) {
+            alert("Discount already applied");
         } else {
             alert("Invalid discount code");
         }
     }
 
-    function updateTotal() {
-        const basePrice = parseFloat(document.getElementById("checkoutPrice").innerText.replace("$", ""));
-        const addOnsItem = document.getElementById("addOnsItem");
-        let addOnsPrice = 0;
-        if (addOnsItem.style.display !== 'none') {
-            addOnsPrice = 14.99;
+    function updateCheckout() {
+        const checkoutItems = document.getElementById("checkoutItems");
+        checkoutItems.innerHTML = '';
+
+        let total = 0;
+
+        if (cart.basePackage.added) {
+            const basePackageHtml = `
+                <div class="checkout-item">
+                    <div class="checkout-item-details">
+                        <div class="checkout-item-name">${cart.basePackage.name}</div>
+                        <div class="checkout-item-price">$${cart.basePackage.price.toFixed(2)}</div>
+                    </div>
+                    <button class="remove-btn" onclick="removeItem('basePackage')">×</button>
+                </div>
+            `;
+            checkoutItems.innerHTML += basePackageHtml;
+            total += cart.basePackage.price;
         }
-        const total = (basePrice + addOnsPrice).toFixed(2);
-        document.getElementById("totalPrice").innerText = `$${total}`;
+
+        if (cart.addOns.added) {
+            const addOnsPrice = cart.addOns.pricePerMonth * currentBillingPeriod;
+            const addOnsHtml = `
+                <div class="checkout-item">
+                    <div class="checkout-item-details">
+                        <div class="checkout-item-name">${cart.addOns.name}</div>
+                        <div class="checkout-item-price">$${addOnsPrice.toFixed(2)}</div>
+                    </div>
+                    <button class="remove-btn" onclick="removeItem('addOns')">×</button>
+                </div>
+            `;
+            checkoutItems.innerHTML += addOnsHtml;
+            total += addOnsPrice;
+        }
+
+        if (discountApplied) {
+            total *= 0.9; // 10% discount
+        }
+
+        document.getElementById("totalPrice").innerText = `$${total.toFixed(2)}`;
     }
 
     function checkout() {
-        alert("Proceeding to payment...");
+        alert("Thank you for your purchase! Redirecting to payment gateway...");
+        // Here you would typically redirect to a payment gateway or process the payment
     }
-    </script>
-</body>
 
-</html>
+    // Initialize the pricing
+    updatePricing();
+    </script>
