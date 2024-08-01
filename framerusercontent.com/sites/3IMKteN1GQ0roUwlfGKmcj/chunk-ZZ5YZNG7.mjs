@@ -410,6 +410,9 @@ var ha = { damping: 30, delay: 0, mass: 1, stiffness: 400, type: "spring" },
                      "data-framer-name": "Links",
                      layoutDependency: U,
                      layoutId: "vMBWf17Ad",
+                     children: [J(g) && e(E,
+                     {
+                     }), J(g) && e(E,
                      {
                          __fromCanvasComponent: !0,
                          children: e(h,
