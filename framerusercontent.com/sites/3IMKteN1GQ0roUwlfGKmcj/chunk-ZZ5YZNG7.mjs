@@ -293,7 +293,7 @@ var ha = { damping: 30, delay: 0, mass: 1, stiffness: 400, type: "spring" },
  }), ae = W(null), J = z => s === "bTHDaXD71" ? !1 : s === "mTq0DBqpx" ? !0 : z, pe = D(), ue = [Re, Le], Ue = Z();
  return e(H,
  {
- id: i ? ? pe,
+ id: i ?? pe,
  children: e(ya,
  {
      animate: S,
@@ -309,7 +309,7 @@ var ha = { damping: 30, delay: 0, mass: 1, stiffness: 400, type: "spring" },
              "data-framer-name": "Desktop",
              layoutDependency: U,
              layoutId: "fFdGd6igW",
-             ref: t ? ? ae,
+             ref: t ?? ae,
              style:
              {
                  "--border-bottom-width": "1px",
