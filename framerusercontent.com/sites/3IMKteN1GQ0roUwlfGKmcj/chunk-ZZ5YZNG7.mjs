@@ -578,7 +578,7 @@ var ea = { damping: 60, delay: 0, mass: 1, stiffness: 500, type: "spring" },
                                          },
                                          children: e(B,
                                          {
-                                             href: "https://blitzit.frill.co/b/xmnjk5vl/feature-ideas",
+                                             href: "https://overdogai.featurebase.app/",
                                              openInNewTab: !0,
                                              smoothScroll: !1,
                                              children: e(a.a,
