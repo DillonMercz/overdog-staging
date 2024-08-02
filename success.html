@@ -115,44 +115,71 @@
         </div>
     </main>
     <script>
-    function getQueryParam(param) {
-        let params = new URLSearchParams(window.location.search);
-        return params.get(param);
-    }
-
-    let sessionId = getQueryParam('session_id');
-    console.log('Session ID:', sessionId);
-    // Get the auth token from local storage
-    const authToken = JSON.parse(localStorage.getItem('sb-api-auth-token')).access_token;
-    // You can use the sessionId variable as needed here
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", `Bearer ${authToken}`);
-
-    const raw = JSON.stringify({});
-
-    const requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow"
-    };
-
-    fetch(`https://cdn.overdogbets.com/fulfill-checkout?sessionId=${sessionId}`, requestOptions)
-        .then((response) => response.text())
-        .then((result) => updateAction('success'))
-        .catch((error) => updateAction('error'));
-
-
-    function updateAction(type) {
-        if(type == 'success'){
-            document.getElementById("action").innerHTML = `<a href="./dashboard/main/dashboard/index.html" class="button">Continue to Dashboard</a>`
+        function getQueryParam(param) {
+            let params = new URLSearchParams(window.location.search);
+            return params.get(param);
         }
-        else if(type == 'error'){
-            document.getElementById("action").innerHTML = `<center><p>Nice Try Brokie, we noticed you are trying to get free access. An error has occurred. Please login and retry or reach out to support</p></center>`
 
+        function updateAction(type) {
+            if(type === 'success'){
+                document.getElementById("action").innerHTML = `<a href="./dashboard/main/dashboard/index.html" class="button">Continue to Dashboard</a>`;
+            } else if(type === 'error'){
+                document.getElementById("action").innerHTML = `<center><p>Nice Try Brokie, we noticed you are trying to get free access. An error has occurred. Please login and retry or reach out to support</p></center>`;
+            }
         }
-    }
+
+        function handleFulfillment() {
+            let sessionId = getQueryParam('session_id');
+            if (!sessionId) {
+                console.error('Session ID not found in URL');
+                updateAction('error');
+                return;
+            }
+            console.log('Session ID:', sessionId);
+
+            try {
+                const authToken = JSON.parse(localStorage.getItem('sb-api-auth-token')).access_token;
+                if (!authToken) {
+                    console.error('Auth token not found in local storage');
+                    updateAction('error');
+                    return;
+                }
+
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                myHeaders.append("Authorization", `Bearer ${authToken}`);
+
+                const raw = JSON.stringify({});
+
+                const requestOptions = {
+                    method: "POST",
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: "follow"
+                };
+
+                fetch(`https://cdn.overdogbets.com/fulfill-checkout?sessionId=${sessionId}`, requestOptions)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.text();
+                    })
+                    .then((result) => {
+                        console.log('Fulfillment result:', result);
+                        updateAction('success');
+                    })
+                    .catch((error) => {
+                        console.error('Error during fetch:', error);
+                        updateAction('error');
+                    });
+            } catch (error) {
+                console.error('Error during fulfillment:', error);
+                updateAction('error');
+            }
+        }
+
+        handleFulfillment();
     </script>
 </body>
 
