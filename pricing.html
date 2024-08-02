@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -255,6 +256,7 @@
         }
     </style>
 </head>
+
 <body>
     <img src="./logo.png" alt="OVERDOG Logo" class="logo">
     <p>GET IN THE GREEN</p>
@@ -304,7 +306,6 @@
             </div>
         </div>
     </div>
-
     <!-- Checkout Drawer -->
     <div class="checkout-drawer" id="checkoutDrawer">
         <div class="checkout-header">
@@ -329,7 +330,6 @@
             </div>
         </div>
     </div>
-
     <script>
     let cart = {
         basePackage: { name: 'OVERDOG Base Package', price: 27.99, added: false },
@@ -342,9 +342,9 @@
         const planSelect = document.getElementById("planSelect");
         const originalPriceElement = document.getElementById("originalPrice");
         const currentPriceElement = document.getElementById("currentPrice");
-        
+
         let originalPrice, currentPrice;
-        
+
         switch (planSelect.value) {
             case "1":
                 originalPrice = 34.99;
@@ -362,10 +362,10 @@
                 currentBillingPeriod = 6;
                 break;
         }
-        
+
         originalPriceElement.textContent = `$${originalPrice.toFixed(2)}`;
         currentPriceElement.textContent = `$${currentPrice.toFixed(2)}`;
-        
+
         cart.basePackage.price = currentPrice;
         updateCheckout();
     }
@@ -444,10 +444,57 @@
         document.getElementById("totalPrice").innerText = `$${total.toFixed(2)}`;
     }
 
-    function checkout() {
-        alert("Thank you for your purchase! Redirecting to payment gateway...");
-        // Here you would typically redirect to a payment gateway or process the payment
+function checkout() {
+    // Determine price ID based on the total amount
+    let priceId = "";
+    const total = parseFloat(document.getElementById("totalPrice").innerText.replace('$', ''));
+    
+    if (total === 27.99) {
+        priceId = "price_1PjMhuBlxMLUFDUFiOz0mhME";
+    } else if (total === 74.99) {
+        priceId = "price_1PjPdhBlxMLUFDUFC5AMKXbx";
+    } else if (total === 159.99) {
+        priceId = "price_1PjPjwBlxMLUFDUFiz0kCkZc";
+    } else if (total === 42.99) {
+        priceId = "price_1PjQ8OBlxMLUFDUF1cmlDcRI";
+    } else if (total === 119.96) {
+        priceId = "price_1PjQjLBlxMLUFDUF08X9kV09";
+    } else if (total === 249.93) {
+        priceId = "price_1PjQmkBlxMLUFDUFIocr7mKL";
+    } else {
+        alert("Total amount does not match any price ID.");
+        return;
     }
+
+    // Get the auth token from local storage
+    const authToken = JSON.parse(localStorage.getItem('sb-api-auth-token')).access_token;
+
+    // Prepare the API request
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${authToken}`);
+
+    const raw = JSON.stringify({
+        "priceId": priceId
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+
+    fetch("https://cdn.overdogbets.com/create-checkout-session", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            // Redirect to the checkout URL
+            window.location.href = result.url;
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+
 
     // Initialize the pricing
     updatePricing();
