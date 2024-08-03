@@ -611,6 +611,7 @@
     <script src="../../assets/js/extended-ui-sweetalert2.js"></script>
     <!-- Page JS -->
     <script>
+
     document.getElementById('nextButton').addEventListener('click', async function() {
         const phoneInputDiv = document.getElementById('phoneInputDiv');
         const codeInputDiv = document.getElementById('codeInputDiv');
@@ -647,9 +648,12 @@
             }
         } else {
             // Send phone number and code to backend
+
+            // Get the auth token from local storage
+            var authToken = JSON.parse(localStorage.getItem('sb-api-auth-token')).access_token;
             const response = await fetch('https://cdn.overdogbets.com/fliff-login', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authToken}` },
                 body: JSON.stringify({ phoneNumber: phone, code })
             });
 
