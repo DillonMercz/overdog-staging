@@ -84,7 +84,9 @@
     margin-bottom: 5px;
 }
 
-
+label{
+    margin-bottom:10px;
+}
 </style>
 
 <body>
@@ -394,62 +396,23 @@
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide">
                                             <div class="swiper-slide">
-                                            <img src="../../assets/img/sportsbooks/thrillz/thrilz-promo.png">
+                                            <img style="width:100%;border-radius: 15px;" src="../../assets/img/sportsbooks/rebet/rebet-promo.png">
                                         </div>
                                         </div>
                                         <div class="swiper-slide">
-                                            <img src="../../assets/sportsbooks/thrillz/thrilz-promo.png">
+                                            <img style="width:100%;border-radius: 15px;" src="../../assets/img/sportsbooks/thrillz/thrilz-promo.png">
                                         </div>
                                         <div class="swiper-slide">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h5 class="text-white mb-0 mt-2">Victor Wembanyama</h5>
-                                                    <small>San Antonio Spurs</small>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-7 col-md-9 col-12 order-2 order-md-1">
-                                                        <h6 class="text-white mt-0 mt-md-3 mb-3">Quick Stats (Season Averages)</h6>
-                                                        <div class="row">
-                                                            <div class="col-8">
-                                                                <ul class="list-unstyled mb-0">
-                                                                    <li class="d-flex mb-4 align-items-center">
-                                                                        <p class="mb-0 fw-medium me-2 website-analytics-text-bg" style="width:fit-content !important;">32.5%</p>
-                                                                        <p class="mb-0">3PT Accuracy</p>
-                                                                    </li>
-                                                                    <li class="d-flex align-items-center mb-2">
-                                                                        <p class="mb-0 fw-medium me-2 website-analytics-text-bg">79.6%</p>
-                                                                        <p class="mb-0">Free Throw Accuracy</p>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-1">
-                                                                <ul class="list-unstyled mb-0">
-                                                                    <li class="d-flex mb-4 align-items-center">
-                                                                        <p class="mb-0 fw-medium me-2 website-analytics-text-bg">10.6</p>
-                                                                        <p class="mb-0">Rebounds</p>
-                                                                    </li>
-                                                                    <li class="d-flex align-items-center mb-2">
-                                                                        <p class="mb-0 fw-medium me-2 website-analytics-text-bg">21.4</p>
-                                                                        <p class="mb-0">PTS</p>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-5 col-md-3 col-12 order-1 order-md-2 my-4 my-md-0 text-center">
-                                                        <img src="https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/5104157.png&w=350&h=254" alt="Website Analytics" width="170" class="card-website-analytics-img" />
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <img style="width:100%;border-radius: 15px;" src="../../assets/img/sportsbooks/thrillz/thrilz-promo.png">
                                         </div>
                                     </div>
-                                    <div class="swiper-pagination"></div>
+                                    
                                 </div>
                             </div>
                             <!--/ Website Analytics -->
                             <!-- Revenue Generated -->
                             <div class="col-md-6 mb-4">
-                                <div class="card">
+                                <div class="card"  style="height:100%">
                                     <div class="card-body pb-0">
                                         <div class="">
                                             <div class="container">
@@ -464,7 +427,7 @@
                                                 </ul>
                                                 <div class="container-xxl flex-grow-1 container-p-y">
                                                     <div class="tab-content p-0 pt-4">
-                                                        <div class="tab-pane fade show active" id="navs-within-card-active" role="tabpanel">
+                                                        <div class="tab-pane show active fade" id="navs-within-card-active" role="tabpanel">
                                                             <div class="form-group">
                                                                 <label for="oddsInput">Enter Odds:</label>
                                                                 <input type="text" class="form-control border-secondary" placeholder="EX: 3.5" id="oddsInput">
@@ -484,14 +447,23 @@
                                                         <div class="tab-pane fade" id="navs-within-card-link" role="tabpanel">
                                                             <div id="parlayOddsContainer" class="form-group">
                                                                 <label for="parlayOdds">Enter Parlay Odds:</label>
+                                                                <br>
                                                                 <div class="input-group mb-2">
                                                                     <input type="text" class="form-control border-secondary parlay-odd" placeholder="Enter odds">
                                                                 </div>
+                                                                <div class="input-group mb-2">
+                                                                    <input type="text" class="form-control border-secondary parlay-odd" placeholder="Enter odds">
+                                                                </div>
+                                                                <div class="input-group mb-2">
+                                                                    <input type="text" class="form-control border-secondary parlay-odd" placeholder="Enter odds">
+                                                                </div>
+                                                                <br>
                                                             </div>
                                                             <button class="btn btn-outline-secondary mb-3" onclick="addParlayInput()">Add Leg</button>
                                                             <div class="form-group">
                                                                 <label for="betAmount">Enter Bet Amount:</label>
-                                                                <input type="number" class="form-control border-secondary" id="betAmount">
+                                                                <br>
+                                                                <input type="number" class="form-control border-secondary" placeholder="EX: $100" id="betAmount">
                                                             </div>
                                                             <br>
                                                             <center>
