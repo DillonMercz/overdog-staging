@@ -84,26 +84,43 @@
     margin-bottom: 5px;
 }
 
-label{
-    margin-bottom:10px;
+label {
+    margin-bottom: 10px;
     font-family: "OVERDOG";
 
 }
 
-p{
+p {
     font-family: 'OVERDOG';
 }
-.card{
-    border:2px solid #474E72;
+
+.card {
+    border: 2px solid #474E72;
 }
-.card .nav-link{
+
+.card .nav-link {
     color: silver;
 }
-.card .nav-link.active{
+
+.card .nav-link.active {
     border-bottom: 2px solid;
     border-image: linear-gradient(to right, #FFE872 25%, #00FFFF 100%);
     border-image-slice: 1;
     color: white;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #000;
+}
+
+.pick {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    background: #f1f1f1;
+    border: 1px solid #ddd;
 }
 </style>
 
@@ -414,8 +431,8 @@ p{
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide">
                                             <div class="swiper-slide">
-                                            <img style="width:100%;border-radius: 15px;" src="../../assets/img/sportsbooks/rebet/rebet-promo.png">
-                                        </div>
+                                                <img style="width:100%;border-radius: 15px;" src="../../assets/img/sportsbooks/rebet/rebet-promo.png">
+                                            </div>
                                         </div>
                                         <div class="swiper-slide">
                                             <img style="width:100%;border-radius: 15px;" src="../../assets/img/sportsbooks/thrillz/thrilz-promo.png">
@@ -424,13 +441,12 @@ p{
                                             <img style="width:100%;border-radius: 15px;" src="../../assets/img/sportsbooks/thrillz/thrilz-promo.png">
                                         </div>
                                     </div>
-                                    
                                 </div>
                             </div>
                             <!--/ Website Analytics -->
                             <!-- Revenue Generated -->
                             <div class="col-md-6 mb-4">
-                                <div class="card"  style="height:100%">
+                                <div class="card" style="height:100%">
                                     <div class="card-body pb-0">
                                         <div class="">
                                             <div class="container">
@@ -457,10 +473,9 @@ p{
                                                             </div>
                                                             <br>
                                                             <center>
-
-                                                            <button class="btn btn-dark" onclick="convertAndCalculateStraightBet()"> Calculate</button>
-                                                            <p id="conversionResults" class="mt-3"></p>
-                                                        </center>
+                                                                <button class="btn btn-dark" onclick="convertAndCalculateStraightBet()"> Calculate</button>
+                                                                <p id="conversionResults" class="mt-3"></p>
+                                                            </center>
                                                         </div>
                                                         <div class="tab-pane fade" id="navs-within-card-link" role="tabpanel">
                                                             <div id="parlayOddsContainer" class="form-group">
@@ -529,270 +544,379 @@ p{
                                 </div>
                             </div>
                             <!--/ Support Tracker -->
-                        </div>
-                    </div>
-                    <!-- / Content -->
-                    <!-- Footer -->
-                    <footer class="content-footer footer bg-footer-theme">
-                        <div class="container-xxl">
-                            <div class="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
-                                <div>
-                                    ©
-                                    <script>
-                                    document.write(new Date().getFullYear());
-                                    </script>, OVERDOG
-                                </div>
-                                <div class="d-none d-lg-inline-block">
-                                    <a href="./terms" class="footer-link me-4" target="_blank">Terms of Service</a>
-                                    <a href="./privacy" target="_blank" class="footer-link me-4">Privacy Policy</a>
-                                    <a href="./disclaimer" target="_blank" class="footer-link me-4">Disclaimer</a>
-                                    <a href="./support" target="_blank" class="footer-link d-none d-sm-inline-block">Support</a>
+                            <div class="container-fluid mt-5">
+                                <div class="row">
+                                    <div class="card">
+                                        <br>
+                                        <h4 class="text-left mr-5" style="font-family: OVERDOG;">TENNIS</h4>
+                                        <br>
+                                        <div class="swiper-container swiper-container-horizontal swiper tennis-swiper">
+                                            <div class="swiper-wrapper">
+                                                <!-- Repeat this swiper-slide for 10 cards -->
+                                                <div class="swiper-slide pick">Tennis Card 1</div>
+                                                <div class="swiper-slide pick">Tennis Card 1</div>
+                                                <div class="swiper-slide pick">Tennis Card 1</div>
+                                                <div class="swiper-slide pick">Tennis Card 1</div>
+                                                <div class="swiper-slide pick">Tennis Card 1</div>
+                                                <div class="swiper-slide pick">Tennis Card 1</div>
+                                                <div class="swiper-slide pick">Tennis Card 1</div>
+                                                <div class="swiper-slide pick">Tennis Card 1</div>
+                                                <div class="swiper-slide pick">Tennis Card 1</div>
+                                                <!-- Repeat up to Card 10 -->
+                                            </div>
+                                            <!-- Add navigation buttons -->
+                                            <div class="swiper-button-next"></div>
+                                            <div class="swiper-button-prev"></div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row mt-5">
+                                        <div class="card">
+                                            <br>
+                                            <h4 class="text-left" style="font-family: OVERDOG;">WNBA</h4>
+                                            <div class="swiper-container swiper-container-horizontal swiper wnba-swiper">
+                                                <div class="swiper-wrapper">
+                                                    <!-- Repeat this swiper-slide for 10 cards -->
+                                                    <div class="swiper-slide pick">WNBA Card 1</div>
+                                                    <!-- Repeat up to Card 10 -->
+                                                </div>
+                                                <div class="swiper-button-next"></div>
+                                                <div class="swiper-button-prev"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row mt-5">
+                                        <div class="card">
+                                            <br>
+                                            <h4 class="text-left" style="font-family: OVERDOG;">MLB</h4>
+                                            <br>
+                                            <div class="swiper-container swiper-container-horizontal swiper mlb-swiper">
+                                                <div class="swiper-wrapper">
+                                                    <!-- Repeat this swiper-slide for 10 cards -->
+                                                    <div class="swiper-slide pick">MLB Card 1</div>
+                                                    <!-- Repeat up to Card 10 -->
+                                                </div>
+                                                <div class="swiper-button-next"></div>
+                                                <div class="swiper-button-prev"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row mt-5">
+                                        <div class="card">
+                                            <br>
+                                            <h4 class="text-left" style="font-family: OVERDOG;">SOCCER</h4>
+                                            <br>
+                                            <div class="swiper-container swiper-container-horizontal swiper soccer-swiper">
+                                                <div class="swiper-wrapper">
+                                                    <!-- Repeat this swiper-slide for 10 cards -->
+                                                    <div class="swiper-slide pick">Soccer Card 1</div>
+                                                    <!-- Repeat up to Card 10 -->
+                                                </div>
+                                                <div class="swiper-button-next"></div>
+                                                <div class="swiper-button-prev"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </footer>
-                    <!-- / Footer -->
-                    <div class="content-backdrop fade"></div>
+                        <!-- / Content -->
+                        <!-- Footer -->
+                        <footer class="content-footer footer bg-footer-theme">
+                            <div class="container-xxl">
+                                <div class="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
+                                    <div>
+                                        ©
+                                        <script>
+                                        document.write(new Date().getFullYear());
+                                        </script>, OVERDOG
+                                    </div>
+                                    <div class="d-none d-lg-inline-block">
+                                        <a href="./terms" class="footer-link me-4" target="_blank">Terms of Service</a>
+                                        <a href="./privacy" target="_blank" class="footer-link me-4">Privacy Policy</a>
+                                        <a href="./disclaimer" target="_blank" class="footer-link me-4">Disclaimer</a>
+                                        <a href="./support" target="_blank" class="footer-link d-none d-sm-inline-block">Support</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </footer>
+                        <!-- / Footer -->
+                        <div class="content-backdrop fade"></div>
+                    </div>
+                    <!-- Content wrapper -->
                 </div>
-                <!-- Content wrapper -->
+                <!-- / Layout page -->
             </div>
-            <!-- / Layout page -->
+            <!-- Overlay -->
+            <div class="layout-overlay layout-menu-toggle"></div>
+            <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+            <div class="drag-target"></div>
         </div>
-        <!-- Overlay -->
-        <div class="layout-overlay layout-menu-toggle"></div>
-        <!-- Drag Target Area To SlideIn Menu On Small Screens -->
-        <div class="drag-target"></div>
-    </div>
-    <!-- / Layout wrapper -->
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="../../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../../assets/vendor/js/bootstrap.js"></script>
-    <script src="../../assets/vendor/libs/node-waves/node-waves.js"></script>
-    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="../../assets/vendor/libs/hammer/hammer.js"></script>
-    <script src="../../assets/vendor/libs/i18n/i18n.js"></script>
-    <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
-    <script src="../../assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-    <!-- Vendors JS -->
-    <script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
-    <script src="../../assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
-    <!-- Main JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../../assets/vendor/libs/swiper/swiper.js"></script>
-    <script src="../../assets/js/main.js"></script>
-    <!-- Page JS -->
-    <script src="../../assets/js/dashboards-analytics.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get the auth token from local storage
-        const authToken = JSON.parse(localStorage.getItem('sb-api-auth-token')).access_token;
+        <!-- / Layout wrapper -->
+        <!-- Core JS -->
+        <!-- build:js assets/vendor/js/core.js -->
+        <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+        <script src="../../assets/vendor/libs/popper/popper.js"></script>
+        <script src="../../assets/vendor/js/bootstrap.js"></script>
+        <script src="../../assets/vendor/libs/node-waves/node-waves.js"></script>
+        <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="../../assets/vendor/libs/hammer/hammer.js"></script>
+        <script src="../../assets/vendor/libs/i18n/i18n.js"></script>
+        <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
+        <script src="../../assets/vendor/js/menu.js"></script>
+        <!-- endbuild -->
+        <!-- Vendors JS -->
+        <script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+        <script src="../../assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+        <!-- Main JS -->
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="../../assets/vendor/libs/swiper/swiper.js"></script>
+        <script src="../../assets/js/main.js"></script>
+        <!-- Page JS -->
+        <script src="../../assets/js/dashboards-analytics.js"></script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the auth token from local storage
+            const authToken = JSON.parse(localStorage.getItem('sb-api-auth-token')).access_token;
 
-        // Fetch the bets array from Supabase
-        fetch('https://cdn.overdogbets.com/bets', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${authToken}`
-                }
-            })
-            .then(response => response.json())
-            .then(async betsArray => {
-                // Fetch each bet file
-                var betsArray = JSON.parse(betsArray)
-                let bets = [];
-                for (const bet of betsArray) {
-                    console.log(bet)
-                    console.log(betsArray[0])
-                    if (bet.fliff && bet.fliff.source) {
-                        const betFileName = bet.fliff.source.split('/').pop();
-                        const betFileResponse = await fetch(`https://cdn.overdogbets.com/bets/${betFileName}`, {
-                            method: 'GET',
-                            headers: {
-                                'Authorization': `Bearer ${authToken}`
-                            }
-                        });
-
-                        const betFileData = await betFileResponse.json();
-                        bets = bets.concat(betFileData.response.data.x_picks_report.data);
+            // Fetch the bets array from Supabase
+            fetch('https://cdn.overdogbets.com/bets', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
                     }
-                }
+                })
+                .then(response => response.json())
+                .then(async betsArray => {
+                    // Fetch each bet file
+                    var betsArray = JSON.parse(betsArray)
+                    let bets = [];
+                    for (const bet of betsArray) {
+                        console.log(bet)
+                        console.log(betsArray[0])
+                        if (bet.fliff && bet.fliff.source) {
+                            const betFileName = bet.fliff.source.split('/').pop();
+                            const betFileResponse = await fetch(`https://cdn.overdogbets.com/bets/${betFileName}`, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': `Bearer ${authToken}`
+                                }
+                            });
 
-                // Filter for currency 331
-                bets = bets.filter(item => item.currency === 331);
-                // Sort bets by created_timestamp_utc in ascending order
-                bets.sort((a, b) => a.created_timestamp_utc - b.created_timestamp_utc);
+                            const betFileData = await betFileResponse.json();
+                            bets = bets.concat(betFileData.response.data.x_picks_report.data);
+                        }
+                    }
 
-                // Calculate net profit/loss data points
-                var chartData = [];
-                var chartLabels = [];
-                var netProfitLoss = 0;
+                    // Filter for currency 331
+                    bets = bets.filter(item => item.currency === 331);
+                    // Sort bets by created_timestamp_utc in ascending order
+                    bets.sort((a, b) => a.created_timestamp_utc - b.created_timestamp_utc);
 
-                bets.forEach(bet => {
-                    var profitLoss = (bet.payout_amount - bet.risk_amount) / 100;
-                    netProfitLoss += profitLoss;
-                    chartData.push(netProfitLoss);
-                    chartLabels.push(new Date(bet.created_timestamp_utc).toLocaleDateString());
-                });
+                    // Calculate net profit/loss data points
+                    var chartData = [];
+                    var chartLabels = [];
+                    var netProfitLoss = 0;
 
-                // Calculate statistics
-                var totalProfit = bets.filter(item => item.payout_amount > 0).reduce((acc, item) => acc + (item.payout_amount - item.risk_amount), 0) / 100;
-                var totalLoss = bets.filter(item => item.payout_amount === 0).reduce((acc, item) => acc + item.risk_amount, 0) / 100;
-                var netProfitLossTotal = totalProfit - totalLoss;
-                var totalBets = bets.length;
-                var totalWinningBets = bets.filter(bet => bet.payout_amount > 0).length;
-                var totalLosingBets = bets.filter(bet => bet.payout_amount === 0).length;
-                var winRate = (totalWinningBets / totalBets) * 100;
-                var totalRisked = bets.reduce((acc, bet) => acc + bet.risk_amount, 0) / 100;
-                var averageBetSize = totalRisked / totalBets;
-                var averageLoss = totalLosingBets > 0 ? totalRisked / totalLosingBets : 0;
-                var largestWin = Math.max(...bets.filter(bet => bet.payout_amount > 0).map(bet => bet.payout_amount - bet.risk_amount)) / 100;
-                var largestLoss = Math.max(...bets.filter(bet => bet.payout_amount === 0).map(bet => bet.risk_amount)) / 100;
-                var roi = (netProfitLossTotal / totalRisked) * 100;
-                // Display statistics
-                document.getElementById('totalBets').textContent = totalBets;
-                document.getElementById('totalWinningBets').textContent = totalWinningBets;
-                document.getElementById('totalLosingBets').textContent = totalLosingBets;
-                document.getElementById('winRate').textContent = winRate.toFixed(2) + '%';
-                document.getElementById('totalRisked').textContent = '$' + totalRisked.toFixed(2);
-                document.getElementById('netProfitLossTotal').textContent = '$' + netProfitLossTotal.toFixed(2);
-                document.getElementById('averageBetSize').textContent = '$' + averageBetSize.toFixed(2);
-                document.getElementById('averageLoss').textContent = '$' + averageLoss.toFixed(2);
-                document.getElementById('largestWin').textContent = '$' + largestWin.toFixed(2);
-                document.getElementById('largestLoss').textContent = '$' + largestLoss.toFixed(2);
-                document.getElementById('roi').textContent = roi.toFixed(2) + '%';
+                    bets.forEach(bet => {
+                        var profitLoss = (bet.payout_amount - bet.risk_amount) / 100;
+                        netProfitLoss += profitLoss;
+                        chartData.push(netProfitLoss);
+                        chartLabels.push(new Date(bet.created_timestamp_utc).toLocaleDateString());
+                    });
 
-                // ApexCharts configuration
-                var options = {
-                    chart: {
-                        height: 350,
-                        type: 'area',
-                        parentHeightOffset: 0,
-                        toolbar: {
-                            show: true,
-                            tools: {
-                                download: true,
-                                selection: true,
-                                zoom: true,
-                                zoomin: true,
-                                zoomout: true,
-                                pan: true,
-                                reset: true | '<img src="/static/icons/reset.png" width="20">',
-                                customIcons: []
+                    // Calculate statistics
+                    var totalProfit = bets.filter(item => item.payout_amount > 0).reduce((acc, item) => acc + (item.payout_amount - item.risk_amount), 0) / 100;
+                    var totalLoss = bets.filter(item => item.payout_amount === 0).reduce((acc, item) => acc + item.risk_amount, 0) / 100;
+                    var netProfitLossTotal = totalProfit - totalLoss;
+                    var totalBets = bets.length;
+                    var totalWinningBets = bets.filter(bet => bet.payout_amount > 0).length;
+                    var totalLosingBets = bets.filter(bet => bet.payout_amount === 0).length;
+                    var winRate = (totalWinningBets / totalBets) * 100;
+                    var totalRisked = bets.reduce((acc, bet) => acc + bet.risk_amount, 0) / 100;
+                    var averageBetSize = totalRisked / totalBets;
+                    var averageLoss = totalLosingBets > 0 ? totalRisked / totalLosingBets : 0;
+                    var largestWin = Math.max(...bets.filter(bet => bet.payout_amount > 0).map(bet => bet.payout_amount - bet.risk_amount)) / 100;
+                    var largestLoss = Math.max(...bets.filter(bet => bet.payout_amount === 0).map(bet => bet.risk_amount)) / 100;
+                    var roi = (netProfitLossTotal / totalRisked) * 100;
+                    // Display statistics
+                    document.getElementById('totalBets').textContent = totalBets;
+                    document.getElementById('totalWinningBets').textContent = totalWinningBets;
+                    document.getElementById('totalLosingBets').textContent = totalLosingBets;
+                    document.getElementById('winRate').textContent = winRate.toFixed(2) + '%';
+                    document.getElementById('totalRisked').textContent = '$' + totalRisked.toFixed(2);
+                    document.getElementById('netProfitLossTotal').textContent = '$' + netProfitLossTotal.toFixed(2);
+                    document.getElementById('averageBetSize').textContent = '$' + averageBetSize.toFixed(2);
+                    document.getElementById('averageLoss').textContent = '$' + averageLoss.toFixed(2);
+                    document.getElementById('largestWin').textContent = '$' + largestWin.toFixed(2);
+                    document.getElementById('largestLoss').textContent = '$' + largestLoss.toFixed(2);
+                    document.getElementById('roi').textContent = roi.toFixed(2) + '%';
+
+                    // ApexCharts configuration
+                    var options = {
+                        chart: {
+                            height: 350,
+                            type: 'area',
+                            parentHeightOffset: 0,
+                            toolbar: {
+                                show: true,
+                                tools: {
+                                    download: true,
+                                    selection: true,
+                                    zoom: true,
+                                    zoomin: true,
+                                    zoomout: true,
+                                    pan: true,
+                                    reset: true | '<img src="/static/icons/reset.png" width="20">',
+                                    customIcons: []
+                                },
                             },
-                        },
-                        zoom: {
-                            enabled: true,
-                            type: 'x', // You can also use 'y' or 'xy' for both directions
-                            autoScaleYaxis: true
-                        },
-                        background: '#2a2a2a',
-                        foreColor: '#ffffff'
-                    },
-                    markers: {
-                        size: 0,
-                        colors: ["#00E396", "#FF4560"],
-                        strokeColors: "#fff",
-                        strokeWidth: 2,
-                        hover: {
-                            size: 5
-                        }
-                    },
-                    colors: ["#00E396"],
-                    fill: {
-                        type: 'gradient',
-                        gradient: {
-                            shade: 'dark',
-                            type: "vertical",
-                            shadeIntensity: 0.5,
-                            gradientToColors: undefined,
-                            inverseColors: true,
-                            opacityFrom: 0.85,
-                            opacityTo: 0.35,
-                            stops: [0, 100]
-                        }
-                    },
-                    dataLabels: {
-                        enabled: false
-                    },
-                    stroke: {
-                        curve: 'smooth',
-                        width: 2
-                    },
-                    series: [{
-                        name: "Net Profit/Loss",
-                        data: chartData
-                    }],
-                    xaxis: {
-                        type: 'datetime',
-                        categories: chartLabels,
-                        labels: {
-                            format: 'MMM',
-                            style: {
-                                colors: '#ffffff'
-                            }
-                        }
-                    },
-                    yaxis: {
-                        labels: {
-                            formatter: function(val) {
-                                return val.toFixed(2);
+                            zoom: {
+                                enabled: true,
+                                type: 'x', // You can also use 'y' or 'xy' for both directions
+                                autoScaleYaxis: true
                             },
-                            style: {
-                                colors: '#ffffff'
-                            }
-                        }
-                    },
-                    tooltip: {
-                        theme: 'dark',
-                        x: {
-                            format: 'dd MMM yyyy'
+                            background: '#2a2a2a',
+                            foreColor: '#ffffff'
                         },
-                        y: {
-                            formatter: function(val) {
-                                return '$' + val.toFixed(2);
+                        markers: {
+                            size: 0,
+                            colors: ["#00E396", "#FF4560"],
+                            strokeColors: "#fff",
+                            strokeWidth: 2,
+                            hover: {
+                                size: 5
                             }
-                        }
-                    },
-                    annotations: {
-                        yaxis: [{
-                            y: 0,
-                            borderColor: '#FF4560',
-                            label: {
-                                text: 'Break-even',
+                        },
+                        colors: ["#00E396"],
+                        fill: {
+                            type: 'gradient',
+                            gradient: {
+                                shade: 'dark',
+                                type: "vertical",
+                                shadeIntensity: 0.5,
+                                gradientToColors: undefined,
+                                inverseColors: true,
+                                opacityFrom: 0.85,
+                                opacityTo: 0.35,
+                                stops: [0, 100]
+                            }
+                        },
+                        dataLabels: {
+                            enabled: false
+                        },
+                        stroke: {
+                            curve: 'smooth',
+                            width: 2
+                        },
+                        series: [{
+                            name: "Net Profit/Loss",
+                            data: chartData
+                        }],
+                        xaxis: {
+                            type: 'datetime',
+                            categories: chartLabels,
+                            labels: {
+                                format: 'MMM',
                                 style: {
-                                    color: "#fff",
-                                    background: '#FF4560'
+                                    colors: '#ffffff'
                                 }
                             }
-                        }]
+                        },
+                        yaxis: {
+                            labels: {
+                                formatter: function(val) {
+                                    return val.toFixed(2);
+                                },
+                                style: {
+                                    colors: '#ffffff'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            theme: 'dark',
+                            x: {
+                                format: 'dd MMM yyyy'
+                            },
+                            y: {
+                                formatter: function(val) {
+                                    return '$' + val.toFixed(2);
+                                }
+                            }
+                        },
+                        annotations: {
+                            yaxis: [{
+                                y: 0,
+                                borderColor: '#FF4560',
+                                label: {
+                                    text: 'Break-even',
+                                    style: {
+                                        color: "#fff",
+                                        background: '#FF4560'
+                                    }
+                                }
+                            }]
+                        }
+                    };
+
+
+                    var chart = new ApexCharts(document.querySelector("#chart"), options);
+                    chart.render();
+                })
+                .catch(error => {
+                    console.error('Error fetching bets:', error);
+                });
+
+            // Accordion functionality
+            var acc = document.getElementsByClassName("accordion");
+            for (var i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
                     }
-                };
+                });
+            }
+        });
 
 
-                var chart = new ApexCharts(document.querySelector("#chart"), options);
-                chart.render();
-            })
-            .catch(error => {
-                console.error('Error fetching bets:', error);
-            });
 
-        // Accordion functionality
-        var acc = document.getElementsByClassName("accordion");
-        for (var i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
-            });
-        }
-    });
-    </script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var swiperOptions = {
+                slidesPerView: 1,
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                        spaceBetween: 40,
+                    },
+                },
+            };
+
+            var tennisSwiper = new Swiper('.tennis-swiper', swiperOptions);
+            var wnbaSwiper = new Swiper('.wnba-swiper', swiperOptions);
+            var mlbSwiper = new Swiper('.mlb-swiper', swiperOptions);
+            var soccerSwiper = new Swiper('.soccer-swiper', swiperOptions);
+        });
+        </script>
 </body>
 
 </html>
