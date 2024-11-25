@@ -1,4 +1,6 @@
 import { NHLPredictionsResponse, NHLPropsResponse, NHLScoresResponse } from '../types/nhlPredictions';
+import { supabase } from '../lib/supabase/client';
+import { NHLGame } from '../types/nhl';
 
 const formatDate = () => {
   const currentDate = new Date();
@@ -12,28 +14,90 @@ const formatDate = () => {
 
 export const fetchNHLPredictions = async (authToken: string): Promise<NHLPredictionsResponse> => {
   const formattedDate = formatDate();
-  const response = await fetch(
-    `https://cdn.overdogbets.com/predictions/nhl/${formattedDate}_games.json`,
-    {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-      },
-    }
-  );
+  
+  // First, get predictions
+  const { data: predictions, error: predictionsError } = await supabase
+    .from('predictions')
+    .select('*')
+    .eq('sport_id', '0f9a163b-f6e3-4743-952c-76909405d482') // NHL sport ID
+    .eq('league_id', '1e4c7e3c-5d07-4705-a608-7e586bbc92b4') // NHL league ID
+    .is('result', null) // Only get upcoming games (result is NULL)
+    .gte('prediction_time', `${formattedDate}T00:00:00`)
+    .lte('prediction_time', `${formattedDate}T23:59:59`);
 
-  if (!response.ok) {
+  if (predictionsError) {
+    console.error('Error fetching NHL predictions:', predictionsError);
     throw new Error('Failed to fetch NHL predictions');
   }
 
-  return response.json();
+  if (!predictions || predictions.length === 0) {
+    return {};
+  }
+
+  // Get all event IDs from predictions
+  const eventIds = predictions.map(p => p.event_id);
+
+  // Then fetch corresponding events
+  const { data: events, error: eventsError } = await supabase
+    .from('events')
+    .select('*')
+    .in('id', eventIds);
+
+  if (eventsError) {
+    console.error('Error fetching events:', eventsError);
+    throw new Error('Failed to fetch events');
+  }
+
+  // Create a map of events for easy lookup
+  const eventsMap = new Map(events?.map(event => [event.id, event]));
+
+  // Transform the predictions into the expected response format
+  const response: NHLPredictionsResponse = {};
+  
+  predictions.forEach(prediction => {
+    const event = eventsMap.get(prediction.event_id);
+    if (!event) return;
+
+    const homeTeam = event.home_team_name || 'TBD';
+    const awayTeam = event.away_team_name || 'TBD';
+    
+    // Check if prediction_value is null or undefined
+    const predictedWinner = prediction.prediction_value === null || prediction.prediction_value === undefined ? 
+      "AI Unsure" : prediction.prediction_value;
+    
+    const game: NHLGame = {
+      GameID: typeof prediction.event_id === 'string' ? 
+        parseInt(prediction.event_id.replace(/\D/g, '')) || 0 : 
+        typeof prediction.event_id === 'number' ? 
+          prediction.event_id : 0,
+      "Game State": "SCHEDULED",
+      "Home Team": homeTeam,
+      "Away Team": awayTeam,
+      "Home Goals": 0,
+      "Away Goals": 0,
+      "Pre-Game Home Win Probability": prediction.home_win_probability?.toString() || "0",
+      "Pre-Game Away Win Probability": prediction.away_win_probability?.toString() || "0",
+      "Home Record": "",
+      "Away Record": "",
+      "Predicted Winner": predictedWinner
+    };
+
+    response[prediction.event_id.toString()] = {
+      'Away Team': game["Away Team"],
+      'Home Team': game["Home Team"],
+      'Pre-Game Away Win Probability': game["Pre-Game Home Win Probability"] || "0",
+      'Pre-Game Home Win Probability': game["Pre-Game Away Win Probability"] || "0",
+      'Predicted Winner': predictedWinner
+    };
+  });
+
+  return response;
 };
 
 export const fetchNHLProps = async (authToken: string): Promise<NHLPropsResponse> => {
   const formattedDate = formatDate();
   console.log('Fetching NHL props for date:', formattedDate);
   
-  // Updated URL to match exactly the JavaScript version
   const url = `https://cdn.overdogbets.com/predictions/nhl/player_props/predictions_${formattedDate}.json`;
   console.log('Fetching from URL:', url);
   
@@ -78,6 +142,8 @@ export const fetchNHLScores = async (): Promise<NHLScoresResponse> => {
 };
 
 export const getTeamAbbreviation = (teamName: string): string => {
+  if (!teamName) return '';
+  
   const teams: { [key: string]: string } = {
     'Anaheim Ducks': 'ANA',
     'Arizona Coyotes': 'ARI',
@@ -94,7 +160,7 @@ export const getTeamAbbreviation = (teamName: string): string => {
     'Florida Panthers': 'FLA',
     'Los Angeles Kings': 'LAK',
     'Minnesota Wild': 'MIN',
-    'Montréal Canadiens': 'MTL',
+    'Montreal Canadiens': 'MTL',
     'Nashville Predators': 'NSH',
     'New Jersey Devils': 'NJD',
     'New York Islanders': 'NYI',
@@ -117,6 +183,8 @@ export const getTeamAbbreviation = (teamName: string): string => {
 };
 
 export const getTeamName = (teamName: string): string => {
+  if (!teamName) return '';
+  
   const areas = [
     'Anaheim', 'Arizona', 'Boston', 'Buffalo', 'Calgary', 'Carolina', 'Chicago',
     'Colorado', 'Columbus', 'Dallas', 'Detroit', 'Edmonton', 'Florida',

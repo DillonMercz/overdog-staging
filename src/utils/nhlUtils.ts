@@ -33,17 +33,15 @@ export const NHL_TEAM_ABBREVIATIONS: { [key: string]: string } = {
     "Vancouver Canucks": "VAN",
     "Vegas Golden Knights": "VGK",
     "Washington Capitals": "WSH",
-    "Winnipeg Jets": "WPG"
+    "Winnipeg Jets": "WPG",
+    "Utah Hockey Club": "UTA"
 };
 
-export const getWinningTeam = (game: any): string | null => {
+export const getWinningTeam = (game: any): string => {
     const homeProb = parseFloat(game["Pre-Game Home Win Probability"]);
     const awayProb = parseFloat(game["Pre-Game Away Win Probability"]);
-    return homeProb >= HIGH_CONFIDENCE_THRESHOLD 
-        ? game["Home Team"] 
-        : awayProb >= HIGH_CONFIDENCE_THRESHOLD 
-        ? game["Away Team"] 
-        : null;
+    // Simply return the team with the higher probability
+    return homeProb > awayProb ? game["Home Team"] : game["Away Team"];
 };
 
 export const getTeamAbbreviation = (teamName: string): string => {

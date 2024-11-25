@@ -3,6 +3,7 @@ export interface NHLPrediction {
   'Home Team': string;
   'Pre-Game Away Win Probability': string;
   'Pre-Game Home Win Probability': string;
+  'Predicted Winner': string | null;
 }
 
 export interface NHLPlayerStats {

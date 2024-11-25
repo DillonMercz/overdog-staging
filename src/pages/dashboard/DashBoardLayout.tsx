@@ -9,6 +9,8 @@ import BetTrackerPage from './BetTrackerPage';
 import SideBar from '../../components/dashboard/SideBar';
 import NavBar from '../../components/dashboard/NavBar';
 import NHLPage from './NHLPage';
+import ProfilePage from './ProfilePage';
+import BookMakersPage from './BookMakersPage';  // Add this import
 import { PinnedGamesProvider } from '../../contexts/PinnedGamesContext';
 import PinnedGamesBar from '../../components/dashboard/PinnedGamesBar';
 
@@ -36,6 +38,8 @@ export const DashboardLayout = () => {
                  <Route path="nhl" element={<NHLPage />} />
                  <Route path="parlay" element={<ParlayGenerator />} />
                  <Route path="bet-tracker" element={<BetTrackerPage />} />
+                 <Route path="profile" element={<ProfilePage />} />
+                 <Route path="bookmakers" element={<BookMakersPage />} />  {/* Add this route */}
                </Route>
              </Routes>
            </div>

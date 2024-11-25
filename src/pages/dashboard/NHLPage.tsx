@@ -1,11 +1,48 @@
-import { useState } from 'react';
-import NHLSingles from '../../components/dashboard/hockey/NHLSingles';
+import { useState, useEffect } from 'react';
+import OverDogPicks from '../../components/dashboard/hockey/OverDogPicks';
 import NHLProps from '../../components/dashboard/hockey/NHLProps';
 import NHLScoreboardContainer from '../../components/dashboard/hockey/NHLScoreboardContainer';
 import NHLStandings from '../../components/dashboard/hockey/NHLStandings';
+import { OddsFormat } from '../../types/odds';
+import { NHLGame } from '../../types/nhl';
+import { fetchNHLPredictions } from '../../services/nhlPredictionsService';
+import { useAuth } from '../../hooks/useAuth';
+import { supabase } from '../../lib/supabase/client';
 
 const NHLPage = () => {
   const [activeTab, setActiveTab] = useState('singles');
+  const [games, setGames] = useState<NHLGame[]>([]);
+  const [oddsFormat, setOddsFormat] = useState<OddsFormat>('american');
+  const { user } = useAuth();
+
+  useEffect(() => {
+    const loadGames = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session?.access_token) {
+          const predictions = await fetchNHLPredictions(session.access_token);
+          // Convert predictions object to array of NHLGame
+          const gamesArray = Object.entries(predictions).map(([id, pred]) => ({
+            GameID: id,
+            "Away Team": pred["Away Team"],
+            "Home Team": pred["Home Team"],
+            "Game State": "SCHEDULED",
+            "Predicted Winner": pred["Predicted Winner"] || "AI Unsure",
+            "Pre-Game Away Win Probability": pred["Pre-Game Away Win Probability"],
+            "Pre-Game Home Win Probability": pred["Pre-Game Home Win Probability"],
+            oddsFormat: oddsFormat
+          }));
+          setGames(gamesArray);
+        }
+      } catch (error) {
+        console.error('Error loading NHL games:', error);
+      }
+    };
+
+    if (user) {
+      loadGames();
+    }
+  }, [user, oddsFormat]);
 
   return (
     <div className="space-y-4 font-[Montserrat] max-w-[1440px] mx-auto">
@@ -29,12 +66,36 @@ const NHLPage = () => {
               <h2 className="bg-gradient-to-r from-[#FFD426] to-[#00F6FF] bg-clip-text text-transparent font-semibold">
                 OVERDOG PICKS
               </h2>
-              <div className="flex items-center gap-3">
-                <button className="px-4 py-1.5 rounded-lg bg-[#13131A] text-[#8F9BB3] text-sm hover:text-white transition-colors">
-                  European
+              <div className="flex gap-4">
+                <button
+                  onClick={() => setOddsFormat('american')}
+                  className={`px-4 py-1.5 rounded-lg font-medium transition-all ${
+                    oddsFormat === 'american'
+                      ? 'bg-[#4263EB] text-white shadow-lg'
+                      : 'bg-[#2A2A33] text-gray-400 hover:bg-[#3A3A43] hover:text-white'
+                  }`}
+                >
+                  American
                 </button>
-                <button className="px-4 py-1.5 rounded-lg bg-[#4263EB] text-white text-sm font-medium hover:bg-[#3451C6] transition-colors">
-                  Auto Bet ⚡
+                <button
+                  onClick={() => setOddsFormat('decimal')}
+                  className={`px-4 py-1.5 rounded-lg font-medium transition-all ${
+                    oddsFormat === 'decimal'
+                      ? 'bg-[#4263EB] text-white shadow-lg'
+                      : 'bg-[#2A2A33] text-gray-400 hover:bg-[#3A3A43] hover:text-white'
+                  }`}
+                >
+                  Decimal
+                </button>
+                <button
+                  onClick={() => setOddsFormat('fractional')}
+                  className={`px-4 py-1.5 rounded-lg font-medium transition-all ${
+                    oddsFormat === 'fractional'
+                      ? 'bg-[#4263EB] text-white shadow-lg'
+                      : 'bg-[#2A2A33] text-gray-400 hover:bg-[#3A3A43] hover:text-white'
+                  }`}
+                >
+                  Fractional
                 </button>
               </div>
             </div>
@@ -60,7 +121,7 @@ const NHLPage = () => {
                 </button>
               </div>
               <div className="p-4" id="picks">
-                {activeTab === 'singles' && <NHLSingles />}
+                {activeTab === 'singles' && <OverDogPicks games={games} oddsFormat={oddsFormat} />}
                 {activeTab === 'parlays' && <div className="text-white text-center">Parlays Coming Soon</div>}
                 {activeTab === 'props' && <NHLProps />}
               </div>
