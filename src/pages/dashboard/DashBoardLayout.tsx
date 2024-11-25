@@ -10,7 +10,7 @@ import SideBar from '../../components/dashboard/SideBar';
 import NavBar from '../../components/dashboard/NavBar';
 import NHLPage from './NHLPage';
 import ProfilePage from './ProfilePage';
-import BookmakersPage from './BookmakersPage';  // Updated import path
+import BookmakersPage from './BookMakersPage';  // Fixed import with correct case
 import { PinnedGamesProvider } from '../../contexts/PinnedGamesContext';
 import PinnedGamesBar from '../../components/dashboard/PinnedGamesBar';
 
