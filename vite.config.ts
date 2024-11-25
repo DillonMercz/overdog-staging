@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/overdog-staging/', // Add base URL for GitHub Pages
+  base: '/', // Updated for custom domain
   plugins: [react()],
   server: {
     proxy: {
