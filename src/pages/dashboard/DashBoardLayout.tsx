@@ -10,7 +10,8 @@ import SideBar from '../../components/dashboard/SideBar';
 import NavBar from '../../components/dashboard/NavBar';
 import NHLPage from './NHLPage';
 import ProfilePage from './ProfilePage';
-import BookmakersPage from './BookMakersPage';  // Fixed import with correct case
+import BookmakersPage from './BookMakersPage';
+import { DiscordCallback } from '../../components/dashboard/DiscordCallback';
 import { PinnedGamesProvider } from '../../contexts/PinnedGamesContext';
 import PinnedGamesBar from '../../components/dashboard/PinnedGamesBar';
 
@@ -41,6 +42,8 @@ export const DashboardLayout = () => {
                  <Route path="profile" element={<ProfilePage />} />
                  <Route path="bookmakers" element={<BookmakersPage />} />
                </Route>
+               {/* Discord callback route outside of protected routes */}
+               <Route path="profile/discord/callback" element={<DiscordCallback />} />
              </Routes>
            </div>
          </div>

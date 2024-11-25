@@ -24,8 +24,6 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   }
 
   if (!profile) {
-    // Handle the case where we have auth but no profile
-    // You might want to redirect to a profile setup page or show an error
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#1E1E1E]">
         <div className="text-white">Profile not found. Please contact support.</div>
@@ -41,7 +39,6 @@ export function AppRoutes() {
   const { user, loading: authLoading } = useAuthContext();
   const location = useLocation();
 
-  // Show a loading indicator while checking auth status
   if (authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#1E1E1E]">

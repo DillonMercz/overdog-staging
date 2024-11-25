@@ -27,7 +27,7 @@ interface DiscordProfile {
 }
 
 const SUBSCRIPTION_TIERS = {
-  commoner: {
+  Commoner: {
     name: 'Commoner',
     icon: fasUser as IconProp,
     color: 'text-gray-400',
@@ -39,7 +39,7 @@ const SUBSCRIPTION_TIERS = {
       'Standard support'
     ]
   },
-  apprentice: {
+  Apprentice: {
     name: 'Apprentice',
     icon: fasCrown as IconProp,
     color: 'text-[#FFD700]',
@@ -53,7 +53,7 @@ const SUBSCRIPTION_TIERS = {
       'Exclusive chat rooms'
     ]
   },
-  royal: {
+  Royal: {
     name: 'Royal',
     icon: fasGem as IconProp,
     color: 'text-[#00F6FF]',
@@ -71,7 +71,7 @@ const SUBSCRIPTION_TIERS = {
 };
 
 const ProfilePage = () => {
-  const { profile, loading, updateProfile } = useUser();
+  const { profile } = useUser();
   const [isEditing, setIsEditing] = useState(false);
   const [editedData, setEditedData] = useState({
     email: profile?.email || '',
@@ -89,7 +89,14 @@ const ProfilePage = () => {
 
   const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
   const DISCORD_CLIENT_ID = import.meta.env.VITE_DISCORD_CLIENT_ID;
-  const REDIRECT_URI = `${window.location.origin}/dashboard/profile/discord/callback`;
+
+  // Get current subscription tier
+  const getCurrentTier = () => {
+    const tier = profile?.plan || 'Commoner';
+    return SUBSCRIPTION_TIERS[tier as keyof typeof SUBSCRIPTION_TIERS] || SUBSCRIPTION_TIERS.Commoner;
+  };
+
+  const currentTier = getCurrentTier();
 
   useEffect(() => {
     if (profile?.discord_user) {
@@ -101,18 +108,27 @@ const ProfilePage = () => {
     }
   }, [profile]);
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[50vh]">
-        <div className="flex flex-col items-center space-y-4">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00F6FF]"></div>
-          <p className="text-[#8F9BB3]">Loading profile...</p>
-        </div>
-      </div>
-    );
-  }
+  const handleDiscordConnect = () => {
+    const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&scope=identify&response_type=code&redirect_uri=${encodeURIComponent(`${window.location.origin}/dashboard/profile/discord/callback`)}`;
+    window.location.href = discordAuthUrl;
+  };
 
-  const currentTier = SUBSCRIPTION_TIERS[profile?.plan?.toLowerCase() as keyof typeof SUBSCRIPTION_TIERS] || SUBSCRIPTION_TIERS.commoner;
+  const handleDiscordDisconnect = async () => {
+    try {
+      setError(null);
+      await supabase
+        .from('users')
+        .update({
+          discord_user: null
+        })
+        .eq('id', profile?.id);
+      setDiscordProfile(null);
+      setSuccess('Discord account disconnected successfully');
+    } catch (err) {
+      console.error('Error disconnecting Discord:', err);
+      setError('Failed to disconnect Discord account');
+    }
+  };
 
   const handleAvatarUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     try {
@@ -149,24 +165,6 @@ const ProfilePage = () => {
       setError('Failed to upload avatar');
     } finally {
       setUploadingAvatar(false);
-    }
-  };
-
-  const handleDiscordConnect = () => {
-    const scope = 'identify guilds.members.write';
-    const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=code&scope=${scope}`;
-    window.location.href = discordAuthUrl;
-  };
-
-  const handleDiscordDisconnect = async () => {
-    try {
-      setError(null);
-      await updateProfile({ discord_user: null });
-      setDiscordProfile(null);
-      setSuccess('Discord account disconnected successfully');
-    } catch (err) {
-      console.error('Error disconnecting Discord:', err);
-      setError('Failed to disconnect Discord account');
     }
   };
 
@@ -216,7 +214,11 @@ const ProfilePage = () => {
         return;
       }
 
-      await updateProfile(editedData);
+      await supabase
+        .from('users')
+        .update(editedData)
+        .eq('id', profile?.id);
+
       setSuccess('Profile updated successfully');
       setIsEditing(false);
     } catch (err) {
@@ -431,7 +433,7 @@ const ProfilePage = () => {
                   <h4 className="text-white font-medium">Discord</h4>
                   {discordProfile ? (
                     <p className="text-sm text-[#8F9BB3]">
-                      Connected as {discordProfile.username}
+                      Connected as {discordProfile.username}#{discordProfile.discriminator}
                     </p>
                   ) : (
                     <p className="text-sm text-[#8F9BB3]">

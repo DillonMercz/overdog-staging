@@ -13,6 +13,11 @@ export interface UserProfile {
   notifications: any | null;
   config: any | null;
   connected_sportsbooks: Record<string, any>;
+  first_name: string | null;
+  last_name: string | null;
+  country: string | null;
+  birthday: string | null;
+  discord_user: string | null;
 }
 
 export interface SignUpData {
