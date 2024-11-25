@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import BetTrackerAnalytics from './BetTrackerAnalytics';
 import BetsOverview from './BetsOverview';
 import { getUserBets } from '../../services/betTrackingService';
-import type { ExtendedBet } from './types';
+import type { Bet } from '../../types/betting';
 import { SupabaseClient } from '@supabase/supabase-js';
 
 interface BetTrackerProps {
@@ -12,7 +12,7 @@ interface BetTrackerProps {
 }
 
 const BetTracker = ({ userId, supabase }: BetTrackerProps) => {
-  const [bets, setBets] = useState<ExtendedBet[]>([]);
+  const [bets, setBets] = useState<Bet[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

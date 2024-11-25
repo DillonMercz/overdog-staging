@@ -1,10 +1,11 @@
 import { OddsFormat } from './odds';
 
 export interface NHLGame {
-    GameID: string | number;
-    "Away Team": string;
-    "Home Team": string;
-    "Game State": string;
+    GameID?: string | number;
+    gameId?: string | number;
+    "Away Team"?: string;
+    "Home Team"?: string;
+    "Game State"?: string;
     "Predicted Winner"?: string;
     "Home Goals"?: number;
     "Away Goals"?: number;
@@ -13,16 +14,38 @@ export interface NHLGame {
     "Home Record"?: string;
     "Away Record"?: string;
     oddsFormat?: OddsFormat;
+    // Additional properties used in ScoreboardContainer
+    gameStatusText?: string;
+    period?: number;
+    periodTimeRemaining?: string;
+    gameTimeUTC?: string;
+    homeTeam?: NHLTeam;
+    awayTeam?: NHLTeam;
+    gameStatus?: 'pre' | 'in' | 'final';
+    startTime?: string;
 }
 
 export interface NHLTeam {
-    name: string;
-    abbreviation: string;
+    name?: string;
+    abbreviation?: string;
+    teamId?: string;
+    teamName?: string;
+    record?: string;
+    score?: number;
+    linescores?: Array<{ value: number }>;
 }
+
+// Alias for backward compatibility
+export type Team = NHLTeam;
 
 interface NHLPlayer {
     PlayerID: number;
     TeamAbbreviation: string;
+}
+
+export interface ScoreboardData {
+    gameDate?: string;
+    games: Array<NHLGame>;
 }
 
 export const NHL_PLAYERS: { [key: string]: NHLPlayer } = {
