@@ -1,0 +1,445 @@
+:root {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121a;
+    --bg-accent: #1a1a24;
+    --accent: #2cf583;
+    --accent-hover: #33FFFF;
+    --accent-dark: #00cccc;
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --border-color: rgba(0, 255, 255, 0.1);
+    --glow: 0 0 20px rgba(0, 255, 255, 0.2);
+    --glow-strong: 0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.mainContainer {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    box-shadow: var(--glow);
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, var(--text-primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header p {
+    color: var(--text-secondary);
+}
+
+.controlPanel {
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.formGroup {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.input,
+.select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-accent);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input:focus,
+.select:focus {
+    border-color: var(--accent);
+    box-shadow: var(--glow);
+}
+
+.button {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+}
+
+.button:hover {
+    background: var(--accent);
+    color: var(--bg-primary);
+    box-shadow: var(--glow-strong);
+}
+
+.playerInfo {
+    padding: 1rem;
+    background-color: var(--bg-accent);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1.5rem;
+}
+
+.playerHeader {
+    display: grid;
+    grid-template-columns: 250px repeat(4, 1fr);
+    gap: 0.75rem;
+    width: 100%;
+    height: auto;
+}
+
+.playerImageDetails {
+    text-align: center;
+    padding: 0.75rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    grid-column: 1;
+}
+
+.errorMessage {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    color: var(--text-primary);
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.playerName {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.seasonInfo {
+    font-size: 0.875rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.playerImage {
+    width: 180px;
+    height: 132px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin: 0.75rem auto;
+}
+
+.playerHeadshot {
+    width: 100%;
+    max-width:20%;
+    height: 100%;
+    justify-self: center;
+
+    object-fit: cover;
+}
+
+.teamInfo {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.playerStats {
+    grid-column: 2 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.statCard {
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.statTitle {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 0.5rem 0;
+}
+
+.statDesc {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.lineCheck {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+}
+
+.lineCheck h3 {
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.lineOptions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* When there's no input (for DD/TD), adjust the grid */
+.lineOptions:has(select:only-child) {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.lineCheckButton {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: auto;
+    min-width: 200px;
+    margin: 1.5rem auto;
+    display: block;
+    box-shadow: var(--glow);
+}
+
+.lineCheckButton:hover {
+    background: var(--accent-hover);
+    box-shadow: var(--glow-strong);
+}
+
+.lineResult {
+    margin: 1.5rem auto;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    background: rgba(44, 245, 131, 0.1);
+    color: var(--accent);
+    text-align: center;
+    font-weight: 500;
+    width: fit-content;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(44, 245, 131, 0.2);
+}
+
+.lineCheckContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-accent);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.suggestions div {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.suggestions div:hover {
+    background: var(--bg-secondary);
+    color: var(--accent);
+}
+
+.tableResponsive {
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-accent);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th,
+.table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table th {
+    background: var(--bg-secondary);
+    color: var(--accent);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+}
+
+.table tr:hover {
+    background: var(--bg-secondary);
+}
+
+.table tr.highlight {
+    background: rgba(44, 245, 131, 0.2);
+}
+
+.table tr.highlight:hover {
+    background: rgba(44, 245, 131, 0.25);
+}
+
+@media (max-width: 1024px) {
+    .playerHeader {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .playerStats {
+        grid-column: 1;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .playerImage {
+        width: 150px;
+        height: 110px;
+    }
+}
+
+@media (max-width: 768px) {
+    .mainContainer {
+        padding: 1rem;
+    }
+
+    .playerStats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .playerImageDetails {
+        width: 100%;
+        max-width: none;
+    }
+
+    .statCard {
+        height: 100px;
+    }
+
+    .value {
+        font-size: 1.5rem;
+    }
+
+    .lineOptions {
+        grid-template-columns: 1fr;
+    }
+
+    .lineResult {
+        min-width: 90%;
+        font-size: 0.9rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    .playerImage {
+        width: 120px;
+        height: 88px;
+    }
+}
