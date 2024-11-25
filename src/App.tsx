@@ -1,7 +1,7 @@
 // App.tsx
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
-import { UserProvider } from './contexts/UserContext';  // Add this import
+import { UserProvider } from './contexts/UserContext';
 import { supabase } from './lib/supabase/client';
 import { AppRoutes } from './routes/protected/AppRoutes';
 import { ErrorBoundary } from './components/ErrorBoundary';
@@ -9,13 +9,13 @@ import { ErrorBoundary } from './components/ErrorBoundary';
 function App() {
   return (
     <ErrorBoundary>
-      <BrowserRouter>
+      <HashRouter>
         <AuthProvider supabase={supabase}>
-          <UserProvider>  {/* Add this wrapper */}
+          <UserProvider>
             <AppRoutes />
           </UserProvider>
         </AuthProvider>
-      </BrowserRouter>
+      </HashRouter>
     </ErrorBoundary>
   );
 }
