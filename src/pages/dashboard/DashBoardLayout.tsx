@@ -40,10 +40,9 @@ export const DashboardLayout = () => {
                  <Route path="parlay" element={<ParlayGenerator />} />
                  <Route path="bet-tracker" element={<BetTrackerPage />} />
                  <Route path="profile" element={<ProfilePage />} />
+                 <Route path="profile/discord/callback" element={<DiscordCallback />} />
                  <Route path="bookmakers" element={<BookmakersPage />} />
                </Route>
-               {/* Discord callback route outside of protected routes */}
-               <Route path="profile/discord/callback" element={<DiscordCallback />} />
              </Routes>
            </div>
          </div>
