@@ -23,6 +23,13 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       }
+    },
+    fs: {
+      strict: true,
     }
+  },
+  preview: {
+    port: 5173,
+    strictPort: true,
   }
 })

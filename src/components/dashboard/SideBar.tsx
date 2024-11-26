@@ -1,18 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../contexts/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faTableCells,
   faBasketball,
-  faFootball,
   faHockeyPuck,
-  faBaseball,
-  faUsers,
-  faGraduationCap,
-  faStore,
-  faFutbol,
   faMoneyBillTrendUp,
   faThumbtack,
+  faUser
 } from '@fortawesome/free-solid-svg-icons';
 
 interface MenuItem {
@@ -25,84 +21,66 @@ interface MenuItem {
   }>;
   disabled?: boolean;
   badge?: string;
+  allowedPlans?: string[];
 }
 
 const SideBar = () => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isPinned, setIsPinned] = useState(false);
   const navigate = useNavigate();
+  const { profile } = useUser();
 
   const menuItems: MenuItem[] = [
     { 
       icon: faTableCells, 
       label: 'Dashboard',
-      path: '/dashboard'
+      path: '/dashboard',
+      allowedPlans: ['Royal']
     },
     { 
       icon: faMoneyBillTrendUp,
       label: 'Bet Tracker',
-      path: '/dashboard/bet-tracker'
+      path: '/dashboard/bet-tracker',
+      allowedPlans: ['Royal', 'Apprentice', 'Commoner']
     },
     { 
       icon: faBasketball, 
       label: 'Basketball', 
       submenu: [
-        { name: 'NBA', path: '/dashboard/nba' },
-        { name: 'WNBA', path: '/dashboard/wnba' }
-      ] 
-    },
-    { 
-      icon: faFootball, 
-      label: 'Football', 
-      submenu: [
-        { name: 'NFL', path: '/dashboard/nfl' }
-      ] 
+        { name: 'NBA', path: '/dashboard/nba' }
+      ],
+      allowedPlans: ['Royal', 'Apprentice']
     },
     { 
       icon: faHockeyPuck, 
       label: 'Hockey', 
       submenu: [
         { name: 'NHL', path: '/dashboard/nhl' }
-      ] 
+      ],
+      allowedPlans: ['Royal', 'Apprentice']
     },
     { 
-      icon: faBaseball, 
-      label: 'Baseball', 
-      submenu: [
-        { name: 'MLB', path: '/dashboard/mlb' }
-      ] 
-    },
-    { 
-      icon: faFutbol, 
-      label: 'Soccer', 
-      disabled: true, 
-      badge: 'Coming Soon!' 
-    },
-    { 
-      icon: faUsers, 
-      label: 'Community', 
-      submenu: [
-        { name: 'Chat', path: '/dashboard/chat' },
-        { name: 'Win Wall', path: '/dashboard/win-wall' },
-        { name: 'Loss City', path: '/dashboard/loss-city' }
-      ] 
-    },
-    { 
-      icon: faGraduationCap, 
-      label: 'Overdog Academy',
-      path: '/dashboard/academy'
-    },
-    { 
-      icon: faStore, 
-      label: 'Market', 
-      disabled: true, 
-      badge: 'Coming Soon!' 
+      icon: faUser, 
+      label: 'Profile',
+      path: '/dashboard/profile',
+      allowedPlans: ['Royal', 'Apprentice', 'Commoner']
     }
   ];
+
+  // Filter menu items based on user's plan
+  const filteredMenuItems = menuItems.filter(item => {
+    if (!item.allowedPlans || !profile) return false;
+    return item.allowedPlans.includes(profile.plan);
+  });
 
   const handleNavigation = (path?: string) => {
     if (path) {
       navigate(path);
+      
+      // Close submenu if it's a submenu item
+      if (!menuItems.find(item => item.path === path)) {
+        setActiveMenu(null);
+      }
     }
   };
 
@@ -123,6 +101,7 @@ const SideBar = () => {
         ${!isPinned ? 'group hover:w-64' : ''}
         z-50
       `}
+      data-expanded={isPinned}
     >
       {/* Logo Header */}
       <div className="h-16 flex items-center border-b border-[rgba(255,255,255,0.05)] relative px-5">
@@ -152,7 +131,7 @@ const SideBar = () => {
 
       {/* Navigation */}
       <nav className="flex-1 py-4 overflow-y-auto">
-        {menuItems.map((item, index) => (
+        {filteredMenuItems.map((item, index) => (
           <div key={index}>
             <button
               onClick={() => {
