@@ -149,11 +149,12 @@ const ProfilePage = () => {
       setUploadingAvatar(true);
       
       const fileExt = file.name.split('.').pop();
-      const fileName = `${profile?.id}/${Math.random().toString(36).substring(2)}${Date.now()}.${fileExt}`;
+      const fileName = `${Math.random().toString(36).substring(2)}${Date.now()}.${fileExt}`;
+      const filePath = `avatars/${fileName}`;
 
       const { error: uploadError } = await supabase.storage
-        .from('avatars')
-        .upload(fileName, file);
+        .from('profiles')
+        .upload(filePath, file);
 
       if (uploadError) throw uploadError;
 
@@ -258,7 +259,7 @@ const ProfilePage = () => {
               <div className="w-24 h-24 rounded-full bg-[rgba(255,255,255,0.05)] overflow-hidden">
                 {editedData.avatar ? (
                   <img
-                    src={`${supabaseUrl}/storage/v1/object/public/avatars/${editedData.avatar}`}
+                    src={`${supabaseUrl}/storage/v1/object/public/profiles/avatars/${editedData.avatar}`}
                     alt="Profile"
                     className="w-full h-full object-cover"
                   />
