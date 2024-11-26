@@ -6,10 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OverDog Staging</title>
     <script>
-      (function(){
+      // Restore the URL from sessionStorage
+      (function() {
         var redirect = sessionStorage.redirect;
         delete sessionStorage.redirect;
-        if (redirect && redirect != location.href) {
+        if (redirect && redirect !== location.href) {
+          // Remove the base path from the redirect URL
+          var basePath = '/ODWebsitev2';
+          if (redirect.indexOf(basePath) === 0) {
+            redirect = redirect.slice(basePath.length);
+          }
           history.replaceState(null, null, redirect);
         }
       })();
