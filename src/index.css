@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'MontserratAlt1';
+  src: url('../public/assets/fonts/MontserratAlt1-Light.ttf') format('truetype');
+  font-weight: 500 !important; /* Adjust as needed */
+  font-style: normal; /* Adjust as needed */
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  @apply bg-[#0B1120] text-white;
+}
+
+span,h1, h2, h3, h4, h5, h6 {
+  font-family: 'MontserratAlt1', sans-serif;
+  font-weight: 500 !important;
+  color: #8F9BB3;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-700 rounded-full;
+}
+
+/* Hide scrollbar utility class */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
