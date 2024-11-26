@@ -11,13 +11,15 @@ export function RoleProtectedRoute({ children, allowedPlans }: RoleProtectedRout
   const location = useLocation();
 
   if (!profile || !allowedPlans.includes(profile.plan)) {
-    // Redirect to a default allowed page based on the user's plan
+    // Determine redirect path based on user's plan
     let redirectPath = '/dashboard/profile';
     
     if (profile?.plan === 'Apprentice') {
-      redirectPath = '/dashboard/nba';
+      redirectPath = '/dashboard/nba'; // Default to NBA predictions for Apprentice
     } else if (profile?.plan === 'Royal') {
-      redirectPath = '/dashboard';
+      redirectPath = '/dashboard'; // Default to dashboard for Royal
+    } else if (profile?.plan === 'Commoner') {
+      redirectPath = '/dashboard/profile'; // Default to profile for Commoner
     }
     
     // Only redirect if we're not already on the target path
