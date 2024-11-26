@@ -65,19 +65,25 @@ const SideBar = () => {
       ],
       allowedPlans: ['Royal', 'Apprentice']
     },
-  { 
-    icon: faBaseball, 
-    label: 'Baseball', 
-    submenu: [
-      { name: 'MLB', path: '/dashboard/mlb' }
-    ] 
-  },
-  { 
-    icon: faFutbol, 
-    label: 'Soccer', 
-    disabled: true, 
-    badge: 'Coming Soon!' 
-  },
+    { 
+      icon: faBaseball, 
+      label: 'Baseball', 
+      submenu: [
+        { name: 'MLB', path: '/dashboard/mlb' }
+      ] 
+    },
+    { 
+      icon: faFutbol, 
+      label: 'Soccer', 
+      disabled: true, 
+      badge: 'Coming Soon!' 
+    },
+    {
+      icon: faUser,
+      label: 'Profile',
+      path: '/dashboard/profile',
+      allowedPlans: ['Royal', 'Apprentice', 'Commoner']
+    }
   ];
 
   // Filter menu items based on user's plan
