@@ -1,6 +1,7 @@
 // pages/dashboard/DashBoardLayout.tsx
 import { Routes, Route } from 'react-router-dom';
 import { ProtectedRoutes } from '../../routes/protected/ProtectedRoutes';
+import { RoleProtectedRoute } from '../../routes/protected/RoleProtectedRoute';
 import DashboardPage from './DashBoardPage';
 import NBAPage from './NBAPage';
 import NBAPlayerPage from './NBAPlayerPage';
@@ -33,15 +34,84 @@ export const DashboardLayout = () => {
            <div className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full mt-16">
              <Routes>
                <Route element={<ProtectedRoutes />}>
-                 <Route index element={<DashboardPage />} />
-                 <Route path="nba" element={<NBAPage />} />
-                 <Route path="nba/player" element={<NBAPlayerPage />} />
-                 <Route path="nhl" element={<NHLPage />} />
-                 <Route path="parlay" element={<ParlayGenerator />} />
-                 <Route path="bet-tracker" element={<BetTrackerPage />} />
-                 <Route path="profile" element={<ProfilePage />} />
+                 {/* Dashboard - Royal only */}
+                 <Route
+                   index
+                   element={
+                     <RoleProtectedRoute allowedPlans={['Royal']}>
+                       <DashboardPage />
+                     </RoleProtectedRoute>
+                   }
+                 />
+
+                 {/* NBA Pages - Royal and Apprentice */}
+                 <Route
+                   path="nba"
+                   element={
+                     <RoleProtectedRoute allowedPlans={['Royal', 'Apprentice']}>
+                       <NBAPage />
+                     </RoleProtectedRoute>
+                   }
+                 />
+                 <Route
+                   path="nba/player"
+                   element={
+                     <RoleProtectedRoute allowedPlans={['Royal', 'Apprentice']}>
+                       <NBAPlayerPage />
+                     </RoleProtectedRoute>
+                   }
+                 />
+
+                 {/* NHL Pages - Royal and Apprentice */}
+                 <Route
+                   path="nhl"
+                   element={
+                     <RoleProtectedRoute allowedPlans={['Royal', 'Apprentice']}>
+                       <NHLPage />
+                     </RoleProtectedRoute>
+                   }
+                 />
+
+                 {/* Parlay - Royal only */}
+                 <Route
+                   path="parlay"
+                   element={
+                     <RoleProtectedRoute allowedPlans={['Royal']}>
+                       <ParlayGenerator />
+                     </RoleProtectedRoute>
+                   }
+                 />
+
+                 {/* Bet Tracker - All users */}
+                 <Route
+                   path="bet-tracker"
+                   element={
+                     <RoleProtectedRoute allowedPlans={['Royal', 'Apprentice', 'Commoner']}>
+                       <BetTrackerPage />
+                     </RoleProtectedRoute>
+                   }
+                 />
+
+                 {/* Profile - All users */}
+                 <Route
+                   path="profile"
+                   element={
+                     <RoleProtectedRoute allowedPlans={['Royal', 'Apprentice', 'Commoner']}>
+                       <ProfilePage />
+                     </RoleProtectedRoute>
+                   }
+                 />
                  <Route path="profile/discord/callback" element={<DiscordCallback />} />
-                 <Route path="bookmakers" element={<BookmakersPage />} />
+
+                 {/* Bookmakers - Royal only */}
+                 <Route
+                   path="bookmakers"
+                   element={
+                     <RoleProtectedRoute allowedPlans={['Royal']}>
+                       <BookmakersPage />
+                     </RoleProtectedRoute>
+                   }
+                 />
                </Route>
              </Routes>
            </div>
