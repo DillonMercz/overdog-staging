@@ -70,13 +70,15 @@ const SideBar = () => {
       label: 'Baseball', 
       submenu: [
         { name: 'MLB', path: '/dashboard/mlb' }
-      ] 
+      ],
+      allowedPlans: ['Royal', 'Apprentice']
     },
     { 
       icon: faFutbol, 
       label: 'Soccer', 
       disabled: true, 
-      badge: 'Coming Soon!' 
+      badge: 'Coming Soon!',
+      allowedPlans: ['Royal', 'Apprentice', 'Commoner']
     },
     {
       icon: faUser,
@@ -86,9 +88,13 @@ const SideBar = () => {
     }
   ];
 
-  // Filter menu items based on user's plan
+  // Filter menu items based on user's plan, but keep disabled items
   const filteredMenuItems = menuItems.filter(item => {
-    if (!item.allowedPlans || !profile) return false;
+    // If item has no allowedPlans or is disabled, show it
+    if (!item.allowedPlans || item.disabled) return true;
+    // If no profile, only show items without allowedPlans
+    if (!profile) return false;
+    // Otherwise, check if user's plan is allowed
     return item.allowedPlans.includes(profile.plan);
   });
 
