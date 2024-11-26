@@ -4,20 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   base: '/',
-  plugins: [
-    react(),
-    {
-      name: 'copy-files',
-      enforce: 'post',
-      generateBundle() {
-        this.emitFile({
-          type: 'asset',
-          fileName: '404.html',
-          source: require('fs').readFileSync('404.html', 'utf-8')
-        });
-      }
-    }
-  ],
+  plugins: [react()],
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
