@@ -23,7 +23,7 @@ export const DiscordCallback = () => {
             client_secret: import.meta.env.VITE_DISCORD_CLIENT_SECRET,
             grant_type: 'authorization_code',
             code,
-            redirect_uri: `${window.location.origin}/dashboard/profile/discord/callback`
+            redirect_uri: `${window.location.origin}/dashboard/profile/`
           }),
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
