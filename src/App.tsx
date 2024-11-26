@@ -7,13 +7,9 @@ import { AppRoutes } from './routes/protected/AppRoutes';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
 function App() {
-  // Check if we're on GitHub Pages
-  const isGitHubPages = window.location.hostname.includes('github.io');
-  const basename = isGitHubPages ? '/ODWebsitev2' : '';
-
   return (
     <ErrorBoundary>
-      <BrowserRouter basename={basename}>
+      <BrowserRouter>
         <AuthProvider supabase={supabase}>
           <UserProvider>
             <AppRoutes />
