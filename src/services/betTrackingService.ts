@@ -18,7 +18,7 @@ interface RawBetLeg {
   odds_type_id: string;
   odds: string;
   leg_type_id: string;
-  event_id?: string;
+  event_id?: number; // Changed to number since it's a bigint in the database
   bet_status_id: string;
   sport: { id: string; name: string };
   league: { id: string; name: string; country: string | null };
@@ -80,8 +80,10 @@ const getSingleBetTypeId = async (): Promise<string> => {
 // Create a single bet with one leg
 const createSingleBet = async (betData: CreateBetData): Promise<{ bet: Bet, legs: BetLeg[] }> => {
   try {
+    console.log('Incoming betData:', JSON.stringify(betData, null, 2));
+
     if (!betData.bet_status_id) {
-      throw new Error('bet_status_id is required');
+      throw new Error('bet_status_id is required in bet data');
     }
 
     if (betData.legs.length !== 1) {
@@ -102,33 +104,41 @@ const createSingleBet = async (betData: CreateBetData): Promise<{ bet: Bet, legs
     // Calculate potential payout correctly
     const potentialPayout = calculatePotentialPayoutFromAmerican(betData.stake, betData.odds);
 
-    // Prepare RPC data
-    const rpcData = {
-      bet_data: {
-        bookmaker_id: betData.bookmaker_id,
-        bet_type_id: betData.bet_type_id,
-        bet_status_id: betData.bet_status_id,
-        user_id: currentUser.id,
-        stake: betData.stake,
-        odds_type_id: betData.odds_type_id,
-        odds: betData.odds,
-        placed_at: new Date().toISOString(),
-        potential_payout: potentialPayout
-      },
-      legs_data: [{
-        sport_id: betData.legs[0].sport_id,
-        league_id: betData.legs[0].league_id,
-        event_name: betData.legs[0].event_name,
-        selection: betData.legs[0].selection,
-        event_start: betData.legs[0].event_start,
-        odds_type_id: betData.legs[0].odds_type_id,
-        odds: betData.legs[0].odds,
-        leg_type_id: betData.legs[0].leg_type_id,
-        event_id: betData.legs[0].event_id
-      }]
+    // Create the leg data first - include all required fields including bet_status_id
+    const legData = {
+      sport_id: betData.legs[0].sport_id,
+      league_id: betData.legs[0].league_id,
+      event_name: betData.legs[0].event_name,
+      selection: betData.legs[0].selection,
+      event_start: betData.legs[0].event_start,
+      odds_type_id: betData.legs[0].odds_type_id,
+      odds: betData.legs[0].odds,
+      leg_type_id: betData.legs[0].leg_type_id,
+      bet_status_id: betData.legs[0].bet_status_id,
+      event_id: betData.legs[0].event_id ? parseInt(betData.legs[0].event_id) : null // Convert string to number for bigint
     };
 
-    console.log('Sending single bet RPC data:', JSON.stringify(rpcData, null, 2));
+    // Create the bet data - include all fields needed for the bet INSERT statement
+    const betDataForRPC = {
+      bookmaker_id: betData.bookmaker_id,
+      bet_type_id: betData.bet_type_id,
+      bet_status_id: betData.bet_status_id,
+      user_id: currentUser.id,
+      stake: betData.stake,
+      odds_type_id: betData.odds_type_id,
+      odds: betData.odds,
+      placed_at: new Date().toISOString(),
+      potential_payout: potentialPayout
+    };
+
+    // Prepare RPC data to match exactly what the function expects
+    const rpcData = {
+      bet_data: betDataForRPC,
+      legs_data: [legData]
+    };
+
+    // Log the complete RPC data
+    console.log('Complete RPC data:', JSON.stringify(rpcData, null, 2));
 
     const { data, error } = await supabase.rpc('create_bet_with_legs', rpcData);
 
@@ -224,7 +234,7 @@ const getUserBets = async (supabase: SupabaseClient, userId: string): Promise<Be
             odds_type_id: leg.odds_type_id,
             odds: leg.odds,
             leg_type_id: leg.leg_type_id,
-            event_id: leg.event_id,
+            event_id: leg.event_id?.toString(), // Convert number back to string for frontend
             bet_status_id: leg.bet_status_id,
             sport: { 
               name: leg.sport?.name || 'N/A'

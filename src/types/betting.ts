@@ -74,7 +74,7 @@ export interface Bet {
 export interface CreateBetData {
   bookmaker_id: string;
   bet_type_id: string;
-  bet_status_id: string;
+  bet_status_id: string; // Added bet_status_id field
   stake: number;
   odds_type_id: string;
   odds: string;
@@ -103,6 +103,7 @@ export interface BetLegData {
   leg_type_id?: string; // Optional since it's set by database trigger
   event_id?: string;
   prediction_id?: string; // Added prediction_id field
+  bet_status_id: string; // Added bet_status_id field
 }
 
 export interface OddsType {

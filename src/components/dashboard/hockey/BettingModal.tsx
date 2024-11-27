@@ -35,6 +35,7 @@ const BettingModal = ({ isOpen, onClose, game, eventId, oddsFormat = 'american' 
   const [oddsTypes, setOddsTypes] = useState<OddsType[]>([]);
   const [legTypes, setLegTypes] = useState<BetLegType[]>([]);
   const [legTypeId, setLegTypeId] = useState<string | null>(null);
+  const [actualEventId, setActualEventId] = useState<number | null>(null);
   const { user } = useAuth();
 
   useEffect(() => {
@@ -56,10 +57,10 @@ const BettingModal = ({ isOpen, onClose, game, eventId, oddsFormat = 'american' 
 
         // Only fetch prediction data if we have an eventId
         if (eventId) {
-          // Fetch prediction_type from predictions table
+          // Fetch prediction_type and event_id from predictions table
           const { data: predictionData, error: predictionError } = await supabase
             .from('predictions')
-            .select('prediction_type')
+            .select('prediction_type, event_id')
             .eq('id', eventId)
             .single();
 
@@ -74,6 +75,9 @@ const BettingModal = ({ isOpen, onClose, game, eventId, oddsFormat = 'american' 
           }
 
           console.log('Prediction data:', predictionData);
+          
+          // Store the actual event ID from the prediction
+          setActualEventId(predictionData.event_id);
 
           // Get bet leg type ID based on prediction_type
           const { data: legTypeData, error: legTypeError } = await supabase
@@ -181,8 +185,8 @@ const BettingModal = ({ isOpen, onClose, game, eventId, oddsFormat = 'american' 
         return;
       }
 
-      if (!eventId) {
-        setError('No event ID provided');
+      if (!actualEventId) {
+        setError('No event ID found');
         return;
       }
 
@@ -207,7 +211,7 @@ const BettingModal = ({ isOpen, onClose, game, eventId, oddsFormat = 'american' 
       const betData: CreateBetData = {
         bookmaker_id: selectedBookmaker,
         bet_type_id: singleBetTypeId,
-        bet_status_id: PENDING_STATUS_ID, // Use constant for Pending status
+        bet_status_id: PENDING_STATUS_ID,
         stake: parseFloat(stake),
         odds_type_id: oddsType.id,
         odds: odds,
@@ -219,8 +223,9 @@ const BettingModal = ({ isOpen, onClose, game, eventId, oddsFormat = 'american' 
           event_start: new Date().toISOString(),
           odds_type_id: oddsType.id,
           odds: odds,
-          event_id: eventId,
-          leg_type_id: legTypeId
+          event_id: actualEventId.toString(), // Use the actual event ID from the prediction
+          leg_type_id: legTypeId,
+          bet_status_id: PENDING_STATUS_ID
         }]
       };
 
@@ -231,7 +236,7 @@ const BettingModal = ({ isOpen, onClose, game, eventId, oddsFormat = 'american' 
       onClose();
     } catch (err) {
       console.error('Error placing bet:', err);
-      setError('Failed to place bet. Please try again.');
+      setError('Failed to place bet');
     }
   };
 
