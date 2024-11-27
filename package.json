@@ -3,16 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://staging.overdogbets.com",
   "scripts": {
     "dev": "concurrently \"vite\" \"python src/scripts/nba_player_stats.py\"",
     "dev:frontend": "vite",
     "dev:backend": "python src/scripts/nba_player_stats.py",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
@@ -43,7 +40,6 @@
     "eslint": "^9.13.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.13",
-    "gh-pages": "^6.1.1",
     "globals": "^15.11.0",
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",

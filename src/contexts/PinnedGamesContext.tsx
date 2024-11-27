@@ -20,7 +20,6 @@ export const PinnedGamesProvider: React.FC<{ children: ReactNode }> = ({ childre
   const [pinnedGames, setPinnedGames] = useState<PinnedGame[]>(() => {
     try {
       const savedGames = localStorage.getItem(STORAGE_KEY);
-      console.log('Initial load from localStorage:', savedGames); // Debug log
       return savedGames ? JSON.parse(savedGames) : [];
     } catch (error) {
       console.error('Error loading from localStorage:', error);
@@ -30,7 +29,6 @@ export const PinnedGamesProvider: React.FC<{ children: ReactNode }> = ({ childre
 
   // Save to localStorage whenever pinnedGames changes
   useEffect(() => {
-    console.log('Saving to localStorage:', pinnedGames); // Debug log
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(pinnedGames));
     } catch (error) {
@@ -61,7 +59,6 @@ export const PinnedGamesProvider: React.FC<{ children: ReactNode }> = ({ childre
 
   const isPinned = (gameId: string) => {
     const result = pinnedGames.some(game => game.gameId === gameId);
-    console.log('Checking if game is pinned:', gameId, result); // Debug log
     return result;
   };
 
