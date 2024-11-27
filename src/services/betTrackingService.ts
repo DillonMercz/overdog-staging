@@ -80,13 +80,7 @@ const getUserBets = async (supabase: SupabaseClient, userId: string): Promise<Be
       return [];
     }
 
-    // Log raw data to debug
-    console.log('Raw bet data:', JSON.stringify(data[0], null, 2));
-
     const transformedBets = (data as RawBet[]).map(bet => {
-      // Log bet status before transformation
-      console.log('Bet status before transform:', bet.bet_status);
-      
       const transformedBet: Bet = {
         id: bet.id,
         user_id: bet.user_id,
@@ -113,9 +107,6 @@ const getUserBets = async (supabase: SupabaseClient, userId: string): Promise<Be
           name: bet.bet_status?.name || 'N/A'
         },
         legs: bet.bet_legs.map((leg: RawBetLeg): BetLeg => {
-          // Log leg status before transformation
-          console.log('Leg status before transform:', leg.bet_status);
-          
           return {
             id: leg.id,
             bet_id: leg.bet_id,
@@ -153,13 +144,39 @@ const getUserBets = async (supabase: SupabaseClient, userId: string): Promise<Be
       return transformedBet;
     });
 
-    // Log transformed data to debug
-    console.log('Transformed bet data:', JSON.stringify(transformedBets[0], null, 2));
-
     return transformedBets;
   } catch (error) {
     console.error('Error in getUserBets:', error);
     throw error;
+  }
+};
+
+// Get single bet type ID
+const getSingleBetTypeId = async (): Promise<string> => {
+  try {
+    const { data, error } = await supabase
+      .from('bet_types')
+      .select('id')
+      .eq('name', 'Single')
+      .single();
+
+    if (error) throw error;
+    if (!data) throw new Error('Single bet type not found');
+    
+    return data.id;
+  } catch (error) {
+    console.error('Error fetching single bet type:', error);
+    throw error;
+  }
+};
+
+// Calculate potential payout based on American odds
+const calculatePotentialPayoutFromAmerican = (stake: number, odds: string): number => {
+  const oddsNum = parseInt(odds);
+  if (oddsNum > 0) {
+    return stake * (oddsNum / 100) + stake;
+  } else {
+    return stake * (100 / Math.abs(oddsNum)) + stake;
   }
 };
 
@@ -171,7 +188,7 @@ const trackBet = async (betData: CreateBetData): Promise<{ bet: Bet, legs: BetLe
     // Get the 'Pending' status ID
     const { data: statusData, error: statusError } = await supabase
       .from('bet_status')
-      .select('*')
+      .select('id')
       .eq('name', 'Pending')
       .single();
 
@@ -191,6 +208,9 @@ const trackBet = async (betData: CreateBetData): Promise<{ bet: Bet, legs: BetLe
       throw new Error('No authenticated user found');
     }
 
+    // Calculate potential payout correctly
+    const potentialPayout = calculatePotentialPayoutFromAmerican(betData.stake, betData.odds);
+
     // Prepare RPC data
     const rpcData = {
       bet_data: {
@@ -202,7 +222,7 @@ const trackBet = async (betData: CreateBetData): Promise<{ bet: Bet, legs: BetLe
         odds_type_id: betData.odds_type_id,
         odds: betData.odds,
         placed_at: new Date().toISOString(),
-        potential_payout: betData.stake * parseFloat(betData.odds)
+        potential_payout: potentialPayout
       },
       legs_data: betData.legs.map(leg => ({
         sport_id: leg.sport_id,
@@ -214,9 +234,11 @@ const trackBet = async (betData: CreateBetData): Promise<{ bet: Bet, legs: BetLe
         odds: leg.odds,
         leg_type_id: leg.leg_type_id,
         event_id: leg.event_id,
-        bet_status_id: statusData.id // Set initial leg status to Pending
+        bet_status_id: statusData.id // Ensure bet_status_id is set for each leg
       }))
     };
+
+    console.log('Sending RPC data:', JSON.stringify(rpcData, null, 2));
 
     const { data, error } = await supabase.rpc('create_bet_with_legs', rpcData);
 
@@ -319,37 +341,11 @@ const getBetLegTypes = async (): Promise<BetLegType[]> => {
   }
 };
 
-// Calculate potential payout based on odds type
-const calculatePotentialPayout = (stake: number, odds: string, oddsType: string): number => {
-  try {
-    switch (oddsType) {
-      case 'decimal':
-        return stake * parseFloat(odds);
-      case 'fractional': {
-        const [num, den] = odds.split('/').map(Number);
-        return stake * (num / den + 1);
-      }
-      case 'american': {
-        const oddsNum = parseInt(odds);
-        if (oddsNum > 0) {
-          return stake * (oddsNum / 100 + 1);
-        } else {
-          return stake * (100 / Math.abs(oddsNum) + 1);
-        }
-      }
-      default:
-        throw new Error(`Unsupported odds type: ${oddsType}`);
-    }
-  } catch (error) {
-    console.error('Error calculating potential payout:', error);
-    throw error;
-  }
-};
-
 export {
   getOddsTypes,
   getBetLegTypes,
-  calculatePotentialPayout,
+  getSingleBetTypeId,
+  calculatePotentialPayoutFromAmerican,
   trackBet,
   getUserBets,
   updateBetStatus,

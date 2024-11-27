@@ -1,34 +1,35 @@
 import { NHLPredictionsResponse, NHLPropsResponse, NHLScoresResponse } from '../types/nhlPredictions';
 import { supabase } from '../lib/supabase/client';
 import { NHLGame } from '../types/nhl';
+import { getTeamAbbreviation as getTeamAbbreviationUtil } from '../utils/nhlUtils';
 
 const formatDate = () => {
   const currentDate = new Date();
-  const options = { timeZone: 'America/New_York' };
-  const [month, day, year] = currentDate
-    .toLocaleDateString('en-US', options)
-    .split('/')
-    .map((part) => part.padStart(2, '0'));
+  // Get the date in UTC to ensure consistency
+  const year = currentDate.getUTCFullYear();
+  const month = String(currentDate.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(currentDate.getUTCDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 };
 
 export const fetchNHLPredictions = async (authToken: string): Promise<NHLPredictionsResponse> => {
   const formattedDate = formatDate();
+  console.log('Fetching predictions for date:', formattedDate);
   
-  // First, get predictions
+  // First, get predictions with more flexible date range
   const { data: predictions, error: predictionsError } = await supabase
     .from('predictions')
     .select('*')
     .eq('sport_id', '0f9a163b-f6e3-4743-952c-76909405d482') // NHL sport ID
     .eq('league_id', '1e4c7e3c-5d07-4705-a608-7e586bbc92b4') // NHL league ID
-    .is('result', null) // Only get upcoming games (result is NULL)
-    .gte('prediction_time', `${formattedDate}T00:00:00`)
-    .lte('prediction_time', `${formattedDate}T23:59:59`);
+    .or('result.is.null,result.eq.""')
 
   if (predictionsError) {
     console.error('Error fetching NHL predictions:', predictionsError);
     throw new Error('Failed to fetch NHL predictions');
   }
+
+  console.log('Found predictions:', predictions?.length || 0);
 
   if (!predictions || predictions.length === 0) {
     return {};
@@ -36,6 +37,7 @@ export const fetchNHLPredictions = async (authToken: string): Promise<NHLPredict
 
   // Get all event IDs from predictions
   const eventIds = predictions.map(p => p.event_id);
+  console.log('Event IDs:', eventIds);
 
   // Then fetch corresponding events
   const { data: events, error: eventsError } = await supabase
@@ -48,6 +50,8 @@ export const fetchNHLPredictions = async (authToken: string): Promise<NHLPredict
     throw new Error('Failed to fetch events');
   }
 
+  console.log('Found events:', events?.length || 0);
+
   // Create a map of events for easy lookup
   const eventsMap = new Map(events?.map(event => [event.id, event]));
 
@@ -56,13 +60,24 @@ export const fetchNHLPredictions = async (authToken: string): Promise<NHLPredict
   
   predictions.forEach(prediction => {
     const event = eventsMap.get(prediction.event_id);
-    if (!event) return;
+    if (!event) {
+      console.log('No event found for prediction:', prediction.event_id);
+      return;
+    }
+
+    console.log('Processing prediction for event:', event.id, {
+      home_team: event.home_team_name,
+      away_team: event.away_team_name,
+      prediction_value: prediction.prediction_value,
+      home_prob: prediction.home_win_probability,
+      away_prob: prediction.away_win_probability
+    });
 
     const homeTeam = event.home_team_name || 'TBD';
     const awayTeam = event.away_team_name || 'TBD';
     
     // Check if prediction_value is null or undefined
-    const predictedWinner = prediction.prediction_value === null || prediction.prediction_value === undefined ? 
+    const predictedWinner = prediction.prediction_value === null || prediction.prediction_value === undefined || prediction.prediction_value === '' ? 
       "AI Unsure" : prediction.prediction_value;
     
     const game: NHLGame = {
@@ -83,14 +98,15 @@ export const fetchNHLPredictions = async (authToken: string): Promise<NHLPredict
     };
 
     response[prediction.event_id.toString()] = {
-      'Away Team': game["Away Team"],
-      'Home Team': game["Home Team"],
-      'Pre-Game Away Win Probability': game["Pre-Game Home Win Probability"] || "0",
-      'Pre-Game Home Win Probability': game["Pre-Game Away Win Probability"] || "0",
+      'Away Team': game["Away Team"] || 'TBD',
+      'Home Team': game["Home Team"] || 'TBD',
+      'Pre-Game Away Win Probability': game["Pre-Game Away Win Probability"] || "0",
+      'Pre-Game Home Win Probability': game["Pre-Game Home Win Probability"] || "0",
       'Predicted Winner': predictedWinner
     };
   });
 
+  console.log('Final response:', Object.keys(response).length, 'predictions');
   return response;
 };
 
@@ -141,46 +157,8 @@ export const fetchNHLScores = async (): Promise<NHLScoresResponse> => {
   return response.json();
 };
 
-export const getTeamAbbreviation = (teamName: string): string => {
-  if (!teamName) return '';
-  
-  const teams: { [key: string]: string } = {
-    'Anaheim Ducks': 'ANA',
-    'Arizona Coyotes': 'ARI',
-    'Boston Bruins': 'BOS',
-    'Buffalo Sabres': 'BUF',
-    'Calgary Flames': 'CGY',
-    'Carolina Hurricanes': 'CAR',
-    'Chicago Blackhawks': 'CHI',
-    'Colorado Avalanche': 'COL',
-    'Columbus Blue Jackets': 'CBJ',
-    'Dallas Stars': 'DAL',
-    'Detroit Red Wings': 'DET',
-    'Edmonton Oilers': 'EDM',
-    'Florida Panthers': 'FLA',
-    'Los Angeles Kings': 'LAK',
-    'Minnesota Wild': 'MIN',
-    'Montreal Canadiens': 'MTL',
-    'Nashville Predators': 'NSH',
-    'New Jersey Devils': 'NJD',
-    'New York Islanders': 'NYI',
-    'New York Rangers': 'NYR',
-    'Ottawa Senators': 'OTT',
-    'Philadelphia Flyers': 'PHI',
-    'Pittsburgh Penguins': 'PIT',
-    'San Jose Sharks': 'SJS',
-    'Seattle Kraken': 'SEA',
-    'St. Louis Blues': 'STL',
-    'Tampa Bay Lightning': 'TBL',
-    'Toronto Maple Leafs': 'TOR',
-    'Vancouver Canucks': 'VAN',
-    'Vegas Golden Knights': 'VGK',
-    'Washington Capitals': 'WSH',
-    'Winnipeg Jets': 'WPG',
-    'Utah Hockey Club': 'UTA'
-  };
-  return teams[teamName] || '';
-};
+// Re-export the utility function for backward compatibility
+export const getTeamAbbreviation = getTeamAbbreviationUtil;
 
 export const getTeamName = (teamName: string): string => {
   if (!teamName) return '';

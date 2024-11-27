@@ -20,7 +20,10 @@ const NHLPage = () => {
       try {
         const { data: { session } } = await supabase.auth.getSession();
         if (session?.access_token) {
+          console.log('Fetching NHL predictions...');
           const predictions = await fetchNHLPredictions(session.access_token);
+          console.log('Received predictions:', predictions);
+          
           // Convert predictions object to array of NHLGame
           const gamesArray = Object.entries(predictions).map(([id, pred]) => ({
             GameID: id,
@@ -30,8 +33,14 @@ const NHLPage = () => {
             "Predicted Winner": pred["Predicted Winner"] || "AI Unsure",
             "Pre-Game Away Win Probability": pred["Pre-Game Away Win Probability"],
             "Pre-Game Home Win Probability": pred["Pre-Game Home Win Probability"],
+            "Home Goals": 0,
+            "Away Goals": 0,
+            "Home Record": "",
+            "Away Record": "",
             oddsFormat: oddsFormat
           }));
+          
+          console.log('Transformed games array:', gamesArray);
           setGames(gamesArray);
         }
       } catch (error) {
@@ -121,7 +130,9 @@ const NHLPage = () => {
                 </button>
               </div>
               <div className="p-4" id="picks">
-                {activeTab === 'singles' && <OverDogPicks games={games} oddsFormat={oddsFormat} />}
+                {activeTab === 'singles' && (
+                  <OverDogPicks games={games} oddsFormat={oddsFormat} />
+                )}
                 {activeTab === 'parlays' && <div className="text-white text-center">Parlays Coming Soon</div>}
                 {activeTab === 'props' && <NHLProps />}
               </div>

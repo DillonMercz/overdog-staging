@@ -116,3 +116,53 @@ export const getAllActiveBookmakers = async (): Promise<Bookmaker[]> => {
     return [];
   }
 };
+
+interface UserBookmakerSelection {
+  selected: boolean;
+  selected_at: string;
+}
+
+interface UserBookmarkersData {
+  [key: string]: UserBookmakerSelection;
+}
+
+/**
+ * Fetches user's selected bookmakers
+ */
+export const getUserBookmakers = async (userId: string): Promise<Bookmaker[]> => {
+  try {
+    // First get the user's selected bookmaker IDs
+    const { data: userData, error: userError } = await supabase
+      .from('users')
+      .select('selected_sportsbooks')
+      .eq('id', userId)
+      .single();
+
+    if (userError) throw userError;
+
+    if (!userData?.selected_sportsbooks) return [];
+
+    // Parse the bookmakers data
+    const bookmarkersData = userData.selected_sportsbooks as UserBookmarkersData;
+    
+    // Get the IDs of selected bookmakers
+    const selectedBookmakerIds = Object.entries(bookmarkersData)
+      .filter(([_, value]) => value.selected)
+      .map(([id]) => id);
+
+    if (selectedBookmakerIds.length === 0) return [];
+
+    // Fetch the actual bookmaker details
+    const { data: bookmakers, error: bookmakerError } = await supabase
+      .from('bookmakers')
+      .select('*')
+      .in('id', selectedBookmakerIds);
+
+    if (bookmakerError) throw bookmakerError;
+
+    return bookmakers || [];
+  } catch (error) {
+    console.error('Error fetching user bookmakers:', error);
+    return [];
+  }
+};

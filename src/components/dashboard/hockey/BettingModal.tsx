@@ -1,18 +1,71 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { NHLPrediction } from '../../../types/nhlPredictions';
 import { NHLGame } from '../../../types/nhl';
 import { OddsFormat } from '../../../types/odds';
+import { Bookmaker, getUserBookmakers } from '../../../services/bookmakerService';
+import { useAuth } from '../../../hooks/useAuth';
+import { Link } from 'react-router-dom';
+import { trackBet, getOddsTypes, getBetLegTypes, getSingleBetTypeId } from '../../../services/betTrackingService';
+import { CreateBetData, OddsType, BetLegType } from '../../../types/betting';
+import { supabase } from '../../../lib/supabase/client';
 
 interface BettingModalProps {
   isOpen: boolean;
   onClose: () => void;
   game: NHLPrediction | NHLGame;
+  eventId?: string;
   oddsFormat?: OddsFormat;
 }
 
-const BettingModal = ({ isOpen, onClose, game, oddsFormat = 'american' }: BettingModalProps) => {
+// NHL specific IDs from nhlPredictionsService
+const NHL_SPORT_ID = '0f9a163b-f6e3-4743-952c-76909405d482';
+const NHL_LEAGUE_ID = '1e4c7e3c-5d07-4705-a608-7e586bbc92b4';
+
+const BettingModal = ({ isOpen, onClose, game, eventId, oddsFormat = 'american' }: BettingModalProps) => {
   const [stake, setStake] = useState('');
   const [odds, setOdds] = useState('');
+  const [userBookmakers, setUserBookmakers] = useState<Bookmaker[]>([]);
+  const [selectedBookmaker, setSelectedBookmaker] = useState<string>('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [oddsTypes, setOddsTypes] = useState<OddsType[]>([]);
+  const [legTypes, setLegTypes] = useState<BetLegType[]>([]);
+  const { user } = useAuth();
+
+  useEffect(() => {
+    const loadData = async () => {
+      if (user?.id) {
+        setLoading(true);
+        try {
+          const [bookmakers, oddsTypesData, legTypesData] = await Promise.all([
+            getUserBookmakers(user.id),
+            getOddsTypes(),
+            getBetLegTypes()
+          ]);
+          
+          setUserBookmakers(bookmakers);
+          setOddsTypes(oddsTypesData);
+          setLegTypes(legTypesData);
+          
+          // Reset selected bookmaker when modal opens
+          setSelectedBookmaker('');
+        } catch (error) {
+          console.error('Error loading data:', error);
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+
+    if (isOpen) {
+      loadData();
+      // Reset form state when modal opens
+      setStake('');
+      setOdds('');
+      setError(null);
+    }
+  }, [isOpen, user?.id]);
 
   if (!isOpen) return null;
 
@@ -70,9 +123,92 @@ const BettingModal = ({ isOpen, onClose, game, oddsFormat = 'american' }: Bettin
     }
   };
 
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-[#1A1A23] rounded-xl p-6 max-w-md w-full mx-4">
+  const handlePlaceBet = async () => {
+    try {
+      setError(null);
+
+      // Validate required fields
+      if (!stake || !odds || !selectedBookmaker) {
+        setError('Please fill in all required fields');
+        return;
+      }
+
+      if (!eventId) {
+        setError('No event ID provided');
+        return;
+      }
+
+      // Find the correct odds type ID based on format
+      const oddsType = oddsTypes.find(type => type.name.toLowerCase() === oddsFormat);
+      if (!oddsType) {
+        setError('Invalid odds format');
+        return;
+      }
+
+      // Find the moneyline leg type
+      const moneylineLegType = legTypes.find(type => type.name.toLowerCase() === 'moneyline');
+      if (!moneylineLegType) {
+        setError('Moneyline bet type not found');
+        return;
+      }
+
+      // Get the single bet type ID
+      const singleBetTypeId = await getSingleBetTypeId();
+
+      // Get the pending status ID
+      const { data: statusData, error: statusError } = await supabase
+        .from('bet_status')
+        .select('id')
+        .eq('name', 'Pending')
+        .single();
+
+      if (statusError || !statusData) {
+        setError('Could not get bet status');
+        return;
+      }
+      
+      // Ensure we have valid team names
+      const awayTeam = game['Away Team'] as string;
+      const homeTeam = game['Home Team'] as string;
+      
+      // Determine the selection (predicted winner or away team)
+      const selection = predictedWinner || awayTeam;
+      
+      const betData: CreateBetData = {
+        bookmaker_id: selectedBookmaker,
+        bet_type_id: singleBetTypeId,
+        bet_status_id: statusData.id,
+        stake: parseFloat(stake),
+        odds_type_id: oddsType.id,
+        odds: odds,
+        legs: [{
+          sport_id: NHL_SPORT_ID,
+          league_id: NHL_LEAGUE_ID,
+          event_name: `${awayTeam} @ ${homeTeam}`,
+          selection,
+          event_start: new Date().toISOString(),
+          odds_type_id: oddsType.id,
+          odds: odds,
+          leg_type_id: moneylineLegType.id,
+          event_id: eventId,
+          bet_status_id: statusData.id
+        }]
+      };
+
+      await trackBet(betData);
+      onClose();
+    } catch (err) {
+      console.error('Error placing bet:', err);
+      setError('Failed to place bet. Please try again.');
+    }
+  };
+
+  const modalContent = (
+    <div 
+      className="fixed inset-0 flex items-center justify-center z-[9999]"
+      style={{ backgroundColor: 'rgba(0, 0, 0, 0.75)' }}
+    >
+      <div className="bg-[#1A1A23] rounded-xl p-6 w-full max-w-xl mx-4 relative">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-white text-xl font-semibold">Place Your Bet</h2>
           <button 
@@ -85,29 +221,65 @@ const BettingModal = ({ isOpen, onClose, game, oddsFormat = 'american' }: Bettin
           </button>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           <div className="text-white">
-            <p className="mb-2">Game:</p>
+            <p className="mb-2 text-gray-400">Game:</p>
             <p className="text-lg font-medium">{game['Away Team']} @ {game['Home Team']}</p>
           </div>
 
           {predictedWinner && (
             <div className="text-white">
-              <p className="mb-2">Prediction:</p>
+              <p className="mb-2 text-gray-400">Prediction:</p>
               <p className="text-lg font-medium text-[#4263EB]">{predictedWinner} to Win</p>
             </div>
           )}
 
           {'Game State' in game && (
             <div className="text-white">
-              <p className="mb-2">Game Status:</p>
+              <p className="mb-2 text-gray-400">Game Status:</p>
               <p className="text-lg font-medium">{game['Game State']}</p>
+            </div>
+          )}
+
+          {loading ? (
+            <div className="text-white text-center py-4">
+              Loading bookmakers...
+            </div>
+          ) : userBookmakers.length === 0 ? (
+            <div className="bg-[#2A2A35] rounded-lg p-4 text-white">
+              <p className="mb-2">No bookmakers selected</p>
+              <p className="text-sm text-gray-400 mb-3">
+                You need to select bookmakers before placing bets.
+              </p>
+              <Link
+                to="/bookmakers"
+                className="text-[#4263EB] hover:text-[#3651C9] transition-colors"
+              >
+                Go to Bookmakers to Select Bookmakers →
+              </Link>
+            </div>
+          ) : (
+            <div className="text-white">
+              <label htmlFor="bookmaker" className="block mb-2 text-gray-400">Select Bookmaker:</label>
+              <select
+                id="bookmaker"
+                value={selectedBookmaker}
+                onChange={(e) => setSelectedBookmaker(e.target.value)}
+                className="w-full bg-[#2A2A35] text-white py-2 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4263EB] appearance-none cursor-pointer"
+              >
+                <option value="">Select a bookmaker</option>
+                {userBookmakers.map((bookmaker) => (
+                  <option key={bookmaker.id} value={bookmaker.id}>
+                    {bookmaker.name}
+                  </option>
+                ))}
+              </select>
             </div>
           )}
 
           <div className="space-y-4">
             <div className="text-white">
-              <label htmlFor="stake" className="block mb-2">Stake ($)</label>
+              <label htmlFor="stake" className="block mb-2 text-gray-400">Stake ($)</label>
               <input
                 id="stake"
                 type="text"
@@ -119,7 +291,7 @@ const BettingModal = ({ isOpen, onClose, game, oddsFormat = 'american' }: Bettin
             </div>
 
             <div className="text-white">
-              <label htmlFor="odds" className="block mb-2">
+              <label htmlFor="odds" className="block mb-2 text-gray-400">
                 Odds ({oddsFormat.charAt(0).toUpperCase() + oddsFormat.slice(1)})
               </label>
               <input
@@ -133,14 +305,16 @@ const BettingModal = ({ isOpen, onClose, game, oddsFormat = 'american' }: Bettin
             </div>
           </div>
 
+          {error && (
+            <div className="text-red-500 text-sm mt-2">
+              {error}
+            </div>
+          )}
+
           <button
-            className="w-full bg-[#4263EB] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#3651C9] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            onClick={() => {
-              // TODO: Implement bet placement logic with stake and odds
-              console.log('Placing bet with stake:', stake, 'and odds:', odds);
-              onClose();
-            }}
-            disabled={!stake || !odds}
+            className="w-full bg-[#4263EB] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#3651C9] transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-6"
+            onClick={handlePlaceBet}
+            disabled={!stake || !odds || !selectedBookmaker}
           >
             Place Bet
           </button>
@@ -148,6 +322,8 @@ const BettingModal = ({ isOpen, onClose, game, oddsFormat = 'american' }: Bettin
       </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 };
 
 export default BettingModal;

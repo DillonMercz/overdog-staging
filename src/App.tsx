@@ -9,7 +9,7 @@ import { ErrorBoundary } from './components/ErrorBoundary';
 function App() {
   return (
     <ErrorBoundary>
-      <BrowserRouter basename="/ODWebsitev2">
+      <BrowserRouter>
         <AuthProvider supabase={supabase}>
           <UserProvider>
             <AppRoutes />

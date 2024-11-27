@@ -17,17 +17,26 @@ const NHLSingles = () => {
       try {
         const { data: { session } } = await supabase.auth.getSession();
         if (session?.access_token) {
+          console.log('Fetching NHL predictions...');
           const data = await fetchNHLPredictions(session.access_token);
+          console.log('Received predictions:', data);
+          console.log('Number of predictions:', Object.keys(data).length);
           setPredictions(data);
+        } else {
+          console.error('No access token available');
+          setError('Authentication required');
         }
       } catch (err) {
-        setError('Failed to load predictions');
-        console.error(err);
+        const errorMessage = err instanceof Error ? err.message : 'Failed to load predictions';
+        console.error('Error loading predictions:', err);
+        setError(errorMessage);
       }
     };
 
     if (user) {
       loadPredictions();
+    } else {
+      console.log('No user logged in');
     }
   }, [user]);
 
@@ -55,12 +64,21 @@ const NHLSingles = () => {
     );
   }
 
+  const predictionsList = Object.values(predictions);
+  if (predictionsList.length === 0) {
+    return (
+      <div className="text-white p-4">
+        No predictions available for today.
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1400px] mx-auto p-6">
-        {Object.values(predictions).map((game, index) => {
-          const homeAbbr = getTeamAbbreviation(game['Home Team']);
-          const awayAbbr = getTeamAbbreviation(game['Away Team']);
+        {predictionsList.map((game, index) => {
+          const homeAbbr = getTeamAbbreviation(game['Home Team'] || '');
+          const awayAbbr = getTeamAbbreviation(game['Away Team'] || '');
 
           return (
             <div key={index} className="bg-gradient-to-br from-[#1A1A23] to-[#13131A] rounded-xl overflow-hidden border border-[rgba(255,255,255,0.05)] hover:border-[#4263EB] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
@@ -71,12 +89,12 @@ const NHLSingles = () => {
                   <div className="flex items-center gap-4">
                     <div className="w-16 h-16 rounded-lg bg-[#13131A] p-2 flex items-center justify-center shadow-inner">
                       <img 
-                        src={`/assets/img/nhl-logos/${awayAbbr}.png`}
-                        alt={game['Away Team']}
+                        src={`assets/img/nhl-logos/${awayAbbr}.png`}
+                        alt={game['Away Team'] || 'Away Team'}
                         className="w-12 h-12 object-contain"
                       />
                     </div>
-                    <span className="text-white text-xl font-semibold flex-1">{game['Away Team']}</span>
+                    <span className="text-white text-xl font-semibold flex-1">{game['Away Team'] || 'TBD'}</span>
                   </div>
 
                   {/* Divider */}
@@ -90,12 +108,12 @@ const NHLSingles = () => {
                   <div className="flex items-center gap-4">
                     <div className="w-16 h-16 rounded-lg bg-[#13131A] p-2 flex items-center justify-center shadow-inner">
                       <img 
-                        src={`/assets/img/nhl-logos/${homeAbbr}.png`}
-                        alt={game['Home Team']}
+                        src={`assets/img/nhl-logos/${homeAbbr}.png`}
+                        alt={game['Home Team'] || 'Home Team'}
                         className="w-12 h-12 object-contain"
                       />
                     </div>
-                    <span className="text-white text-xl font-semibold flex-1">{game['Home Team']}</span>
+                    <span className="text-white text-xl font-semibold flex-1">{game['Home Team'] || 'TBD'}</span>
                   </div>
                 </div>
               </div>

@@ -38,12 +38,12 @@ const OverDogPicks: React.FC<OverDogPicksProps> = ({ games, oddsFormat }) => {
                   <div className="flex items-center gap-4">
                     <div className="w-16 h-16 rounded-lg bg-[#13131A] p-2 flex items-center justify-center shadow-inner">
                       <img 
-                        src={`/assets/img/nhl-logos/${getTeamAbbreviation(game["Away Team"])}.png`} 
+                        src={`/assets/img/nhl-logos/${getTeamAbbreviation(game["Away Team"] || "")}.png`} 
                         className="w-12 h-12 object-contain" 
-                        alt={game["Away Team"]}
+                        alt={game["Away Team"] || "Away Team"}
                       />
                     </div>
-                    <span className="text-white text-xl font-semibold flex-1">{game["Away Team"]}</span>
+                    <span className="text-white text-xl font-semibold flex-1">{game["Away Team"] || "TBD"}</span>
                   </div>
 
                   {/* Divider */}
@@ -57,12 +57,12 @@ const OverDogPicks: React.FC<OverDogPicksProps> = ({ games, oddsFormat }) => {
                   <div className="flex items-center gap-4">
                     <div className="w-16 h-16 rounded-lg bg-[#13131A] p-2 flex items-center justify-center shadow-inner">
                       <img 
-                        src={`/assets/img/nhl-logos/${getTeamAbbreviation(game["Home Team"])}.png`} 
+                        src={`/assets/img/nhl-logos/${getTeamAbbreviation(game["Home Team"] || "")}.png`} 
                         className="w-12 h-12 object-contain" 
-                        alt={game["Home Team"]}
+                        alt={game["Home Team"] || "Home Team"}
                       />
                     </div>
-                    <span className="text-white text-xl font-semibold flex-1">{game["Home Team"]}</span>
+                    <span className="text-white text-xl font-semibold flex-1">{game["Home Team"] || "TBD"}</span>
                   </div>
                 </div>
               </div>
@@ -97,7 +97,7 @@ const OverDogPicks: React.FC<OverDogPicksProps> = ({ games, oddsFormat }) => {
         </div>
       </div>
       
-      {selectedGame && (
+      {selectedGame && selectedGame.GameID && (
         <BettingModal
           isOpen={isModalOpen}
           onClose={() => {
@@ -105,6 +105,7 @@ const OverDogPicks: React.FC<OverDogPicksProps> = ({ games, oddsFormat }) => {
             setSelectedGame(null);
           }}
           game={selectedGame}
+          eventId={selectedGame.GameID.toString()}
           oddsFormat={oddsFormat}
         />
       )}

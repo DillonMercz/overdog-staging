@@ -12,7 +12,7 @@ import NavBar from '../../components/dashboard/NavBar';
 import NHLPage from './NHLPage';
 import ProfilePage from './ProfilePage';
 import BookmakersPage from './BookmakersPage';
-import { DiscordCallback } from '../../components/dashboard/DiscordCallback';
+import DiscordCallback from '../../components/dashboard/DiscordCallback';
 import { PinnedGamesProvider } from '../../contexts/PinnedGamesContext';
 import PinnedGamesBar from '../../components/dashboard/PinnedGamesBar';
 

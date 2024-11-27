@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useUser } from '../../contexts/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
@@ -18,12 +18,23 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { countries } from 'countries-list';
 import { supabase } from '../../lib/supabase/client';
 
+
 interface DiscordProfile {
   id: string;
   username: string;
   discriminator: string;
   avatar: string;
   connected_at?: string;
+}
+
+interface EditedData {
+  email: string;
+  username: string;
+  avatar: string;
+  first_name: string;
+  last_name: string;
+  country: string;
+  birthday: string;
 }
 
 const SUBSCRIPTION_TIERS = {
@@ -71,9 +82,9 @@ const SUBSCRIPTION_TIERS = {
 };
 
 const ProfilePage = () => {
-  const { profile } = useUser();
+  const { profile, refreshProfile } = useUser();
   const [isEditing, setIsEditing] = useState(false);
-  const [editedData, setEditedData] = useState({
+  const [editedData, setEditedData] = useState<EditedData>({
     email: profile?.email || '',
     username: profile?.username || '',
     avatar: profile?.avatar || '',
@@ -86,42 +97,111 @@ const ProfilePage = () => {
   const [uploadingAvatar, setUploadingAvatar] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [avatarUrl, setAvatarUrl] = useState<string>('');
 
-  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
   const DISCORD_CLIENT_ID = import.meta.env.VITE_DISCORD_CLIENT_ID;
 
-  // Get current subscription tier
-  const getCurrentTier = () => {
-    const tier = profile?.plan || 'Commoner';
-    return SUBSCRIPTION_TIERS[tier as keyof typeof SUBSCRIPTION_TIERS] || SUBSCRIPTION_TIERS.Commoner;
-  };
+  // In ProfilePage.tsx, modify the initial effect:
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const error = searchParams.get('error');
+    if (error === 'discord-connection-failed') {
+      setError('Failed to connect Discord account');
+    }
+    // Only refresh on mount, not on every render
+  }, []); // Empty dependency array
 
-  const currentTier = getCurrentTier();
+  // Add a separate effect for profile updates
+  useEffect(() => {
+    if (profile) {
+      setEditedData({
+        email: profile.email || '',
+        username: profile.username || '',
+        avatar: profile.avatar || '',
+        first_name: profile.first_name || '',
+        last_name: profile.last_name || '',
+        country: profile.country || '',
+        birthday: profile.birthday || ''
+      });
+    }
+  }, [profile]); // Only depend on profile changes
 
+  // Update Discord profile when profile changes
   useEffect(() => {
     if (profile?.discord_user) {
       try {
-        setDiscordProfile(JSON.parse(profile.discord_user));
+        const parsed = JSON.parse(profile.discord_user);
+        setDiscordProfile(parsed);
       } catch (err) {
         console.error('Error parsing Discord profile:', err);
+        setDiscordProfile(null);
       }
+    } else {
+      setDiscordProfile(null);
     }
-  }, [profile]);
+  }, [profile?.discord_user]);
+
+  // Get avatar URL
+  const getAvatarUrl = useCallback(async (path: string) => {
+    try {
+      const { data, error } = await supabase.storage
+        .from('avatars')
+        .createSignedUrl(path, 3600);
+
+      if (error) throw error;
+      return data.signedUrl;
+    } catch (err) {
+      console.error('Error getting avatar URL:', err);
+      return '';
+    }
+  }, []);
+
+  // Update avatar URL when avatar changes
+  useEffect(() => {
+    const updateAvatarUrl = async () => {
+      if (!editedData.avatar) {
+        setAvatarUrl('');
+        return;
+      }
+      const url = await getAvatarUrl(editedData.avatar);
+      setAvatarUrl(url);
+    };
+
+    updateAvatarUrl();
+  }, [editedData.avatar, getAvatarUrl]);
+
+  const getDiscordAvatar = (profile: DiscordProfile) => {
+    return profile.avatar 
+      ? `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`
+      : `https://cdn.discordapp.com/embed/avatars/${parseInt(profile.discriminator) % 5}.png`;
+  };
 
   const handleDiscordConnect = () => {
-    const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&scope=identify&response_type=code&redirect_uri=${encodeURIComponent(`${window.location.origin}/dashboard/profile/discord/callback`)}`;
+    // Make sure DISCORD_CLIENT_ID matches your application's client ID
+    const discordAuthUrl = `https://discord.com/api/oauth2/authorize` + 
+      `?client_id=${DISCORD_CLIENT_ID}` +
+      `&scope=identify%20guilds.join%20role_connections.write` +
+      `&response_type=code` +
+      `&permissions=1099511627775` + // Adding permissions to ensure role access
+      `&prompt=consent` + // Force consent screen to ensure fresh token
+      `&redirect_uri=${encodeURIComponent(`${window.location.origin}/dashboard/profile/discord/callback`)}`;
+      
     window.location.href = discordAuthUrl;
   };
 
   const handleDiscordDisconnect = async () => {
     try {
       setError(null);
-      await supabase
+      const { error: disconnectError } = await supabase
         .from('users')
         .update({
           discord_user: null
         })
         .eq('id', profile?.id);
+
+      if (disconnectError) throw disconnectError;
+
+      await refreshProfile();
       setDiscordProfile(null);
       setSuccess('Discord account disconnected successfully');
     } catch (err) {
@@ -134,7 +214,7 @@ const ProfilePage = () => {
     try {
       setError(null);
       const file = event.target.files?.[0];
-      if (!file) return;
+      if (!file || !profile?.id) return;
 
       if (!file.type.startsWith('image/')) {
         setError('Please upload an image file');
@@ -149,16 +229,29 @@ const ProfilePage = () => {
       setUploadingAvatar(true);
       
       const fileExt = file.name.split('.').pop();
-      const fileName = `${Math.random().toString(36).substring(2)}${Date.now()}.${fileExt}`;
-      const filePath = `avatars/${fileName}`;
+      const fileName = `${profile.id}/${Math.random().toString(36).substring(2)}${Date.now()}.${fileExt}`;
 
       const { error: uploadError } = await supabase.storage
-        .from('profiles')
-        .upload(filePath, file);
+        .from('avatars')
+        .upload(fileName, file);
 
       if (uploadError) throw uploadError;
 
+      if (editedData.avatar) {
+        await supabase.storage
+          .from('avatars')
+          .remove([editedData.avatar]);
+      }
+
+      const { error: updateError } = await supabase
+        .from('users')
+        .update({ avatar: fileName })
+        .eq('id', profile.id);
+
+      if (updateError) throw updateError;
+
       setEditedData(prev => ({ ...prev, avatar: fileName }));
+      await refreshProfile();
       setSuccess('Avatar updated successfully');
     } catch (err) {
       console.error('Error uploading avatar:', err);
@@ -168,57 +261,67 @@ const ProfilePage = () => {
     }
   };
 
+  const validateForm = () => {
+    if (!editedData.username.trim()) {
+      setError('Username is required');
+      return false;
+    }
+
+    if (!editedData.email.trim() || !/\S+@\S+\.\S+/.test(editedData.email)) {
+      setError('Valid email is required');
+      return false;
+    }
+
+    if (!editedData.first_name.trim()) {
+      setError('First name is required');
+      return false;
+    }
+
+    if (!editedData.last_name.trim()) {
+      setError('Last name is required');
+      return false;
+    }
+
+    if (!editedData.country) {
+      setError('Please select your country');
+      return false;
+    }
+
+    if (!editedData.birthday) {
+      setError('Please enter your birthday');
+      return false;
+    }
+
+    const birthDate = new Date(editedData.birthday);
+    if (birthDate > new Date()) {
+      setError('Birthday cannot be in the future');
+      return false;
+    }
+
+    const age = new Date().getFullYear() - birthDate.getFullYear();
+    if (age < 18) {
+      setError('You must be at least 18 years old');
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSave = async () => {
     try {
       setError(null);
       setSuccess(null);
 
-      if (!editedData.username.trim()) {
-        setError('Username is required');
-        return;
-      }
+      if (!validateForm()) return;
 
-      if (!editedData.email.trim() || !/\S+@\S+\.\S+/.test(editedData.email)) {
-        setError('Valid email is required');
-        return;
-      }
-
-      if (!editedData.first_name.trim()) {
-        setError('First name is required');
-        return;
-      }
-
-      if (!editedData.last_name.trim()) {
-        setError('Last name is required');
-        return;
-      }
-
-      if (!editedData.country) {
-        setError('Please select your country');
-        return;
-      }
-
-      if (!editedData.birthday) {
-        setError('Please enter your birthday');
-        return;
-      }
-
-      if (new Date(editedData.birthday) > new Date()) {
-        setError('Birthday cannot be in the future');
-        return;
-      }
-
-      const age = new Date().getFullYear() - new Date(editedData.birthday).getFullYear();
-      if (age < 18) {
-        setError('You must be at least 18 years old');
-        return;
-      }
-
-      await supabase
+      const { error: updateError } = await supabase
         .from('users')
         .update(editedData)
         .eq('id', profile?.id);
 
+      if (updateError) throw updateError;
+
+      await refreshProfile();
       setSuccess('Profile updated successfully');
       setIsEditing(false);
     } catch (err) {
@@ -226,6 +329,27 @@ const ProfilePage = () => {
       setError('Failed to update profile');
     }
   };
+
+  const handleCancel = () => {
+    setIsEditing(false);
+    setEditedData({
+      email: profile?.email || '',
+      username: profile?.username || '',
+      avatar: profile?.avatar || '',
+      first_name: profile?.first_name || '',
+      last_name: profile?.last_name || '',
+      country: profile?.country || '',
+      birthday: profile?.birthday || ''
+    });
+    setError(null);
+  };
+
+  const getCurrentTier = () => {
+    const tier = profile?.plan || 'Commoner';
+    return SUBSCRIPTION_TIERS[tier as keyof typeof SUBSCRIPTION_TIERS] || SUBSCRIPTION_TIERS.Commoner;
+  };
+
+  const currentTier = getCurrentTier();
 
   return (
     <div className="space-y-6 max-w-4xl mx-auto pb-12">
@@ -237,7 +361,6 @@ const ProfilePage = () => {
 
       {/* Main content */}
       <div className="bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border border-[rgba(255,255,255,0.05)] rounded-2xl p-6">
-        {/* Error/Success messages */}
         {error && (
           <div className="mb-4 flex items-center gap-2 text-[#FF3D71] bg-[rgba(255,61,113,0.15)] border border-[rgba(255,255,255,0.05)] rounded-lg p-3">
             <FontAwesomeIcon icon={fasExclamationCircle as IconProp} />
@@ -251,17 +374,20 @@ const ProfilePage = () => {
           </div>
         )}
 
-        {/* Profile form */}
         <div className="space-y-6">
           {/* Avatar section */}
           <div className="flex items-start gap-6">
             <div className="relative">
               <div className="w-24 h-24 rounded-full bg-[rgba(255,255,255,0.05)] overflow-hidden">
-                {editedData.avatar ? (
+                {editedData.avatar && avatarUrl ? (
                   <img
-                    src={`${supabaseUrl}/storage/v1/object/public/profiles/avatars/${editedData.avatar}`}
+                    src={avatarUrl}
                     alt="Profile"
                     className="w-full h-full object-cover"
+                    onError={() => {
+                      setAvatarUrl('');
+                      setEditedData(prev => ({ ...prev, avatar: '' }));
+                    }}
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-[#8F9BB3]">
@@ -285,6 +411,7 @@ const ProfilePage = () => {
                 </label>
               )}
             </div>
+
             <div className="flex-1">
               <div className="flex items-center justify-between">
                 <div>
@@ -305,10 +432,7 @@ const ProfilePage = () => {
                     {isEditing ? 'Save Changes' : 'Edit Profile'}
                   </span>
                 </button>
-              </div>
-              
-              {/* Subscription tier badge */}
-              <div className={`mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${currentTier.bgColor} ${currentTier.borderColor} border`}>
+              </div><div className={`mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${currentTier.bgColor} ${currentTier.borderColor} border`}>
                 <FontAwesomeIcon 
                   icon={currentTier.icon}
                   className={currentTier.color}
@@ -322,7 +446,6 @@ const ProfilePage = () => {
 
           {/* Form fields */}
           <div className="grid grid-cols-2 gap-6">
-            {/* Email */}
             <div>
               <label className="block text-[#8F9BB3] text-sm mb-2">
                 Email
@@ -337,7 +460,6 @@ const ProfilePage = () => {
               />
             </div>
 
-            {/* Username */}
             <div>
               <label className="block text-[#8F9BB3] text-sm mb-2">
                 Username
@@ -352,7 +474,6 @@ const ProfilePage = () => {
               />
             </div>
 
-            {/* First Name */}
             <div>
               <label className="block text-[#8F9BB3] text-sm mb-2">
                 First Name
@@ -367,7 +488,6 @@ const ProfilePage = () => {
               />
             </div>
 
-            {/* Last Name */}
             <div>
               <label className="block text-[#8F9BB3] text-sm mb-2">
                 Last Name
@@ -382,7 +502,6 @@ const ProfilePage = () => {
               />
             </div>
 
-            {/* Country */}
             <div>
               <label className="block text-[#8F9BB3] text-sm mb-2">
                 Country
@@ -402,7 +521,6 @@ const ProfilePage = () => {
               </select>
             </div>
 
-            {/* Birthday */}
             <div>
               <label className="block text-[#8F9BB3] text-sm mb-2">
                 Birthday
@@ -425,16 +543,30 @@ const ProfilePage = () => {
             
             <div className="flex items-center justify-between p-4 bg-[rgba(255,255,255,0.03)] rounded-lg">
               <div className="flex items-center gap-3">
-                <FontAwesomeIcon 
-                  icon={fabDiscord as IconProp}
-                  className="text-[#5865F2] text-xl"
-                />
+                {discordProfile?.avatar ? (
+                  <img 
+                    src={getDiscordAvatar(discordProfile)}
+                    alt="Discord Avatar"
+                    className="w-8 h-8 rounded-full"
+                  />
+                ) : (
+                  <FontAwesomeIcon 
+                    icon={fabDiscord as IconProp}
+                    className="text-[#5865F2] text-xl"
+                  />
+                )}
                 <div>
                   <h4 className="text-white font-medium">Discord</h4>
                   {discordProfile ? (
-                    <p className="text-sm text-[#8F9BB3]">
-                      Connected as {discordProfile.username}#{discordProfile.discriminator}
-                    </p>
+                    <div className="flex items-center gap-2">
+                      <p className="text-sm text-[#8F9BB3]">
+                        {discordProfile.username}
+                        <span className="opacity-50">#{discordProfile.discriminator}</span>
+                      </p>
+                      <span className="text-xs px-1.5 py-0.5 rounded bg-[#5865F2]/20 text-[#5865F2]">
+                        Connected {new Date(discordProfile.connected_at || '').toLocaleDateString()}
+                      </span>
+                    </div>
                   ) : (
                     <p className="text-sm text-[#8F9BB3]">
                       Not connected
@@ -467,19 +599,7 @@ const ProfilePage = () => {
           {isEditing && (
             <div className="flex justify-end">
               <button
-                onClick={() => {
-                  setIsEditing(false);
-                  setEditedData({
-                    email: profile?.email || '',
-                    username: profile?.username || '',
-                    avatar: profile?.avatar || '',
-                    first_name: profile?.first_name || '',
-                    last_name: profile?.last_name || '',
-                    country: profile?.country || '',
-                    birthday: profile?.birthday || ''
-                  });
-                  setError(null);
-                }}
+                onClick={handleCancel}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[rgba(255,61,113,0.15)] hover:bg-[rgba(255,61,113,0.25)] transition-colors text-[#FF3D71]"
               >
                 <FontAwesomeIcon icon={fasXmark as IconProp} />
