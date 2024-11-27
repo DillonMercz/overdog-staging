@@ -65,7 +65,9 @@ export const fetchNHLPredictions = async (authToken: string): Promise<NHLPredict
       return;
     }
 
-    console.log('Processing prediction for event:', event.id, {
+    console.log('Processing prediction:', {
+      prediction_id: prediction.id,
+      event_id: event.id,
       home_team: event.home_team_name,
       away_team: event.away_team_name,
       prediction_value: prediction.prediction_value,
@@ -97,12 +99,15 @@ export const fetchNHLPredictions = async (authToken: string): Promise<NHLPredict
       "Predicted Winner": predictedWinner
     };
 
-    response[prediction.event_id.toString()] = {
+    // Use prediction.id as the key instead of event_id
+    response[prediction.id] = {
       'Away Team': game["Away Team"] || 'TBD',
       'Home Team': game["Home Team"] || 'TBD',
       'Pre-Game Away Win Probability': game["Pre-Game Away Win Probability"] || "0",
       'Pre-Game Home Win Probability': game["Pre-Game Home Win Probability"] || "0",
-      'Predicted Winner': predictedWinner
+      'Predicted Winner': predictedWinner,
+      'id': prediction.id,
+      'event_id': prediction.event_id
     };
   });
 

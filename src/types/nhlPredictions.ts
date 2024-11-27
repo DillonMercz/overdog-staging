@@ -4,6 +4,8 @@ export interface NHLPrediction {
   'Pre-Game Away Win Probability': string;
   'Pre-Game Home Win Probability': string;
   'Predicted Winner': string | null;
+  'id': string; // The prediction UUID
+  'event_id': string; // The event ID
 }
 
 export interface NHLPlayerStats {

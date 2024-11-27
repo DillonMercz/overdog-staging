@@ -70,16 +70,28 @@ export interface Bet {
   legs: BetLeg[];
 }
 
+// Base interface for creating bets
 export interface CreateBetData {
   bookmaker_id: string;
   bet_type_id: string;
-  bet_status_id?: string; // Optional since it will be set in trackBet
+  bet_status_id: string;
   stake: number;
   odds_type_id: string;
   odds: string;
   legs: BetLegData[];
 }
 
+// Interface for creating single bets (exactly one leg)
+export interface CreateSingleBetData extends CreateBetData {
+  legs: [BetLegData]; // Array of exactly one leg
+}
+
+// Interface for creating parlay bets (multiple legs)
+export interface CreateParlayBetData extends CreateBetData {
+  legs: BetLegData[]; // Array of multiple legs
+}
+
+// Data for a bet leg (used when creating bets)
 export interface BetLegData {
   sport_id: string;
   league_id: string;
@@ -88,9 +100,9 @@ export interface BetLegData {
   event_start: string;
   odds_type_id: string;
   odds: string;
-  leg_type_id: string;
+  leg_type_id?: string; // Optional since it's set by database trigger
   event_id?: string;
-  bet_status_id?: string; // Optional since it will be set in trackBet
+  prediction_id?: string; // Added prediction_id field
 }
 
 export interface OddsType {
@@ -110,3 +122,18 @@ export interface BetStatus {
   name: string;
   description?: string;
 }
+
+// Constants for bet types
+export const BET_TYPES = {
+  SINGLE: 'Single',
+  PARLAY: 'Parlay'
+} as const;
+
+// Constants for bet status
+export const BET_STATUS = {
+  PENDING: 'Pending',
+  WON: 'Won',
+  LOST: 'Lost',
+  CANCELLED: 'Cancelled',
+  CASHOUT: 'Cashout'
+} as const;

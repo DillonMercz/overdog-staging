@@ -22,6 +22,9 @@ interface BettingModalProps {
 const NHL_SPORT_ID = '0f9a163b-f6e3-4743-952c-76909405d482';
 const NHL_LEAGUE_ID = '1e4c7e3c-5d07-4705-a608-7e586bbc92b4';
 
+// Bet status ID for "Pending"
+const PENDING_STATUS_ID = '986ae62d-e908-4163-8186-6655755cd53d';
+
 const BettingModal = ({ isOpen, onClose, game, eventId, oddsFormat = 'american' }: BettingModalProps) => {
   const [stake, setStake] = useState('');
   const [odds, setOdds] = useState('');
@@ -31,30 +34,75 @@ const BettingModal = ({ isOpen, onClose, game, eventId, oddsFormat = 'american' 
   const [error, setError] = useState<string | null>(null);
   const [oddsTypes, setOddsTypes] = useState<OddsType[]>([]);
   const [legTypes, setLegTypes] = useState<BetLegType[]>([]);
+  const [legTypeId, setLegTypeId] = useState<string | null>(null);
   const { user } = useAuth();
 
   useEffect(() => {
     const loadData = async () => {
-      if (user?.id) {
-        setLoading(true);
-        try {
-          const [bookmakers, oddsTypesData, legTypesData] = await Promise.all([
-            getUserBookmakers(user.id),
-            getOddsTypes(),
-            getBetLegTypes()
-          ]);
+      if (!user?.id) return;
+      
+      setLoading(true);
+      try {
+        // Load bookmakers and odds types first
+        const [bookmakers, oddsTypesData, legTypesData] = await Promise.all([
+          getUserBookmakers(user.id),
+          getOddsTypes(),
+          getBetLegTypes()
+        ]);
+        
+        setUserBookmakers(bookmakers);
+        setOddsTypes(oddsTypesData);
+        setLegTypes(legTypesData);
+
+        // Only fetch prediction data if we have an eventId
+        if (eventId) {
+          // Fetch prediction_type from predictions table
+          const { data: predictionData, error: predictionError } = await supabase
+            .from('predictions')
+            .select('prediction_type')
+            .eq('id', eventId)
+            .single();
+
+          if (predictionError) {
+            console.error('Error fetching prediction:', predictionError);
+            throw predictionError;
+          }
           
-          setUserBookmakers(bookmakers);
-          setOddsTypes(oddsTypesData);
-          setLegTypes(legTypesData);
+          if (!predictionData) {
+            console.error('Prediction not found');
+            throw new Error('Prediction not found');
+          }
+
+          console.log('Prediction data:', predictionData);
+
+          // Get bet leg type ID based on prediction_type
+          const { data: legTypeData, error: legTypeError } = await supabase
+            .from('bet_leg_types')
+            .select('id')
+            .eq('name', predictionData.prediction_type)
+            .single();
+
+          if (legTypeError) {
+            console.error('Error fetching leg type:', legTypeError);
+            throw legTypeError;
+          }
           
-          // Reset selected bookmaker when modal opens
-          setSelectedBookmaker('');
-        } catch (error) {
-          console.error('Error loading data:', error);
-        } finally {
-          setLoading(false);
+          if (!legTypeData) {
+            console.error('Bet leg type not found');
+            throw new Error('Bet leg type not found');
+          }
+
+          console.log('Leg type data:', legTypeData);
+          setLegTypeId(legTypeData.id);
         }
+        
+        // Reset selected bookmaker when modal opens
+        setSelectedBookmaker('');
+      } catch (error) {
+        console.error('Error loading data:', error);
+        setError('Failed to load bet data');
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -65,7 +113,7 @@ const BettingModal = ({ isOpen, onClose, game, eventId, oddsFormat = 'american' 
       setOdds('');
       setError(null);
     }
-  }, [isOpen, user?.id]);
+  }, [isOpen, user?.id, eventId]);
 
   if (!isOpen) return null;
 
@@ -128,7 +176,7 @@ const BettingModal = ({ isOpen, onClose, game, eventId, oddsFormat = 'american' 
       setError(null);
 
       // Validate required fields
-      if (!stake || !odds || !selectedBookmaker) {
+      if (!stake || !odds || !selectedBookmaker || !legTypeId) {
         setError('Please fill in all required fields');
         return;
       }
@@ -145,39 +193,21 @@ const BettingModal = ({ isOpen, onClose, game, eventId, oddsFormat = 'american' 
         return;
       }
 
-      // Find the moneyline leg type
-      const moneylineLegType = legTypes.find(type => type.name.toLowerCase() === 'moneyline');
-      if (!moneylineLegType) {
-        setError('Moneyline bet type not found');
-        return;
-      }
-
       // Get the single bet type ID
       const singleBetTypeId = await getSingleBetTypeId();
 
-      // Get the pending status ID
-      const { data: statusData, error: statusError } = await supabase
-        .from('bet_status')
-        .select('id')
-        .eq('name', 'Pending')
-        .single();
-
-      if (statusError || !statusData) {
-        setError('Could not get bet status');
-        return;
-      }
-      
       // Ensure we have valid team names
       const awayTeam = game['Away Team'] as string;
       const homeTeam = game['Home Team'] as string;
       
       // Determine the selection (predicted winner or away team)
       const selection = predictedWinner || awayTeam;
-      
+
+      // Create bet data
       const betData: CreateBetData = {
         bookmaker_id: selectedBookmaker,
         bet_type_id: singleBetTypeId,
-        bet_status_id: statusData.id,
+        bet_status_id: PENDING_STATUS_ID, // Use constant for Pending status
         stake: parseFloat(stake),
         odds_type_id: oddsType.id,
         odds: odds,
@@ -189,11 +219,13 @@ const BettingModal = ({ isOpen, onClose, game, eventId, oddsFormat = 'american' 
           event_start: new Date().toISOString(),
           odds_type_id: oddsType.id,
           odds: odds,
-          leg_type_id: moneylineLegType.id,
           event_id: eventId,
-          bet_status_id: statusData.id
+          leg_type_id: legTypeId
         }]
       };
+
+      // Log the complete bet data before sending
+      console.log('Sending single bet data:', JSON.stringify(betData, null, 2));
 
       await trackBet(betData);
       onClose();
@@ -210,7 +242,7 @@ const BettingModal = ({ isOpen, onClose, game, eventId, oddsFormat = 'american' 
     >
       <div className="bg-[#1A1A23] rounded-xl p-6 w-full max-w-xl mx-4 relative">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-white text-xl font-semibold">Place Your Bet</h2>
+          <h2 className="text-white text-xl font-semibold">Place Single Bet</h2>
           <button 
             onClick={onClose}
             className="text-gray-400 hover:text-white"
@@ -314,9 +346,9 @@ const BettingModal = ({ isOpen, onClose, game, eventId, oddsFormat = 'american' 
           <button
             className="w-full bg-[#4263EB] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#3651C9] transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-6"
             onClick={handlePlaceBet}
-            disabled={!stake || !odds || !selectedBookmaker}
+            disabled={!stake || !odds || !selectedBookmaker || !legTypeId}
           >
-            Place Bet
+            Place Single Bet
           </button>
         </div>
       </div>

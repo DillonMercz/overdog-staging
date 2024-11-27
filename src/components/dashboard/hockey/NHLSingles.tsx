@@ -43,6 +43,7 @@ const NHLSingles = () => {
   const handleAddBet = (game: NHLPrediction, e: React.MouseEvent) => {
     e.stopPropagation();
     if (game['Predicted Winner'] !== "AI Unsure") {
+      console.log('Selected game for betting:', game);
       setSelectedGame(game);
       setIsModalOpen(true);
     }
@@ -156,6 +157,7 @@ const NHLSingles = () => {
             setSelectedGame(null);
           }}
           game={selectedGame}
+          eventId={selectedGame.id} // Now using the prediction UUID directly
         />
       )}
     </>
