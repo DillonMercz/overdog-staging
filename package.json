@@ -1,5 +1,5 @@
 {
-  "name": "overdog-dashboardremake",
+  "name": "dashboard-remake",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +7,7 @@
     "dev": "concurrently \"vite\" \"python src/scripts/nba_player_stats.py\"",
     "dev:frontend": "vite",
     "dev:backend": "python src/scripts/nba_player_stats.py",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },

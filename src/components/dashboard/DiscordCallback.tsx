@@ -1,86 +1,92 @@
-// components/DiscordCallback.tsx
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '../../contexts/UserContext';
 import { supabase } from '../../lib/supabase/client';
+import { useUser } from '../../contexts/UserContext';
 
-export const DiscordCallback = () => {
+const DiscordCallback = () => {
   const navigate = useNavigate();
-  const { profile } = useUser();
+  const { refreshProfile } = useUser();
+  const hasAttempted = useRef(false); // Add this to track if we've already tried
 
   useEffect(() => {
     const handleDiscordCallback = async () => {
+      // If we've already tried, don't try again
+      if (hasAttempted.current) return;
+      hasAttempted.current = true;
+
       try {
-        // Get code from URL
         const code = new URLSearchParams(window.location.search).get('code');
         if (!code) throw new Error('No code provided');
 
-        // Exchange code for token
         const tokenResponse = await fetch('https://discord.com/api/oauth2/token', {
           method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
           body: new URLSearchParams({
             client_id: import.meta.env.VITE_DISCORD_CLIENT_ID,
             client_secret: import.meta.env.VITE_DISCORD_CLIENT_SECRET,
             grant_type: 'authorization_code',
             code,
-            redirect_uri: `${window.location.origin}/dashboard/profile/discord/callback`
+            redirect_uri: `${window.location.origin}/dashboard/profile/discord/callback`,
           }),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          }
         });
 
-        if (!tokenResponse.ok) {
-          throw new Error('Failed to exchange code for token');
-        }
+        if (!tokenResponse.ok) throw new Error('Failed to exchange code for token');
+        const tokenData = await tokenResponse.json();
 
-        const tokens = await tokenResponse.json();
-
-        // Get user data from Discord
         const userResponse = await fetch('https://discord.com/api/users/@me', {
           headers: {
-            Authorization: `Bearer ${tokens.access_token}`
-          }
+            Authorization: `Bearer ${tokenData.access_token}`,
+          },
         });
 
-        if (!userResponse.ok) {
-          throw new Error('Failed to get Discord user data');
-        }
-
+        if (!userResponse.ok) throw new Error('Failed to fetch user data');
         const userData = await userResponse.json();
 
-        // Update the user's Discord info in Supabase
-        if (profile?.id) {
-          await supabase
-            .from('users')
-            .update({
-              discord_user: JSON.stringify({
-                id: userData.id,
-                username: userData.username,
-                discriminator: userData.discriminator,
-                avatar: userData.avatar,
-                connected_at: new Date().toISOString()
-              })
-            })
-            .eq('id', profile.id);
-        }
+        // In your DiscordCallback component, after getting the user data:
+        const guildId = import.meta.env.VITE_DISCORD_GUILD_ID;
+        await fetch(`https://discord.com/api/guilds/${guildId}/members/${userData.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            access_token: tokenData.access_token
+          })
+        });
 
-        navigate('/dashboard/profile');
-      } catch (error) {
-        console.error('Error connecting Discord:', error);
-        navigate('/dashboard/profile?error=discord_connection_failed');
+        const { error: updateError } = await supabase
+          .from('users')
+          .update({
+            discord_user: JSON.stringify({
+              id: userData.id,
+              username: userData.username,
+              discriminator: userData.discriminator,
+              avatar: userData.avatar,
+              connected_at: new Date().toISOString(),
+            }),
+          })
+          .eq('id', (await supabase.auth.getUser()).data.user?.id);
+
+        if (updateError) throw updateError;
+
+        await refreshProfile();
+        navigate('/dashboard/profile', { replace: true });
+      } catch (err) {
+        console.error('Error connecting Discord:', err);
+        navigate('/dashboard/profile?error=discord-connection-failed', { replace: true });
       }
     };
 
     handleDiscordCallback();
-  }, [navigate, profile]);
+  }, [navigate, refreshProfile]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#1E1E1E]">
-      <div className="flex items-center space-x-3 text-white">
-        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#5865F2]"></div>
-        <span>Connecting Discord account...</span>
-      </div>
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="text-white">Connecting Discord account...</div>
     </div>
   );
 };
+
+export default DiscordCallback;

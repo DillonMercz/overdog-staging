@@ -73,6 +73,7 @@ export interface Bet {
 export interface CreateBetData {
   bookmaker_id: string;
   bet_type_id: string;
+  bet_status_id?: string; // Optional since it will be set in trackBet
   stake: number;
   odds_type_id: string;
   odds: string;
@@ -89,6 +90,7 @@ export interface BetLegData {
   odds: string;
   leg_type_id: string;
   event_id?: string;
+  bet_status_id?: string; // Optional since it will be set in trackBet
 }
 
 export interface OddsType {
@@ -98,6 +100,12 @@ export interface OddsType {
 }
 
 export interface BetLegType {
+  id: string;
+  name: string;
+  description?: string;
+}
+
+export interface BetStatus {
   id: string;
   name: string;
   description?: string;

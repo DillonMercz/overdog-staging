@@ -11,8 +11,8 @@ import SideBar from '../../components/dashboard/SideBar';
 import NavBar from '../../components/dashboard/NavBar';
 import NHLPage from './NHLPage';
 import ProfilePage from './ProfilePage';
-import BookmakersPage from './BookMakersPage';
-import { DiscordCallback } from '../../components/dashboard/DiscordCallback';
+import BookmakersPage from './BookmakersPage';
+import DiscordCallback from '../../components/dashboard/DiscordCallback';
 import { PinnedGamesProvider } from '../../contexts/PinnedGamesContext';
 import PinnedGamesBar from '../../components/dashboard/PinnedGamesBar';
 

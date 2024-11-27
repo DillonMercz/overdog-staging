@@ -165,7 +165,7 @@ const NavBar = () => {
       return (
         <div className="h-9 w-9 rounded-xl overflow-hidden bg-[#13131A]">
           <img
-            src={`${supabaseUrl}/storage/v1/object/public/profiles/avatars/${profile.avatar}`}
+            src={`${supabaseUrl}/storage/v1/object/public/avatars/${profile.avatar}`}
             alt="Profile"
             className="h-full w-full object-cover"
             onError={(e) => {
